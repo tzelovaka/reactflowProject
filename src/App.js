@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   const [data, setData] = useState(null)
   useEffect(() => {
-    fetch ('https://enigmatic-citadel-15632.herokuapp.com/api')
+    fetch ('https://agile-shelf-33321.herokuapp.com/api')
     .then((response) => response.json())
     .then (response => setData(response.message))
   }, [])
