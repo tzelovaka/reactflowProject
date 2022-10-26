@@ -1,9 +1,9 @@
 require('dotenv').config()
 const express = require('express')
 const sequelize = require('./db')
-const story = require('../server/models/story')
-const storybl = require('../server/models/block');
-const storylin = require('../server/models/link');
+const story = require('./models/story')
+const storybl = require('./models/block');
+const storylin = require('./models/link');
 const cors = require('cors')
 const PORT = process.env.PORT || 5000
 const app = express();
