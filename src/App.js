@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   const [data, setData] = useState(null)
   useEffect(() => {
-    fetch ('https://storinter.herokuapp.com//api')
+    fetch ('https://storinter.herokuapp.com/api')
     .then((response) => response.json())
     .then (response => setData(response.message))
   }, [])
