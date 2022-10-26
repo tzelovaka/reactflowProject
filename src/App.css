@@ -16,7 +16,6 @@
 
 .App-header {
   background-color: var(--tg-theme-bg-color);
-  color: var(--tg-theme-text-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,6 +23,10 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-header.p {
+  color: var(--tg-theme-text-color);
 }
 
 .App-link {
