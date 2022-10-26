@@ -29,7 +29,7 @@ app.get('/api', async (req, res) => {
     }});
     //console.log(bl);
     await res.json({
-        message: `${st.name}: ${bl[0].bl} => ${li[0].link}/${li[1].link}/${li[2].link}`
+        message: `${st.name} - история под номером ${st.id}`
     })
     /*res.status(200).json(`${bl.name}`)
     res.status(200).json(`${li.name}`)*/
