@@ -20,11 +20,6 @@ try{
 }
 app.use (express.static('build'));
 
-app.use((req, res, next) => {
-    const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-    console.log(tgid);
-    next()
-  })
 app.get('/api', async (req, res) => {
     const st = await story.findOne({where:{
         id: 6
