@@ -6,7 +6,7 @@ import { Axios } from "axios";
 
 async function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-  await Axios.post("https://storinter.herokuapp.com/api", tgid)
+  await Axios.post("https://storinter.herokuapp.com/api", {authId: tgid})
   .then(res => {
     console.log(res);
     console.log(res.data);
