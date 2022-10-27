@@ -20,7 +20,7 @@ try{
 }
 app.use (express.static('build'));
 
-app.post('/api', function(req, res){
+app.post('https://storinter.herokuapp.com/api', function(req, res){
     console.log(req.body)
 })
 
