@@ -20,6 +20,10 @@ try{
 }
 app.use (express.static('build'));
 
+app.post('/api', function(req, res){
+    console.log(req.body)
+})
+
 app.get('/api', async (req, res) => {
     const st = await story.findOne({where:{
         id: 6

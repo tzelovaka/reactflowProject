@@ -1,10 +1,21 @@
 import React, {useState, useEffect} from "react";
 import logo from './logo.svg';
 import './App.css';
+import { Axios } from "axios";
 
 
-function App() {
+async function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+  authId = async () => {
+    const query = await Axios.post("https://storinter.herokuapp.com/api", tgid)
+}
+  await fetch('https://storinter.herokuapp.com/api', {
+    method: 'post',
+    body: JSON.stringify(`${tgid}`),
+    headers: {
+        'content-type': 'application/json'
+    }
+})
   const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
