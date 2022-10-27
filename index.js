@@ -8,7 +8,7 @@ const cors = require('cors')
 const PORT = process.env.PORT || 5000
 const app = express();
 const tgid = require('./src/App')
-console.log(tgid);
+//console.log(tgid);
 /*app.use(cors())
 app.use(express.json())*/
 try{
