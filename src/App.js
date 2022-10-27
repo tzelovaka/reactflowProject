@@ -4,7 +4,7 @@ import './App.css';
 
 
 function App() {
-  const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.username;
+  const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
   const [data, setData] = useState(null)
   useEffect(() => {
@@ -20,6 +20,7 @@ function App() {
           {
             tgid
           }
+          <br/>
         {
           !data ? "Загрузка..." : data
         }  
