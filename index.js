@@ -8,7 +8,6 @@ const tgid = require('./src/App')
 //const cors = require('cors')
 const PORT = process.env.PORT || 5000
 const app = express();
-const tguserid = require('./src/App')
 //console.log(tgid);
 /*app.use(cors())
 app.use(express.json())*/
@@ -22,7 +21,6 @@ try{
 app.use (express.static('build'));
 
 app.get('/api', async (req, res) => {
-    await console.log(tguserid);
     const st = await story.findOne({where:{
         id: 6
     }});
