@@ -7,7 +7,7 @@ const storylin = require('./models/link');
 const cors = require('cors')
 const PORT = process.env.PORT || 5000
 const app = express();
-const tgid = require('./src/App')
+//const tgid = require('./src/App.js')
 //console.log(tgid);
 /*app.use(cors())
 app.use(express.json())*/
