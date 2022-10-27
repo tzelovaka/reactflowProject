@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
 import logo from './logo.svg';
 import './App.css';
-const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
 
-console.log(tgid);
 
 function App() {
+  const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+
+console.log(tgid);
   const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
