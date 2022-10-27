@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import logo from './logo.svg';
 import './App.css';
-const tg = window.Telegram.WebApp;
+export const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+
 function App() {
   const [data, setData] = useState(null)
   useEffect(() => {
