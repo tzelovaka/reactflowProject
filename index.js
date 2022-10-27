@@ -20,12 +20,15 @@ try{
     console.log(e)
 }
 app.use (express.static('build'));
-
-app.post("https://storinter.herokuapp.com/api", urlencodedParser, function (request, response) {
+app.post("https://storinter.herokuapp.com/api", function(req, res) {
+    if(!request.body) return response.sendStatus(400);
+    console.log(request.body);
+})
+/*app.post("https://storinter.herokuapp.com/api", urlencodedParser, function (request, response) {
     if(!request.body) return response.sendStatus(400);
     console.log(request.body);
     //response.send(`${request.body.userName} - ${request.body.userAge}`);
-});
+})*/
 /*app.get('/api', async (req, res) => {
     const st = await story.findOne({where:{
         id: 6
