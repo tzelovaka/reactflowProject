@@ -6,16 +6,18 @@ import { Axios } from "axios";
 
 async function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-  authId = async () => {
-    const query = await Axios.post("https://storinter.herokuapp.com/api", tgid)
-}
-  await fetch('https://storinter.herokuapp.com/api', {
+  await Axios.post("https://storinter.herokuapp.com/api", tgid)
+  .then(res => {
+    console.log(res);
+    console.log(res.data);
+  })
+  /*await fetch('https://storinter.herokuapp.com/api', {
     method: 'post',
     body: JSON.stringify(`${tgid}`),
     headers: {
         'content-type': 'application/json'
     }
-})
+})*/
   const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
