@@ -4,8 +4,8 @@ import './App.css';
 
 
 function App() {
-  const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-  console.log(tgid);
+  const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.username;
+  console.log(`${tgid}`);
   const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
