@@ -4,7 +4,7 @@ import './App.css';
 export const tguserid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
 
 function App() {
-  const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+  //const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
@@ -17,7 +17,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p><i>
           {
-            tgid
+            //tgid
           }
           <br/>
         {
