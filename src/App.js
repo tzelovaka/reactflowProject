@@ -5,57 +5,21 @@ import { Axios } from "axios";
 import { response } from "express";
 
 
-async function App() {
+function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
-  await Axios.post ('https://storinter.herokuapp.com/api', {send: `${tgid}`}).
+  Axios.post ('https://storinter.herokuapp.com/api', {send: `${tgid}`}).
   then((response) => {
     console.log(response.data);
   }).
   catch((error) => {
     console.error(error)
   })
-  const [data, setData] = useState(null)
+  /*const [data, setData] = useState(null)
   useEffect(() => {
     fetch('https://storinter.herokuapp.com/api')
       .then((response) => response.json())
       .then(response => setData(response.message));
-  }, [])
-  /*try {
-    const response = await fetch('https://storinter.herokuapp.com/api', {
-    method: 'POST', // или 'PUT'
-    body: JSON.stringify(`${tgid}`), // данные могут быть 'строкой' или {объектом}!
-    headers: {
-    'Content-Type': 'application/json'
-    }
-    });
-    const json = await response.json();
-    console.log('Успех:', JSON.stringify(json));
-    } catch (error) {
-    console.error('Ошибка:', error);
-    }*/
-  /*useEffect(() => {
-    const requestOptions = 
-    res.json({
-      message: `${st.name} - история под номером ${st.id}`
-  })
-    fetch('https://storinter.herokuapp.com/api', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tgid })
-  })
-  .then((response) => response.json())
-  .then((tgid) => {
-    console.log('Success:', tgid);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });*/
-/*const [data, setData] = useState(null)
-  useEffect(() => {
-    fetch ('https://storinter.herokuapp.com/api')
-    .then((response) => response.json())
-    .then (response => setData(response.message))
   }, [])*/
   return (
     <div className="App">
