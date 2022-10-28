@@ -21,7 +21,7 @@ try{
 }
 app.use (express.static('build'));
 
-axios.get('/api').then(response => {
+app.get('/api').then(response => {
     console.log(response)
 }).catch(error => {
     console.error (error);
