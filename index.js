@@ -20,11 +20,11 @@ try{
 }
 app.use (express.static('build'));
 
-app.get('https://storinter.herokuapp.com/api', async (req, res) => {
+app.get('/api', async (req, res) => {
     const st = await story.findOne({where:{
-        authId: req.body
+        authId: 6
     }});
-    await res.json({message: `${st.name}`})
+    res.json({message: `${st.name}`})
 })   //message: 
         //`${st.name} - история под номером ${st.id}`
     /*const st = await story.findOne({where:{

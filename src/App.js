@@ -10,7 +10,7 @@ async function App() {
   try {
     const response = await fetch('https://storinter.herokuapp.com/api', {
     method: 'POST', // или 'PUT'
-    body: JSON.stringify(tgid), // данные могут быть 'строкой' или {объектом}!
+    body: JSON.stringify(`${tgid}`), // данные могут быть 'строкой' или {объектом}!
     headers: {
     'Content-Type': 'application/json'
     }
