@@ -22,7 +22,7 @@ try{
 app.use (express.static('build'));
 
 app.get('/api', (req, res) => {
-    console.log(req.body)
+    res.json({message: `${req.body}`})
 })   //message: 
         //`${st.name} - история под номером ${st.id}`
     /*const st = await story.findOne({where:{
