@@ -7,14 +7,6 @@ import { Axios } from "axios";
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
-  const str = JSON.stringify(`${tgid}`);
-  Axios.post('https://storinter.herokuapp.com/api', str)
-  .then((response) => {
-    console.log(response);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
   /*useEffect(() => {
     const requestOptions = 
     res.json({
