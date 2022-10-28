@@ -26,6 +26,6 @@ app.get('/api', async (request, response) => {
     const st = await story.findOne({where:{
         id: 6
     }});
-    response.json({message: `${request.body}`})
+    response.json(`${request.body}`)
 })
 
