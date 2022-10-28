@@ -22,9 +22,10 @@ app.use(express.json())
 app.use (express.static('build'));
 
 app.get('/api', async (request, response) => {
+
     const st = await story.findOne({where:{
         id: 6
     }});
-    response.json({message: `${st.name}`})
+    response.json({message: request.body})
 })
 
