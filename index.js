@@ -21,7 +21,7 @@ try{
 app.use(express.json())
 app.use (express.static('build'));
 
-app.post('/api', (req, res) => {
+app.get('/api', (req, res) => {
     /*const st = await story.findOne({where:{
         id: 6
     }});*/

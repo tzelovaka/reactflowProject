@@ -16,12 +16,12 @@ function App() {
     .then((response) => response.json())
     .then (response => setData(response.message))
   }, [])
-  const [dota, setDota] = useState(null)
+  /*const [dota, setDota] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
     .then((response) => response.json())
     .then (response => setDota(response.message))
-  }, [])
+  }, [])*/
   
   return (
     <div className="App">
@@ -33,7 +33,7 @@ function App() {
           }
           <br/>
         {
-          !dota ? "Загрузка..." : dota
+          //!data ? "Загрузка..." : data
         }  
         </i></p>
         
