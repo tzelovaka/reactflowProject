@@ -20,11 +20,11 @@ try{
 }
 app.use (express.static('build'));
 
-app.get('/api', async (req, res) => {
+app.get('/api', async (request, response) => {
     const st = await story.findOne({where:{
         id: 6
     }});
-    res.json({message: `${st.name}`})
+    response.json({message: `${st.name}`})
 })   //message: 
         //`${st.name} - история под номером ${st.id}`
     /*const st = await story.findOne({where:{
