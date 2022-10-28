@@ -22,7 +22,7 @@ app.use (express.static('build'));
 
 app.get('/api', async (req, res) => {
     const st = await story.findOne({where:{
-        authId: 6
+        id: 6
     }});
     res.json({message: `${st.name}`})
 })   //message: 
