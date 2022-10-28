@@ -2,28 +2,18 @@ import React, {useState, useEffect} from "react";
 import logo from './logo.svg';
 import './App.css';
 import { Axios } from "axios";
-import { response } from "express";
 
 
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
+  const [data, setData] = useState(null)
   useEffect(() => {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: `${tgid}` })
-    };
-    fetch('https://storinter.herokuapp.com/api', requestOptions)
-        .then(response => response.json())
-        .then(data => setPostId(data.id));
-      }, []);
-  /*const [data, setData] = useState(null)
-  useEffect(() => {
-    fetch('https://storinter.herokuapp.com/api')
-      .then((response) => response.json())
-      .then(response => setData(response.message));
-  }, [])*/
+    fetch ('https://storinter.herokuapp.com/api')
+    .then((response) => response.json())
+    .then (response => setData(response.message))
+  }, [])
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -34,7 +24,7 @@ function App() {
           }
           <br/>
         {
-          //!data ? "Загрузка..." : data
+          !data ? "Загрузка..." : data
         }  
         </i></p>
         
