@@ -37,15 +37,6 @@ async function App() {
   .catch((error) => {
     console.error('Error:', error);
   });*/
-  const [data, setData] = useState(null);
-
-  useEffect(async () => {
-    const result = await Axios(
-      'https://storinter.herokuapp.com/api',
-    );
-
-    setData(result.data);
-  }, []);
 /*const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
@@ -62,7 +53,7 @@ async function App() {
           }
           <br/>
         {
-          !data ? "Загрузка..." : data
+          //!data ? "Загрузка..." : data
         }  
         </i></p>
         
