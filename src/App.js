@@ -8,13 +8,16 @@ import { response } from "express";
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
-  Axios.post ('https://storinter.herokuapp.com/api', {message: `${tgid}`}).
-  then((response) => {
-    console.log(response.data);
-  }).
-  catch((error) => {
-    console.error(error)
-  })
+  useEffect(() => {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: `${tgid}` })
+    };
+    fetch('https://storinter.herokuapp.com/api', requestOptions)
+        .then(response => response.json())
+        .then(data => setPostId(data.id));
+      }, []);
   /*const [data, setData] = useState(null)
   useEffect(() => {
     fetch('https://storinter.herokuapp.com/api')
@@ -31,7 +34,7 @@ function App() {
           }
           <br/>
         {
-          !data ? "Загрузка..." : data
+          //!data ? "Загрузка..." : data
         }  
         </i></p>
         
