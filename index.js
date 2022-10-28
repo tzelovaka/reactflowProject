@@ -21,11 +21,11 @@ try{
 app.use(express.json())
 app.use (express.static('build'));
 
-app.post('/', (req, res) => {
+/*app.post('/api', (req, res) => {
     const message = req.body    
     /*const st = await story.findOne({where:{
         id: 6
-    }});*/
+    }});
     res.json(message)
-})
+})*/
 
