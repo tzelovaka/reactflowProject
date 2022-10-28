@@ -5,10 +5,10 @@ import { Axios } from "axios";
 import { response } from "express";
 
 
-function App() {
+async function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
-  Axios.post ('https://storinter.herokuapp.com/api', {send: `${tgid}`}).
+  await Axios.post ('https://storinter.herokuapp.com/api', {send: `${tgid}`}).
   then((response) => {
     console.log(response.data);
   }).
