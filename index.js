@@ -21,10 +21,10 @@ try{
 app.use(express.json())
 app.use (express.static('build'));
 
-app.post('/api', async (request, response) => {
+app.post('/api', async (req, res) => {
     /*const st = await story.findOne({where:{
         id: 6
     }});*/
-    response.json(`${request.body}`)
+    res.json(`${req.body}`)
 })
 
