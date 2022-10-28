@@ -8,7 +8,7 @@ import { response } from "express";
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
-  Axios.post ('https://storinter.herokuapp.com/api', {send: `${tgid}`}).
+  Axios.post ('https://storinter.herokuapp.com/api', {message: `${tgid}`}).
   then((response) => {
     console.log(response.data);
   }).
