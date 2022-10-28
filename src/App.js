@@ -37,7 +37,7 @@ async function App() {
   .catch((error) => {
     console.error('Error:', error);
   });*/
-  const [data, setData] = useState({ hits: [] });
+  const [data, setData] = useState(null);
 
   useEffect(async () => {
     const result = await Axios(
