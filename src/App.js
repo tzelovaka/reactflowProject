@@ -8,7 +8,7 @@ function App() {
   console.log(`${tgid}`);
   const [data, setData] = useState(null)
   useEffect(() => {
-    fetch ('https://storinter.herokuapp.com/api', {
+    fetch ('https://storinter.herokuapp.com/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: "ZHOPA"})
