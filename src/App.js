@@ -33,7 +33,7 @@ function App() {
           }
           <br/>
         {
-          !dota ? "Загрузка..." : data
+          !dota ? "Загрузка..." : dota
         }  
         </i></p>
         
