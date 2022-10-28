@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import logo from './logo.svg';
 import './App.css';
-import { Axios } from "axios";
 
 
 function App() {
@@ -9,10 +8,20 @@ function App() {
   console.log(`${tgid}`);
   const [data, setData] = useState(null)
   useEffect(() => {
-    fetch ('https://storinter.herokuapp.com/api')
+    fetch ('https://storinter.herokuapp.com/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: `${tgid}`})
+    })
     .then((response) => response.json())
     .then (response => setData(response.message))
   }, [])
+  /*const [data, setData] = useState(null)
+  useEffect(() => {
+    fetch ('https://storinter.herokuapp.com/api')
+    .then((response) => response.json())
+    .then (response => setData(response.message))
+  }, [])*/
   
   return (
     <div className="App">
