@@ -19,7 +19,7 @@ try{
     console.log(e)
 }
 app.use(express.json())
-app.use (express.static('src'));
+app.use (express.static('build'));
 
 app.get('/api', async (request, response) => {
     const st = await story.findOne({where:{
