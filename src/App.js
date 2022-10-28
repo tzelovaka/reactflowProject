@@ -4,9 +4,22 @@ import './App.css';
 import { Axios } from "axios";
 
 
-function App() {
+async function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
+  try {
+    const response = await fetch('https://storinter.herokuapp.com/api', {
+    method: 'POST', // или 'PUT'
+    body: JSON.stringify(tgid), // данные могут быть 'строкой' или {объектом}!
+    headers: {
+    'Content-Type': 'application/json'
+    }
+    });
+    const json = await response.json();
+    console.log('Успех:', JSON.stringify(json));
+    } catch (error) {
+    console.error('Ошибка:', error);
+    }
   /*useEffect(() => {
     const requestOptions = 
     res.json({

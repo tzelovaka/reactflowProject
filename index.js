@@ -20,7 +20,7 @@ try{
 }
 app.use (express.static('build'));
 
-app.get('/api', (req, res) => {
+app.get('https://storinter.herokuapp.com/api', (req, res) => {
     res.json({message: `${req.body}`})
 })   //message: 
         //`${st.name} - история под номером ${st.id}`
