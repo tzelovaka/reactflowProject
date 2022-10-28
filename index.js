@@ -4,11 +4,11 @@ const sequelize = require('./db')
 const story = require('./models/story')
 const storybl = require('./models/block');
 const storylin = require('./models/link');
-const Axios = require('axios')
-//const tgid = require('./src/App')
 //const cors = require('cors')
 const PORT = process.env.PORT || 5000
 const app = express();
+const axios = require('axios').default
+//const tgid = require('./src/App.js')
 //console.log(tgid);
 /*app.use(cors())
 app.use(express.json())*/
@@ -20,17 +20,15 @@ try{
     console.log(e)
 }
 app.use (express.static('build'));
-app.post("https://storinter.herokuapp.com/api", function(req, res) {
-    if(!request.body) return response.sendStatus(400);
-    console.log(request.body);
+
+axios.get('/api').then(response => {
+    console.log(response)
+}).catch(error => {
+    console.error (error);
 })
-/*app.post("https://storinter.herokuapp.com/api", urlencodedParser, function (request, response) {
-    if(!request.body) return response.sendStatus(400);
-    console.log(request.body);
-    //response.send(`${request.body.userName} - ${request.body.userAge}`);
-})*/
-/*app.get('/api', async (req, res) => {
-    const st = await story.findOne({where:{
+         //message: 
+        //`${st.name} - история под номером ${st.id}`
+    /*const st = await story.findOne({where:{
         id: 6
     }});
     const bl = await storybl.findAll({where:{
@@ -42,8 +40,9 @@ app.post("https://storinter.herokuapp.com/api", function(req, res) {
     //console.log(bl);
     await res.json({
         message: `${st.name} - история под номером ${st.id}`
-    })
-})*/
+    })*/
+    /*res.status(200).json(`${bl.name}`)
+    res.status(200).json(`${li.name}`)*/
 //const start = async () => {
 //}
 

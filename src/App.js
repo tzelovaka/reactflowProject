@@ -4,33 +4,40 @@ import './App.css';
 import { Axios } from "axios";
 
 
-async function App() {
+function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-  let response = await fetch('https://storinter.herokuapp.com/api', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
-    body: JSON.stringify(tgid)
-  });
-  /*await Axios.post("https://storinter.herokuapp.com/api", {authId: tgid})
-  .then(res => {
-    console.log(res);
-    console.log(res.data);
+  console.log(`${tgid}`);
+  const str = JSON.stringify(`${tgid}`);
+  Axios.post('https://storinter.herokuapp.com/api', str)
+  .then((response) => {
+    console.log(response);
   })
-  await fetch('https://storinter.herokuapp.com/api', {
-    method: 'post',
-    body: JSON.stringify(`${tgid}`),
-    headers: {
-        'content-type': 'application/json'
-    }
-})*/
-  const [data, setData] = useState(null)
+  .catch((error) => {
+    console.log(error);
+  });
+  /*useEffect(() => {
+    const requestOptions = 
+    res.json({
+      message: `${st.name} - история под номером ${st.id}`
+  })
+    fetch('https://storinter.herokuapp.com/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tgid })
+  })
+  .then((response) => response.json())
+  .then((tgid) => {
+    console.log('Success:', tgid);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
     .then((response) => response.json())
     .then (response => setData(response.message))
-  }, [])
+  }, [])*/
   return (
     <div className="App">
       <header className="App-header">
@@ -41,13 +48,13 @@ async function App() {
           }
           <br/>
         {
-          !data ? "Загрузка..." : data
+          //!data ? "Загрузка..." : data
         }  
         </i></p>
         
       </header>
     </div>
   );
-}
+  }
 
 export default App;
