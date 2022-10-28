@@ -8,7 +8,7 @@ async function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
   try {
-    const response = await fetch('https://storinter.herokuapp.com/api', {
+    const response = await fetch('https://storinter.herokuapp.com/', {
     method: 'POST', // или 'PUT'
     body: JSON.stringify(tgid), // данные могут быть 'строкой' или {объектом}!
     headers: {
