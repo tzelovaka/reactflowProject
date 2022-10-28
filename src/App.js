@@ -11,7 +11,7 @@ function App() {
     fetch ('https://storinter.herokuapp.com/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: `${tgid}`})
+      body: JSON.stringify({ id: "ZHOPA"})
     })
     .then((response) => response.json())
     .then (response => setData(response.message))
