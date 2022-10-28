@@ -2,16 +2,24 @@ import React, {useState, useEffect} from "react";
 import logo from './logo.svg';
 import './App.css';
 import { Axios } from "axios";
+import { response } from "express";
 
 
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
+  Axios.post ('https://storinter.herokuapp.com/api', {send: `${tgid}`}).
+  then((response) => {
+    console.log(response.data);
+  }).
+  catch((error) => {
+    console.error(error)
+  })
   const [data, setData] = useState(null)
   useEffect(() => {
-    fetch ('https://storinter.herokuapp.com/api')
-    .then((response) => response.json())
-    .then (response => setData(response.message))
+    fetch('https://storinter.herokuapp.com/api')
+      .then((response) => response.json())
+      .then(response => setData(response.message));
   }, [])
   /*try {
     const response = await fetch('https://storinter.herokuapp.com/api', {
