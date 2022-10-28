@@ -4,7 +4,7 @@ import './App.css';
 import { Axios } from "axios";
 
 
-async function App() {
+function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
   /*try {
