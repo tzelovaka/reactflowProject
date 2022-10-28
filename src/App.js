@@ -37,12 +37,21 @@ async function App() {
   .catch((error) => {
     console.error('Error:', error);
   });*/
-const [data, setData] = useState(null)
+  const [data, setData] = useState({ hits: [] });
+
+  useEffect(async () => {
+    const result = await axios(
+      'https://storinter.herokuapp.com/api',
+    );
+
+    setData(result.data);
+  }, []);
+/*const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
     .then((response) => response.json())
     .then (response => setData(response.message))
-  }, [])
+  }, [])*/
   return (
     <div className="App">
       <header className="App-header">
