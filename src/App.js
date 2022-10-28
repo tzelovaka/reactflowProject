@@ -7,6 +7,12 @@ import { Axios } from "axios";
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(`${tgid}`);
+  const [data, setData] = useState(null)
+  useEffect(() => {
+    fetch ('https://storinter.herokuapp.com/api')
+    .then((response) => response.json())
+    .then (response => setData(response.message))
+  }, [])
   /*try {
     const response = await fetch('https://storinter.herokuapp.com/api', {
     method: 'POST', // или 'PUT'
@@ -53,7 +59,7 @@ function App() {
           }
           <br/>
         {
-          //!data ? "Загрузка..." : data
+          !data ? "Загрузка..." : data
         }  
         </i></p>
         
