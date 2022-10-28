@@ -7,7 +7,7 @@ const storylin = require('./models/link');
 //const cors = require('cors')
 const PORT = process.env.PORT || 5000
 const app = express();
-const axios = require('axios').default
+//const axios = require('axios').default
 //const tgid = require('./src/App.js')
 //console.log(tgid);
 /*app.use(cors())
@@ -21,12 +21,9 @@ try{
 }
 app.use (express.static('build'));
 
-app.get('/api').then(response => {
-    console.log(response)
-}).catch(error => {
-    console.error (error);
-})
-         //message: 
+app.get('/api', (req, res) => {
+    console.log(req.body)
+})   //message: 
         //`${st.name} - история под номером ${st.id}`
     /*const st = await story.findOne({where:{
         id: 6
