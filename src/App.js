@@ -40,7 +40,7 @@ async function App() {
   const [data, setData] = useState({ hits: [] });
 
   useEffect(async () => {
-    const result = await axios(
+    const result = await Axios(
       'https://storinter.herokuapp.com/api',
     );
 
