@@ -41,10 +41,10 @@ app.get('/api', async (request, response) => {
         return response.send({ message: "Ошибка!" })
     }else{
     let blocks = new Array();
-    let x = countbl-1
+    let x = count-1
     for (let i=0; i <= x; i++){
-        console.log(`${textbl[i].bl}`);
-        blocks[i] = textbl[i].bl;
+        console.log(`${rows[i].bl}`);
+        blocks[i] = rows[i].bl;
     }
     console.log(blocks);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
