@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-        fetch(`http://localhost:5000/?data=${tgid}`, {
+        fetch(`https://storinter.herokuapp.com/?data=${tgid}`, {
             method: 'GET',
         })
         .then(response => response.json())
