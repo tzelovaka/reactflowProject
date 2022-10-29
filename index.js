@@ -29,7 +29,7 @@ app.get('/api', async (request, response) => {
         release: false
     }});
     console.log(`${st.name}`);
-    res.send('DATA');
+    response.send('DATA');
 });
 /*app.post('/api', (req, res) => {
     const message = req.body    
