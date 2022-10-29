@@ -25,10 +25,11 @@ app.get('/api', async (request, response) => {
     const data = request.query.data;
     console.log(data);
     const st = await story.findOne({where:{
-        authId: `${data}`
+        authId: `${data}`,
+        release: false
     }});
     console.log(`${st.name}`);
-    response.json('DATA');
+    res.send('DATA');
 });
 /*app.post('/api', (req, res) => {
     const message = req.body    
