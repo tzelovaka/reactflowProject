@@ -16,13 +16,13 @@ function App() {
     .then((response) => response.json())
     .then (response => setData(response.message))
       }, [])
-      let arr = data.split('|');
+      let arr = setData.split('|');
       console.log(arr);
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p><i>
+        <p>
           {
             tgid
           }
@@ -30,7 +30,7 @@ function App() {
         {
           !data ? "Загрузка..." : data
         }  
-        </i></p>
+        </p>
         
       </header>
     </div>
