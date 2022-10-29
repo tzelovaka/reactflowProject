@@ -27,13 +27,23 @@ app.get('/api', async (request, response) => {
         authId: `${data}`,
         release: false
     }});
+    const bl = await storybl.findAll({where:{
+        authId: `${data}`,
+        release: false,
+        storyId: st.id
+    }});
+    const lin = await storylin.findAll({where:{
+        authId: `${data}`,
+        release: false,
+        storyId: st.id
+    }});
     if (st == null) {
         response.status(200) //устанавливает код ответа 200, ответ не отправлен
         return response.send({ message: "Ошибка!" })
     }else{
     console.log(`${st.name}`);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
-    return response.send({ message: `${st.name}` })
+    return response.send({ message: `${bl}` })
     }
 });
 /*app.post('/api', (req, res) => {
