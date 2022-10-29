@@ -27,7 +27,7 @@ app.get('/api', async (request, response) => {
         authId: `${data}`,
         release: false
     }});
-    const bl = await storybl.findOne({where:{
+    const bl = await storybl.findAll({where:{
         authId: `${data}`,
         release: false,
     }});
