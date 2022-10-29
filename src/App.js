@@ -5,9 +5,13 @@ import './App.css';
 
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-  console.log(`${tgid}`);
+        fetch(`http://localhost:5000/?data=${tgid}`, {
+            method: 'GET',
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
   const [data, setData] = useState(null)
-  useEffect(() => {
+  /*useEffect(() => {
     fetch ('https://storinter.herokuapp.com/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -15,7 +19,7 @@ function App() {
     })
     .then((response) => response.json())
     .then (response => setData(response.message))
-  }, [])
+  }, [])*/
   /*const [dota, setDota] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')

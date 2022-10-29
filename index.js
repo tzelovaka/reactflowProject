@@ -21,6 +21,11 @@ try{
 app.use(express.json())
 app.use (express.static('build'));
 
+app.get('/', (request, response) => {
+    const data = request.query.data;
+    console.log(data);
+    response.json('ok'); // это уйдет клиенту
+});
 /*app.post('/api', (req, res) => {
     const message = req.body    
     /*const st = await story.findOne({where:{
