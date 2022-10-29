@@ -6,10 +6,6 @@ import './App.css';
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   const [data, setData] = useState(null)
-  if (tgid == undefined){
-    tgid = 'Ошибка!'
-    setData('Войдите через @storintool!')
-  }else{
   useEffect(() => {
         fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
             method: 'GET',
@@ -17,7 +13,6 @@ function App() {
     .then((response) => response.json())
     .then (response => setData(response.message))
       }, [])
-    }
         //.then(async response => obj = await response.json())
         //.then (obj => {
           //console.log(obj);

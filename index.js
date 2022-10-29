@@ -23,14 +23,19 @@ app.use (express.static('build'));
 
 app.get('/api', async (request, response) => {
     const data = request.query.data;
-    console.log(data);
+    if (data == undefined){
+        response.status(200) //устанавливает код ответа 200, ответ не отправлен
+        return response.send({ message: 'Ошибка! Войдите через telegram!'})
+    }else{
     const st = await story.findOne({where:{
         authId: `${data}`,
         release: false
     }});
     console.log(`${st.name}`);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
-  return response.send({ message: `${st.name}` })
+    return response.send({ message: `${st.name}` })
+}
+  
 });
 /*app.post('/api', (req, res) => {
     const message = req.body    
