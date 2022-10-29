@@ -31,7 +31,7 @@ app.get('/api', async (request, response) => {
         authId: `${data}`,
         release: false,
     }});
-    console.log(textbl[1].bl);
+    console.log(countbl);
     const lin = await storylin.findAll({where:{
         authId: `${data}`,
         release: false,
