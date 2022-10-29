@@ -43,6 +43,7 @@ app.get('/api', async (request, response) => {
     let blocks = new Array();
     let x = countbl-1
     for (let i=0; i <= x; i++){
+        console.log(`${textbl[i].bl}`);
         blocks[i] = textbl[i].bl;
     }
     console.log(blocks);
