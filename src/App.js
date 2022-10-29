@@ -3,9 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 
 
-function App() {
+async function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-        fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
+        await fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
             method: 'GET',
         })
         .then(response => response.json())
