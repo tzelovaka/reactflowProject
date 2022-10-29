@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/')
     .then((response) => response.json())
-    .then (response => setDota(response.message))
+    .then (response => setData(response.message))
   }, [])
   
   return (
