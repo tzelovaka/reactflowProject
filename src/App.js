@@ -9,7 +9,7 @@ function App() {
             method: 'GET',
         })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(tgid => console.log(tgid))
   //const [data, setData] = useState(null)
   /*useEffect(() => {
     fetch ('https://storinter.herokuapp.com/', {
