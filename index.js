@@ -31,6 +31,7 @@ app.get('/api', async (request, response) => {
         authId: `${data}`,
         release: false,
     }});
+    console.log(bl);
     const lin = await storylin.findAll({where:{
         authId: `${data}`,
         release: false,
