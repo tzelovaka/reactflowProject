@@ -8,7 +8,7 @@ function App() {
         fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
             method: 'GET',
         })
-        .then(response => response.json())
+        .then(async response => {const tgstory = await response.json()})
         .then(data => data.text())
         .then (data => {
           console.log(data);
