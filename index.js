@@ -41,7 +41,7 @@ app.get('/api', async (request, response) => {
     }else{
     console.log(`${st.name}`);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
-    return response.send({ message: `${bl.bl}` })
+    return response.send({ message: [`${bl[0].bl}`, `${bl[1].bl}`] })
     }
 });
 /*app.post('/api', (req, res) => {
