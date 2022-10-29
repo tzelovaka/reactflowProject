@@ -3,16 +3,20 @@ import logo from './logo.svg';
 import './App.css';
 
 
-function App() {
+async function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+  const [data, setData] = useState(null)
+  useEffect(() => {
         fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
             method: 'GET',
         })
-        .then(response => response.json())
-        .then (data => {
-          console.log(data);
-        })
-
+    .then((response) => response.json())
+    .then (response => setData(response.message))
+      }, [])
+        //.then(async response => obj = await response.json())
+        //.then (obj => {
+          //console.log(obj);
+        //})
   /*const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
@@ -30,7 +34,7 @@ function App() {
           }
           <br/>
         {
-          //!data ? "Загрузка..." : data
+          !data ? "Загрузка..." : data
         }  
         </i></p>
         
