@@ -28,9 +28,9 @@ app.get('/api', async (request, response) => {
         authId: `${data}`,
         release: false
     }});
-    console.log({message: `${st.name}`});
+    console.log(`${st.name}`);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
-  return response.send({ message: 'ok' })
+  return response.send({ message: `${st.name}` })
 });
 /*app.post('/api', (req, res) => {
     const message = req.body    
