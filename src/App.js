@@ -9,8 +9,8 @@ function App() {
             method: 'GET',
         })
         .then(response => response.json())
-        .then(data => {
-          console.log(data)
+        .then(dota => {
+          console.log(dota)
         })
 
   /*const [data, setData] = useState(null)
