@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 
-async function App() {
+function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   console.log(tgid);
   const [data, setData] = useState(null)
