@@ -16,8 +16,8 @@ function App() {
     .then((response) => response.json())
     .then (response => setData(response.message))
       }, [])
-      //let arr = data.split('-');
-      //console.log(arr);
+      let arr = data.split('|');
+      console.log(arr);
   return (
     <div className="App">
       <header className="App-header">
