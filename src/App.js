@@ -30,7 +30,7 @@ function App() {
           }
           <br/>
         {
-          !data ? "Загрузка..." : data
+          //!data ? "Загрузка..." : data
         }  
         </i></p>
         
