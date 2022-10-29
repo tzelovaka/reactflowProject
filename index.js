@@ -21,7 +21,7 @@ try{
 app.use(express.json())
 app.use (express.static('build'));
 
-app.get('/', async (request, response) => {
+app.get('/api', async (request, response) => {
     const data = request.query.data;
     console.log(data);
     const st = await story.findOne({where:{
