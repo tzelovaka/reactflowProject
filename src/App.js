@@ -10,16 +10,6 @@ function App() {
         })
         .then(response => response.json())
         .then(data => console.log(data))
-  //const [data, setData] = useState(null)
-  /*useEffect(() => {
-    fetch ('https://storinter.herokuapp.com/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: "ZHOPA"})
-    })
-    .then((response) => response.json())
-    .then (response => setData(response.message))
-  }, [])*/
   /*const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
