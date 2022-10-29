@@ -27,11 +27,11 @@ app.get('/api', async (request, response) => {
         authId: `${data}`,
         release: false
     }});
-    const {countbl, textbl} = await storybl.findAndCountAll({where:{
+    const {count, rows} = await storybl.findAndCountAll({where:{
         authId: data,
         release: false
     }});
-    console.log(countbl);
+    console.log(count);
     const lin = await storylin.findAll({where:{
         authId: `${data}`,
         release: false
