@@ -16,8 +16,8 @@ function App() {
     .then((response) => response.json())
     .then (response => setData(response.message))
       }, [])
-      var obj = JSON.parse(data);
-      console.log(obj);
+      //var obj = JSON.parse(data);
+      //console.log(obj);
   return (
     <div className="App">
       <header className="App-header">
