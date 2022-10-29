@@ -8,7 +8,7 @@ function App() {
   if (tgid == undefined){
     tgid = 0
   }
-  var [data, setData] = useState(null)
+  const [data, setData] = useState(null)
   useEffect(() => {
         fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
             method: 'GET',
@@ -16,7 +16,8 @@ function App() {
     .then((response) => response.json())
     .then (response => setData(response.message))
       }, [])
-      let arr = data.split('|');
+      let a = data;
+      let arr = a.split('|');
       console.log(arr);
   return (
     <div className="App">
