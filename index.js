@@ -46,7 +46,7 @@ app.get('/api', async (request, response) => {
         blocks[i] = textbl[i].bl
     }
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
-    return response.send({ message: `${blocks}`})
+    return response.send({ message: [blocks]})
     }
 });
 /*app.post('/api', (req, res) => {
