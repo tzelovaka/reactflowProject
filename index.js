@@ -29,12 +29,12 @@ app.get('/api', async (request, response) => {
     }});
     const {countbl, textbl} = await storybl.findAndCountAll({where:{
         authId: `${data}`,
-        release: false,
+        release: false
     }});
     console.log(countbl);
     const lin = await storylin.findAll({where:{
         authId: `${data}`,
-        release: false,
+        release: false
     }});
     if (st == null) {
         response.status(200) //устанавливает код ответа 200, ответ не отправлен
