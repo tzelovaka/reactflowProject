@@ -9,7 +9,7 @@ function App() {
             method: 'GET',
         })
         .then(response => response.json())
-        .then(tgid => console.log(tgid))
+        .then(data => console.log(data))
   //const [data, setData] = useState(null)
   /*useEffect(() => {
     fetch ('https://storinter.herokuapp.com/', {
@@ -37,7 +37,7 @@ function App() {
           }
           <br/>
         {
-          !data ? "Загрузка..." : data
+          //!data ? "Загрузка..." : data
         }  
         </i></p>
         
