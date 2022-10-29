@@ -20,12 +20,12 @@ function App() {
     .then((response) => response.json())
     .then (response => setData(response.message))
   }, [])*/
-  const [data, setData] = useState(null)
+  /*const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
     .then((response) => response.json())
     .then (response => setData(response.message))
-  }, [])
+  }, [])*/
   
   return (
     <div className="App">
