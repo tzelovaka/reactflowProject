@@ -27,7 +27,7 @@ app.get('/api', async (request, response) => {
         authId: `${data}`,
         release: false
     }});
-    const bl = await storybl.findAll({where:{
+    const {countbl, textbl} = await storybl.findAndCountAll({where:{
         authId: `${data}`,
         release: false,
     }});
@@ -40,8 +40,13 @@ app.get('/api', async (request, response) => {
         return response.send({ message: "Ошибка!" })
     }else{
     console.log(`${st.name}`);
+    var blocks = []
+    let x = countbl
+    for (let i=0; i <= x; i++){
+        blocks[i] = textbl[i].bl
+    }
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
-    return response.send({ message: `${bl.bl}` })
+    return response.send({ message: `${blocks}`})
     }
 });
 /*app.post('/api', (req, res) => {
