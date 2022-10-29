@@ -45,6 +45,7 @@ app.get('/api', async (request, response) => {
     for (let i=0; i <= x; i++){
         blocks[i] = textbl[i].bl
     }
+    console.log(blocks);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
     return response.send({ message: blocks})
     }
