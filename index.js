@@ -29,7 +29,8 @@ app.get('/api', async (request, response) => {
         release: false
     }});
     console.log(`${st.name}`);
-    response.send('DATA');
+    response.status(200) //устанавливает код ответа 200, ответ не отправлен
+  return response.send({ message: 'ok' })
 });
 /*app.post('/api', (req, res) => {
     const message = req.body    
