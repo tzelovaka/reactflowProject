@@ -10,7 +10,7 @@ function App() {
         })
         .then(response => response.json())
         .then(data => console.log(data))
-  const [data, setData] = useState(null)
+  //const [data, setData] = useState(null)
   /*useEffect(() => {
     fetch ('https://storinter.herokuapp.com/', {
       method: 'POST',
@@ -20,12 +20,12 @@ function App() {
     .then((response) => response.json())
     .then (response => setData(response.message))
   }, [])*/
-  /*const [dota, setDota] = useState(null)
+  const [data, setData] = useState(null)
   useEffect(() => {
-    fetch ('https://storinter.herokuapp.com/api')
+    fetch ('https://storinter.herokuapp.com/')
     .then((response) => response.json())
     .then (response => setDota(response.message))
-  }, [])*/
+  }, [])
   
   return (
     <div className="App">
@@ -37,7 +37,7 @@ function App() {
           }
           <br/>
         {
-          //!data ? "Загрузка..." : data
+          !data ? "Загрузка..." : data
         }  
         </i></p>
         

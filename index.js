@@ -21,10 +21,13 @@ try{
 app.use(express.json())
 app.use (express.static('build'));
 
-app.get('/', (request, response) => {
+app.get('/', async (request, response) => {
     const data = request.query.data;
     console.log(data);
-    response.json('ok'); // это уйдет клиенту
+    const st = await story.findOne({where:{
+        authId: data
+    }});
+    response.json(`${st.name}`); // это уйдет клиенту
 });
 /*app.post('/api', (req, res) => {
     const message = req.body    
