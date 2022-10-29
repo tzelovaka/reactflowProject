@@ -14,7 +14,7 @@ function App() {
             method: 'GET',
         })
     .then((response) => response.json())
-    .then (response => setData(response.message.split('|')))
+    .then (response => setData(response.message))
       }, [])
   return (
     <div className="App">
