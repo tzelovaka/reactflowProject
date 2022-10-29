@@ -9,13 +9,16 @@ function App() {
             method: 'GET',
         })
         .then(response => response.json())
-        .then(data => console.log(data))
-  const [data, setData] = useState(null)
+        .then(data => {
+          console.log(data)
+        })
+
+  /*const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
     .then((response) => response.json())
     .then (response => setData(response.message))
-  }, [])
+  }, [])*/
   
   return (
     <div className="App">
