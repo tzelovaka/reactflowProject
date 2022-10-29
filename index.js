@@ -30,12 +30,10 @@ app.get('/api', async (request, response) => {
     const bl = await storybl.findAll({where:{
         authId: `${data}`,
         release: false,
-        storyId: st.id
     }});
     const lin = await storylin.findAll({where:{
         authId: `${data}`,
         release: false,
-        storyId: st.id
     }});
     if (st == null) {
         response.status(200) //устанавливает код ответа 200, ответ не отправлен
