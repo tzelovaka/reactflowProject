@@ -27,7 +27,6 @@ app.get('/api', async (request, response) => {
     const st = await story.findOne({where:{
         authId: `${data}`
     }});
-    console.log(st.name);
     response.json(`${st.name}`);
 });
 /*app.post('/api', (req, res) => {

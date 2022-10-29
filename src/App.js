@@ -10,6 +10,7 @@ function App() {
         })
         .then(response => response.json())
         .then(data => console.log(data))
+        console.log(!data ? 'PROBLEM' : data);
   /*const [data, setData] = useState(null)
   useEffect(() => {
     fetch ('https://storinter.herokuapp.com/api')
