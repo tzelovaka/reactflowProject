@@ -27,7 +27,11 @@ function App() {
           }
           <br/>
         {
-          !data ? "Загрузка..." : data[0][2]
+          !data ? "Загрузка..." : data[0][0]
+        }
+        <br/>
+        {
+          !data ? "Загрузка..." : (data[0][1], data[0][2], data[0][3])
         }  
         </p>
       </header>
