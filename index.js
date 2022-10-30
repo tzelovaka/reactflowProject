@@ -35,7 +35,7 @@ app.get('/api', async (request, response) => {
         response.status(200) //устанавливает код ответа 200, ответ не отправлен
         return response.send({ message: "Ошибка!" })
     }else{
-    let blocks = [];
+    var blocks = new Array();
     let x = count-1;
     for (let i=0; i <= x; i++){
         const {coun, row} = await storylin.findAndCountAll({where:{
@@ -43,15 +43,15 @@ app.get('/api', async (request, response) => {
             release: false,
             storyblId: rows[i].id
         }});
-            blocks[i] = [];
+            blocks[i] = new Array();
         let z = coun - 1;
         for (let j = 0; j<=z; j++){
-            if (j>0){
-                console.log(row[j--].link);
-                blocks[i][j] = row[j--].link
-            }else {
+            if (j==0){
                 console.log(rows[i].bl);
                 blocks[i][j] = rows[i].bl
+            }else {
+                console.log(row[j--].link);
+                blocks[i][j] = row[j--].link
             }
         }
     }
