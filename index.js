@@ -35,7 +35,7 @@ app.get('/api', async (request, response) => {
         response.status(200) //устанавливает код ответа 200, ответ не отправлен
         return response.send({ message: "Ошибка!" })
     }else{
-    let blocks = new Array();
+    let blocks = [[]];
     let x = count-1
     for (let i=0; i <= x; i++){
         const {coun, row} = await storylin.findAndCountAll({where:{
