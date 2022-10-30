@@ -35,18 +35,20 @@ app.get('/api', async (request, response) => {
         response.status(200) //устанавливает код ответа 200, ответ не отправлен
         return response.send({ message: "Ошибка!" })
     }else{
-    let blocks = [[]];
-    let x = count-1
+    let blocks = [];
+    let x = count-1, i, j;
     for (let i=0; i <= x; i++){
         const {coun, row} = await storylin.findAndCountAll({where:{
             authId: data,
             release: false,
             storyblId: rows[i].id
         }});
-            blocks[i][0] = rows[i].bl;
+            blocks[i] = [];
         let z = coun - 1;
-        for (let u = 0; u<=z; u++){
-            blocks[i][u++] = row[u]
+        for (let j = 0; j<=z; j++){
+            if (j>0){
+                blocks[i][j] = row[j--]
+            }else blocks[i][j] = rows[j]
         }
     }
     console.log(blocks);
