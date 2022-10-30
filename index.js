@@ -50,7 +50,6 @@ app.get('/api', async (request, response) => {
             blocks[i] = `${rows[i].bl}|`;
     }
     }
-    console.log(blocks);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
     return response.send({ message: blocks})
     }
