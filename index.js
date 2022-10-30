@@ -43,6 +43,7 @@ app.get('/api', async (request, response) => {
             release: false,
             storyblId: rows[i].id
         }});
+        console.log(`КОЛ-ВО ССЫЛОК: ${coun}`);
         console.log(rows[i].bl);
         blocks[i] = new Array();
         let z = coun;
