@@ -13,7 +13,7 @@ function App() {
         fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
             method: 'GET',
         })
-    .then((response) => JSON.parse(response))
+    .then(response => response.json())
     .then (response => setData(response.message))
       }, [])
     
