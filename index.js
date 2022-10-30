@@ -48,7 +48,7 @@ app.get('/api', async (request, response) => {
         for (let j = 0; j<=z; j++){
             if (j>0){
                 blocks[i][j] = row[j--]
-            }else blocks[i][j] = rows[j]
+            }else blocks[i][j] = rows[i]
         }
     }
     console.log(blocks);
