@@ -13,9 +13,10 @@ function App() {
         fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
             method: 'GET',
         })
-    .then((response) => response.json())
+    .then((response) => response.split('|'))
     .then (response => setData(response.message))
       }, [])
+    
   return (
     <div className="App">
       <header className="App-header">
