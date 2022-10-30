@@ -16,7 +16,7 @@ function App() {
     .then(response => response.json())
     .then (response => setData(response.message))
       }, [])
-    
+    console.log(data[1][0]);
   return (
     <div className="App">
       <header className="App-header">
@@ -28,10 +28,6 @@ function App() {
           <br/>
         {
           !data ? "Загрузка..." : data[0][0]
-        }
-        <br/>
-        {
-          !data ? "Загрузка..." : (data[0][1], data[0][2], data[0][3])
         }  
         </p>
       </header>
