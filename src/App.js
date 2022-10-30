@@ -14,10 +14,7 @@ function App() {
             method: 'GET',
         })
     .then((response) => response.json())
-    .then (response => {
-      setData(...data, response.message.split('|'));
-      console.log(data);
-  })
+    .then (response => setData(response.message))
       }, [])
   return (
     <div className="App">
