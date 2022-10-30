@@ -36,7 +36,7 @@ app.get('/api', async (request, response) => {
         return response.send({ message: "Ошибка!" })
     }else{
     let blocks = [];
-    let x = count-1, i, j;
+    let x = count-1;
     for (let i=0; i <= x; i++){
         const {coun, row} = await storylin.findAndCountAll({where:{
             authId: data,
