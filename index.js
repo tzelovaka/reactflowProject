@@ -38,15 +38,16 @@ app.get('/api', async (request, response) => {
     var blocks = new Array();
     let x = count-1;
     for (let i=0; i <= x; i++){
-        const {coun, row} = await storylin.findAndCountAll({where:{
+        const {count, row} = await storylin.findAndCountAll({where:{
             authId: data,
             release: false,
             storyblId: rows[i].id
         }});
-        console.log(`КОЛ-ВО ССЫЛОК: ${coun}`);
+        console.log(`КОЛ-ВО ССЫЛОК: ${count}`);
+        console.log(`ССЫЛКА: ${row[0]}`);
         console.log(rows[i].bl);
         blocks[i] = new Array();
-        let z = coun;
+        let z = count;
         for (let j = 0; j<=z; j++){
             if (j==0){
                 console.log(rows[i].bl);
