@@ -27,38 +27,38 @@ app.get('/api', async (request, response) => {
         authId: `${data}`,
         release: false
     }});
-    const {count, rows} = await storybl.findAndCountAll({where:{
-        authId: data,
-        release: false
-    }});
     if (st == null) {
         response.status(200) //устанавливает код ответа 200, ответ не отправлен
         return response.send({ message: "Ошибка!" })
     }else{
-    var blocks = new Array();
+    const {count, rows} = await storybl.findAndCountAll({where:{
+            authId: data,
+            release: false
+    }});
+    const blocks = rows;
+    var levels = new Array();
     let x = count-1;
     for (let i=0; i <= x; i++){
-        const {count, row} = await storylin.findAndCountAll({where:{
+        const {count, rows} = await storylin.findAndCountAll({where:{
             authId: data,
             release: false,
-            storyblId: rows[i].id
+            storyblId: blocks[i].id
         }});
         console.log(`КОЛ-ВО ССЫЛОК: ${count}`);
-        console.log(`ССЫЛКА: ${row[0]}`);
-        console.log(rows[i].bl);
-        blocks[i] = new Array();
+        console.log(blocks[i].bl);
+        levels[i] = new Array();
         let z = count;
         for (let j = 0; j<=z; j++){
             if (j==0){
                 console.log(rows[i].bl);
-                blocks[i][j] = rows[i].bl
+                levels[i][j] = rows[i].bl
             }else {
-                console.log(row[j-1].link);
-                blocks[i][j] = row[j-1].link
+                console.log(`ССЫЛКА: ${rows[j-1].link}`);
+                levels[i][j] = rows[j-1].link
             }
         }
     }
-    console.log(blocks);
+    console.log(levels);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
     return response.send({ message: blocks})
     }
