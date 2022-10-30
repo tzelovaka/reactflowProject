@@ -60,7 +60,7 @@ app.get('/api', async (request, response) => {
     }
     console.log(levels);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
-    return response.send({ message: blocks})
+    return response.send({ message: levels})
     }
 });
 /*app.post('/api', (req, res) => {
