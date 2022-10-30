@@ -45,14 +45,14 @@ app.get('/api', async (request, response) => {
         }});
         console.log(rows[i].bl);
         blocks[i] = new Array();
-        let z = coun - 1;
+        let z = coun;
         for (let j = 0; j<=z; j++){
             if (j==0){
                 console.log(rows[i].bl);
                 blocks[i][j] = rows[i].bl
             }else {
-                console.log(row[j--].link);
-                blocks[i][j] = row[j--].link
+                console.log(row[j-1].link);
+                blocks[i][j] = row[j-1].link
             }
         }
     }
