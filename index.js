@@ -35,21 +35,25 @@ app.get('/api', async (request, response) => {
         response.status(200) //устанавливает код ответа 200, ответ не отправлен
         return response.send({ message: "Ошибка!" })
     }else{
-    let blocks = new Array();
+    var blocks = new Array();
     let x = count-1;
-    let j;
     for (let i=0; i <= x; i++){
-        j = 0
         const {coun, row} = await storylin.findAndCountAll({where:{
             authId: data,
             release: false,
             storyblId: rows[i].id
         }});
         console.log(rows[i].bl);
-        blocks[i] = rows[i].bl;
+        blocks[i] = new Array();
         let z = coun;
-        for (j = 1; j<=z; j++){
+        for (let j = 0; j<=z; j++){
+            if (j==0){
+                console.log(rows[i].bl);
+                blocks[i][j] = rows[i].bl
+            }else {
+                console.log(row[j-1].link);
                 blocks[i][j] = row[j-1].link
+            }
         }
     }
     console.log(blocks);
