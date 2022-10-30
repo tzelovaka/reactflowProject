@@ -14,11 +14,9 @@ function App() {
             method: 'GET',
         })
     .then((response) => response.json())
-    .then (response => {
-      setData(response.message);
-    console.log(data);})
+    .then (response => setData(response.message))
       }, [])
-
+      console.log(this.state);
   return (
     <div className="App">
       <header className="App-header">

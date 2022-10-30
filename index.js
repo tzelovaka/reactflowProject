@@ -43,7 +43,6 @@ app.get('/api', async (request, response) => {
     let blocks = new Array();
     let x = count-1
     for (let i=0; i <= x; i++){
-        console.log(`${rows[i].bl}`);
         blocks[i] = `${rows[i].bl}|`;
     }
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
