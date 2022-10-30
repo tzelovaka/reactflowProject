@@ -50,7 +50,7 @@ app.get('/api', async (request, response) => {
         let z = count;
         for (let j = 0; j<=z; j++){
             if (j==0){
-                console.log(rows[i].bl);
+                console.log(blocks[i].bl);
                 levels[i][j] = rows[i].bl
             }else {
                 console.log(`ССЫЛКА: ${rows[j-1].link}`);
