@@ -27,7 +27,7 @@ function App() {
           }
           <br/>
         {
-          !data ? "Загрузка..." : data
+          !data ? "Загрузка..." : data[0]
         }  
         </p>
         
