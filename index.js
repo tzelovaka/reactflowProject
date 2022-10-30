@@ -43,7 +43,8 @@ app.get('/api', async (request, response) => {
             release: false,
             storyblId: rows[i].id
         }});
-            blocks[i] = new Array();
+        console.log(rows[i]);
+        blocks[i] = new Array();
         let z = coun - 1;
         for (let j = 0; j<=z; j++){
             if (j==0){
