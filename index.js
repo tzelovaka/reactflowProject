@@ -31,11 +31,6 @@ app.get('/api', async (request, response) => {
         authId: data,
         release: false
     }});
-    console.log(count);
-    const lin = await storylin.findAll({where:{
-        authId: `${data}`,
-        release: false
-    }});
     if (st == null) {
         response.status(200) //устанавливает код ответа 200, ответ не отправлен
         return response.send({ message: "Ошибка!" })
@@ -43,8 +38,18 @@ app.get('/api', async (request, response) => {
     let blocks = new Array();
     let x = count-1
     for (let i=0; i <= x; i++){
-            blocks[i] = `${rows[i].bl}`;
+        const {coun, row} = await storylin.findAndCountAll({where:{
+            authId: data,
+            release: false,
+            storyblId: rows[i].id
+        }});
+            blocks[i][0] = [rows[i].bl];
+        let z = coun - 1;
+        for (let u = 0; u<=z; u++){
+            blocks[i][u++] = row[u]
+        }
     }
+    console.log(blocks);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
     return response.send({ message: blocks})
     }
