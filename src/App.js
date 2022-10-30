@@ -8,7 +8,7 @@ function App() {
   if (tgid == undefined){
     tgid = 0
   }
-  const [data, setData] = useState([])
+  const [data, setData] = useState(null)
   useEffect(() => {
         fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
             method: 'GET',
@@ -27,7 +27,7 @@ function App() {
           }
           <br/>
         {
-          !data ? "Загрузка..." : data([0][2])
+          !data ? "Загрузка..." : data[0][2]
         }  
         </p>
       </header>
