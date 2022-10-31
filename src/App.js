@@ -26,8 +26,8 @@ function App() {
         {
           !data ? "Загрузка..." : 
           data.map((data, i) => (
-            data[i].map((data, j) => (
-              <li key={j}>{data[i]}</li>
+            data[i].map((datai, j) => (
+              <li key={j}>{datai}</li>
             ))
           ))
         } 
