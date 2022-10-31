@@ -15,20 +15,20 @@ function App() {
         })
     .then(response => response.json())
     .then (response => setData(response.message))
-      }, [])
-    //console.log(data[1][0]);
+  }, [])
+    
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          {
-            tgid
-          }
-          <br/>
+        <ul>
         {
-          !data ? "Загрузка..." : data[0][0]
-        }  
+          !data ? "Загрузка..." : data.map((data, index) => (
+            <li key={index}>{data}</li>
+          ))
+        } 
+        </ul> 
         </p>
       </header>
     </div>
