@@ -25,8 +25,8 @@ function App() {
         <ul>
         {
           !data ? "Загрузка..." : 
-          data[0].map((data, index) => (
-            <li key={index}>{data}</li>
+          data.map((data, i) => (
+            <li key={i}>{data}</li>
           ))
         } 
         </ul> 
