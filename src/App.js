@@ -27,8 +27,11 @@ function App() {
           }
         {
           !data ? "Загрузка..." : 
-          data[0].map((link, j) => {
-            <li key={j}>{link.linktext}</li>
+          data.map((arrlin) => {
+            arrlin.map((link, j) => {
+              <ul>
+              <li key={j}>{link.linktext}</li></ul>
+          })
             /*arrlin.map((lins, i) => {
               <ul>
               <li>{lins.blocktext}</li>
