@@ -29,7 +29,7 @@ function App() {
         {
           !data ? "Загрузка..." : 
           data.map((lins) => {
-            lins.map((link) => {
+            data.lins.map((link) => {
               <p>{link.blocktext}
               {link.linktext}</p>
             })
