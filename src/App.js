@@ -32,7 +32,7 @@ function App() {
   row.map((item, x) => 
     <p>{item.blocktext}
     <hr/>
-  {item.linktext}</p>)
+  <u>{item.linktext}</u></p>)
 )
           /*data.map((lins) => {
             lins.map((link) => {
