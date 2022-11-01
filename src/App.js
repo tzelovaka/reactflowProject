@@ -25,24 +25,18 @@ function App() {
           {
             tgid
           }
-        
         {
           !data ? "Загрузка..." : 
           data.map((lins) => {
             lins.map((link) => {
-            return (
-              <ul>
-              <li>{link.blocktext}</li>
-              <li>{link.linktext}</li>
-              </ul>
-            )
+              {link.blocktext}
+              {link.linktext}
             })
           })
           /*data.map((link, i) => (
               <li key={i}>{link.linktext}</li>
           ))*/
         } 
-         
         </p>
       </header>
     </div>
