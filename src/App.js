@@ -29,9 +29,9 @@ function App() {
         {
           !data ? "Загрузка..." : 
           data.map((row, y) =>
-  row.map((item, x) => {
-    <p>
-  {item.linktext}</p>})
+  row.map((item, x) => 
+    <p>{item.blocktext}
+  {item.linktext}</p>)
 )
           /*data.map((lins) => {
             lins.map((link) => {
