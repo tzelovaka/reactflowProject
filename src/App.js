@@ -31,6 +31,7 @@ function App() {
           data.map((row, y) =>
   row.map((item, x) => 
     <p>{item.blocktext}
+    <br/>
   {item.linktext}</p>)
 )
           /*data.map((lins) => {
