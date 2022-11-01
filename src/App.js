@@ -25,7 +25,6 @@ function App() {
           {
             tgid
           }
-        <ul>
         {
           !data ? "Загрузка..." : 
           data.map((arrlin) => {
@@ -41,8 +40,7 @@ function App() {
           /*data.map((link, i) => (
               <li key={i}>{link.linktext}</li>
           ))*/
-        } 
-        </ul> 
+        }
         </p>
       </header>
     </div>
