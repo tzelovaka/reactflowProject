@@ -30,7 +30,7 @@ function App() {
           !data ? "Загрузка..." : 
           data.map((row, y) =>
   row.map((item, x) => {
-    <p>{item.blocktext}
+    <p>
   {item.linktext}</p>})
 )
           /*data.map((lins) => {
