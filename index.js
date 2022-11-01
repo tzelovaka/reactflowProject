@@ -53,11 +53,11 @@ app.get('/api', async (request, response) => {
             release: false
         }})
         if (j == 0){
-        levels = [
+        levels.push = [
             {linktext: rows[j].link,  url: row.id, blocktext: blocks[i].bl, blockurl: blocks[i].id}
         ]
     }else{
-        levels = [
+        levels.push = [
             {linktext: rows[j].link,  url: row.id, blocktext: null, blockurl: null}
         ]
     }
