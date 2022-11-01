@@ -25,20 +25,22 @@ function App() {
           {
             tgid
           }
-        <ul>
+        
         {
           !data ? "Загрузка..." : 
           data[0].map((lins) => {
             return (
-              
+              <ul>
+              <li>{lins.blocktext}</li>
               <li>{lins.linktext}</li>
+              </ul>
             )
           })
           /*data.map((link, i) => (
               <li key={i}>{link.linktext}</li>
           ))*/
         } 
-        </ul> 
+         
         </p>
       </header>
     </div>
