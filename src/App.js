@@ -28,7 +28,7 @@ function App() {
         <ul>
         {
           !data ? "Загрузка..." : 
-          data.map((lins) => {
+          data[0].map((lins) => {
             return (
               <li>{lins.linktext}</li>
             )
