@@ -54,13 +54,9 @@ app.get('/api', async (request, response) => {
             release: false
         }})
         if (j == 0){
-        levels[i][j] = [
-            {linktext: rows[j].link,  url: row.id, blocktext: blocks[i].bl, blockurl: blocks[i].id}
-        ]
+        levels[i][j] = {linktext: rows[j].link,  url: row.id, blocktext: blocks[i].bl, blockurl: blocks[i].id}
     }else{
-        levels[i][j] = [
-            {linktext: rows[j].link,  url: row.id, blocktext: null, blockurl: null}
-        ]
+        levels[i][j] = {linktext: rows[j].link,  url: row.id, blocktext: null, blockurl: null}
     }
     }
         /*levels[i] = new Array();
