@@ -27,12 +27,10 @@ function App() {
           }
         <ul>
         {
-          /*!data ? "Загрузка..." : 
+          !data ? "Загрузка..." : 
           data.map((data, i) => (
-            data.map((data, i) => (
-              <li key={i}>{data}</li>
-            ))
-          ))*/
+              <li key={i}>{data.blocktext}<br/>{data}</li>
+          ))
         } 
         </ul> 
         </p>
