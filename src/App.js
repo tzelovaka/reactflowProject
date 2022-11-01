@@ -28,14 +28,14 @@ function App() {
         
         {
           !data ? "Загрузка..." : 
-          data[0].map((lins) => {
-            return (
+          data.map(arli => arli.map((link, i) => {
+            
               <ul>
-              <li>{lins.blocktext}</li>
-              <li>{lins.linktext}</li>
+              <li>{link.blocktext}</li>
+              <li key={i}>{link.linktext}</li>
               </ul>
-            )
-          })
+            
+          }))
           /*data.map((link, i) => (
               <li key={i}>{link.linktext}</li>
           ))*/
