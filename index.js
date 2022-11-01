@@ -44,10 +44,14 @@ app.get('/api', async (request, response) => {
             release: false,
             storyblId: blocks[i].id
         }});
-        console.log(`КОЛ-ВО ССЫЛОК: ${count}`);
         levels[i] = new Array();
+        let j = 0;
+        if (count == 0 || rows === null) {
+            levels[i][j] = {linktext: null,  url: null, blocktext: blocks[i].bl, blockurl: blocks[i].id}
+        }
+        else{
         let z = count-1;
-        for (let j = 0; j<=z; j++){
+        for (j; j<=z; j++){
         const row = await storybl.findOne({where:{
             linid: rows[j].id,
             authId: data,
@@ -59,6 +63,7 @@ app.get('/api', async (request, response) => {
         levels[i][j] = {linktext: rows[j].link,  url: row.id, blocktext: null, blockurl: null}
     }
     }
+}
         /*levels[i] = new Array();
         let z = count;
         for (let j = 0; j<=z; j++){
