@@ -22,15 +22,17 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
+        <ul>
           {
             tgid
           }
         {
           !data ? "Загрузка..." : 
+          
           data.map((arrlin) => {
+            
             arrlin.map((link, j) => {
-              <ul>
-              <li key={j}>{link.linktext}</li></ul>
+              <li key={j}>{link.linktext}</li>
           })
             /*arrlin.map((lins, i) => {
               <ul>
@@ -43,6 +45,7 @@ function App() {
               <li key={i}>{link.linktext}</li>
           ))*/
         }
+         </ul>
         </p>
       </header>
     </div>
