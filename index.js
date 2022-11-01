@@ -45,8 +45,24 @@ app.get('/api', async (request, response) => {
             storyblId: blocks[i].id
         }});
         console.log(`КОЛ-ВО ССЫЛОК: ${count}`);
-        console.log(blocks[i].bl);
-        levels[i] = new Array();
+        let z = count-1;
+        for (let j = 0; j<=z; j++){
+        const row = await storybl.findOne({where:{
+            linid: rows[j].id,
+            authId: data,
+            release: false
+        }})
+        if (j == 0){
+        levels = [
+            {linktext: rows[j].link,  url: row.id, blocktext: blocks[i].bl, blockurl: blocks[i].id}
+        ]
+    }else{
+        levels = [
+            {linktext: rows[j].link,  url: row.id, blocktext: null, blockurl: null}
+        ]
+    }
+    }
+        /*levels[i] = new Array();
         let z = count;
         for (let j = 0; j<=z; j++){
             if (j==0){
@@ -56,7 +72,7 @@ app.get('/api', async (request, response) => {
                 console.log(`ССЫЛКА: ${rows[j-1].link}`);
                 levels[i][j] = rows[j-1].link
             }
-        }
+        }*/
     }
     console.log(levels);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен

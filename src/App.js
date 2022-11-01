@@ -22,14 +22,17 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
+          {
+            tgid
+          }
         <ul>
         {
-          !data ? "Загрузка..." : 
+          /*!data ? "Загрузка..." : 
           data.map((data, i) => (
             data.map((data, i) => (
               <li key={i}>{data}</li>
             ))
-          ))
+          ))*/
         } 
         </ul> 
         </p>
