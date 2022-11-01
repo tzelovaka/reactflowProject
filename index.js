@@ -45,6 +45,7 @@ app.get('/api', async (request, response) => {
             storyblId: blocks[i].id
         }});
         console.log(`КОЛ-ВО ССЫЛОК: ${count}`);
+        levels[i] = new Array();
         let z = count-1;
         for (let j = 0; j<=z; j++){
         const row = await storybl.findOne({where:{
@@ -53,11 +54,11 @@ app.get('/api', async (request, response) => {
             release: false
         }})
         if (j == 0){
-        levels.push = [
+        levels[i][j] = [
             {linktext: rows[j].link,  url: row.id, blocktext: blocks[i].bl, blockurl: blocks[i].id}
         ]
     }else{
-        levels.push = [
+        levels[i][j] = [
             {linktext: rows[j].link,  url: row.id, blocktext: null, blockurl: null}
         ]
     }
