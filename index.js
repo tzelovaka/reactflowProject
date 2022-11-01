@@ -34,7 +34,10 @@ app.get('/api', async (request, response) => {
     const {count, rows} = await storybl.findAndCountAll({where:{
             authId: data,
             release: false
-    }});
+    },
+    order: [
+      ['linid', 'ASC']
+    ]});
     const blocks = rows;
     var levels = new Array();
     let x = count-1;
