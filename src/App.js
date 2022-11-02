@@ -33,7 +33,7 @@ function App() {
   row.map((item, x) => 
     <p> <i id = {y}>{item.blocktext == null ? item.linktext : item.blocktext}</i>
     <br/>
-  <i>{item.blocktext == null ? null : item.linktext}</i></p>
+  <u>{item.blocktext == null ? null : item.linktext}</u></p>
   )
 )
           /*data.map((lins) => {
