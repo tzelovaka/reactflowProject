@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { ArcherContainer, ArcherElement } from 'react-archer';
 import logo from './logo.svg';
 import './App.css';
 
@@ -16,7 +17,10 @@ function App() {
     .then(response => response.json())
     .then (response => setData(response.message))
   }, [])
-    
+  new LeaderLine(
+    document.getElementById('1'),
+    document.getElementById('2')
+  );
   return (
     <div className="App">
       <header className="App-header">
@@ -30,7 +34,7 @@ function App() {
           !data ? "Загрузка..." : 
           data.map((row, y) =>
   row.map((item, x) => 
-    <p>{item.blocktext}
+    <p id = {x}>{item.blocktext}
     <hr/>
   <u>{item.linktext}</u></p>)
 )
