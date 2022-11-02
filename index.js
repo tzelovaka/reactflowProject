@@ -62,9 +62,9 @@ app.get('/api', async (request, response) => {
         }})
         if (j == 0){
             if (row === null){
-                levels[i][j] = {linktext: rows[j].link,  url: null, blocktext: blocks[i].bl, blockurl: blocks[i].id}
+                levels[i][j] = {linktext: rows[j].link,  url: null, blocktext: blocks[i].bl, blockurl: blocks[i].linid}
             }else {
-                levels[i][j] = {linktext: rows[j].link,  url: row.id, blocktext: blocks[i].bl, blockurl: blocks[i].id}
+                levels[i][j] = {linktext: rows[j].link,  url: row.id, blocktext: blocks[i].bl, blockurl: blocks[i].linid}
             }
     }else{
         if (row === null){
