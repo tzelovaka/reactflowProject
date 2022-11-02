@@ -43,13 +43,14 @@ function App() {
           })*/
           /*data.map((link, i) => (
               <li key={i}>{link.linktext}</li>
-          ))*/
+          ))
+          <div ref={box1Ref} style={boxStyle}>hey</div>
+            <p id="elem2" style={boxStyle}>hey2</p>*/
         }
       </header>
-      <div ref={box1Ref} style={boxStyle}>hey</div>
-            <p id="elem2" style={boxStyle}>hey2</p>
+      
             <Xarrow
-                start={box1Ref} //can be react ref
+                start="1" //can be react ref
                 end="2" //or an id
             />
     </div>
