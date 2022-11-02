@@ -31,9 +31,9 @@ function App() {
           !data ? "Загрузка..." : 
           data.map((row, y) =>
   row.map((item, x) =>
-  <p id = {y} style = {boxBlock}>
-    <p>{item.blocktext == null ? item.linktext : item.blocktext}</p>
-  <p>{item.blocktext != null ? item.linktext : null}</p>
+  <p id = {y}>
+    <p  style = {boxBlock}>{item.blocktext == null ? item.linktext : item.blocktext}</p>
+  <p  style = {boxBlock}>{item.blocktext != null ? item.linktext : null}</p>
 </p> 
   )
 )
