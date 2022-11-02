@@ -9,7 +9,7 @@ function App() {
   if (tgid == undefined){
     tgid = 0
   }
-  const box1Ref = useRef(1);
+  //const box1Ref = useRef(1);
   const [data, setData] = useState(null)
   useEffect(() => {
         fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
@@ -31,9 +31,10 @@ function App() {
           !data ? "Загрузка..." : 
           data.map((row, y) =>
   row.map((item, x) => 
-    <p id = {x}>{item.blocktext}
+    <p id = {x} style={boxStyle}>{item.blocktext}
     <hr/>
-  <u>{item.linktext}</u></p>)
+  <u>{item.linktext}</u></p>
+  )
 )
           /*data.map((lins) => {
             lins.map((link) => {
@@ -47,12 +48,11 @@ function App() {
           <div ref={box1Ref} style={boxStyle}>hey</div>
             <p id="elem2" style={boxStyle}>hey2</p>*/
         }
-      </header>
-      
-            <Xarrow
-                start="1" //can be react ref
-                end="2" //or an id
+        <Xarrow
+                start="0" //can be react ref
+                end="1" //or an id
             />
+      </header>
     </div>
   );
   }
