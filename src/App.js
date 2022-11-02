@@ -30,10 +30,12 @@ function App() {
         {
           !data ? "Загрузка..." : 
           data.map((row, y) =>
-  row.map((item, x) => 
-    <p> <i id = {y}>{item.blocktext == null ? item.linktext : item.blocktext}</i>
-    <br/>
-  <u>{item.blocktext == null ? null : item.linktext}</u></p>
+  row.map((item, x) =>
+  <p>
+    <p>{item.blocktext == null ? item.linktext : item.blocktext}
+  {item.blocktext == null ? null : item.linktext}</p>
+  <p> {item.blocktext != null ? item.linktext : null}</p>
+</p> 
   )
 )
           /*data.map((lins) => {

@@ -50,7 +50,7 @@ app.get('/api', async (request, response) => {
         levels[i] = new Array();
         let j = 0;
         if (count == 0 || rows === null) {
-            levels[i][j] = {linktext: null,  url: null, blocktext: blocks[i].bl, blockurl: blocks[i].id}
+            levels[i][j] = {linktext: null,  url: null, blocktext: blocks[i].bl, blockurl: blocks[i].linid}
         }
         else{
         let z = count-1;
