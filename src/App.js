@@ -32,7 +32,7 @@ function App() {
           data.map((row, y) =>
   row.map((item, x) => 
     <p id = {y} style={boxStyle}>{item.blocktext}
-    <hr/>
+    <br/>
   <u>{item.linktext}</u></p>
   )
 )
