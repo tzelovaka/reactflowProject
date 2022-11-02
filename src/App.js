@@ -2,7 +2,7 @@ import React, {useRef, useState, useEffect} from "react";
 import Xarrow from "react-xarrows";
 import logo from './logo.svg';
 import './App.css';
-//const boxBlock = {border: "grey solid 2px", borderRadius: "5px", padding: "5px"};
+const boxBlock = {border: "grey solid 2px", borderRadius: "5px", padding: "5px"};
 //const boxLink = {border: "red solid 1px", borderRadius: "15px", padding: "2px"};
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
@@ -31,9 +31,9 @@ function App() {
           !data ? "Загрузка..." : 
           data.map((row, y) =>
   row.map((item, x) =>
-  <p id = {y}>
+  <p id = {y} style = {boxBlock}>
     <p>{item.blocktext == null ? item.linktext : item.blocktext}</p>
-  <p> {item.blocktext != null ? item.linktext : null}</p>
+  <p>{item.blocktext != null ? item.linktext : null}</p>
 </p> 
   )
 )
