@@ -17,6 +17,7 @@
     "react-archer": "^4.1.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-xarrows": "^2.0.2",
     "sequelize": "^6.25.3",
     "serve": "^14.0.1",
     "web-vitals": "^2.1.4"
