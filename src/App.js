@@ -31,9 +31,9 @@ function App() {
           !data ? "Загрузка..." : 
           data.map((row, y) =>
   row.map((item, x) => 
-    <p> <i id = {y} style={boxBlock}>{item.blocktext == null ? item.linktext : item.blocktext}</i>
+    <p style={boxBlock}><i id = {y}>{item.blocktext == null ? item.linktext : item.blocktext}</i>
     <br/>
-  <i style={boxLink}>{item.blocktext == null ? null : item.linktext}</i></p>
+  <i>{item.blocktext == null ? null : item.linktext}</i></p>
   )
 )
           /*data.map((lins) => {
