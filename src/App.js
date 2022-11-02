@@ -22,19 +22,22 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        <p id = "1">
           {
             tgid
           }
         </p>
+        <p id = "2">
+          <br/>
+          <br/>
+          <br/>
+          <br/>
         {
           !data ? "Загрузка..." : 
           data.map((row, y) =>
   row.map((item, x) =>
-  <p id = {y}>
-    <p  style = {boxBlock}>{item.blocktext == null ? item.linktext : item.blocktext}</p>
-  <p  style = {boxBlock}>{item.blocktext != null ? item.linktext : null}</p>
-</p> 
+    <i>{item.blocktext == null ? item.linktext : item.blocktext}
+    {item.blocktext != null ? item.linktext : null}</i>
   )
 )
           /*data.map((lins) => {
@@ -49,6 +52,7 @@ function App() {
           <div ref={box1Ref} style={boxStyle}>hey</div>
             <p id="elem2" style={boxStyle}>hey2</p>*/
         }
+        </p>
         <Xarrow
                 start="0" //can be react ref
                 end="1" //or an id
