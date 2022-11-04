@@ -2,8 +2,12 @@ import React, {useRef, useState, useEffect} from "react";
 import Xarrow from "react-xarrows";
 import logo from './logo.svg';
 import './App.css';
-const bl = {border: "grey solid 2px", borderRadius: "5px", padding: "5px"};
-const li = {border: "red solid 1px", borderRadius: "15px", padding: "2px"};
+const bl = {
+  border: "grey solid 2px", borderRadius: "5px", padding: "5px"
+};
+const li = {
+  display: "inline", border: "red solid 1px", borderRadius: "15px", padding: "2px"
+};
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   if (tgid == undefined){
@@ -26,33 +30,18 @@ function App() {
             tgid
           }
         </p>
-        <p>
+        <ul>
         {
+          
           !data ? "Загрузка..." : 
           data[0].map((level, h) =>
           level.map ((blin, x) =>
-          <p id = {blin.id} style = {blin.type == 'block' ? bl : li}>{blin.text}</p>
+          <li id = {blin.id} style = {blin.type == 'block' ? bl : li}>{blin.text}</li>
           )
           )
-          //data.map((row, y) =>
-  //row.map((item, x) =>
-    //<i>{item.blocktext == null ? item.linktext : item.blocktext}
-    //{item.blocktext != null ? item.linktext : null}</i>
-  //)
-//)
-          /*data.map((lins) => {
-            lins.map((link) => {
-              <p>{link.blocktext}
-              {link.linktext}</p>
-            })
-          })*/
-          /*data.map((link, i) => (
-              <li key={i}>{link.linktext}</li>
-          ))
-          <div ref={box1Ref} style={boxStyle}>hey</div>
-            <p id="elem2" style={boxStyle}>hey2</p>*/
+          
         }
-        </p>
+        </ul>
         {
           !data ? "Загрузка..." : 
           data[1].map((arrow) =>
