@@ -31,7 +31,7 @@ function App() {
           !data ? "Загрузка..." : 
           data[0].map((level, h) =>
           level.map ((blin, x) =>
-          <p id = {blin.id} style = {blin.type}>{blin.text}</p>
+          <p id = {blin.id} style = {blin.type == 'block' ? bl : li}>{blin.text}</p>
           )
           )
           //data.map((row, y) =>
