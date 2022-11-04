@@ -66,7 +66,6 @@ app.get('/api', async (request, response) => {
                 scheme[1].push({start: rows[j-1].id, end: `linid${rows[j-1].id}`})  
             }
             }
-            console.log(scheme[0][i][j]);
         }
         /*const {count, rows} = await storylin.findAndCountAll({where:{
             authId: data,
