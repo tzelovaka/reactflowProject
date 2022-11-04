@@ -29,7 +29,7 @@ function App() {
         </p>
         <p id = "2">
         {
-          !data ? "Загрузка..." : data[0][1]
+          !data ? "Загрузка..." : data[0][1][0].text
           //data.map((row, y) =>
   //row.map((item, x) =>
     //<i>{item.blocktext == null ? item.linktext : item.blocktext}
