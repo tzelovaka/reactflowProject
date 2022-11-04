@@ -32,6 +32,9 @@
 .App-header li {
   color: var(--tg-theme-text-color);
 }
+.App-header ul {
+  padding-left: 0; 
+ }
 
 .App-link {
   color: #61dafb;
