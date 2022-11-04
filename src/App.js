@@ -6,7 +6,7 @@ const bl = {
   border: "grey solid 2px", borderRadius: "5px", padding: "5px", listStyleType: "none", marginTop: "30px"
 };
 const li = {
-  display: "inline", border: "coral solid 1px", padding: "1px", listStyleType: "none", margin: "10px", fontSize: "5px"
+  display: "inline", border: "coral solid 1px", padding: "1px", listStyleType: "none", margin: "10px", fontSize: "7px"
 };
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
@@ -24,12 +24,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {
-            tgid
-          }
-        </p>
         <ul>
         { 
           !data ? "Загрузка..." : 
@@ -45,8 +39,8 @@ function App() {
           !data ? "Загрузка..." : 
           data[1].map((arrow) =>
           <Xarrow
-                start={arrow.start}//can be react ref
-                end={arrow.end} //or an id
+                start={arrow.start}
+                end={arrow.end}
             />
           )
         }
