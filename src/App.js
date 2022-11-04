@@ -6,7 +6,7 @@ const bl = {
   border: "grey solid 2px", borderRadius: "5px", padding: "5px", listStyleType: "none", marginTop: "30px"
 };
 const li = {
-  display: "inline", border: "coral solid 1px", padding: "1px", listStyleType: "none", margin: "10px"
+  display: "inline", border: "coral solid 1px", padding: "1px", listStyleType: "none", margin: "10px", fontSize: "5px"
 };
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
