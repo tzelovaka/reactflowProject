@@ -2,14 +2,13 @@ import React, {useRef, useState, useEffect} from "react";
 import Xarrow from "react-xarrows";
 import logo from './logo.svg';
 import './App.css';
-const block = {border: "grey solid 2px", borderRadius: "5px", padding: "5px"};
-const link = {border: "red solid 1px", borderRadius: "15px", padding: "2px"};
+const bl = {border: "grey solid 2px", borderRadius: "5px", padding: "5px"};
+const li = {border: "red solid 1px", borderRadius: "15px", padding: "2px"};
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
   if (tgid == undefined){
     tgid = 0
   }
-  //const box1Ref = useRef(1);
   const [data, setData] = useState(null)
   useEffect(() => {
         fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {

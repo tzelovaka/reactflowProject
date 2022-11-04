@@ -53,10 +53,10 @@ app.get('/api', async (request, response) => {
         let z = count
         for (let j=0; j <= z; j++){
             if (j==0){
-            scheme[0][i][j] = {type: `block`, text: blocks[i].bl, id: `linid${blocks[i].linid}`}
+            scheme[0][i][j] = {type: bl, text: blocks[i].bl, id: `linid${blocks[i].linid}`}
             
             }else{
-            scheme[0][i][j] = {type: `link`, text: rows[j-1].link, id: `${rows[j-1].id}`}
+            scheme[0][i][j] = {type: li, text: rows[j-1].link, id: `${rows[j-1].id}`}
             const row = await storybl.findOne({where:{
                 linid: rows[j-1].id,
                 authId: data,
@@ -113,6 +113,7 @@ app.get('/api', async (request, response) => {
         }*/
     }
     console.log(scheme[0]);
+    console.log(scheme[1]);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
     return response.send({ message: scheme})
     }
