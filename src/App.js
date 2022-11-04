@@ -22,14 +22,19 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p id = "1">
+        <p>
           {
             tgid
           }
         </p>
-        <p id = "2">
+        <p>
         {
-          !data ? "Загрузка..." : data[0][1][0].text
+          !data ? "Загрузка..." : 
+          data[0].map((level, h) =>
+          level.map ((blin, x) =>
+          <p id = {level.id}><br/>{level.text}</p>
+          )
+          )
           //data.map((row, y) =>
   //row.map((item, x) =>
     //<i>{item.blocktext == null ? item.linktext : item.blocktext}
