@@ -53,17 +53,17 @@ app.get('/api', async (request, response) => {
         let z = count
         for (let j=0; j <= z; j++){
             if (j==0){
-            scheme[0][i][j] = {type: 'block', text: blocks[i].bl, id: `linid${blocks[i].linid}`}
+            scheme[0][i][j] = {type: 'block', text: blocks[i].bl, id: `bl${blocks[i].linid}`}
             
             }else{
-            scheme[0][i][j] = {type: 'link', text: rows[j-1].link, id: `${rows[j-1].id}`}
+            scheme[0][i][j] = {type: 'link', text: rows[j-1].link, id: `li${rows[j-1].id}`}
             const row = await storybl.findOne({where:{
                 linid: rows[j-1].id,
                 authId: data,
                 release: false
             }})
-            if (row != null || row != undefined) {
-                scheme[1].push({start: rows[j-1].id, end: `linid${rows[j-1].id}`})  
+            if (row != null && row != undefined) {
+                scheme[1].push({start: `li${rows[j-1].id}`, end: `bl${rows[j-1].id}`})  
             }
             }
         }
