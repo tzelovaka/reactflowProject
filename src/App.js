@@ -3,10 +3,10 @@ import Xarrow from "react-xarrows";
 import logo from './logo.svg';
 import './App.css';
 const bl = {
-  border: "grey solid 2px", borderRadius: "5px", padding: "5px", listStyleType: "none", marginTop: "20px"
+  border: "grey solid 2px", borderRadius: "5px", padding: "5px", listStyleType: "none", marginTop: "30px"
 };
 const li = {
-  display: "inline", border: "red solid 1px", borderRadius: "15px", padding: "2px", listStyleType: "none"
+  display: "inline", border: "red solid 1px", borderRadius: "15px", padding: "2px", listStyleType: "none", margin: "10px"
 };
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
