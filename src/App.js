@@ -26,7 +26,7 @@ function App() {
       <header className="App-header">
         <ul>
         { 
-          !data || data === "Ошибка!" ? "В поиске..." : 
+          !data ? "В поиске..." : 
           data[0].map((level, h) =>
           level.map ((blin, x) =>
           <li id = {blin.id} style = {blin.type == 'block' ? bl : li}>{blin.text}</li>
