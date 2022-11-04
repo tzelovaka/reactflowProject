@@ -38,7 +38,7 @@ function App() {
         {
           !data ? "Загрузка..." : 
           data[1].map((arrow) =>
-          <Xarrow color="red"
+          <Xarrow color="coral" strokeWidth={5} curveness={2} headSize={5}
                 start={arrow.start}
                 end={arrow.end}
             />
