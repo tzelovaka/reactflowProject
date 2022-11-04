@@ -38,7 +38,7 @@ function App() {
         {
           !data ? "Загрузка..." : 
           data[1].map((arrow) =>
-          <Xarrow
+          <Xarrow color="red"
                 start={arrow.start}
                 end={arrow.end}
             />
