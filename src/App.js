@@ -28,18 +28,14 @@ function App() {
           }
         </p>
         <p id = "2">
-          <br/>
-          <br/>
-          <br/>
-          <br/>
         {
-          !data ? "Загрузка..." : 
-          data.map((row, y) =>
-  row.map((item, x) =>
-    <i>{item.blocktext == null ? item.linktext : item.blocktext}
-    {item.blocktext != null ? item.linktext : null}</i>
-  )
-)
+          //!data ? "Загрузка..." : 
+          //data.map((row, y) =>
+  //row.map((item, x) =>
+    //<i>{item.blocktext == null ? item.linktext : item.blocktext}
+    //{item.blocktext != null ? item.linktext : null}</i>
+  //)
+//)
           /*data.map((lins) => {
             lins.map((link) => {
               <p>{link.blocktext}
