@@ -29,6 +29,10 @@
   color: var(--tg-theme-text-color);
 }
 
+.App-header li {
+  color: var(--tg-theme-text-color);
+}
+
 .App-link {
   color: #61dafb;
 }
