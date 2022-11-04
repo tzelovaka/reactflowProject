@@ -54,10 +54,15 @@ function App() {
             <p id="elem2" style={boxStyle}>hey2</p>*/
         }
         </p>
-        <Xarrow
-                start="0" //can be react ref
-                end="1" //or an id
+        {
+          !data ? "Загрузка..." : 
+          data[1].map((arrow) =>
+          <Xarrow
+                start={arrow.start}//can be react ref
+                end={arrow.end} //or an id
             />
+          )
+        }
       </header>
     </div>
   );
