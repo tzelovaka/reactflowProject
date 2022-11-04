@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import Xarrow from "react-xarrows";
 import logo from './logo.svg';
 import './App.css';
@@ -6,7 +6,7 @@ const bl = {
   border: "grey solid 2px", borderRadius: "5px", padding: "5px"
 };
 const li = {
-  display: "inline", border: "red solid 1px", borderRadius: "15px", padding: "2px"
+  display: "inline-block", border: "red solid 1px", borderRadius: "15px", padding: "2px"
 };
 function App() {
   const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
@@ -31,8 +31,7 @@ function App() {
           }
         </p>
         <ul>
-        {
-          
+        { 
           !data ? "Загрузка..." : 
           data[0].map((level, h) =>
           level.map ((blin, x) =>
