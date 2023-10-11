@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 
 try{
     app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
+    sequelize.sync()
     sequelize.authenticate()
     console.log('Successful connect!');
 }catch(e){

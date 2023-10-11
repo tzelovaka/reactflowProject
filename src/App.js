@@ -1,9 +1,8 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
 import ReactFlow, {
-  useOnViewportChange,
+  Panel,
   useNodesState,
   useEdgesState,
-  addEdge,
   useReactFlow,
   ReactFlowProvider,
 } from 'reactflow';
@@ -23,7 +22,7 @@ const fitViewOptions = {
 
 
 const AddNodeOnEdgeDrop = () => {
-  const [data, setData] = useState(null)
+const [data, setData] = useState(null)
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
@@ -88,7 +87,9 @@ useEffect(() => {
         onConnectEnd={onConnectEnd}
         fitView
         fitViewOptions={fitViewOptions}
-      />
+      >
+        <Panel position="top-left">top-left</Panel>
+      </ReactFlow>
     </div>
   );
 };
