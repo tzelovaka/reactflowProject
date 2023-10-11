@@ -1,53 +1,109 @@
-import React, {useState, useEffect} from "react";
-import Xarrow from "react-xarrows";
-import logo from './logo.svg';
-import './App.css';
-const bl = {
-  border: "#00DAD5 solid", borderWidth: "3px 0 3px 0px", padding: "5px", listStyleType: "none", marginTop: "30px"
+import React, { useCallback, useRef, useEffect, useState } from 'react';
+import ReactFlow, {
+  useOnViewportChange,
+  useNodesState,
+  useEdgesState,
+  addEdge,
+  useReactFlow,
+  ReactFlowProvider,
+} from 'reactflow';
+import 'reactflow/dist/style.css';
+import block from './BlockNode';
+import CustomEdge from './CustomEdge';
+import './index.css';
+const nodeTypes = { block: block };
+const edgeTypes = {CustomEdge: CustomEdge};
+
+//const initialNodes = [
+  //{
+    //id: '0',
+    //type: 'block',
+    //data: { label: 'Блок', img: '' },
+    //position: { x: 0, y: 50 },
+  //},
+//];
+
+let id = 1;
+const getId = () => `${id++}`;
+
+const fitViewOptions = {
+  padding: 3,
 };
-const li = {
-  display: "inline", border: "#EC5A5A solid 1px", padding: "1px", listStyleType: "none", margin: "10px", fontSize: "7px", boxShadow: "0 3px 0px 0px #EC5A5A"
-};
-function App() {
-  const tgid = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-  if (tgid == undefined){
-    tgid = 0
-  }
-  console.log(tgid);
+
+
+const AddNodeOnEdgeDrop = () => {
   const [data, setData] = useState(null)
-  useEffect(() => {
-        fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
-            method: 'GET',
-        })
-    .then(response => response.json())
-    .then (response => setData(response.message))
-  }, [])
+const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+
+useEffect(() => {
+      fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
+          method: 'GET',
+      })
+  .then(response => response.json())
+  .then (response => setData(response.message))
+}, [])
+  const initialNodes = [
+    {
+      id: '0',
+      type: 'block',
+      data: { label: 'Блок', img: '' },
+      position: { x: 0, y: 50 },
+    },
+  ];
+  const reactFlowWrapper = useRef(null);
+  const connectingNodeId = useRef(null);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const { project } = useReactFlow();
+  //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
+  const onConnectStart = useCallback((_, { nodeId }) => {
+    connectingNodeId.current = nodeId;
+  }, []);
+
+  const onConnectEnd = useCallback(
+    (event) => {
+      let targetIsPane
+      if (event.type == "touchend") {
+        targetIsPane = event.changedTouches[0]
+      }
+      if (targetIsPane) {
+        const id = getId();
+        const left = event.changedTouches[0].clientX;
+        const top = event.changedTouches[0].clientY;
+        const newNode = {
+          id,
+          type: 'block',
+          position: project({ x: left-75, y: top+100 }),
+          data: { label: `Node ${id}` },
+        };
+        setNodes((nds) => nds.concat(newNode));
+        setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, target: id, type: 'CustomEdge', data: {label: '', smile: '' } }));
+      }
+    },
+    [project]
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <ul>
-        { 
-          !data[0] ? "В поиске..." : 
-          data[0].map((level, h) =>
-          level.map ((blin, x) =>
-          <li id = {blin.id} style = {blin.type == 'block' ? bl : li}>{blin.text}</li>
-          )
-          )
-          
-        }
-        </ul>
-        {
-          !data ? "Загрузка..." : 
-          data[1].map((arrow) =>
-          <Xarrow color="#EC5A5A" strokeWidth={1} curveness={0.2} headSize={4} path={"smooth"} startAnchor="bottom" endAnchor="top"
-                start={arrow.start}
-                end={arrow.end}
-            />
-          )
-        }
-      </header>
+    <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
+        //onConnect={onConnect}
+        onConnectStart={onConnectStart}
+        onConnectEnd={onConnectEnd}
+        fitView
+        fitViewOptions={fitViewOptions}
+      />
     </div>
   );
-  }
+};
 
-export default App;
+export default () => (
+  <ReactFlowProvider>
+    <AddNodeOnEdgeDrop />
+  </ReactFlowProvider>
+);
