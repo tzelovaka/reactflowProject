@@ -4,9 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const i = false
 root.render(
   <React.StrictMode>
-    <App />
+    {i && <App />}
   </React.StrictMode>
 );
 
