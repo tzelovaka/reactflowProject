@@ -119,7 +119,8 @@ app.get('/api', async (request, response) => {
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
     return response.send({ message: scheme})
     }
-});
+//}
+);
 /*app.post('/api', (req, res) => {
     const message = req.body    
     /*const st = await story.findOne({where:{
