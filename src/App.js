@@ -13,6 +13,7 @@ function App() {
   if (tgid == undefined){
     tgid = 0
   }
+  console.log(tgid);
   const [data, setData] = useState(null)
   useEffect(() => {
         fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
@@ -21,7 +22,6 @@ function App() {
     .then(response => response.json())
     .then (response => setData(response.message))
   }, [])
-  console.log(data);
   return (
     <div className="App">
       <header className="App-header">
