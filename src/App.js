@@ -14,15 +14,6 @@ import './index.css';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 
-//const initialNodes = [
-  //{
-    //id: '0',
-    //type: 'block',
-    //data: { label: 'Блок', img: '' },
-    //position: { x: 0, y: 50 },
-  //},
-//];
-
 let id = 1;
 const getId = () => `${id++}`;
 

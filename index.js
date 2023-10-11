@@ -24,10 +24,35 @@ app.use (express.static('build'));
 app.get('/api', async (request, response) => {
     const data = request.query.data;
     const scheme = data;
-    /*const st = await story.findOne({where:{
+    const st = await story.findOne({where:{
         authId: `${data}`,
         release: false
     }});
+    if (st === null) {
+        const initialNodes = [
+            {
+              id: '0',
+              type: 'block',
+              data: { label: 'Блок', img: '' },
+              position: { x: 0, y: 50 },
+            },
+          ];
+        return response.send({ message: initialNodes })
+    }else{
+        const {count, rows} = await storybl.findAndCountAll({where:{
+            authId: data,
+            release: false
+    },
+    order: [
+      ['linid', 'ASC']
+    ]});
+    const {coun, row} = await storylin.findAndCountAll({where:{
+        authId: data,
+        release: false,
+    }})
+    return response.send({ message: [rows, row] })
+    }
+    /*
     if (st === null) {
         response.status(200) //устанавливает код ответа 200, ответ не отправлен
         return response.send({ message: "Ошибка!" })
