@@ -66,6 +66,7 @@ useEffect(() => {
           position: project({ x: left-75, y: top+100 }),
           data: { label: `Node ${id}` },
         };
+        
         setNodes((nds) => nds.concat(newNode));
         setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, target: id, type: 'CustomEdge', data: {label: '', smile: '' } }));
       }

@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 try{
     app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
-    sequelize.sync()
+    sequelize.sync({force: true })
     sequelize.authenticate()
     console.log('Successful connect!');
 }catch(e){
@@ -26,6 +26,11 @@ try{
 }
 app.post('/api', async (req, res) => {
     const data = req.body;
+    const {count, rows} = await storybl.findAndCountAll({where:{
+        //storyId: st.id,
+        authId: data,
+        release: false
+}})
     req.body.forEach(node => {
        storybl.create({ text: `${node.data.label}`, img: `${node.data.img}` }); 
     });
