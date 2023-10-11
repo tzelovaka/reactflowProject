@@ -33,12 +33,12 @@ function Block({ data, isConnectable }) {
     let i;
     nodes.forEach((node) => {if (node.id === nodeId) i=nodes.indexOf(node) });
     nodes[i].data.label=evt.target.value;
-    fetch(`https://storinter.herokuapp.com/api/?data=${nodes}`, {
+    fetch(`https://storinter.herokuapp.com/api`, {
         method: 'POST',
-        /*headers: {
+        headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(nodes) */
+        body: JSON.stringify(nodes)
       })
         .then(response => response.json())
         .then(data => {

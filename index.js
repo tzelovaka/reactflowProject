@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json())
 app.use (express.static('build'));
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 try{
     app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
@@ -24,7 +24,7 @@ try{
     console.log(e)
 }
 app.post('/api', (req, res) => {
-    const data = req.query.data;
+    const data = req.body.data;
     console.log('SERVER: ' + data);
     res.send('Success');
   });
