@@ -1,10 +1,9 @@
 const sequelize = require('../db')
-const storylin = require('./link')
+//const storylin = require('./link')
 const {DataTypes} = require('sequelize');
 
 const storybl = sequelize.define ('storybl', {
     id: {type: DataTypes.BIGINT, primaryKey: true, unique: true, autoIncrement: true},
-    fakeId: {type: DataTypes.BIGINT, primaryKey: true, unique: false, autoIncrement: true},
     img: {type: DataTypes.TEXT, allowNull: true, defaultValue: null},
     text: {type: DataTypes.TEXT},
     storyId: {type: DataTypes.BIGINT, unique: false},

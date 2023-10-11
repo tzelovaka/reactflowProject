@@ -26,16 +26,14 @@ try{
 }
 app.post('/api', async (req, res) => {
     const data = req.body;
-    const {count, rows} = await storybl.findAndCountAll({where:{
+    /*const {count, rows} = await storybl.findAndCountAll({where:{
         //storyId: st.id,
         authId: data,
         release: false
 }})
     req.body.forEach(node => {
        storybl.create({ text: `${node.data.label}`, img: `${node.data.img}` }); 
-    });
-    
-    console.log('SERVER: ' + data);
+    });*/
     res.send('Success');
   });
   
