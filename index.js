@@ -23,7 +23,9 @@ app.use (express.static('build'));
 
 app.get('/api', async (request, response) => {
     const data = request.query.data;
-    const st = await story.findOne({where:{
+    console.log(data);
+    const scheme = data;
+    /*const st = await story.findOne({where:{
         authId: `${data}`,
         release: false
     }});
@@ -66,7 +68,7 @@ app.get('/api', async (request, response) => {
                 scheme[1].push({start: `li${rows[j-1].id}`, end: `bl${rows[j-1].id}`})  
             }
             }
-        }
+        }*/
         /*const {count, rows} = await storylin.findAndCountAll({where:{
             authId: data,
             release: false,
@@ -111,11 +113,11 @@ app.get('/api', async (request, response) => {
                 levels[i][j] = rows[j-1].link
             }
         }*/
-    }
-    console.log(scheme[0]);
-    console.log(scheme[1]);
+    //}
+    //console.log(scheme[0]);
+    //console.log(scheme[1]);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
-    return response.send({ message: data})
+    return response.send({ message: scheme})
     }
 });
 /*app.post('/api', (req, res) => {
