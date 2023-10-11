@@ -33,7 +33,6 @@ function Block({ data, isConnectable }) {
     let i;
     nodes.forEach((node) => {if (node.id === nodeId) i=nodes.indexOf(node) });
     nodes[i].data.label=evt.target.value;
-  }, []);
     fetch(`https://storinter.herokuapp.com/api`, {
         method: 'POST',
         headers: {
@@ -48,6 +47,8 @@ function Block({ data, isConnectable }) {
         .catch(error => {
           console.error('Error:', error);
         });
+  }, []);
+  
   if (isDeleted) {
     return null;
   }
