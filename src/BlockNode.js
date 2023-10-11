@@ -34,6 +34,25 @@ function Block({ data, isConnectable }) {
     nodes.forEach((node) => {if (node.id === nodeId) i=nodes.indexOf(node) });
     nodes[i].data.label=evt.target.value;
   }, []);
+  useEffect(() => {
+    fetch(`https://storinter.herokuapp.com/api/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // другие необходимые заголовки
+        },
+        body: JSON.stringify(nodes) // данные для отправки в формате JSON
+      })
+        .then(response => response.json())
+        .then(data => {
+          // обработка ответа сервера
+          console.log(data);
+        })
+        .catch(error => {
+          // обработка ошибок
+          console.error('Error:', error);
+        });
+}, [])
   if (isDeleted) {
     return null;
   }

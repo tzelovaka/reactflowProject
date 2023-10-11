@@ -25,14 +25,14 @@ const fitViewOptions = {
 const AddNodeOnEdgeDrop = () => {
   const [data, setData] = useState(null)
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
-
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
           method: 'GET',
       })
   .then(response => response.json())
   .then (response => setData(response.message))
-}, [])
+}, [tgid])
+
   const initialNodes = [
     {
       id: '0',

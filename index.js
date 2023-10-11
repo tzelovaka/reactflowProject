@@ -4,12 +4,17 @@ const sequelize = require('./db')
 const story = require('./models/story')
 const storybl = require('./models/block');
 const storylin = require('./models/link');
+const bodyParser = require('body-parser');
 //const cors = require('cors')
 const PORT = process.env.PORT || 5000
 const app = express();
 //const axios = require('axios').default
 //const tgid = require('./src/App.js')
 /*app.use(cors())*/
+
+app.use(express.json())
+app.use (express.static('build'));
+app.use(bodyParser.json());
 
 try{
     app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
@@ -18,12 +23,14 @@ try{
 }catch(e){
     console.log(e)
 }
-app.use(express.json())
-app.use (express.static('build'));
-
+app.post('/api', (req, res) => {
+    const data = req.body;
+    console.log('SERVER: ' + data);
+    res.send('Success');
+  });
+  
 app.get('/api', async (request, response) => {
     const data = request.query.data;
-    const scheme = data;
     const st = await story.findOne({where:{
         authId: `${data}`,
         release: false
@@ -40,6 +47,7 @@ app.get('/api', async (request, response) => {
         return response.send({ message: initialNodes })
     }else{
         const {count, rows} = await storybl.findAndCountAll({where:{
+            storyId: st.id,
             authId: data,
             release: false
     },
@@ -47,6 +55,7 @@ app.get('/api', async (request, response) => {
       ['linid', 'ASC']
     ]});
     const {coun, row} = await storylin.findAndCountAll({where:{
+        storyId: st.id,
         authId: data,
         release: false,
     }})
@@ -140,8 +149,8 @@ app.get('/api', async (request, response) => {
     //}
     //console.log(scheme[0]);
     //console.log(scheme[1]);
-    response.status(200) //устанавливает код ответа 200, ответ не отправлен
-    return response.send({ message: scheme})
+    //response.status(200) //устанавливает код ответа 200, ответ не отправлен
+    //return response.send({ message: scheme})
     }
 //}
 );
