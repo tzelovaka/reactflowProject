@@ -23,9 +23,12 @@ try{
 }catch(e){
     console.log(e)
 }
-app.post('/api', (req, res) => {
-    console.log(req.body);
+app.post('/api', async (req, res) => {
     const data = req.body;
+    req.body.forEach(node => {
+       storybl.create({ text: `${node.data.label}`, img: `${node.data.img}` }); 
+    });
+    
     console.log('SERVER: ' + data);
     res.send('Success');
   });
