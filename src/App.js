@@ -104,7 +104,7 @@ useEffect(() => {
         fitView
         fitViewOptions={fitViewOptions}
       >
-        <Panel position="top-left"><button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' onClick={saveStory}>Сохранить</button></Panel>
+        <Panel position="bottom-left"><button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' onClick={saveStory}>Сохранить</button></Panel>
       </ReactFlow>
     </div>
   );
