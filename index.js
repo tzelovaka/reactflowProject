@@ -23,7 +23,6 @@ app.use (express.static('build'));
 
 app.get('/api', async (request, response) => {
     const data = request.query.data;
-    console.log(data);
     const scheme = data;
     /*const st = await story.findOne({where:{
         authId: `${data}`,
