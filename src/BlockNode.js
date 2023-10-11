@@ -35,8 +35,12 @@ function Block({ data, isConnectable }) {
     nodes[i].data.label=evt.target.value;
   }, []);
   useEffect(() => {
-    fetch(`https://storinter.herokuapp.com/api/?data=${nodes}`, {
-        method: 'POST'
+    fetch(`https://storinter.herokuapp.com/api`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(nodes) // данные для отправки в формате JSON
       })
         .then(response => response.json())
         .then(data => {
@@ -45,7 +49,7 @@ function Block({ data, isConnectable }) {
         .catch(error => {
           console.error('Error:', error);
         });
-}, [])
+}, [nodes])
   if (isDeleted) {
     return null;
   }
