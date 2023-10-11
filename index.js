@@ -24,7 +24,7 @@ try{
     console.log(e)
 }
 app.post('/api', (req, res) => {
-    console.log(req);
+    console.log(req.body);
     const data = req.body;
     console.log('SERVER: ' + data);
     res.send('Success');
