@@ -44,7 +44,7 @@ useEffect(() => {
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const { project } = useReactFlow();
+  const { project, getNodes } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
   const onConnectStart = useCallback((_, { nodeId }) => {
     connectingNodeId.current = nodeId;
@@ -72,7 +72,23 @@ useEffect(() => {
     },
     [project]
   );
-
+    const saveStory = () => {
+      const nds = getNodes()
+      fetch(`https://storinter.herokuapp.com/api`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(nds)
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
       <ReactFlow
@@ -88,7 +104,7 @@ useEffect(() => {
         fitView
         fitViewOptions={fitViewOptions}
       >
-        <Panel position="top-left">top-left</Panel>
+        <Panel position="top-left"><button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' onClick={saveStory}>Сохранить</button></Panel>
       </ReactFlow>
     </div>
   );
