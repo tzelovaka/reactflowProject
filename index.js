@@ -115,7 +115,7 @@ app.get('/api', async (request, response) => {
     console.log(scheme[0]);
     console.log(scheme[1]);
     response.status(200) //устанавливает код ответа 200, ответ не отправлен
-    return response.send({ message: scheme})
+    return response.send({ message: data})
     }
 });
 /*app.post('/api', (req, res) => {
