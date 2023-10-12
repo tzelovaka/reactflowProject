@@ -33,7 +33,7 @@ app.post('/api', async (req, res) => {
         release: false
 }})*/
     req.body.forEach(node => {
-       story.create({ text: `${node.data.title}`, img: `${node.data.imgUrl}`, desc: `${node.data.desc}` }); 
+       story.create({ title: `${node.data.title}`, img: `${node.data.imgUrl}`, desc: `${node.data.desc}` }); 
     });
     res.send('Success');
   });
