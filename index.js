@@ -25,8 +25,8 @@ try{
     console.log(e)
 }
 app.post('/api', async (req, res) => {
-    console.log(req.query.data);
-    const data = req.query.data;
+    console.log(req.body);
+    const data = req.body;
     //console.log(data);
     /*const {count, rows} = await storybl.findAndCountAll({where:{
         //storyId: st.id,
@@ -34,7 +34,7 @@ app.post('/api', async (req, res) => {
         release: false
 }})*/
     //data.forEach(node => {
-       story.create({ title: `${data.title}`, img: `${data.imgUrl}`, desc: `${data.desc}` }); 
+       //story.create({ title: `${data.title}`, img: `${data.imgUrl}`, desc: `${data.desc}` }); 
     //});
     res.send('Success');
   });
