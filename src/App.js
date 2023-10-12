@@ -76,7 +76,20 @@ useEffect(() => {
     const [imgUrl, setImgUrl] = useState();
     const [desc, setDesc] = useState();
     useEffect((event) => {
-      console.log(title);
+      fetch(`https://storinter.herokuapp.com/api`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(title)
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
 }, [title])
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
