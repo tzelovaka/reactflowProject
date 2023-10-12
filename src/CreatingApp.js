@@ -3,7 +3,7 @@ import 'reactflow/dist/style.css';
 import './index.css';
 
 const CreatingApp = () => {
-const [data, setData] = useState(null)
+/*const [data, setData] = useState(null)
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
@@ -11,10 +11,10 @@ useEffect(() => {
       })
   .then(response => response.json())
   .then (response => setData(response.message))
-}, [tgid])
+}, [tgid])*/
   return (
-    <div>
-        
+    <div className='flex items-center'>
+        <button className='h-screen w-screen text-9xl'>ПРИВЕТ</button>
     </div>
   );
 };

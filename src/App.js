@@ -1,7 +1,5 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
-import { ControlButton } from '@reactflow/controls';
 import ReactFlow, {
-  Controls,
   Panel,
   useNodesState,
   useEdgesState,
@@ -106,8 +104,6 @@ useEffect(() => {
         fitView
         fitViewOptions={fitViewOptions}
       >
-        <Controls />
-        <Panel position="bottom-left"><button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' onClick={saveStory}>Сохранить</button></Panel>
       </ReactFlow>
     </div>
   );
