@@ -25,7 +25,7 @@ try{
     console.log(e)
 }
 app.post('/api', async (req, res) => {
-    console.log(req);
+    console.log(req.body);
     const data = req.body;
     //console.log(data);
     /*const {count, rows} = await storybl.findAndCountAll({where:{
