@@ -13,8 +13,10 @@ useEffect(() => {
   .then (response => setData(response.message))
 }, [tgid])*/
   return (
-    <div className='flex items-center'>
-        <button className='h-screen w-screen text-9xl'>ПРИВЕТ</button>
+    <div className='flex flex-wrap w-full h-full'>
+        <input className='w-full mx-5 my-3 border-2 rounded-xl bg-slate-300' type="name" name="" value=""/>
+        <input className='w-full mx-5 my-3 border-2 rounded-xl bg-slate-300' type="name" name="" value=""/>
+        <textarea className="w-full border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-5 my-3" rows={3} cols={30}/>
     </div>
   );
 };
