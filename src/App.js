@@ -74,7 +74,7 @@ useEffect(() => {
     },
     [project]
   );
-  const onChange = useCallback((evt) => {
+  const onChange = useCallback(() => {
     console.log(text);
     fetch(`https://storinter.herokuapp.com/api`, {
         method: 'POST',
