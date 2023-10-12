@@ -14,7 +14,7 @@ const CreatingApp = () => {
       imgUrl: imgUrl,
       desc: desc
     };
-    fetch(`https://storinter.herokuapp.com/api`, {
+    fetch('https://storinter.herokuapp.com/api', {
         method: 'POST',
         body: JSON.stringify(story)
       })
