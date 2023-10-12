@@ -91,7 +91,8 @@ useEffect(() => {
     }
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
-      <ReactFlow
+      <p className='text-7xl'>ПРЫВИТ</p>
+      {false && <ReactFlow
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
@@ -104,7 +105,7 @@ useEffect(() => {
         fitView
         fitViewOptions={fitViewOptions}
       >
-      </ReactFlow>
+      </ReactFlow>}
     </div>
   );
 };
