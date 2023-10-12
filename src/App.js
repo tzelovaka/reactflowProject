@@ -40,14 +40,11 @@ useEffect(() => {
       position: { x: 0, y: 50 },
     },
   ];
-  const [title, setTitle] = useState();
-    const [imgUrl, setImgUrl] = useState();
-    const [desc, setDesc] = useState();
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const { project, getNodes } = useReactFlow();
+  const { project } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
   const onConnectStart = useCallback((_, { nodeId }) => {
     connectingNodeId.current = nodeId;
@@ -75,27 +72,9 @@ useEffect(() => {
     },
     [project]
   );
-    const onTest = () => {
-      console.log(title);
-    }
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
-      {!scheme && <div>
-      <form className='flex flex-wrap w-full h-full'>
-       <label><p id="title" className='mx-5 my-3'>Название</p></label>
-        <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" value={title} onChange={event => setTitle(event.target.value)}/>
-  
-      <label><p id="imgurl" className='mx-5 my-3'>URL Обложки</p>     </label>
-        <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text"/>
-        
-      <label><p id="description" className='mx-5 my-3'>Описание</p>      </label>
-        <textarea className="w-full border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-2 my-3" name="desc" rows={3} cols={30}/> 
-
-      <button className='my-5 mx-5 rounded-full bg-cyan-500 text-white text-lg px-5 py-2' type="submit" onClick={onTest}>Создать</button>
-      </form>
-      
-    </div>}
-      {scheme && 
+      {!scheme && 
       <ReactFlow
         nodes={nodes}
         edges={edges}

@@ -32,6 +32,7 @@ function Block({ data, isConnectable }) {
   const onChange = useCallback((evt) => {
     let i;
     nodes.forEach((node) => {if (node.id === nodeId) i=nodes.indexOf(node) });
+    console.log(evt.target.value);
     nodes[i].data.label=evt.target.value;
     /*fetch(`https://storinter.herokuapp.com/api`, {
         method: 'POST',
