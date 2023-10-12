@@ -8,6 +8,7 @@ const CreatingApp = ({ onSubmit }) => {
   //const [desc, setDesc] = useState('');
 
   const handleSubmit = (event) => {
+    console.log(event.target.value);
     //event.preventDefault();
     /*const data = {
       title: title,
