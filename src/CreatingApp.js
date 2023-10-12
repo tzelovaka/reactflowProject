@@ -14,6 +14,7 @@ const CreatingApp = ({ onSubmit }) => {
       imgUrl,
       desc
     };
+    console.log(data);
     onSubmit(data);
   }
   return (
