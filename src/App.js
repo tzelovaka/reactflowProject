@@ -90,7 +90,7 @@ useEffect(() => {
         .catch(error => {
           console.error('Error:', error);
         });
-}, [title])
+}, [])
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
       {!scheme && <div>
