@@ -72,9 +72,12 @@ const [scheme, setScheme] = useState(false)
     },
     [project]
   );
+  const createStory = () => {
+    setScheme(true)
+  }
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
-      <div>
+      {!scheme && <div>
       <form className='flex flex-wrap w-full h-full'>
        <label><p id="title" className='mx-5 my-3'>Название</p>
         <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="title"/>
@@ -85,10 +88,10 @@ const [scheme, setScheme] = useState(false)
       <label><p id="description" className='mx-5 my-3'>Описание</p>
         <textarea className="w-full border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-2 my-3" name="desc" rows={3} cols={30}/> 
       </label>
-      <button className='my-5 mx-5 rounded-full bg-cyan-500 text-white text-lg px-5 py-2' type="submit">Создать</button>
+      <button className='my-5 mx-5 rounded-full bg-cyan-500 text-white text-lg px-5 py-2' type="submit" onClick={createStory}>Создать</button>
       </form>
       
-    </div>
+    </div>}
       {scheme && <ReactFlow
         nodes={nodes}
         edges={edges}
