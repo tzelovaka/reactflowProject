@@ -5,14 +5,9 @@ import App from './App';
 import CreatingApp from './CreatingApp'
 import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const i = false;
-const handleFormSubmit = (value) => {
-  console.log(111111111111111111);
-}
 root.render(
   <React.StrictMode>
-    <CreatingApp onSubmit={handleFormSubmit}/>
-    {i && <App />}
+    <App />
   </React.StrictMode>
 );
 reportWebVitals();
