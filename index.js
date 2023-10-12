@@ -32,9 +32,9 @@ app.post('/api', async (req, res) => {
         authId: data,
         release: false
 }})*/
-    data.forEach(node => {
-       story.create({ title: `${node.data.title}`, img: `${node.data.imgUrl}`, desc: `${node.data.desc}` }); 
-    });
+    //data.forEach(node => {
+       story.create({ title: `${data.title}`, img: `${data.imgUrl}`, desc: `${data.desc}` }); 
+    //});
     res.send('Success');
   });
   
