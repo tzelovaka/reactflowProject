@@ -7,6 +7,7 @@ const CreatingApp = () => {
   const [imgUrl, setImgUrl] = useState('');
   const [desc, setDesc] = useState('');
   const beginStory = useCallback((evt) => {
+  console.log('PZDCCCCCCCCCCCCCC: ' + title);
   let story = {
       title: title,
       imgUrl: imgUrl,
