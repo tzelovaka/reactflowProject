@@ -22,7 +22,7 @@ const CreatingApp = ({ onSubmit }) => {
        <label><p id="title" className='mx-5 my-3'>Название</p>
         <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="title" 
         onChange={(e) => {
-          setTitle(11111111); 
+          setTitle('11111111'); 
           console.log(title);
           }
           }/>
