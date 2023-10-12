@@ -23,7 +23,7 @@ const fitViewOptions = {
 
 
 const AddNodeOnEdgeDrop = () => {
-const [text, setText] = useState()
+const [text, setText] = useState('text')
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 useEffect(() => {
@@ -90,7 +90,7 @@ useEffect(() => {
         .catch(error => {
           console.error('Error:', error);
         });
-  }, []);
+  }, [text]);
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
       {!scheme &&
