@@ -23,15 +23,15 @@ const fitViewOptions = {
 
 
 const AddNodeOnEdgeDrop = () => {
-const [scheme, setScheme] = useState(false)
+const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
-/*useEffect(() => {
+useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
           method: 'GET',
       })
   .then(response => response.json())
   .then (response => setScheme(response.message))
-}, [tgid])*/
+}, [tgid])
 
   const initialNodes = [
     {
@@ -73,9 +73,10 @@ const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
     },
     [project]
   );
-  const onChange = useCallback((evt) => {
+  const onChange = useCallback(async (evt) => {
+    console.log(evt);
     const data = evt.target.value;
-    fetch(`https://storinter.herokuapp.com/api`, {
+    /*await fetch(`https://storinter.herokuapp.com/api`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +89,7 @@ const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
         })
         .catch(error => {
           console.error('Error:', error);
-        });
+        });*/
   }, []);
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
