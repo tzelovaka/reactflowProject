@@ -8,6 +8,7 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import block from './BlockNode';
+import CreatingApp from './CreatingApp';
 import CustomEdge from './CustomEdge';
 import './index.css';
 const nodeTypes = { block: block };
@@ -74,7 +75,10 @@ useEffect(() => {
   );
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
-      {!scheme && 
+      {!scheme &&
+        <CreatingApp/>
+      }
+      {scheme && 
       <ReactFlow
         nodes={nodes}
         edges={edges}

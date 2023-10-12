@@ -25,16 +25,16 @@ try{
     console.log(e)
 }
 app.post('/api', async (req, res) => {
-    const data = req.body;
-    console.log(data);
+    //const data = req.body;
+    //console.log(data);
     /*const {count, rows} = await storybl.findAndCountAll({where:{
         //storyId: st.id,
         authId: data,
         release: false
-}})
+}})*/
     req.body.forEach(node => {
-       storybl.create({ text: `${node.data.label}`, img: `${node.data.img}` }); 
-    });*/
+       story.create({ text: `${node.data.title}`, img: `${node.data.imgUrl}`, desc: `${node.data.desc}` }); 
+    });
     res.send('Success');
   });
   
