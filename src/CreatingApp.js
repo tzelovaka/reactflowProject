@@ -9,16 +9,6 @@ const CreatingApp = () => {
   
   const onChange = useCallback((evt) => {
     setTitle(evt.target.value);
-    fetch(`https://storinter.herokuapp.com/api/?body=${title}`, {
-        method: 'POST',
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
   }, []);
 
   const beginStory = useCallback((evt) => {
