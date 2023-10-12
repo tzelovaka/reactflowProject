@@ -6,7 +6,7 @@ import CreatingApp from './CreatingApp'
 import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const i = false;
-handleFormSubmit = (data) => {
+const handleFormSubmit = (data) => {
   console.log(data);
 }
 root.render(

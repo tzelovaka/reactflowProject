@@ -3,7 +3,7 @@ import 'reactflow/dist/style.css';
 import './index.css';
 
 const CreatingApp = () => {
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = {
