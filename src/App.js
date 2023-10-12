@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
-import { Controls, ControlButton } from '@reactflow/controls';
+import { ControlButton } from '@reactflow/controls';
 import ReactFlow, {
+  Controls,
   Panel,
   useNodesState,
   useEdgesState,
