@@ -10,15 +10,12 @@ const CreatingApp = () => {
   const beginStory = useCallback((evt) => {
   console.log('PZDCCCCCCCCCCCCCC: ' + title);
   let story = {
-      title: this.title,
-      imgUrl: this.imgUrl,
-      desc: this.desc
+      title: title,
+      imgUrl: imgUrl,
+      desc: desc
     };
     fetch(`https://storinter.herokuapp.com/api`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify(story)
       })
         .then(response => response.json())
@@ -28,7 +25,7 @@ const CreatingApp = () => {
         .catch(error => {
           console.error('Error:', error);
         });
-  }, [])
+  }, [title, imgUrl, desc])
   return (
     <div>
        <label><p id="title" className='mx-5 my-3'>Название</p>      </label>
