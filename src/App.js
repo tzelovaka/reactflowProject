@@ -92,7 +92,8 @@ const [scheme, setScheme] = useState(false)
       </form>
       
     </div>}
-      {scheme && <ReactFlow
+      {scheme && 
+      <ReactFlow
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
@@ -105,6 +106,7 @@ const [scheme, setScheme] = useState(false)
         fitView
         fitViewOptions={fitViewOptions}
       >
+        <Panel position="top-center">Название истории</Panel>
       </ReactFlow>}
     </div>
   );
