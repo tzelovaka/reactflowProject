@@ -75,7 +75,7 @@ useEffect(() => {
     const [title, setTitle] = useState();
     const [imgUrl, setImgUrl] = useState();
     const [desc, setDesc] = useState();
-    useEffect(() => {
+    useEffect((event) => {
       console.log(title);
 }, [title])
   return (
