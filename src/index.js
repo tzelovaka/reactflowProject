@@ -6,8 +6,8 @@ import CreatingApp from './CreatingApp'
 import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const i = false;
-const handleFormSubmit = (data) => {
-  console.log(data);
+const handleFormSubmit = (value) => {
+  console.log(value);
 }
 root.render(
   <React.StrictMode>
