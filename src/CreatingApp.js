@@ -6,12 +6,16 @@ const CreatingApp = ({ onSubmit }) => {
   const [title, setTitle] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const [desc, setDesc] = useState('');
+  const onChange = useCallback((evt) => {
+    setTitle(evt.target.value);
+    console.log(title);
+  })
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = {
       title: title,
-      imgUrl: imgUrl,
-      desc: desc
+      //imgUrl: imgUrl,
+      //desc: desc
     };
     console.log(data);
     onSubmit(data);
@@ -20,12 +24,7 @@ const CreatingApp = ({ onSubmit }) => {
     <div>
       <form  onSubmit={handleSubmit} className='flex flex-wrap w-full h-full'>
        <label><p id="title" className='mx-5 my-3'>Название</p>
-        <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="title" 
-        onChange={(e) => {
-          setTitle('11111111'); 
-          console.log(title);
-          }
-          }/>
+        <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="title" onChange={onChange}/>
       </label>
       <label><p id="imgurl" className='mx-5 my-3'>URL Обложки</p>
         <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="imgurl" onChange={(e) => setImgUrl(e.target.value)}/>
