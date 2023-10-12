@@ -31,7 +31,7 @@ useEffect(() => {
   .then(response => response.json())
   .then (response => setData(response.message))
 }, [tgid])
-
+const [scheme, setScheme] = useState(false)
   const initialNodes = [
     {
       id: '0',
@@ -72,27 +72,24 @@ useEffect(() => {
     },
     [project]
   );
-    const saveStory = () => {
-      const nds = getNodes()
-      fetch(`https://storinter.herokuapp.com/api`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(nds)
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    }
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
-      <p className='text-7xl'>ПРЫВИТ</p>
-      {false && <ReactFlow
+      <div>
+      <form className='flex flex-wrap w-full h-full'>
+       <label><p id="title" className='mx-5 my-3'>Название</p>
+        <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="title"/>
+      </label>
+      <label><p id="imgurl" className='mx-5 my-3'>URL Обложки</p>
+        <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="imgurl"/>
+      </label>
+      <label><p id="description" className='mx-5 my-3'>Описание</p>
+        <textarea className="w-full border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-2 my-3" name="desc" rows={3} cols={30}/> 
+      </label>
+      <button className='my-5 mx-5 rounded-full bg-cyan-500 text-white text-lg px-5 py-2' type="submit">Создать</button>
+      </form>
+      
+    </div>
+      {scheme && <ReactFlow
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
