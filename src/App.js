@@ -83,7 +83,7 @@ useEffect(() => {
       {!scheme && <div>
       <form className='flex flex-wrap w-full h-full'>
        <label><p id="title" className='mx-5 my-3'>Название</p>
-        <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="title" value={title}/>
+        <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="title" value={title} onChange={event => setTitle(event.target.value)}/>
       </label>
       <label><p id="imgurl" className='mx-5 my-3'>URL Обложки</p>
         <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="imgurl"/>
