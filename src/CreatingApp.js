@@ -9,12 +9,8 @@ const CreatingApp = () => {
   
   const onChange = useCallback((evt) => {
     setTitle(evt.target.value);
-    fetch(`https://storinter.herokuapp.com/api`, {
+    fetch(`https://storinter.herokuapp.com/api/?body=${title}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(title)
       })
         .then(response => response.json())
         .then(data => {
