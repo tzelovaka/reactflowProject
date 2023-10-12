@@ -44,30 +44,10 @@ app.get('/api', async (request, response) => {
         release: false
     }});
     if (st === null) {
-        const initialNodes = [
-            {
-              id: '0',
-              type: 'block',
-              data: { label: 'Блок', img: '' },
-              position: { x: 0, y: 50 },
-            },
-          ];
-        return response.send({ message: initialNodes })
+        return response.send({ message: false })
     }else{
-        const {count, rows} = await storybl.findAndCountAll({where:{
-            storyId: st.id,
-            authId: data,
-            release: false
-    },
-    order: [
-      ['linid', 'ASC']
-    ]});
-    const {coun, row} = await storylin.findAndCountAll({where:{
-        storyId: st.id,
-        authId: data,
-        release: false,
-    }})
-    return response.send({ message: [rows, row] })
+        
+    return response.send({ message: true })
     }
     /*
     if (st === null) {
