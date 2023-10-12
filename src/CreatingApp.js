@@ -14,14 +14,18 @@ const CreatingApp = ({ onSubmit }) => {
       imgUrl,
       desc
     };
-    console.log(title);
     onSubmit(data);
   }
   return (
     <div>
       <form  onSubmit={handleSubmit} className='flex flex-wrap w-full h-full'>
        <label><p id="title" className='mx-5 my-3'>Название</p>
-        <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="title" onChange={(e) => setTitle(e.target.value)}/>
+        <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="title" 
+        onChange={(e) => {
+          setTitle(e.target.value); 
+          console.log(title);
+          }
+          }/>
       </label>
       <label><p id="imgurl" className='mx-5 my-3'>URL Обложки</p>
         <input className='w-full mx-2 my-3 border-2 rounded-xl bg-slate-300' type="text" name="imgurl" onChange={(e) => setImgUrl(e.target.value)}/>
