@@ -16,6 +16,9 @@
   stroke: #20b2aa; /* цвет линии */
   stroke-width: 2; /* ширина линии */
 }
+#title, #imgurl, #description {
+  color: var(--tg-theme-text-color)
+}
 /*
 .react-flow .react-flow__handle {
   width: 30px;
