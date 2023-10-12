@@ -2,9 +2,9 @@ import React, { useCallback, useState } from 'react';
 import './index.css';
 
 const CreatingApp = () => {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState();
   const [imgUrl, setImgUrl] = useState('');
-  const [desc, setDesc] = useState();
+  const [desc, setDesc] = useState('');
   
   const onChange = useCallback((evt) => {
     setDesc(evt.target.value);
