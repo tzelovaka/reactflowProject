@@ -73,10 +73,27 @@ useEffect(() => {
     },
     [project]
   );
+  const onChange = useCallback((evt) => {
+    const data = evt.target.value;
+    fetch(`https://storinter.herokuapp.com/api`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+  }, []);
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
       {!scheme &&
-        <CreatingApp/>
+        <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={onChange}/>
       }
       {scheme && 
       <ReactFlow
