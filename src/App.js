@@ -75,10 +75,6 @@ useEffect(() => {
   );
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
-      {!scheme &&
-        <CreatingApp/>
-      }
-      {scheme && 
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -92,7 +88,7 @@ useEffect(() => {
         fitView
         fitViewOptions={fitViewOptions}
       >
-      </ReactFlow>}
+      </ReactFlow>
     </div>
   );
 };
