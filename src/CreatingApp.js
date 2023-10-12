@@ -3,7 +3,7 @@ import 'reactflow/dist/style.css';
 import './index.css';
 
 const CreatingApp = () => {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState();
   const [imgUrl, setImgUrl] = useState('');
   const [desc, setDesc] = useState('');
   
