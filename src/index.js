@@ -11,7 +11,7 @@ const handleFormSubmit = (data) => {
 }
 root.render(
   <React.StrictMode>
-    <CreatingApp onSubmit={this.handleFormSubmit}/>
+    <CreatingApp onSubmit={handleFormSubmit}/>
     {i && <App />}
   </React.StrictMode>
 );
