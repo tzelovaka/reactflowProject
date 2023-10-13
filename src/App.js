@@ -74,8 +74,10 @@ useEffect(() => {
     },
     [project]
   );
-  useEffect(() => {
-    fetch(`https://storinter.herokuapp.com/api/story/?body=${text}`, {
+  const onChange = useCallback(async (evt) => {
+    const data = text;
+    
+    await fetch(`https://storinter.herokuapp.com/api/story/?body=${text}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,24 +91,6 @@ useEffect(() => {
           console.error('Error:', error);
         });
   }, [text]);
-  const onChange = useCallback(async (evt) => {
-    const data = text;
-    /*useEffect(() => {
-    fetch(`https://storinter.herokuapp.com/api/story/?body=${text}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-  }, []);*/
-})
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
       {!scheme &&
