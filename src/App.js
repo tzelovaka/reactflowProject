@@ -23,30 +23,37 @@ const fitViewOptions = {
 
 
 const AddNodeOnEdgeDrop = () => {
+const [cover, setCover] = useState(true);
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 useEffect(() => {
-      fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
+      /*fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
           method: 'GET',
       })
   .then(response => response.json())
-  .then (response => setScheme(response.message))
-}, [])
-
-  const initialNodes = [
-    {
-      id: '0',
-      type: 'block',
-      data: { label: 'Блок', img: '', title: '' },
-      position: { x: 0, y: 50 },
-    },
-  ];
+  .then (response => setScheme(response.message))*/
+  fetch('https://api.example.com/data', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(tgid)
+})
+.then(response => response.json())
+.then(data => {
+  setScheme(data)
+  if (data.length>2) setCover(false)
+})
+.catch(error => {
+  console.error('Error:', error);
+});
+}, [tgid])
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState(scheme[1]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
@@ -99,18 +106,19 @@ useEffect(() => {
   }, [title, imgUrl, desc]);
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
-      {!scheme &&
+      {cover && 
       <div>
+        <button className="rounded-xl px-4 h-8 my-2 bg-red-500 text-white text-lg justify-self-end flex items-center justify-center" onClick={e => setCover(false)}>×</button>
         <p id='label' className='text-lg mx-3 mt-4'>Название</p>
         <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-3 mt-2 text-center" onChange={e => setTitle(e.target.value)}/>
         <p id='label' className='text-lg mx-3 mt-4'>URL картинки</p>
         <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-3 mt-2" onChange={e => setImgUrl(e.target.value)}/>
         <p id='label' className='text-lg mx-3 mt-4'>Описание</p>
         <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-3 mt-2" rows={3} cols={30} onChange={e => setDesc(e.target.value)}/>
-        <button onClick={onChange}>Ок</button>
+        <button className='bg-cyan-300 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full' onClick={onChange}>Ок</button>
       </div>
       }
-      {scheme && 
+      {!cover && 
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -124,6 +132,7 @@ useEffect(() => {
         fitView
         fitViewOptions={fitViewOptions}
       >
+        <Panel position="bottom-right"><button className='bg-cyan-300 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full' onClick={e => setCover(true)}>Редактировать обложку</button></Panel>
       </ReactFlow>}
     </div>
   );
