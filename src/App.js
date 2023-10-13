@@ -23,7 +23,7 @@ const fitViewOptions = {
 
 
 const AddNodeOnEdgeDrop = () => {
-const [text, setText] = useState([22])
+const [text, setText] = useState('Привет')
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 useEffect(() => {
