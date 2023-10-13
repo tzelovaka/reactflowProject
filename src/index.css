@@ -16,7 +16,7 @@
   stroke: #20b2aa; /* цвет линии */
   stroke-width: 2; /* ширина линии */
 }
-#title, #imgurl, #description {
+#label {
   color: var(--tg-theme-text-color)
 }
 /*

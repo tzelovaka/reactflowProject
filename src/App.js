@@ -23,7 +23,9 @@ const fitViewOptions = {
 
 
 const AddNodeOnEdgeDrop = () => {
-const [text, setText] = useState('')
+const [title, setTitle] = useState('');
+const [imgUrl, setImgUrl] = useState('');
+const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 useEffect(() => {
@@ -75,9 +77,13 @@ useEffect(() => {
     [project]
   );
   const onChange = useCallback(async (evt) => {
-    const data = text;
+    /*const data = {
+      title: title,
+      imgUrl: imgUrl,
+      desc: desc
+    };*/
     
-    await fetch(`https://storinter.herokuapp.com/api/story/?body=${text}`, {
+    await fetch(`https://storinter.herokuapp.com/api/story/?title=${title}&imgUrl=${imgUrl}&desc=${desc}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -90,12 +96,17 @@ useEffect(() => {
         .catch(error => {
           console.error('Error:', error);
         });
-  }, [text]);
+  }, [title, imgUrl, desc]);
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
       {!scheme &&
       <div>
-        <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={e => setText(e.target.value)}/>
+        <p id='label' className='text-lg mx-3 mt-4'>Название</p>
+        <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-3 mt-2 text-center" onChange={e => setTitle(e.target.value)}/>
+        <p id='label' className='text-lg mx-3 mt-4'>URL картинки</p>
+        <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-3 mt-2" onChange={e => setImgUrl(e.target.value)}/>
+        <p id='label' className='text-lg mx-3 mt-4'>Описание</p>
+        <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-3 mt-2" rows={3} cols={30} onChange={e => setDesc(e.target.value)}/>
         <button onClick={onChange}>Ок</button>
       </div>
       }
