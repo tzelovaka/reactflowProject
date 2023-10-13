@@ -30,7 +30,6 @@ app.post('/api/story', async (req, res) => {
 
   app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
 app.get('/api', async (request, response) => {
-    console.log(1111111111111);
     const id = request.query.data;
     const st = await story.findOne({where:{
         authId: `${id}`,
@@ -56,7 +55,8 @@ app.get('/api', async (request, response) => {
               position: { x: 0, y: 50 },
             },
           ]
-        //return response.send({ message: [stor, data]})
+          console.log([stor, data]);
+        return response.send({ message: [stor, data]})
     }else{
         const nodes = await storybl.findAndCountAll({where: {
             authId: `${id}`,
@@ -71,12 +71,11 @@ app.get('/api', async (request, response) => {
                 release: false
             }})
         }
-        //return response.send({ message: [st, nodes, edges] })
+        console.log([st, nodes, edges]);
+        return response.send({ message: [st, nodes, edges] })
     }
     //response.status(200) //устанавливает код ответа 200, ответ не отправлен
     //return response.send({ message: scheme})
-    response.status(200)
-    return response.send({ message: 111111})
     }
 //}
 );
