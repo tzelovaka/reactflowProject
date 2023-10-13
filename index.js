@@ -32,7 +32,7 @@ app.post('https://storinter.herokuapp.com/api/story', async (req, res) => {
         release: false
 }})*/
     //data.forEach(node => {
-       story.create({ title: `${data}`/*, img: `${data.imgUrl}`, desc: `${data.desc}` */}); 
+       await story.create({ title: `${data}`/*, img: `${data.imgUrl}`, desc: `${data.desc}` */}); 
     //});
     res.send('Success');
   });
