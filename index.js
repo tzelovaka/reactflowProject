@@ -47,7 +47,7 @@ app.get('/api', async (request, response) => {
             release: false,
             storyId: `${stor.id}`
         }});
-        let blocks = [
+        const blocks = [
             {
               id: `${block.id}`,
               type: 'block',
@@ -55,12 +55,11 @@ app.get('/api', async (request, response) => {
               position: { x: 0, y: 50 },
             },
           ]
-          let head = {
+          const head = {
             title: stor.title,
             desc: stor.desc,
             imgUrl: stor.img,
         }
-          console.log([head, blocks]);
         return response.send({ message: [head, blocks]})
     }else{
         const nodes = await storybl.findAndCountAll({where: {
@@ -95,7 +94,6 @@ app.get('/api', async (request, response) => {
             text: edge.text,
             smile: edge.smile,
         }))
-        console.log([head, blocks, links]);
         return response.send({ message: [head, blocks, links] })
     }
     //response.status(200) //устанавливает код ответа 200, ответ не отправлен
