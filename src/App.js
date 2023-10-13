@@ -45,7 +45,8 @@ useEffect(() => {
 .then(response => response.json())
 .then(data => {
   setScheme(data)
-  if (data.length>2) setCover(false)
+  console.log(scheme);
+  //if (data.length>2) setCover(false)
 })
 .catch(error => {
   console.error('Error:', error);

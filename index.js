@@ -56,7 +56,7 @@ app.get('/api', async (request, response) => {
               position: { x: 0, y: 50 },
             },
           ]
-        return response.send({ message: data})
+        return response.send({ message: [stor, data]})
     }else{
         const nodes = await storybl.findAndCountAll({where: {
             authId: `${id}`,
