@@ -23,8 +23,8 @@ const fitViewOptions = {
 
 
 const AddNodeOnEdgeDrop = () => {
-const [text, setText] = useState('text')
-/*const [scheme, setScheme] = useState()
+const [text, setText] = useState('22')
+const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
@@ -32,7 +32,7 @@ useEffect(() => {
       })
   .then(response => response.json())
   .then (response => setScheme(response.message))
-}, [tgid])*/
+}, [tgid])
 
   const initialNodes = [
     {
@@ -74,14 +74,15 @@ useEffect(() => {
     },
     [project]
   );
-  const onChange = useCallback(() => {
+  const onChange = useCallback(async (evt) => {
     console.log(text);
-    fetch(`https://storinter.herokuapp.com/api`, {
+    const data = text;
+    await fetch(`https://storinter.herokuapp.com/api`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(text)
+        body: JSON.stringify(data)
       })
         .then(response => response.json())
         .then(data => {
@@ -90,16 +91,16 @@ useEffect(() => {
         .catch(error => {
           console.error('Error:', error);
         });
-  }, [text]);
+  }, []);
   return (
     <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
-      {true &&
+      {!scheme &&
       <div>
         <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={e => setText(e.target.value)}/>
-        <button type="" onClick={onChange}>Ок</button>
+        <button onClick={onChange}>Ок</button>
       </div>
       }
-      {false && 
+      {scheme && 
       <ReactFlow
         nodes={nodes}
         edges={edges}
