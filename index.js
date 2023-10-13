@@ -47,7 +47,7 @@ app.get('/api', async (request, response) => {
             release: false,
             storyId: `${stor.id}`
         }});
-        const data = [
+        let blocks = [
             {
               id: `${block.id}`,
               type: 'block',
@@ -55,8 +55,13 @@ app.get('/api', async (request, response) => {
               position: { x: 0, y: 50 },
             },
           ]
-          console.log([stor, data]);
-        return response.send({ message: [stor, data]})
+          let head = {
+            title: stor.title,
+            desc: stor.desc,
+            imgUrl: stor.img,
+        }
+          console.log([head, blocks]);
+        return response.send({ message: [stor, blocks]})
     }else{
         const nodes = await storybl.findAndCountAll({where: {
             authId: `${id}`,
@@ -71,8 +76,27 @@ app.get('/api', async (request, response) => {
                 release: false
             }})
         }
-        console.log([st, nodes, edges]);
-        return response.send({ message: [st, nodes, edges] })
+        let head = {
+            title: st.title,
+            desc: st.desc,
+            imgUrl: st.img,
+        }
+        let blocks = []
+        nodes.forEach((node) => 
+        blocks.push({
+            id: node.id,
+            text: node.text,
+            img: node.img,
+        }))
+        let links = []
+        edges.forEach((edge) => 
+        links.push({
+            id: edge.id,
+            text: edge.text,
+            smile: edge.smile,
+        }))
+        console.log([head, blocks, links]);
+        return response.send({ message: [st, blocks, edges] })
     }
     //response.status(200) //устанавливает код ответа 200, ответ не отправлен
     //return response.send({ message: scheme})
