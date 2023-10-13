@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 try{
     app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
-    sequelize.sync()
+    sequelize.sync({force: true})
     sequelize.authenticate()
     console.log('Successful connect!');
 }catch(e){
@@ -32,7 +32,7 @@ app.post('https://storinter.herokuapp.com/api/story', async (req, res) => {
         release: false
 }})*/
     //data.forEach(node => {
-       await story.create({ title: `${data}`/*, img: `${data.imgUrl}`, desc: `${data.desc}` */}); 
+       await story.create({ title: `${data}`,/*, img: `${data.imgUrl}`,*/ desc: `${data}`}); 
     //});
     res.send('Success');
   });
