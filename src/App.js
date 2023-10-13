@@ -42,7 +42,7 @@ useEffect(() => {
 }, [tgid])
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(scheme[1]);
+  const [nodes, setNodes, onNodesChange] = useNodesState(scheme[1] || null);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
