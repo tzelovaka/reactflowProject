@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json())
 app.use (express.static('build'));
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 
 try{
     app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
