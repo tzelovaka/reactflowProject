@@ -42,7 +42,7 @@ useEffect(() => {
 }, [tgid])
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState([scheme[1]]);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
@@ -101,11 +101,11 @@ useEffect(() => {
           <button className="rounded-xl px-4 h-8 my-2 bg-red-500 text-white text-lg justify-self-end flex items-center justify-center" onClick={e => setCover(false)}>×</button>
           </div>
         <p id='label' className='text-lg mx-3 mt-4'>Название</p>
-        <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-3 mt-2 text-center w-full" value={scheme[0].title} onChange={e => setTitle(e.target.value)}/>
+        <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-3 mt-2 text-center w-full"  onChange={e => setTitle(e.target.value)}/>
         <p id='label' className='text-lg mx-3 mt-4'>URL картинки</p>
-        <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-3 mt-2 w-full" value={scheme[0].img} onChange={e => setImgUrl(e.target.value)}/>
+        <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-3 mt-2 w-full"  onChange={e => setImgUrl(e.target.value)}/>
         <p id='label' className='text-lg mx-3 mt-4'>Описание</p>
-        <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-3 mt-2 w-full" rows={3} cols={30} value={scheme[0].desc} onChange={e => setDesc(e.target.value)}/>
+        <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-3 mt-2 w-full" rows={3} cols={30}  onChange={e => setDesc(e.target.value)}/>
         <button className='bg-cyan-300 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full mx-3 my-5 text-xl' onClick={onChange}>Ок</button>
       </div>
       }
