@@ -61,7 +61,7 @@ app.get('/api', async (request, response) => {
             imgUrl: stor.img,
         }
           console.log([head, blocks]);
-        return response.send({ message: [stor, blocks]})
+        return response.send({ message: [head, blocks]})
     }else{
         const nodes = await storybl.findAndCountAll({where: {
             authId: `${id}`,
@@ -96,7 +96,7 @@ app.get('/api', async (request, response) => {
             smile: edge.smile,
         }))
         console.log([head, blocks, links]);
-        return response.send({ message: [st, blocks, edges] })
+        return response.send({ message: [head, blocks, links] })
     }
     //response.status(200) //устанавливает код ответа 200, ответ не отправлен
     //return response.send({ message: scheme})
