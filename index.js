@@ -27,7 +27,6 @@ app.post('/api/story', async (req, res) => {
     await story.create({ img: `${img}`, title: `${title}`, desc: `${desc}`, authId: 123114565}); 
     res.send('Success');
   });
-app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
 
 
 app.get('/api', async (request, response) => {
@@ -79,6 +78,7 @@ app.get('/api', async (request, response) => {
     }
 //}
 );
+app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
 
 /*app.post('/api', (req, res) => {
     const message = req.body    

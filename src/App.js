@@ -30,20 +30,11 @@ const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 useEffect(() => {
-      /*fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
+      fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
           method: 'GET',
       })
   .then(response => response.json())
-  .then (response => setScheme(response.message))*/
-  fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
-  method: 'GET',
-})
-.then(response => response.json())
-.then(data => {
-  setScheme(data.message)
-  console.log(scheme);
-  //if (data.length>2) setCover(false)
-})
+  .then (response => setScheme(response.message))
 .catch(error => {
   console.error('Error:', error);
 });
