@@ -50,7 +50,7 @@ useEffect(() => {
 .catch(error => {
   console.error('Error:', error);
 });
-}, [tgid, scheme])
+}, [tgid])
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(scheme[1]);
