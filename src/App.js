@@ -35,7 +35,7 @@ useEffect(() => {
       })
   .then(response => response.json())
   .then (response => setScheme(response.message))*/
-  fetch('https://api.example.com/data', {
+  fetch('https://storinter.herokuapp.com/api/', {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json'
