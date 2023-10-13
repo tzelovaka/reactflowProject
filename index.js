@@ -24,7 +24,7 @@ try{
 }catch(e){
     console.log(e)
 }
-app.post('https://storinter.herokuapp.com/api/story', async (req, res) => {
+app.get('https://storinter.herokuapp.com/api/story', async (req, res) => {
     const data = req.query.body;
     console.log(data);
     /*const {count, rows} = await storybl.findAndCountAll({where:{
