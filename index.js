@@ -31,6 +31,7 @@ app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
 
 
 app.get('/api', async (request, response) => {
+    console.log(request);
     const id = request.query.data;
     const st = await story.findOne({where:{
         authId: `${id}`,

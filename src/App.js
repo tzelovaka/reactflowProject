@@ -37,13 +37,10 @@ useEffect(() => {
   .then (response => setScheme(response.message))*/
   fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
   method: 'GET',
-  headers: {
-    'Content-Type': 'application/json'
-  }
 })
 .then(response => response.json())
 .then(data => {
-  setScheme(data)
+  setScheme(data.message)
   console.log(scheme);
   //if (data.length>2) setCover(false)
 })
