@@ -77,7 +77,7 @@ useEffect(() => {
   const onChange = useCallback(async (evt) => {
     console.log(text);
     const data = text;
-    await fetch(`/api`, {
+    await fetch(`https://storinter.herokuapp.com/api`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
