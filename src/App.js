@@ -29,16 +29,17 @@ const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+console.log(tgid);
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
           method: 'GET',
       })
   .then(response => response.json())
   .then (response => setScheme(response.message))
-.catch(error => {
-  console.error('Error:', error);
-});
-}, [])
+//.catch(error => {
+  //console.error('Error:', error);
+//});
+}, [tgid])
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(scheme[1]);
