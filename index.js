@@ -17,14 +17,13 @@ app.use (express.static('build'));
 //app.use(bodyParser.json());
 
 try{
-    app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
     sequelize.sync({force: true})
     sequelize.authenticate()
     console.log('Successful connect!');
 }catch(e){
     console.log(e)
 }
-app.get('https://storinter.herokuapp.com/api/story', async (req, res) => {
+app.post('https://storinter.herokuapp.com/api/story', async (req, res) => {
     const data = req.query.body;
     console.log(data);
     /*const {count, rows} = await storybl.findAndCountAll({where:{
@@ -143,6 +142,7 @@ app.get('/api', async (request, response) => {
     }
 //}
 );
+app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
 /*app.post('/api', (req, res) => {
     const message = req.body    
     /*const st = await story.findOne({where:{
