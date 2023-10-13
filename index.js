@@ -14,7 +14,6 @@ const app = express();
 
 app.use(express.json())
 app.use (express.static('build'));
-app.use(bodyParser.json());
 
 try{
     app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
@@ -25,6 +24,7 @@ try{
     console.log(e)
 }
 app.post('https://storinter.herokuapp.com/api', async (req, res) => {
+    JSON.parse(req.body)
     console.log(req.body);
     const data = req.body;
     //console.log(data);
