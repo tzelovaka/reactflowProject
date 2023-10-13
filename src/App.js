@@ -35,14 +35,17 @@ useEffect(() => {
           method: 'GET',
       })
   .then(response => response.json())
-  .then (response => setScheme(response.message))
+  .then (response => {
+    setScheme(response.message)
+    setNodes(response.message[1])  
+      })
 .catch(error => {
   console.error('Error:', error);
 });
 }, [tgid])
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(scheme[1] || null);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
