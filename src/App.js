@@ -32,7 +32,7 @@ useEffect(() => {
       })
   .then(response => response.json())
   .then (response => setScheme(response.message))
-}, [tgid])
+}, [])
 
   const initialNodes = [
     {
