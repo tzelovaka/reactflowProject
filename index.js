@@ -26,13 +26,14 @@ try{
 }
 app.post('https://storinter.herokuapp.com/api/story', async (req, res) => {
     const data = req.query.body;
+    console.log(data);
     /*const {count, rows} = await storybl.findAndCountAll({where:{
         //storyId: st.id,
         authId: data,
         release: false
 }})*/
     //data.forEach(node => {
-       await story.create({ title: `${data}`,/*, img: `${data.imgUrl}`,*/ desc: `${data}`}); 
+       await story.create({ title: `${data}`,/*, img: `${data.imgUrl}`,*/ desc: `${data}`, authId: 123114565}); 
     //});
     res.send('Success');
   });
