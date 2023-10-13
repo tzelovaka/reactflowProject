@@ -21,10 +21,10 @@ try{
     console.log(e)
 }
 app.post('/api/story', async (req, res) => {
-    const data = req.query.body;
-    console.log(data);
-
-       await story.create({ title: `${data}`, desc: `${data}`, authId: 123114565}); 
+    const title = req.query.title;
+    const img = req.query.imgUrl;
+    const desc = req.query.desc;
+    await story.create({ img: `${img}`, title: `${title}`, desc: `${desc}`, authId: 123114565}); 
     res.send('Success');
   });
 app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
