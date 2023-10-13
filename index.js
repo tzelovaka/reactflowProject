@@ -24,7 +24,7 @@ try{
 }catch(e){
     console.log(e)
 }
-app.post('https://storinter.herokuapp.com/api', async (req, res) => {
+app.post('https://storinter.herokuapp.com/api/story', async (req, res) => {
     console.log(req.body);
     const data = req.body;
     //console.log(data);
