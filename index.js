@@ -11,7 +11,7 @@ const app = express();
 
 app.use(express.json())
 app.use (express.static('build'));
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 try{
     sequelize.sync({force: true})
@@ -31,6 +31,7 @@ app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
 
 
 app.get('/api', async (request, response) => {
+    console.log(request);
     const id = request.body;
     const st = await story.findOne({where:{
         authId: `${id}`,
