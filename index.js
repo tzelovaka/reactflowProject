@@ -65,7 +65,7 @@ app.get('/api', async (request, response) => {
         }})
         var edges = null
         if (nodes.length>1){
-            edges = await storylin.findAndCountAll({where: {
+            edges = await storylin.findAll({where: {
                 authId: `${id}`,
                 storyId: `${st.id}`,
                 release: false
