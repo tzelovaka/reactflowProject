@@ -30,7 +30,7 @@ app.post('/api/story', async (req, res) => {
 
 
 app.get('/api', async (request, response) => {
-    console.log(request);
+    console.log(1111111111111);
     const id = request.query.data;
     const st = await story.findOne({where:{
         authId: `${id}`,
