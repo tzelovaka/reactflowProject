@@ -23,7 +23,7 @@ const fitViewOptions = {
 
 
 const AddNodeOnEdgeDrop = () => {
-const [text, setText] = useState('Привет')
+const [text, setText] = useState("Привет")
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 useEffect(() => {
@@ -76,12 +76,11 @@ useEffect(() => {
   );
   const onChange = useCallback(async (evt) => {
     const data = text;
-    await fetch('https://storinter.herokuapp.com/api/story', {
+    await fetch(`https://storinter.herokuapp.com/api/story/body=${text}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
+        }
       })
         .then(response => response.json())
         .then(data => {
