@@ -28,7 +28,7 @@ app.post('/api/story', async (req, res) => {
     res.send('Success');
   });
 
-
+  app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
 app.get('/api', async (request, response) => {
     console.log(1111111111111);
     const id = request.query.data;
@@ -80,7 +80,7 @@ app.get('/api', async (request, response) => {
     }
 //}
 );
-app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
+
 
 /*app.post('/api', (req, res) => {
     const message = req.body    
