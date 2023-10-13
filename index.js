@@ -25,16 +25,14 @@ try{
     console.log(e)
 }
 app.post('https://storinter.herokuapp.com/api/story', async (req, res) => {
-    console.log(req.query.body);
     const data = req.query.body;
-    //console.log(data);
     /*const {count, rows} = await storybl.findAndCountAll({where:{
         //storyId: st.id,
         authId: data,
         release: false
 }})*/
     //data.forEach(node => {
-       //story.create({ title: `${data.title}`, img: `${data.imgUrl}`, desc: `${data.desc}` }); 
+       story.create({ title: `${data}`/*, img: `${data.imgUrl}`, desc: `${data.desc}` */}); 
     //});
     res.send('Success');
   });
