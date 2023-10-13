@@ -35,12 +35,11 @@ useEffect(() => {
       })
   .then(response => response.json())
   .then (response => setScheme(response.message))*/
-  fetch('https://storinter.herokuapp.com/api/', {
+  fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(tgid)
+  }
 })
 .then(response => response.json())
 .then(data => {
@@ -51,7 +50,7 @@ useEffect(() => {
 .catch(error => {
   console.error('Error:', error);
 });
-}, [tgid])
+}, [tgid, scheme])
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(scheme[1]);
