@@ -86,6 +86,7 @@ const fitViewOptions = {
         };
         let newNodes = nodes.concat(newNode)
         setNodes(newNodes);
+        console.log(nodes);
         let newEdges = edges.concat({ id: edgeId, source: connectingNodeId.current, target: id, type: 'CustomEdge', data: {label: '', smile: '' } })
         setEdges(newEdges);
       }
