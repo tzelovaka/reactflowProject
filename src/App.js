@@ -16,6 +16,17 @@ const edgeTypes = {CustomEdge: CustomEdge};
 
 
 const AddNodeOnEdgeDrop = () => {
+  const reactFlowWrapper = useRef(null);
+  const connectingNodeId = useRef(null);
+  const [nodes, setNodes, onNodesChange] = useNodesState([{
+    id:'1',
+    type: 'block',
+    data: { label: 'текст', img: ''},
+    position: { x: 0, y: 50 },
+  },]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const { project } = useReactFlow();
+  //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
@@ -37,7 +48,7 @@ useEffect(() => {
 });
 }, [tgid])
 const getId = () => {
-  let id
+  var id
   fetch(`https://storinter.herokuapp.com/api/?storyId=${scheme[0].id}&authId=${tgid}`, {
           method: 'GET',
       })
@@ -55,12 +66,7 @@ return id
 const fitViewOptions = {
   padding: 3,
 };
-  const reactFlowWrapper = useRef(null);
-  const connectingNodeId = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const { project } = useReactFlow();
-  //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
+
   const onConnectStart = useCallback((_, { nodeId }) => {
     connectingNodeId.current = nodeId;
   }, []);
