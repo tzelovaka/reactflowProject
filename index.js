@@ -106,8 +106,7 @@ app.get('/api', async (request, response) => {
         authId = request.query.authId;
         storyId = request.query.storyId;
         const bl = await storybl.create({title: 'Блок', storyId: storyId, authId: authId})
-        console.log(bl);
-        return response.send({ message: bl.id })
+        return response.send({ message: bl.dataValues.id })
 }
 });
 
