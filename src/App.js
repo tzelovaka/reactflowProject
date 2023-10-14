@@ -43,6 +43,7 @@ const getId = () => {
       })
   .then(response => response.json())
   .then (response => {
+    console.log(response);
     id = response.message
       })
 .catch(error => {
