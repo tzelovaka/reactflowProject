@@ -33,7 +33,21 @@ const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
-console.log(tgid);
+const [createdBlockId, setCreatedBlockId] = useState();
+const getId = () => {
+  fetch(`https://storinter.herokuapp.com/api/?storyId=${scheme[0].id}&authId=${tgid}`, {
+          method: 'GET',
+      })
+  .then(response => response.json())
+  .then (response => {
+    console.log(response);
+    setCreatedBlockId(response.message)
+      })
+.catch(error => {
+  console.error('Error:', error);
+});
+};
+
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
           method: 'GET',
@@ -47,21 +61,6 @@ useEffect(() => {
   console.error('Error:', error);
 });
 }, [tgid])
-const getId = () => {
-  var id
-  fetch(`https://storinter.herokuapp.com/api/?storyId=${scheme[0].id}&authId=${tgid}`, {
-          method: 'GET',
-      })
-  .then(response => response.json())
-  .then (response => {
-    console.log(response);
-    id = response.message
-      })
-.catch(error => {
-  console.error('Error:', error);
-});
-return id
-};
 
 const fitViewOptions = {
   padding: 3,
@@ -78,7 +77,8 @@ const fitViewOptions = {
         targetIsPane = event.changedTouches[0]
       }
       if (targetIsPane) {
-        const id = getId();
+        getId()
+        const id = createdBlockId;
         const left = event.changedTouches[0].clientX;
         const top = event.changedTouches[0].clientY;
         const newNode = {
