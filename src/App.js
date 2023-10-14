@@ -82,7 +82,7 @@ const fitViewOptions = {
         const left = event.changedTouches[0].clientX;
         const top = event.changedTouches[0].clientY;
         const newNode = {
-          id,
+          id: id,
           type: 'block',
           position: project({ x: left-75, y: top+100 }),
           data: { label: `Node ${id}` },
