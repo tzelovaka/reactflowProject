@@ -14,13 +14,6 @@ import './index.css';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 
-let id = 1;
-const getId = () => `${id++}`;
-
-const fitViewOptions = {
-  padding: 3,
-};
-
 
 const AddNodeOnEdgeDrop = () => {
 const [cover, setCover] = useState(true);
@@ -43,6 +36,24 @@ useEffect(() => {
   console.error('Error:', error);
 });
 }, [tgid])
+const getId = () => {
+  let id
+  fetch(`https://storinter.herokuapp.com/api/?storyId=${scheme[0].id}&authId=${tgid}`, {
+          method: 'GET',
+      })
+  .then(response => response.json())
+  .then (response => {
+    id = response.message
+      })
+.catch(error => {
+  console.error('Error:', error);
+});
+return id
+};
+
+const fitViewOptions = {
+  padding: 3,
+};
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -101,14 +112,14 @@ useEffect(() => {
       {cover && 
       <div>
         <div className='w-full grid grid-cols-1 justify-items-end'>
-          <button className="rounded-xl px-4 h-8 my-2 bg-red-500 text-white text-lg justify-self-end flex items-center justify-center" onClick={e => setCover(false)}>×</button>
+          <button className="rounded-xl px-4 h-8 my-2 bg-red-500 text-white text-lg mr-2 justify-self-end flex items-center justify-center" onClick={e => setCover(false)}>×</button>
           </div>
         <p id='label' className='text-lg mx-3 mt-4'>Название</p>
-        <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-3 mt-2 text-center w-full"  onChange={e => setTitle(e.target.value)}/>
+        <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-auto mt-2 text-center w-10/12"  onChange={e => setTitle(e.target.value)}/>
         <p id='label' className='text-lg mx-3 mt-4'>URL картинки</p>
-        <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-3 mt-2 w-full"  onChange={e => setImgUrl(e.target.value)}/>
+        <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-auto mt-2 w-10/12"  onChange={e => setImgUrl(e.target.value)}/>
         <p id='label' className='text-lg mx-3 mt-4'>Описание</p>
-        <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-3 mt-2 w-full" rows={3} cols={30}  onChange={e => setDesc(e.target.value)}/>
+        <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-auto mt-2 w-10/12" rows={3} cols={30}  onChange={e => setDesc(e.target.value)}/>
         <button className='bg-cyan-300 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full mx-3 my-5 text-xl' onClick={onChange}>Ок</button>
       </div>
       }

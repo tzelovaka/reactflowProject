@@ -31,6 +31,9 @@ app.post('/api/story', async (req, res) => {
   app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
 app.get('/api', async (request, response) => {
     const id = request.query.data;
+    var authId
+    var storyId
+    if (id !== null && id !== undefined){
     const st = await story.findOne({where:{
         authId: `${id}`,
         release: false
@@ -56,6 +59,7 @@ app.get('/api', async (request, response) => {
             },
           ]
           const head = {
+            id: stor.id,
             title: stor.title,
             desc: stor.desc,
             imgUrl: stor.img,
@@ -98,9 +102,13 @@ app.get('/api', async (request, response) => {
     }
     //response.status(200) //устанавливает код ответа 200, ответ не отправлен
     //return response.send({ message: scheme})
-    }
-//}
-);
+    }else{
+        authId = request.query.authId;
+        storyId = request.query.storyId;
+        const bl = await storybl.create({title: 'Блок', storyId: storyId, authId: authId})
+        console.log(bl);
+}
+});
 
 
 /*app.post('/api', (req, res) => {
