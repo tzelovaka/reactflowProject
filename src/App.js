@@ -69,7 +69,7 @@ const fitViewOptions = {
   const onConnectEnd = useCallback(
     (event) => {
       let targetIsPane
-      if (event.type == "touchend") {
+      if (event.type === "touchend") {
         targetIsPane = event.changedTouches[0]
       }
       if (targetIsPane) {
@@ -84,8 +84,10 @@ const fitViewOptions = {
           position: project({ x: left-75, y: top+100 }),
           data: { label: `Node ${id}`, img: '' },
         };
-        setNodes((nds) => nds.concat(newNode));
-        setEdges((eds) => eds.concat({ id: edgeId, source: connectingNodeId.current, target: id, type: 'CustomEdge', data: {label: '', smile: '' } }));
+        let newNodes = nodes.concat(newNode)
+        setNodes(newNodes);
+        let newEdges = edges.concat({ id: edgeId, source: connectingNodeId.current, target: id, type: 'CustomEdge', data: {label: '', smile: '' } })
+        setEdges(newEdges);
       }
     },
     [project]
