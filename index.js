@@ -108,7 +108,7 @@ app.get('/api', async (request, response) => {
         storyId = request.query.storyId;
         sourceId = request.query.sourceId;
         const bl = await storybl.create({text: 'Блок', storyId: storyId, authId: authId})
-        const li = await storybl.create({text: 'Выбор', storyId: storyId, authId: authId, source: sourceId, tartget: bl.dataValues.id})
+        const li = await storylin.create({text: 'Выбор', storyId: storyId, authId: authId, source: sourceId, tartget: bl.dataValues.id})
         return response.send({ message: [bl.dataValues.id, li.dataValues.id] })
 }
 });
