@@ -28,14 +28,13 @@ const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
-const [createdBlockId, setCreatedBlockId] = useState();
+const [createdBlockId, setCreatedBlockId] = useState('');
 const getId = () => {
   fetch(`https://storinter.herokuapp.com/api/?storyId=${scheme[0].id}&authId=${tgid}`, {
           method: 'GET',
       })
   .then(response => response.json())
   .then (response => {
-    console.log(response);
     setCreatedBlockId(response.message)
       })
 .catch(error => {
@@ -81,7 +80,7 @@ const fitViewOptions = {
           id: id,
           type: 'block',
           position: project({ x: left-75, y: top+100 }),
-          data: { label: `Node ${id}` },
+          data: { label: `Node ${id}`, img: '' },
         };
         setNodes((nds) => nds.concat(newNode));
         setEdges((eds) => eds.concat({ id: edgeId, source: connectingNodeId.current, target: id, type: 'CustomEdge', data: {label: '', smile: '' } }));
