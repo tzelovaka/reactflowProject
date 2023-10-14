@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
 import ReactFlow, {
   Panel,
+  Controls,
   useNodesState,
   useEdgesState,
   useReactFlow,
@@ -8,7 +9,6 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import block from './BlockNode';
-import CreatingApp from './CreatingApp';
 import CustomEdge from './CustomEdge';
 import './index.css';
 const nodeTypes = { block: block };
@@ -144,6 +144,7 @@ const fitViewOptions = {
         fitView
         fitViewOptions={fitViewOptions}
       >
+        <Controls />
         <Panel position="bottom-right"><button className='bg-cyan-300 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full' onClick={e => setCover(true)}>Редактировать обложку</button></Panel>
       </ReactFlow>}
     </div>
