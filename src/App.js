@@ -29,13 +29,15 @@ const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 const [createdBlockId, setCreatedBlockId] = useState('');
+const [createdEdgeId, setCreatedEdgeId] = useState('');
 const getId = () => {
-  fetch(`https://storinter.herokuapp.com/api/?storyId=${scheme[0].id}&authId=${tgid}`, {
+  fetch(`https://storinter.herokuapp.com/api/?storyId=${scheme[0].id}&authId=${tgid}&sourceId=${connectingNodeId.current}`, {
           method: 'GET',
       })
   .then(response => response.json())
   .then (response => {
-    setCreatedBlockId(response.message)
+    setCreatedBlockId(response.message[0])
+    setCreatedEdgeId(response.message[1])
       })
 .catch(error => {
   console.error('Error:', error);
@@ -72,7 +74,7 @@ const fitViewOptions = {
       }
       if (targetIsPane) {
         getId()
-        const edgeId = 1
+        const edgeId = createdEdgeId
         const id = createdBlockId;
         const left = event.changedTouches[0].clientX;
         const top = event.changedTouches[0].clientY;

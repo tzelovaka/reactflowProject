@@ -33,6 +33,7 @@ app.get('/api', async (request, response) => {
     const id = request.query.data;
     var authId
     var storyId
+    var sourceId
     if (id !== null && id !== undefined){
     const st = await story.findOne({where:{
         authId: `${id}`,
@@ -105,8 +106,10 @@ app.get('/api', async (request, response) => {
     }else{
         authId = request.query.authId;
         storyId = request.query.storyId;
-        const bl = await storybl.create({title: 'Блок', storyId: storyId, authId: authId})
-        return response.send({ message: bl.dataValues.id })
+        sourceId = request.query.sourceId;
+        const bl = await storybl.create({text: 'Блок', storyId: storyId, authId: authId})
+        const li = await storybl.create({text: 'Выбор', storyId: storyId, authId: authId, source: sourceId, tartget: bl.dataValues.id})
+        return response.send({ message: [bl.dataValues.id, li.dataValues.id] })
 }
 });
 
