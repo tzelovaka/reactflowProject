@@ -18,12 +18,7 @@ const edgeTypes = {CustomEdge: CustomEdge};
 const AddNodeOnEdgeDrop = () => {
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState([{
-    id:'1',
-    type: 'block',
-    data: { label: 'текст', img: ''},
-    position: { x: 0, y: 50 },
-  },]);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
@@ -78,6 +73,7 @@ const fitViewOptions = {
       }
       if (targetIsPane) {
         getId()
+        const edgeId = 1
         const id = createdBlockId;
         const left = event.changedTouches[0].clientX;
         const top = event.changedTouches[0].clientY;
@@ -88,7 +84,7 @@ const fitViewOptions = {
           data: { label: `Node ${id}` },
         };
         setNodes((nds) => nds.concat(newNode));
-        setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, target: id, type: 'CustomEdge', data: {label: '', smile: '' } }));
+        setEdges((eds) => eds.concat({ id: edgeId, source: connectingNodeId.current, target: id, type: 'CustomEdge', data: {label: '', smile: '' } }));
       }
     },
     [project]
