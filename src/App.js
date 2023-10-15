@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useEffect, useState } from 'react';
 import ReactFlow, {
   Panel,
   Controls,
+  Background,
   useNodesState,
   useEdgesState,
   useReactFlow,
@@ -13,7 +14,7 @@ import CustomEdge from './CustomEdge';
 import './index.css';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
-const screenHeight = window.screen.height - 0.25*window.screen.height;
+const screenHeight = window.screen.height - 0.2*window.screen.height;
 const proOptions = { hideAttribution: true };
 let id = 100;
 const getId = () => `${id++}`;
@@ -143,7 +144,9 @@ const fitViewOptions = {
         fitViewOptions={fitViewOptions}
         proOptions={proOptions}
       >
-        <Panel className='mt-96' position="top-left">top-left</Panel>
+        <Controls />
+        <Panel position="top-left"><button className='bg-cyan-300 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full mx-3 my-5 text-xl' onClick={e => setCover(true)}>Меню</button></Panel>
+        <Background color="#aaa" gap={16} />
     </ReactFlow>}
     </div>
   );
