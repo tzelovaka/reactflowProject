@@ -14,7 +14,7 @@ import './index.css';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.25*window.screen.height;
-
+const proOptions = { hideAttribution: true };
 let id = 100;
 const getId = () => `${id++}`;
 
@@ -141,6 +141,7 @@ const fitViewOptions = {
         onConnectEnd={onConnectEnd}
         fitView
         fitViewOptions={fitViewOptions}
+        proOptions={proOptions}
       >
         <Panel className='mt-96' position="top-left">top-left</Panel>
     </ReactFlow>}
