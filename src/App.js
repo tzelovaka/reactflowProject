@@ -53,8 +53,8 @@ const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 });
 };*/
 const animatedMenu = useSpring({
-  from: cover ? { x: 0, opacity: 0 } : 0,
-  to: cover ? { x: 120, opacity: 1 } : 0
+  from: cover ? { y: -150, opacity: 0 } : 0,
+  to: cover ? { y: 0, opacity: 1 } : 0
 });
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
