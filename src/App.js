@@ -70,7 +70,7 @@ const fitViewOptions = {
   const onConnectEnd = useCallback(
     (event) => {
       let targetIsPane
-      if (event.type === "touchend") {
+      if (event.type == "touchend") {
         targetIsPane = event.changedTouches[0]
       }
       if (targetIsPane) {
