@@ -16,7 +16,7 @@ const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.2*window.screen.height;
 const proOptions = { hideAttribution: true };
-let id = 100;
+let id = 1;
 const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
