@@ -30,9 +30,7 @@ const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
-const [createdBlockId, setCreatedBlockId] = useState('');
-const [createdEdgeId, setCreatedEdgeId] = useState('');
-const getId = () => {
+/*const getId = () => {
   fetch(`https://storinter.herokuapp.com/api/?storyId=${scheme[0].id}&authId=${tgid}&sourceId=${connectingNodeId.current}`, {
           method: 'GET',
       })
@@ -44,7 +42,7 @@ const getId = () => {
 .catch(error => {
   console.error('Error:', error);
 });
-};
+};*/
 
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
@@ -141,6 +139,7 @@ const fitViewOptions = {
         fitView
         fitViewOptions={fitViewOptions}
       >
+        <Panel className='mt-32' position="top-left">top-left</Panel>
     </ReactFlow>}
     </div>
   );
