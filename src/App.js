@@ -14,7 +14,7 @@ import './index.css';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height;
-let id = 1;
+let id = 100;
 const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
