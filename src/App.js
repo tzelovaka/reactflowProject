@@ -157,6 +157,7 @@ const fitViewOptions = {
         fitView
         fitViewOptions={fitViewOptions}
         proOptions={proOptions}
+        className="touchdevice-flow"
       >
         <MiniMap style={minimapStyle} zoomable pannable />
         <Panel position="top-left"><img className='w-6 h-6' src={menuIcon} alt="menu" onClick={e => setCover(true)}/></Panel>
