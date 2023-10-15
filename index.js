@@ -31,11 +31,77 @@ app.post('/api/story', async (req, res) => {
   app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
 app.get('/api', async (request, response) => {
     const id = request.query.data;
-    var authId
-    var storyId
-    var sourceId
-    if (id !== null && id !== undefined){
     const st = await story.findOne({where:{
+        authId: `${id}`,
+        release: false
+    }});
+    if (st===null){
+        const s = await story.create({title: null, desc: null, authId: `${id}`});
+        let head = {
+            title: s.title,
+            img: s.img,
+            desc: s.desc,
+        }
+        const initialNodes = [
+            {
+              id: '0',
+              type: 'block',
+              data: { label: 'Node' },
+              position: { x: 0, y: 50 },
+            },
+          ];
+        return response.send({ message: [head, initialNodes]})
+    }else{
+        let head = {
+            title: st.title,
+            img: st.img,
+            desc: st.desc,
+        }
+        const blocks = await storybl.findAll ({where: {
+            authId: `${id}`,
+            release: false,
+            storyId: st.id
+        }})
+        let nodes = []
+        let node
+        blocks.forEach((block) => {
+            node = {
+                id: block.fId,
+                type: 'block',
+                data: { 
+                    label: block.text,
+                    img: block.img
+                    },
+                position: {
+                    x: block.postionX,
+                    y: block.postionY,
+                }
+            }
+            nodes.push(node)
+        })
+        const links = await storylin.findAll ({where: {
+            authId: `${id}`,
+            release: false,
+            storyId: st.id
+        }})
+        let edges = []
+        let edge
+        links.forEach((link) => {
+            edge = {
+                id: link.fId,
+                type: 'CustomEdge',
+                data: { 
+                    label: link.text,
+                    smile: link.smile
+                    },
+                sorce: link.source,
+                target: link.target
+            }
+            edges.push(edge)
+        })
+        return response.send({ message: [head, nodes, edges]})
+    }
+/*    const st = await story.findOne({where:{
         authId: `${id}`,
         release: false
     }});
@@ -102,15 +168,7 @@ app.get('/api', async (request, response) => {
         return response.send({ message: [head, blocks, links] })
     }
     //response.status(200) //устанавливает код ответа 200, ответ не отправлен
-    //return response.send({ message: scheme})
-    }else{
-        authId = request.query.authId;
-        storyId = request.query.storyId;
-        sourceId = request.query.sourceId;
-        const bl = await storybl.create({text: 'Блок', storyId: storyId, authId: authId})
-        const li = await storylin.create({text: 'Выбор', storyId: storyId, authId: authId, source: sourceId, target: bl.dataValues.id})
-        return response.send({ message: [bl.dataValues.id, li.dataValues.id] })
-}
+    //return response.send({ message: scheme})*/
 });
 
 

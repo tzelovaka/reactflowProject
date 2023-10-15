@@ -51,7 +51,8 @@ useEffect(() => {
   .then(response => response.json())
   .then (response => {
     setScheme(response.message)
-    setNodes(response.message[1])  
+    setNodes(response.message[1])
+    setEdges(response.message[2])  
       })
 .catch(error => {
   console.error('Error:', error);
@@ -83,7 +84,7 @@ const fitViewOptions = {
           data: { label: `Node ${id}`, img: '' },
         };
         setNodes((nds) => nds.concat(newNode));
-        setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, target: id }));
+        setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id }));
       }
     },
     [project]
@@ -139,7 +140,7 @@ const fitViewOptions = {
         fitView
         fitViewOptions={fitViewOptions}
       >
-        <Panel className='mt-32' position="top-left">top-left</Panel>
+        <Panel className='mt-96' position="top-left">top-left</Panel>
     </ReactFlow>}
     </div>
   );
