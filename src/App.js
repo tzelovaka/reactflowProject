@@ -13,7 +13,7 @@ import CustomEdge from './CustomEdge';
 import './index.css';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
-const screenHeight = window.screen.height;
+const screenHeight = window.screen.height / 2;
 let id = 100;
 const getId = () => `${id++}`;
 
