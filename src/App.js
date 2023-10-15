@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
-import { Fade } from "react-awesome-reveal";
+import { Fade, Slide } from "react-awesome-reveal";
 import ReactFlow, {
   Panel,
   MiniMap,
@@ -122,7 +122,7 @@ const fitViewOptions = {
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       {cover && 
-      <Fade left big>
+      <Slide bottom>
       <div className='w-full grid grid-cols-1'>
       <div className='justify-self-end'>
         <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => setCover(false)}>–</button>
@@ -154,9 +154,10 @@ const fitViewOptions = {
       </div>
 </div>
     </div>
-    </Fade>
+    </Slide>
       }
       {!cover && 
+      <Fade>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -173,7 +174,8 @@ const fitViewOptions = {
       >
         <Panel position="top-left"><img className='w-6 h-6' src={menuIcon} alt="menu" onClick={e => setCover(true)}/></Panel>
         <Background color="#aaa" gap={16} />
-    </ReactFlow>}
+    </ReactFlow>
+    </Fade>}
     </div>
   );
 };
