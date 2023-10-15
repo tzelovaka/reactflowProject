@@ -137,7 +137,7 @@ const fitViewOptions = {
               <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>Описание</p>
             <textarea className="mx-2 font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mt-2 w-full" rows={3} cols={30} onChange={e => setDesc(e.target.value)} />
             </div>
-          <div className='w-full'>
+          <div className='w-full mt-4'>
               <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Сохранить</button>
             <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Опубликовать</button>
             </div>
