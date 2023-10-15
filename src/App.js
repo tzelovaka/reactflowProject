@@ -14,6 +14,8 @@ import './index.css';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height;
+let id = 1;
+const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
   const reactFlowWrapper = useRef(null);
@@ -73,9 +75,7 @@ const fitViewOptions = {
         targetIsPane = event.changedTouches[0]
       }
       if (targetIsPane) {
-        getId()
-        const edgeId = createdEdgeId
-        const id = createdBlockId;
+        const id = getId()
         const left = event.changedTouches[0].clientX;
         const top = event.changedTouches[0].clientY;
         const newNode = {
@@ -84,11 +84,8 @@ const fitViewOptions = {
           position: project({ x: left-75, y: top+100 }),
           data: { label: `Node ${id}`, img: '' },
         };
-        let newNodes = nodes.concat(newNode)
-        setNodes(newNodes);
-        console.log(nodes);
-        let newEdges = edges.concat({ id: edgeId, source: connectingNodeId.current, target: id, type: 'CustomEdge', data: {label: '', smile: '' } })
-        setEdges(newEdges);
+        setNodes((nds) => nds.concat(newNode));
+        setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, target: id }));
       }
     },
     [project]
@@ -144,9 +141,7 @@ const fitViewOptions = {
         fitView
         fitViewOptions={fitViewOptions}
       >
-        <Controls />
-        <Panel position="bottom-right"><button className='bg-cyan-300 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full' onClick={e => setCover(true)}>Редактировать обложку</button></Panel>
-      </ReactFlow>}
+    </ReactFlow>}
     </div>
   );
 };
