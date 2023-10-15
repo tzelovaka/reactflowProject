@@ -122,8 +122,8 @@ const fitViewOptions = {
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       {cover && 
       <div className='w-full flex justify-center'>
-      <div className='w-10/12'>
-          <div className='justify-self-right'>
+      <div className='w-full'>
+          <div>
             <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 justify-self-end flex items-center justify-center text-xl" onClick={e => setCover(false)}>–</button>
           </div>
           <div className='flex flex-wrap justify-self-center'>
