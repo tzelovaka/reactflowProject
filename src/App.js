@@ -13,7 +13,7 @@ import CustomEdge from './CustomEdge';
 import './index.css';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
-
+const screenHeight = window.screen.height;
 
 const AddNodeOnEdgeDrop = () => {
   const reactFlowWrapper = useRef(null);
@@ -115,7 +115,7 @@ const fitViewOptions = {
         });
   }, [title, imgUrl, desc]);
   return (
-    <div className="wrapper" style={{height: 800}} ref={reactFlowWrapper}>
+    <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       {cover && 
       <div>
         <div className='w-full grid grid-cols-1 justify-items-end'>
