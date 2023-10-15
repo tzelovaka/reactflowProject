@@ -126,27 +126,27 @@ const fitViewOptions = {
         <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => setCover(false)}>–</button>
       </div>
       <div class="container mx-auto px-4">
-  <form class="max-w-screen-lg shadow-md rounded-lg px-8 py-6">
+  <form class="max-w-screen-lg">
     <div class="mb-4">
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input1">
         Название
       </label>
-      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setTitle(e.target.value)} id="input1" type="text" placeholder="Enter input 1"/>
+      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setTitle(e.target.value)} id="input1" type="text" placeholder="Название"/>
     </div>
     <div class="mb-4">
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input2">
         URL картинки
       </label>
-      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Enter input 2"/>
+      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
     </div>
     <div class="mb-4">
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="textarea1">
         Описание
       </label>
-      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Enter text"></textarea>
+      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Описание"></textarea>
     </div>
   </form>
-      <div className='justify-self-center mt-4'>
+      <div className='mt-4 grid grid-cols-2 justify-items-center'>
         <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Сохранить</button>
         <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Опубликовать</button>
       </div>
