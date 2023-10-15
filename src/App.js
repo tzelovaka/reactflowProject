@@ -143,7 +143,7 @@ const fitViewOptions = {
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="textarea1">
         Описание
       </label>
-      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Описание"></textarea>
+      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Описание"></textarea>
     </div>
   </form>
       <div className='mt-4 grid grid-cols-2 justify-items-center'>
