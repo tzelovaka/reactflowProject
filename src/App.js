@@ -84,6 +84,7 @@ const fitViewOptions = {
           data: { label: `Node ${id}`, img: '' },
         };
         setNodes((nds) => nds.concat(newNode));
+        console.log(nodes);
         setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id }));
       }
     },
