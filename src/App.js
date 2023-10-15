@@ -121,32 +121,36 @@ const fitViewOptions = {
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       {cover && 
+      <div className='w-full grid grid-cols-1'>
+      <div className='justify-self-end'>
+        <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => setCover(false)}>–</button>
+      </div>
       <div class="container mx-auto px-4">
-      <form class="max-w-screen-lg bg-white shadow-md rounded-lg px-8 py-6">
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="input1">
-            Input 1
-          </label>
-          <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="input1" type="text" placeholder="Enter input 1"/>
-        </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="input2">
-            Input 2
-          </label>
-          <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="input2" type="text" placeholder="Enter input 2" />
-        </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="textarea1">
-            Textarea
-          </label>
-          <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="textarea1" placeholder="Enter text"></textarea>
-        </div>
-        <div class="flex items-center justify-end">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-            Submit
-          </button>
-        </div>
-      </form>
+  <form class="max-w-screen-lg shadow-md rounded-lg px-8 py-6">
+    <div class="mb-4">
+      <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input1">
+        Название
+      </label>
+      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setTitle(e.target.value)} id="input1" type="text" placeholder="Enter input 1"/>
+    </div>
+    <div class="mb-4">
+      <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input2">
+        URL картинки
+      </label>
+      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Enter input 2"/>
+    </div>
+    <div class="mb-4">
+      <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="textarea1">
+        Описание
+      </label>
+      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Enter text"></textarea>
+    </div>
+  </form>
+      <div className='justify-self-center mt-4'>
+        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Сохранить</button>
+        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Опубликовать</button>
+      </div>
+</div>
     </div>
       }
       {!cover && 
