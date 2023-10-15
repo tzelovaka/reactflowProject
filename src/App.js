@@ -145,7 +145,7 @@ const fitViewOptions = {
         fitViewOptions={fitViewOptions}
         proOptions={proOptions}
       >
-        <Panel position="top-left"><img className='w-16 h-16 ml-1 mt-1' src={menuIcon} alt="menu" onClick={e => setCover(true)}/></Panel>
+        <Panel position="top-left"><img className='w-6 h-6 ml-1 mt-1' src={menuIcon} alt="menu" onClick={e => setCover(true)}/></Panel>
         <Background color="#aaa" gap={16} />
     </ReactFlow>}
     </div>

@@ -8,7 +8,8 @@ export const theme = {
       'philosopher': ['Philosopher-Regular', 'sans-serif'],
     },
     colors: {
-      sea: '#20b2aa'
+      sea: '#20b2aa',
+      retro: '#ac3834'
     },
   },
 };
