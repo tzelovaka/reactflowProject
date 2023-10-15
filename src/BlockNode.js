@@ -74,7 +74,7 @@ function Block({ data, isConnectable }) {
                 </div>
                 
             }
-            { !isOpen && nodeId != '0' && <button className="rounded-xl px-4 h-8 my-2 bg-red-500 text-white text-lg justify-self-end flex items-center justify-center" onClick={() => setIsOpen(true)}>×</button>}
+            { !isOpen && nodeId != '0' && <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg justify-self-end flex items-center justify-center" onClick={() => setIsOpen(true)}>×</button>}
           </div>
           <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={onChange}/>
         </div>

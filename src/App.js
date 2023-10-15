@@ -12,6 +12,7 @@ import 'reactflow/dist/style.css';
 import block from './BlockNode';
 import CustomEdge from './CustomEdge';
 import './index.css';
+import menuIcon from './img/menu.png';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.2*window.screen.height;
@@ -118,7 +119,7 @@ const fitViewOptions = {
       {cover && 
       <div>
         <div className='w-full grid grid-cols-1 justify-items-end'>
-          <button className="rounded-xl px-4 h-8 my-2 bg-red-500 text-white text-lg mr-2 justify-self-end flex items-center justify-center" onClick={e => setCover(false)}>×</button>
+          <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg mr-2 justify-self-end flex items-center justify-center" onClick={e => setCover(false)}>×</button>
           </div>
         <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>Название</p>
         <input type="text" className="font-philosopher border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-auto mt-2 text-center w-10/12"  onChange={e => setTitle(e.target.value)}/>
@@ -144,7 +145,7 @@ const fitViewOptions = {
         fitViewOptions={fitViewOptions}
         proOptions={proOptions}
       >
-        <Panel position="top-left"><button className='bg-sea text-white font-bold py-2 px-4 rounded-full mx-2 my-2 text-md font-philosopher' onClick={e => setCover(true)}>Меню</button></Panel>
+        <Panel position="top-left"><img className='w-16 h-16 ml-1 mt-1' src={menuIcon} alt="menu" onClick={e => setCover(true)}/></Panel>
         <Background color="#aaa" gap={16} />
     </ReactFlow>}
     </div>
