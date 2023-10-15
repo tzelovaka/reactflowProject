@@ -135,7 +135,7 @@ const fitViewOptions = {
       </div>
       <div className='justify-self-center'>
         <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>Описание</p>
-        <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+        <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" rows={4} cols={20} onChange={e => setDesc(e.target.value)}></textarea>
       </div>
       <div className='justify-self-center mt-4'>
         <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Сохранить</button>
