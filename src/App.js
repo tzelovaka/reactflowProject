@@ -73,7 +73,7 @@ const fitViewOptions = {
   const onConnectEnd = useCallback(
     (event) => {
       let targetIsPane
-      if (event.type == "touchend") {
+      if (event.type === "touchend") {
         targetIsPane = event.changedTouches[0]
       }
       if (targetIsPane) {
@@ -117,18 +117,27 @@ const fitViewOptions = {
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       {cover && 
-      <div className='mx-auto'>
-        <div className='w-full grid grid-cols-1 justify-items-end'>
-          <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg mr-2 justify-self-end flex items-center justify-center" onClick={e => setCover(false)}>×</button>
+      <div className='w-full grid grid-cols-1 justify-items-center'>
+        <div>
+          <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg mr-2 justify-self-end flex items-center justify-center text-xl" onClick={e => setCover(false)}>–</button>
         </div>
-        <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>Название</p>
+        <div>
+         <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>Название</p>
         <input type="text" className="font-philosopher border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-auto mt-2 text-center w-10/12"  onChange={e => setTitle(e.target.value)}/>
-        <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>URL картинки</p>
+        </div>
+        <div>
+          <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>URL картинки</p>
         <input type="text" className="font-philosopher border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-auto mt-2 w-10/12"  onChange={e => setImgUrl(e.target.value)}/>
-        <p id='label' className='text-lg mx-3 mt-4  font-philosopher'>Описание</p>
+        </div>
+        <div>
+          <p id='label' className='text-lg mx-3 mt-4  font-philosopher'>Описание</p>
         <textarea className="font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-auto mt-2 w-10/12" rows={3} cols={30}  onChange={e => setDesc(e.target.value)}/>
-        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 my-5 text-xl' onClick={onChange}>Ок</button>
-      </div>
+        </div>
+        <div className='flex my-5'>
+          <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Сохранить</button>
+        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Опубликовать</button>
+        </div>
+        </div>
       }
       {!cover && 
       <ReactFlow
