@@ -106,6 +106,7 @@ app.get('/api', async (request, response) => {
             edges.push(edge)
         })
     }
+    console.log(nodes);
         return response.send({ message: [head, nodes, edges]})
     }
 /*    const st = await story.findOne({where:{
