@@ -9,8 +9,8 @@ export const theme = {
     },
     colors: {
       sea: '#20b2aa',
-      retro: '#ac3834'
-    },
+      retro: '#ac3834',
+    }
   },
 };
 export const plugins = [];
