@@ -64,7 +64,7 @@ app.get('/api', async (request, response) => {
             storyId: st.id
         }})
         let nodes = []
-        if (blocks !== null){
+        if (blocks.length > 0){
         let node
         blocks.forEach((block) => {
             node = {
@@ -90,7 +90,7 @@ app.get('/api', async (request, response) => {
             storyId: st.id
         }})
         let edges = []
-        if (links !== null){
+        if (links.length > 0){
         let edge
         links.forEach((link) => {
             edge = {
@@ -106,8 +106,6 @@ app.get('/api', async (request, response) => {
             edges.push(edge)
         })
     }
-    console.log(blocks);
-    console.log(nodes);
         return response.send({ message: [head, nodes, edges]})
     }
 /*    const st = await story.findOne({where:{
