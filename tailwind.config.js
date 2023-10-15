@@ -7,6 +7,9 @@ export const theme = {
     fontFamily: {
       'philosopher': ['Philosopher-Regular', 'sans-serif'],
     },
+    colors: {
+      sea: '#20b2aa'
+    },
   },
 };
 export const plugins = [];
