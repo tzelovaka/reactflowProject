@@ -125,7 +125,7 @@ const fitViewOptions = {
           <div className='w-full bg-slate-200'>
             <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => setCover(false)}>–</button>
           </div>
-          <div className='w-full bg-slate-200'>
+          <div className='w-full bg-slate-200 justify-self-center'>
             <div>
               <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>Название</p>
             <input type="text" className="w-10/12 font-philosopher border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mt-2 text-center" onChange={e => setTitle(e.target.value)} />
