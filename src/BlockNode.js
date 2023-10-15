@@ -64,6 +64,7 @@ function Block({ data, isConnectable }) {
         <div className="border-2 px-4 pb-4 rounded-xl bg-white">
           <div className="grid grid-cols-2 my-3">
             <button className="rounded my-2 w-8 h-8 bg-white text-sm justify-self-start"><img src={img} alt="img" className='w-full'/></button>
+            
             {isOpen &&
                 <div className='inline-blick text-center text-md h-12'>
                   <p>Удалить ветвь?</p>

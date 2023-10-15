@@ -117,10 +117,10 @@ const fitViewOptions = {
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       {cover && 
-      <div>
+      <div className='mx-auto'>
         <div className='w-full grid grid-cols-1 justify-items-end'>
           <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg mr-2 justify-self-end flex items-center justify-center" onClick={e => setCover(false)}>×</button>
-          </div>
+        </div>
         <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>Название</p>
         <input type="text" className="font-philosopher border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-auto mt-2 text-center w-10/12"  onChange={e => setTitle(e.target.value)}/>
         <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>URL картинки</p>
@@ -145,7 +145,7 @@ const fitViewOptions = {
         fitViewOptions={fitViewOptions}
         proOptions={proOptions}
       >
-        <Panel position="top-left"><img className='w-6 h-6 ml-1 mt-1' src={menuIcon} alt="menu" onClick={e => setCover(true)}/></Panel>
+        <Panel position="top-left"><img className='w-6 h-6' src={menuIcon} alt="menu" onClick={e => setCover(true)}/></Panel>
         <Background color="#aaa" gap={16} />
     </ReactFlow>}
     </div>
