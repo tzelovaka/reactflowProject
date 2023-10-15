@@ -120,11 +120,11 @@ const fitViewOptions = {
         <div className='w-full grid grid-cols-1 justify-items-end'>
           <button className="rounded-xl px-4 h-8 my-2 bg-red-500 text-white text-lg mr-2 justify-self-end flex items-center justify-center" onClick={e => setCover(false)}>×</button>
           </div>
-        <p id='label' className='text-lg mx-3 mt-4'>Название</p>
+        <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>Название</p>
         <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-auto mt-2 text-center w-10/12"  onChange={e => setTitle(e.target.value)}/>
-        <p id='label' className='text-lg mx-3 mt-4'>URL картинки</p>
+        <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>URL картинки</p>
         <input type="text" className="border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mx-auto mt-2 w-10/12"  onChange={e => setImgUrl(e.target.value)}/>
-        <p id='label' className='text-lg mx-3 mt-4'>Описание</p>
+        <p id='label' className='text-lg mx-3 mt-4  font-philosopher'>Описание</p>
         <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-auto mt-2 w-10/12" rows={3} cols={30}  onChange={e => setDesc(e.target.value)}/>
         <button className='bg-cyan-300 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full mx-3 my-5 text-xl' onClick={onChange}>Ок</button>
       </div>
@@ -144,8 +144,7 @@ const fitViewOptions = {
         fitViewOptions={fitViewOptions}
         proOptions={proOptions}
       >
-        <Controls />
-        <Panel position="top-left"><button className='bg-cyan-300 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full mx-3 my-5 text-xl' onClick={e => setCover(true)}>Меню</button></Panel>
+        <Panel position="top-left"><button className='bg-cyan-300 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full mx-2 my-2 text-md font-philosopher' onClick={e => setCover(true)}>Меню</button></Panel>
         <Background color="#aaa" gap={16} />
     </ReactFlow>}
     </div>

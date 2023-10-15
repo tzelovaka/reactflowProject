@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: 'Philosopher-Regular';
+  src: url('./fonts/Philosopher-Regular.ttf') format('truetype');
+}
 .react-flow .react-flow__handle {
   width: 150px;
   height: 20px;

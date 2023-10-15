@@ -3,6 +3,10 @@ export const content = [
   "./src/**/*.{js,jsx,ts,tsx}",
 ];
 export const theme = {
-  extend: {},
+  extend: {
+    fontFamily: {
+      'philosopher': ['Philosopher-Regular', 'sans-serif'],
+    },
+  },
 };
 export const plugins = [];
