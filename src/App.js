@@ -122,7 +122,7 @@ const fitViewOptions = {
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       {cover && 
-      <Slide bottom>
+      <Slide right>
       <div className='w-full grid grid-cols-1'>
       <div className='justify-self-end'>
         <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => setCover(false)}>–</button>
@@ -157,7 +157,7 @@ const fitViewOptions = {
     </Slide>
       }
       {!cover && 
-      <Fade>
+      <Fade left big>
       <ReactFlow
         nodes={nodes}
         edges={edges}
