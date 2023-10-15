@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
 import ReactFlow, {
   Panel,
-  Controls,
+  MiniMap,
   Background,
   useNodesState,
   useEdgesState,
@@ -17,6 +17,10 @@ const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.2*window.screen.height;
 const proOptions = { hideAttribution: true };
+const minimapStyle = {
+  height: 120,
+};
+
 let id = 1;
 const getId = () => `${id++}`;
 
@@ -117,9 +121,9 @@ const fitViewOptions = {
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       {cover && 
-      <div className='w-full grid grid-cols-1 justify-items-center'>
-        <div>
-          <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg mr-2 justify-self-end flex items-center justify-center text-xl" onClick={e => setCover(false)}>–</button>
+      <div className='w-full grid grid-cols-1'>
+        <div className='justify-self'>
+          <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 justify-self-end flex items-center justify-center text-xl" onClick={e => setCover(false)}>–</button>
         </div>
         <div>
          <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>Название</p>
@@ -133,7 +137,7 @@ const fitViewOptions = {
           <p id='label' className='text-lg mx-3 mt-4  font-philosopher'>Описание</p>
         <textarea className="font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mx-auto mt-2 w-10/12" rows={3} cols={30}  onChange={e => setDesc(e.target.value)}/>
         </div>
-        <div className='flex my-5'>
+        <div className='flex my-5 justify-self-center'>
           <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Сохранить</button>
         <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Опубликовать</button>
         </div>
@@ -154,6 +158,7 @@ const fitViewOptions = {
         fitViewOptions={fitViewOptions}
         proOptions={proOptions}
       >
+        <MiniMap style={minimapStyle} zoomable pannable />
         <Panel position="top-left"><img className='w-6 h-6' src={menuIcon} alt="menu" onClick={e => setCover(true)}/></Panel>
         <Background color="#aaa" gap={16} />
     </ReactFlow>}
