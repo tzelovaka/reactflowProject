@@ -53,7 +53,7 @@ const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 });
 };*/
 const animatedMenu = useSpring({
-  from: cover ? { y: -150, opacity: 0 } : 0,
+  from: cover ? { y: 200, opacity: 0 } : 0,
   to: cover ? { y: 0, opacity: 1 } : 0
 });
 useEffect(() => {
