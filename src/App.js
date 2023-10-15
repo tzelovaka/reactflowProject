@@ -127,15 +127,15 @@ const fitViewOptions = {
           </div>
           <div className='justify-self-center'>
               <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>Название</p>
-              <input type="text" className="mx-2 w-100 font-philosopher border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mt-2 text-center" onChange={e => setTitle(e.target.value)} />
+              <input type="text" className="mx-2 w-full font-philosopher border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mt-2 text-center" onChange={e => setTitle(e.target.value)} />
             </div>
           <div className='justify-self-center'>
               <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>URL картинки</p>
-            <input type="text" className="mx-2 font-philosopher border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mt-2 w-100" onChange={e => setImgUrl(e.target.value)} />
+            <input type="text" className=" w-full mx-2 font-philosopher border-2 rounded-xl bg-slate-300 px-5 py-1 text-lg mt-2" onChange={e => setImgUrl(e.target.value)} />
             </div>
           <div className='justify-self-center'>
               <p id='label' className='text-lg mx-3 mt-4 font-philosopher'>Описание</p>
-            <textarea className="mx-2 font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mt-2 w-100" rows={4} onChange={e => setDesc(e.target.value)} />
+            <textarea className="w-full mx-2 font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg mt-2" rows={4} onChange={e => setDesc(e.target.value)} />
             </div>
           <div className='justify-self-center mt-4'>
               <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Сохранить</button>
