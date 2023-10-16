@@ -35,11 +35,6 @@ const AddNodeOnEdgeDrop = () => {
   const { project } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
-useEffect(() => {
-  setTimeout(()=>{
-   setCover(!cover)
-  }, 1000)
-}, [cover])
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
@@ -141,7 +136,14 @@ const fitViewOptions = {
       { cover &&
       <animated.div style={animatedMenu} className='w-full grid grid-cols-1'>
       <div className='justify-self-end'>
-        <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => setCover(false)}>–</button>
+        <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" 
+        onClick={
+          e => {
+            setTimeout(()=>{
+   setCover(false)
+  }, 1000)
+}}>
+–</button>
       </div>
       <div class="container mx-auto px-4">
   <form class="max-w-screen-lg">
