@@ -51,17 +51,19 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
           {emj ? emj : ":)"}
         </button>
         {isDropdownOpen && (
-          <div className="absolute mt-2 border-1 shadow-xl inline-block py-2 rounded-lg border-2 pl-2 pr-8">
-            <div className='grid grid-cols-12 gap-x-6 gap-y-2'>
-              {emojis.map((emoji, index) => (
-                <div
-                  key={index}
-                  className="cursor-pointer hover:bg-gray-100"
-                  onClick={() => emojiSelect(emoji)}
-                >
-                  {emoji}
-                </div>
-              ))}
+          <div className="fixed top-0 left-0 w-screen h-screen bg-white bg-opacity-75 flex items-center justify-center">
+            <div className="border-1 shadow-xl rounded-lg border-2 pl-2 pr-8">
+              <div className='grid grid-cols-12 gap-x-6 gap-y-2'>
+                {emojis.map((emoji, index) => (
+                  <div
+                    key={index}
+                    className="cursor-pointer hover:bg-gray-100"
+                    onClick={() => emojiSelect(emoji)}
+                  >
+                    {emoji}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
