@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
-import { useSpring, useTransition, animated, config } from "react-spring";
+import { Fade, Slide, Bounce } from "react-awesome-reveal";
+import { useSpring, animated, config } from "react-spring";
 import ReactFlow, {
   Panel,
   MiniMap,
@@ -51,11 +52,12 @@ const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
   console.error('Error:', error);
 });
 };*/
-const animatedMenu = useTransition({
-  from: { opacity: 0 },
-  enter: { opacity: 1 },
-  leave: { opacity: 0 },
-})
+const animatedMenu = useSpring({
+  reset: true,
+  from: cover ? { y: 200, opacity: 0 } : 0,
+  to: cover ? { y: 0, opacity: 1 } : 0,
+  reverse: !cover
+});
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
           method: 'GET',
