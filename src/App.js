@@ -36,6 +36,7 @@ const AddNodeOnEdgeDrop = () => {
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
+const [workSpaceAnimate, setWorkSpaceAnimate] = useState(false);
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
@@ -200,7 +201,7 @@ const fitViewOptions = {
         <Controls {...controlsConfig} />
         <Panel position="top-left"><img className='w-6 h-6' src={menuIcon} alt="menu" onClick={
           e => {
-            setCoverAnimate(true)
+            setWorkSpaceAnimate(true)
             setTimeout(()=>{
    setCover(true)
   }, 200)
