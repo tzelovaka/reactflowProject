@@ -60,7 +60,7 @@ const controlsConfig = {
 });
 };*/
 const animatedMenu = useSpring({
-  reset: true,
+
   from: {opacity: 0, transform: "translateY(-40rem)"},//cover ? { y: 200, opacity: 0 } : 0,
   to: {opacity: 1, transform: "translateY(0rem)"},//cover ? { y: 0, opacity: 1 } : 0,
   reverse: !coverAnimate
