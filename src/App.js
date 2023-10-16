@@ -35,6 +35,7 @@ const AddNodeOnEdgeDrop = () => {
   const { project } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
+const [coverAnimate, setCoverAnimate] = useState(true);
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
@@ -60,9 +61,9 @@ const controlsConfig = {
 };*/
 const animatedMenu = useSpring({
   reset: true,
-  from: {opacity: 0, transform: "translateY(40rem)"},//cover ? { y: 200, opacity: 0 } : 0,
+  from: {opacity: 0, transform: "translateY(-40rem)"},//cover ? { y: 200, opacity: 0 } : 0,
   to: {opacity: 1, transform: "translateY(0rem)"},//cover ? { y: 0, opacity: 1 } : 0,
-  reverse: !cover
+  reverse: !coverAnimate
 });
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
@@ -139,6 +140,7 @@ const fitViewOptions = {
         <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" 
         onClick={
           e => {
+            setCoverAnimate(false)
             setTimeout(()=>{
    setCover(false)
   }, 1000)
@@ -189,7 +191,13 @@ const fitViewOptions = {
         proOptions={proOptions}
       >
         <Controls {...controlsConfig} />
-        <Panel position="top-left"><img className='w-6 h-6' src={menuIcon} alt="menu" onClick={e => setCover(true)}/></Panel>
+        <Panel position="top-left"><img className='w-6 h-6' src={menuIcon} alt="menu" onClick={
+          e => {
+            setCoverAnimate(true)
+            setTimeout(()=>{
+   setCover(true)
+  }, 1000)
+}}/></Panel>
         <Background color="#aaa" gap={16} />
     </ReactFlow>}
     </div>
