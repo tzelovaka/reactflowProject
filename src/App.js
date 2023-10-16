@@ -41,6 +41,8 @@ const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 const controlsConfig = {
+  showZoom: false,
+  showFitView: false,
   showInteractive: true,
 };
 const Controls = ({ showInteractive }) => {
