@@ -54,7 +54,7 @@ const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 };*/
 const animatedMenu = useSpring({
   reset: true,
-  from: !cover ? { y: 200, opacity: 0 } : 0,
+  from: cover ? { y: 200, opacity: 0 } : 0,
   to: cover ? { y: 0, opacity: 1 } : 0,
   reverse: cover
 });
