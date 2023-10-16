@@ -61,8 +61,8 @@ const controlsConfig = {
 };*/
 const animatedMenu = useSpring({
 
-  from: {opacity: 0, transform: "translateY(-40rem)"},//cover ? { y: 200, opacity: 0 } : 0,
-  to: {opacity: 1, transform: "translateY(0rem)"},//cover ? { y: 0, opacity: 1 } : 0,
+  from: {opacity: 0, transform: "translateY(-40rem)"},
+  to: {opacity: 1, transform: "translateY(0rem)"},
   reverse: !coverAnimate
 });
 
@@ -73,8 +73,7 @@ useEffect(() => {
   .then(response => response.json())
   .then (response => {
     setScheme(response.message)
-    setNodes(response.message[1])
-    setEdges(response.message[2])  
+    setNodes(response.message[1]) 
       })
 .catch(error => {
   console.error('Error:', error);
