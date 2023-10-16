@@ -76,13 +76,13 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
           <div className="absolute mt-2 border-1 shadow-xl inline-block py-2 rounded-lg border-2 pl-2 pr-8">
             <div className='grid grid-cols-12 gap-x-6 gap-y-2'>
               {emojis.map((emoji, index) => (
-                <div
+                <button
                   key={index}
                   className="cursor-pointer hover:bg-gray-100"
                   onClick={() => handleEmojiSelect(emoji)}
                 >
                   {emoji}
-                </div>
+                </button>
               ))}
             </div>
           </div>
