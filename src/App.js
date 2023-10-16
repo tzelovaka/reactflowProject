@@ -3,6 +3,7 @@ import { Fade, Slide, Bounce } from "react-awesome-reveal";
 import { useSpring, animated, config } from "react-spring";
 import ReactFlow, {
   Panel,
+  Controls,
   MiniMap,
   Background,
   useNodesState,
@@ -39,6 +40,18 @@ const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+const controlsConfig = {
+  showInteractive: true,
+};
+const Controls = ({ showInteractive }) => {
+  return (
+    <div>
+      {showInteractive && (
+        <button>showInteractive</button>
+      )}
+    </div>
+  );
+};
 /*const getId = () => {
   fetch(`https://storinter.herokuapp.com/api/?storyId=${scheme[0].id}&authId=${tgid}&sourceId=${connectingNodeId.current}`, {
           method: 'GET',
@@ -104,13 +117,13 @@ const fitViewOptions = {
     },
     [project]
   );
+
   const onChange = useCallback(async (evt) => {
     /*const data = {
       title: title,
       imgUrl: imgUrl,
       desc: desc
     };*/
-    
     await fetch(`https://storinter.herokuapp.com/api/story/?title=${title}&imgUrl=${imgUrl}&desc=${desc}`, {
         method: 'POST',
         headers: {
@@ -175,6 +188,7 @@ const fitViewOptions = {
         fitViewOptions={fitViewOptions}
         proOptions={proOptions}
       >
+        <Controls {...controlsConfig} />
         <Panel position="top-left"><img className='w-6 h-6' src={menuIcon} alt="menu" onClick={e => setCover(true)}/></Panel>
         <Background color="#aaa" gap={16} />
     </ReactFlow>}
