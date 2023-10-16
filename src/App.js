@@ -127,11 +127,11 @@ const fitViewOptions = {
   }, [title, imgUrl, desc]);
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
-      {cover && 
       <Spring 
       reset={true}
       from={{opacity: 0, transform: "translateY(-4rem)"}}
       to={{opacity: 1, transform: "translateY(0rem)"}}
+      reverse={!cover}
       >
       <div className='w-full grid grid-cols-1'>
       <div className='justify-self-end'>
@@ -165,7 +165,6 @@ const fitViewOptions = {
 </div>
     </div>
     </Spring>
-      }
       {!cover && 
       <ReactFlow
         nodes={nodes}
