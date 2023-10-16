@@ -45,15 +45,6 @@ const controlsConfig = {
   showFitView: false,
   showInteractive: true,
 };
-const Controls = ({ showInteractive }) => {
-  return (
-    <div>
-      {showInteractive && (
-        <button>showInteractive</button>
-      )}
-    </div>
-  );
-};
 /*const getId = () => {
   fetch(`https://storinter.herokuapp.com/api/?storyId=${scheme[0].id}&authId=${tgid}&sourceId=${connectingNodeId.current}`, {
           method: 'GET',
