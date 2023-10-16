@@ -143,7 +143,7 @@ const fitViewOptions = {
             setCoverAnimate(false)
             setTimeout(()=>{
    setCover(false)
-  }, 300)
+  }, 200)
 }}>
 –</button>
       </div>
@@ -196,7 +196,7 @@ const fitViewOptions = {
             setCoverAnimate(true)
             setTimeout(()=>{
    setCover(true)
-  }, 300)
+  }, 200)
 }}/></Panel>
         <Background color="#aaa" gap={16} />
     </ReactFlow>}
