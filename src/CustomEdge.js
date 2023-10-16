@@ -28,6 +28,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
   
     const handleEmojiSelect = (emoji) => {
       let i;
+      console.log(111111111111111111111111111111111111);
       edges.forEach((edge) => {if (edge.id === id) i=edges.indexOf(edge) });
       edges[i].data.smile = emoji;
       setEmj(`${emoji}`)
@@ -43,7 +44,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
         </button>
         {isDropdownOpen && (
           <div className="absolute mt-2 border-1 shadow-xl inline-block py-2 rounded-lg border-2 pl-2 pr-8">
-            <div className='w-screen grid grid-cols-12 gap-x-6 gap-y-2'>
+            <div className='w-max grid grid-cols-12 gap-x-6 gap-y-2'>
               {emojis.map((emoji, index) => (
                 <button
                   key={index}
