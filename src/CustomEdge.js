@@ -58,9 +58,9 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
     };
   
     const handleEmojiSelect = (emoji) => {
-      let i;
-      edges.forEach((edge) => {if (edge.id === id) i=edges.indexOf(edge) });
-      edges[i].data.smile = emoji;
+      //let i;
+      //edges.forEach((edge) => {if (edge.id === id) i=edges.indexOf(edge) });
+      //edges[i].data.smile = emoji;
       setEmj(`${emoji}`)
     };
   
