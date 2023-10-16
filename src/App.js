@@ -1,7 +1,6 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
 import { Fade, Slide, Bounce } from "react-awesome-reveal";
-import { useSpring, animated, config } from "react-spring";
-import { Spring } from 'react-spring/renderprops';
+import { useSpring, animated, config, Spring } from "react-spring";
 import ReactFlow, {
   Panel,
   MiniMap,
