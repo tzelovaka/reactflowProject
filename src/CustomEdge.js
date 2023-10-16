@@ -78,8 +78,8 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
               {emojis.map((emoji, index) => (
                 <div
                   key={index}
-                  className="cursor-pointer hover:bg-gray-100"
-                  onTouchEnd={() => handleEmojiSelect(emoji)}
+                  className="cursor-pointer hover:bg-gray-100 text-7xl"
+                  onClick={() => handleEmojiSelect(emoji)}
                 >
                   {emoji}
                 </div>
