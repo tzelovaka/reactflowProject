@@ -36,7 +36,6 @@ const AddNodeOnEdgeDrop = () => {
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
-const [workSpaceAnimate, setWorkSpaceAnimate] = useState(false);
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
@@ -62,16 +61,11 @@ const controlsConfig = {
 };*/
 const animatedMenu = useSpring({
   reset: true,
-  from: {opacity: 0, transform: "translateY(-30rem)"},//cover ? { y: 200, opacity: 0 } : 0,
+  from: {opacity: 0, transform: "translateY(-40rem)"},//cover ? { y: 200, opacity: 0 } : 0,
   to: {opacity: 1, transform: "translateY(0rem)"},//cover ? { y: 0, opacity: 1 } : 0,
   reverse: !coverAnimate
 });
-const animatedWorkSpace = useSpring({
-  reset: true,
-  from: {opacity: 0, transform: "translateY(30rem)"},//cover ? { y: 200, opacity: 0 } : 0,
-  to: {opacity: 1, transform: "translateY(0rem)"},//cover ? { y: 0, opacity: 1 } : 0,
-  reverse: coverAnimate
-});
+
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
           method: 'GET',
@@ -182,8 +176,7 @@ const fitViewOptions = {
 </div>
     </animated.div>
 }
-      {!cover &&
-      <animated.div style={animatedWorkSpace}>
+      {!cover && 
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -201,14 +194,13 @@ const fitViewOptions = {
         <Controls {...controlsConfig} />
         <Panel position="top-left"><img className='w-6 h-6' src={menuIcon} alt="menu" onClick={
           e => {
-            setWorkSpaceAnimate(true)
+            setCoverAnimate(true)
             setTimeout(()=>{
    setCover(true)
-  }, 200)
+  }, 100)
 }}/></Panel>
         <Background color="#aaa" gap={16} />
-    </ReactFlow> 
-      </animated.div>}
+    </ReactFlow>}
     </div>
   );
 };
