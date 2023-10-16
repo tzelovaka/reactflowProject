@@ -54,9 +54,9 @@ const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 };*/
 const animatedMenu = useSpring({
   reset: true,
-  from: cover ? { y: 200, opacity: 0 } : 0,
-  to: cover ? { y: 0, opacity: 1 } : 0,
-  reverse: cover
+  from: {opacity: 0, transform: "translateY(-4rem)"},//cover ? { y: 200, opacity: 0 } : 0,
+  to: {opacity: 1, transform: "translateY(0rem)"},//cover ? { y: 0, opacity: 1 } : 0,
+  reverse: !cover
 });
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
