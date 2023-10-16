@@ -58,10 +58,13 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
     };
   
     const handleEmojiSelect = (emoji) => {
-      //let i;
-      //edges.forEach((edge) => {if (edge.id === id) i=edges.indexOf(edge) });
-      //edges[i].data.smile = emoji;
+      let i;
+      edges.forEach((edge) => {if (edge.id === id) i=edges.indexOf(edge) });
+      edges[i].data.smile = emoji;
+      console.log(edges);
+      console.log(`Вы выбрали смайл: ${emoji}`);
       setEmj(`${emoji}`)
+      // Здесь можно выполнить нужные вам действия при выборе смайла
     };
   
     return (
@@ -70,7 +73,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
           onClick={handleToggleDropdown}
           className="px-4 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
         >
-          {emj ? emj : `:)`}
+          {emj ? `${emj}` : `:)`}
         </button>
         {isDropdownOpen && (
           <div className="absolute mt-2 border-1 shadow-xl inline-block py-2 rounded-lg border-2 pl-2 pr-8">
@@ -78,7 +81,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
               {emojis.map((emoji, index) => (
                 <div
                   key={index}
-                  className="cursor-pointer hover:bg-gray-100 text-7xl"
+                  className="cursor-pointer hover:bg-gray-100"
                   onClick={() => handleEmojiSelect(emoji)}
                 >
                   {emoji}
@@ -95,6 +98,8 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
     <>
       <path
         id={id}
+        //d={`M${sourceX} ${sourceY}, L${targetX} ${targetY}`}
+        // x={(sourceX + targetX) / 2} y={(sourceY + targetY) / 2}
         d={`M${sourceX},${sourceY} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
         className="CustomEdge"
       />
