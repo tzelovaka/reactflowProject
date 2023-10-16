@@ -3,7 +3,7 @@ import { Handle, Position, useReactFlow, useEdges } from 'reactflow';
 
 import './index.css';
 
-function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
+function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
   const [label, setLabel] = useState('');
   const edges = useEdges();
   const handleInputChange = (event) => {
@@ -57,7 +57,8 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
                 <div
                   key={index}
                   className="text-3xl hover:bg-gray-100"
-                  onClick={() => emojiSelect(emoji)}
+                  //onClick={() => emojiSelect(emoji)}
+                  onClick={()=>props.changeOn()}
                 >
                   {emoji}
                 </div>

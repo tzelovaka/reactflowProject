@@ -133,6 +133,12 @@ const fitViewOptions = {
           console.error('Error:', error);
         });
   }, [title, imgUrl, desc]);
+  const testFunc = () => {
+    setCoverAnimate(true)
+            setTimeout(()=>{
+   setCover(true)
+  }, 100)
+  }
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       { cover &&
@@ -190,6 +196,7 @@ const fitViewOptions = {
         fitView
         fitViewOptions={fitViewOptions}
         proOptions={proOptions}
+        changeOn={testFunc}
       >
         <Controls {...controlsConfig} />
         <Panel position="top-left"><img className='w-6 h-6' src={menuIcon} alt="menu" onClick={
