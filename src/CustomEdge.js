@@ -49,7 +49,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
                 <button
                   key={index}
                   className="cursor-pointer hover:bg-gray-100"
-                  onClick={handleEmojiSelect(emoji)}
+                  onClick={() => handleEmojiSelect(emoji)}
                 >
                   {emoji}
                 </button>
