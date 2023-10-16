@@ -131,7 +131,7 @@ const fitViewOptions = {
       reset={true}
       from={{opacity: 0, transform: "translateY(-4rem)"}}
       to={{opacity: 1, transform: "translateY(0rem)"}}
-      reverse={!cover}
+      reverse={cover}
       >
       <div className='w-full grid grid-cols-1'>
       <div className='justify-self-end'>
