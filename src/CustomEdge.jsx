@@ -57,14 +57,11 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
       setIsDropdownOpen(!isDropdownOpen);
     };
   
-    const handleEmojiSelect = (emoji) => {
+    const emojiSelect = (emoji) => {
       let i;
       edges.forEach((edge) => {if (edge.id === id) i=edges.indexOf(edge) });
       edges[i].data.smile = emoji;
-      console.log(edges);
-      console.log(`Вы выбрали смайл: ${emoji}`);
       setEmj(`${emoji}`)
-      // Здесь можно выполнить нужные вам действия при выборе смайла
     };
   
     return (
@@ -82,7 +79,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
                 <div
                   key={index}
                   className="cursor-pointer hover:bg-gray-100"
-                  onClick={() => handleEmojiSelect(emoji)}
+                  onClick={() => emojiSelect(emoji)}
                 >
                   {emoji}
                 </div>
