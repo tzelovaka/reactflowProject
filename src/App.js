@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
 import { Fade, Slide, Bounce } from "react-awesome-reveal";
-import { useSpring, animated, config, Spring } from "react-spring";
+import { useSpring, animated, config } from "react-spring";
 import ReactFlow, {
   Panel,
   MiniMap,
@@ -52,12 +52,12 @@ const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
   console.error('Error:', error);
 });
 };*/
-//const animatedMenu = useSpring({
-  //reset: true,
-  //from: cover ? { y: 200, opacity: 0 } : 0,
-  //to: cover ? { y: 0, opacity: 1 } : 0,
-  //reverse: !cover
-//});
+const animatedMenu = useSpring({
+  reset: true,
+  from: cover ? { y: 200, opacity: 0 } : 0,
+  to: cover ? { y: 0, opacity: 1 } : 0,
+  reverse: cover
+});
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
           method: 'GET',
@@ -127,13 +127,8 @@ const fitViewOptions = {
   }, [title, imgUrl, desc]);
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
-      <Spring 
-      reset={true}
-      from={{opacity: 0, transform: "translateY(-4rem)"}}
-      to={{opacity: 1, transform: "translateY(0rem)"}}
-      reverse={cover}
-      >
-      <div className='w-full grid grid-cols-1'>
+      {cover && 
+      <animated.div style={animatedMenu} className='w-full grid grid-cols-1'>
       <div className='justify-self-end'>
         <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => setCover(false)}>–</button>
       </div>
@@ -163,8 +158,8 @@ const fitViewOptions = {
         <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Опубликовать</button>
       </div>
 </div>
-    </div>
-    </Spring>
+    </animated.div>
+      }
       {!cover && 
       <ReactFlow
         nodes={nodes}
