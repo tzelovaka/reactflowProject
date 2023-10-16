@@ -28,7 +28,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
   
     const handleEmojiSelect = (emoji) => {
       let i;
-      console.log(111111111111111111111111111111111111);
+      console.log('111111111111111111111111111111111111');
       edges.forEach((edge) => {if (edge.id === id) i=edges.indexOf(edge) });
       edges[i].data.smile = emoji;
       setEmj(`${emoji}`)
@@ -49,7 +49,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
                 <button
                   key={index}
                   className="cursor-pointer hover:bg-gray-100"
-                  onClick={() => handleEmojiSelect(emoji)}
+                  onClick={handleEmojiSelect(emoji)}
                 >
                   {emoji}
                 </button>
