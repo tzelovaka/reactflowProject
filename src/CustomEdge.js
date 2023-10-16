@@ -15,7 +15,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
   };
   const curveX = targetX-125;
   const curveY = targetY-100;
-  const [emj, setEmj] = useState('')
+  const [emj, setEmj] = useState()
   const EmojiDropdown = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const emojis = [
@@ -61,10 +61,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
       let i;
       edges.forEach((edge) => {if (edge.id === id) i=edges.indexOf(edge) });
       edges[i].data.smile = emoji;
-      console.log(edges);
-      console.log(`Вы выбрали смайл: ${emoji}`);
       setEmj(`${emoji}`)
-      // Здесь можно выполнить нужные вам действия при выборе смайла
     };
   
     return (
@@ -73,7 +70,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
           onClick={handleToggleDropdown}
           className="px-4 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
         >
-          {emj ? `${emj}` : `:)`}
+          {emj ? `${emj}` : ':)'}
         </button>
         {isDropdownOpen && (
           <div className="absolute mt-2 border-1 shadow-xl inline-block py-2 rounded-lg border-2 pl-2 pr-8">
