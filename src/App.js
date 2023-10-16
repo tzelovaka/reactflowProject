@@ -61,9 +61,15 @@ const controlsConfig = {
 };*/
 const animatedMenu = useSpring({
   reset: true,
-  from: {opacity: 0, transform: "translateY(-40rem)"},//cover ? { y: 200, opacity: 0 } : 0,
+  from: {opacity: 0, transform: "translateY(-30rem)"},//cover ? { y: 200, opacity: 0 } : 0,
   to: {opacity: 1, transform: "translateY(0rem)"},//cover ? { y: 0, opacity: 1 } : 0,
   reverse: !coverAnimate
+});
+const animatedWorkSpace = useSpring({
+  reset: true,
+  from: {opacity: 0, transform: "translateY(30rem)"},//cover ? { y: 200, opacity: 0 } : 0,
+  to: {opacity: 1, transform: "translateY(0rem)"},//cover ? { y: 0, opacity: 1 } : 0,
+  reverse: coverAnimate
 });
 useEffect(() => {
       fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
@@ -175,7 +181,8 @@ const fitViewOptions = {
 </div>
     </animated.div>
 }
-      {!cover && 
+      {!cover &&
+      <animated.div style={animatedWorkSpace}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -199,7 +206,8 @@ const fitViewOptions = {
   }, 200)
 }}/></Panel>
         <Background color="#aaa" gap={16} />
-    </ReactFlow>}
+    </ReactFlow> 
+      </animated.div>}
     </div>
   );
 };
