@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Handle, Position, useReactFlow, useNodesState, useNodes, useEdges } from 'reactflow';
 
 import './index.css';
@@ -57,12 +57,12 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
       setIsDropdownOpen(!isDropdownOpen);
     };
   
-    const handleEmojiSelect = useCallback((emoji) => {
+    const handleEmojiSelect = (emoji) => {
       let i;
       edges.forEach((edge) => {if (edge.id === id) i=edges.indexOf(edge) });
       edges[i].data.smile = emoji;
       setEmj(`${emoji}`)
-    }, []);
+    };
   
     return (
       <div className="relative inline-block">
@@ -79,7 +79,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
                 <div
                   key={index}
                   className="cursor-pointer hover:bg-gray-100"
-                  onClick={handleEmojiSelect(emoji)}
+                  onClick={setEmj(`${emoji}`)}
                 >
                   {emoji}
                 </div>
