@@ -82,7 +82,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
         className="CustomEdge"
       />
       <foreignObject x={curveX} y={curveY + 50} width="1280" height="2400">
-        <div className="flex items-center">
+        <div className="grid grid-cols-1 justify-items-center gap-y-2">
         <EmojiDropdown />
           <input
             type="text"
