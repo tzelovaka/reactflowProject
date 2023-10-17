@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
 import { useSpring, animated, config } from "react-spring";
+import emojis from './emojis'
 import ReactFlow, {
   Panel,
   Controls,
@@ -138,11 +139,6 @@ const fitViewOptions = {
           console.error('Error:', error);
         });
   }, [title, imgUrl, desc]);
-  const emojis = [
-    "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇",
-    "😉", "😌", "😍", "😘", "😗", "😙", "😚", "😋", "😛", "😝",
-    "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🤩", "🥳", "😏", "😒",
-  ];
   const emojiWindow = () => {
     setEmojiAnimate(true)
             setTimeout(()=>{
@@ -226,7 +222,7 @@ const fitViewOptions = {
           –
         </button>
       </div>
-        <div className='grid grid-cols-9 gap-x-10 gap-y-2'>
+        <div className='grid grid-cols-9 gap-x-8 gap-y-2'>
               {emojis.map((emoji, index) => (
                 <div
                   key={index}
