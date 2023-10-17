@@ -57,7 +57,7 @@ const controlsConfig = {
 };*/
 const animatedMenu = useSpring({
 
-  from: {opacity: 0, transform: "translateY(-40rem)"},
+  from: {opacity: 0, transform: "translateY(40rem)"},
   to: {opacity: 1, transform: "translateY(0rem)"},
   reverse: !coverAnimate
 });
