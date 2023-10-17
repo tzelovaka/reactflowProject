@@ -78,10 +78,10 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
     <>
       <path
         id={id}
-        d={`M${sourceX},${sourceY} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
+        d={`M${sourceX},${sourceY} C${sourceX},${curveX} ${targetX},${curveY} ${targetX},${targetY}`}
         className="CustomEdge"
       />
-      <foreignObject x={targetX-250} y={targetY - 100} width="500" height="250">
+      <foreignObject x={curveX} y={curveY - 100} width="500" height="250">
         <div className="flex flex-col w-full">
           <div className='flex'>
             <div className='grow h-14 '>
@@ -96,9 +96,12 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
             <div className='grow h-14'>
             </div>
             <div className='grow-0 px-6'>
-              <textarea rows="1" cols="30" onChange={handleInputChange}
-            className='border-2 border-sea rounded-full px-2 py-1 text-lg mr-8'></textarea>
-              
+              <input
+            type="text"
+            value={label}
+            onChange={handleInputChange}
+            className='border-2 border-sea rounded-full px-2 py-1 text-lg mr-8'
+          />
             </div>
           <div className='grow h-14'>
           </div>
