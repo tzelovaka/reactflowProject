@@ -81,10 +81,10 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
         d={`M${sourceX},${sourceY} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
         className="CustomEdge"
       />
-      <foreignObject x={curveX} y={curveY + 40} width="500" height="250">
+      <foreignObject x={curveX} y={targetY + 50} width="500" height="250">
         <div className="flex flex-col w-full">
           <div className='flex'>
-            <div className='grow h-14'>
+            <div className='grow h-14 '>
             <EmojiDropdown />
             </div>
             <div className='grow-0'>
