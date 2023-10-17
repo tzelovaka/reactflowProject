@@ -95,12 +95,12 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
           <div className='flex'>
             <div className='grow h-14'>
             </div>
-            <div className='grow-0 px-6 '>
+            <div className='grow-0 px-6'>
               <input
             type="text"
             value={label}
             onChange={handleInputChange}
-            className='border-2 border-cyan-600 rounded-full px-2 py-1 text-lg mr-8'
+            className='border-2 border-sea rounded-full px-2 py-1 text-lg mr-8'
           />
             </div>
           <div className='grow h-14'>

@@ -29,7 +29,7 @@ const getId = () => `${id++}`;
 const AddNodeOnEdgeDrop = () => {
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
-  const [emojiWindowIsOpenClone, setEmojiWindowIsOpenClone] = useState ()
+  const [emojiWindowIsOpenClone, setEmojiWindowIsOpenClone] = useState (false)
   useEffect (()=>{
     setEmojiAnimate(true)
             setTimeout(()=>{
@@ -225,7 +225,7 @@ const fitViewOptions = {
 
 
     {
-      setEmojiWindowIsOpenClone && 
+      emojiWindowIsOpenClone && 
       <animated.div style={animatedEmoji} className='w-screen grid grid-cols-1 jus'>
   <div className='justify-self-end'>
     <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={()=>dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})}>
