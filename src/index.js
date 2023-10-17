@@ -7,17 +7,18 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const action ={
-  type: "",
-  payload: "?"
-}
 
 const defaultState = {
   emojiWindowIsOpen: false
 }
 
+const action ={
+  type: "",
+  payload: "?"
+}
+
 const reducer = (state=defaultState, action) => {
-  switch (state){
+  switch (action.payload){
     case true:
       return {...state, emojiWindowIsOpen: true}
     case false:
