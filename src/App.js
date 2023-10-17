@@ -29,6 +29,13 @@ const getId = () => `${id++}`;
 const AddNodeOnEdgeDrop = () => {
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
+  const [emojiWindowIsOpenClone, setEmojiWindowIsOpenClone] = useState ()
+  useEffect (()=>{
+    setEmojiAnimate(true)
+            setTimeout(()=>{
+              setEmojiWindowIsOpenClone (emojiWindowIsOpen)
+  }, 100)
+  }, emojiWindowIsOpen)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -139,12 +146,12 @@ const fitViewOptions = {
           console.error('Error:', error);
         });
   }, [title, imgUrl, desc]);
-  const emojiWindow = () => {
+  /*const emojiWindow = () => {
     setEmojiAnimate(true)
             setTimeout(()=>{
               dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})
   }, 100)
-  }
+  }*/
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       { cover &&
@@ -218,10 +225,10 @@ const fitViewOptions = {
 
 
     {
-      emojiWindowIsOpen && 
+      setEmojiWindowIsOpenClone && 
       <animated.div style={animatedEmoji} className='w-screen grid grid-cols-1 jus'>
   <div className='justify-self-end'>
-    <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={()=>emojiWindow()}>
+    <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={()=>dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})}>
       –
     </button>
   </div>
@@ -237,7 +244,6 @@ const fitViewOptions = {
     </div>
   );
 };
-
 
 
 export default () => (
