@@ -144,7 +144,10 @@ const fitViewOptions = {
     "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🤩", "🥳", "😏", "😒",
   ];
   const emojiWindow = () => {
-    
+    setEmojiAnimate(true)
+            setTimeout(()=>{
+              dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})
+  }, 100)
   }
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
@@ -219,10 +222,7 @@ const fitViewOptions = {
       <animated.div style={animatedEmoji} className='max-w-screen-lg'>
         <div className='justify-self-end'>
         <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" 
-        onClick={()=>{setEmojiAnimate(false)
-          setTimeout(()=>{
-            dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})
-}, 100)}}>
+        onClick={()=>emojiWindow()}>
           –
         </button>
       </div>
