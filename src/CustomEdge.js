@@ -84,6 +84,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
       />
       <foreignObject x={curveX + 50} y={curveY + 50} width="1280" height="2400">
         <div className="flex items-center">
+        <EmojiDropdown />
           <input
             type="text"
             value={label}
@@ -91,7 +92,6 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
             onClick={()=>emojiWindow()}
             className='border-2 border-cyan-600 rounded-full px-2 py-1 text-sm mr-8'
           />
-          <EmojiDropdown />
         </div>
       </foreignObject>
     </>
