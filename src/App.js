@@ -132,15 +132,14 @@ const fitViewOptions = {
           console.error('Error:', error);
         });
   }, [title, imgUrl, desc]);
-  const testFunc = () => {
-    setCoverAnimate(true)
-            setTimeout(()=>{
-   setCover(true)
-  }, 100)
-  }
+  const emojis = [
+    "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇",
+    "😉", "😌", "😍", "😘", "😗", "😙", "😚", "😋", "😛", "😝",
+    "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🤩", "🥳", "😏", "😒",
+  ];
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
-      { emojiWindowIsOpen &&
+      { cover &&
       <animated.div style={animatedMenu} className='w-full grid grid-cols-1'>
       <div className='justify-self-end'>
         <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" 
@@ -181,7 +180,7 @@ const fitViewOptions = {
 </div>
     </animated.div>
 }
-      {!emojiWindowIsOpen && 
+      {!cover && !emojiWindowIsOpen && 
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -206,6 +205,22 @@ const fitViewOptions = {
 }}/></Panel>
         <Background color="#aaa" gap={16} />
     </ReactFlow>}
+    {
+      emojiWindowIsOpen && 
+      <div className='max-w-screen-lg'>
+        <div className='grid grid-cols-12 gap-x-10 gap-y-2'>
+              {emojis.map((emoji, index) => (
+                <div
+                  key={index}
+                  className="text-3xl hover:bg-gray-100"
+                  onClick
+                >
+                  {emoji}
+                </div>
+              ))}
+            </div>
+      </div>
+    }
     </div>
   );
 };
