@@ -213,6 +213,10 @@ const fitViewOptions = {
 }}/></Panel>
         <Background color="#aaa" gap={16} />
     </ReactFlow>}
+
+
+
+
     {
       emojiWindowIsOpen && 
       <animated.div style={animatedEmoji} className='w-screen grid grid-cols-1 jus'>
@@ -233,6 +237,8 @@ const fitViewOptions = {
     </div>
   );
 };
+
+
 
 export default () => (
   <ReactFlowProvider>
