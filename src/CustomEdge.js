@@ -95,7 +95,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
           <div className='flex'>
             <div className='grow h-14'>
             </div>
-            <div className='grow-0'>
+            <div className='grow-0 mx-6'>
               <input
             type="text"
             value={label}
