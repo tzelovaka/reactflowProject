@@ -181,7 +181,7 @@ const fitViewOptions = {
 </div>
     </animated.div>
 }
-      {!cover && 
+      {!emojiWindowIsOpen && 
       <ReactFlow
         nodes={nodes}
         edges={edges}
