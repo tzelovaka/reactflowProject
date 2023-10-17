@@ -85,18 +85,15 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
         <div className="flex flex-col w-full">
           <div className='flex'>
             <div className='grow h-14 '>
-            <EmojiDropdown />
             </div>
             <div className='grow-0'>
               <EmojiDropdown />
             </div>
             <div className='grow h-14'>
-            <EmojiDropdown />
             </div>
           </div>
           <div className='flex'>
             <div className='grow h-14'>
-            <EmojiDropdown />
             </div>
             <div className='grow-0'>
               <input
@@ -107,7 +104,6 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
           />
             </div>
           <div className='grow h-14'>
-          <EmojiDropdown />
           </div>
           </div>
           </div>
