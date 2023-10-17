@@ -216,23 +216,19 @@ const fitViewOptions = {
     {
       emojiWindowIsOpen && 
       <animated.div style={animatedEmoji} className='w-screen grid grid-cols-1 jus'>
-        <div className='justify-self-end'>
-        <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" 
-        onClick={()=>emojiWindow()}>
-          –
-        </button>
+  <div className='justify-self-end'>
+    <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={()=>emojiWindow()}>
+      –
+    </button>
+  </div>
+  <div className='flex flex-wrap p-2 text-center justify-self-center justify-center'>
+    {emojis.map((emoji, index) => (
+      <div key={index} className="text-3xl mx-2 my-3">
+        {emoji}
       </div>
-        <div className='flex flex-wrap w-100 p-2 text-center justify-self-center'>
-              {emojis.map((emoji, index) => (
-                <div
-                  key={index}
-                  className="text-3xl mx-2 my-3"
-                >
-                  {emoji}
-                </div>
-              ))}
-            </div>
-      </animated.div>
+    ))}
+  </div>
+</animated.div>
     }
     </div>
   );
