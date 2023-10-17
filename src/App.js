@@ -221,7 +221,7 @@ const fitViewOptions = {
         <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" 
         onClick={()=>{setEmojiAnimate(false)
           setTimeout(()=>{
-            dispatch({type: "CHANGE_STATE", payload: false})
+            dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})
 }, 100)}}>
           –
         </button>
