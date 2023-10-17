@@ -14,16 +14,19 @@ import 'reactflow/dist/style.css';
 import block from './BlockNode';
 import CustomEdge from './CustomEdge';
 import './index.css';
+import { useSelector } from 'react-redux';
 import menuIcon from './img/menu.png';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.22*window.screen.height;
 const proOptions = { hideAttribution: true };
 
+
 let id = 1;
 const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
+  const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -137,7 +140,7 @@ const fitViewOptions = {
   }
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
-      { cover &&
+      { emojiWindowIsOpen &&
       <animated.div style={animatedMenu} className='w-full grid grid-cols-1'>
       <div className='justify-self-end'>
         <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" 
