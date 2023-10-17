@@ -14,7 +14,7 @@ import 'reactflow/dist/style.css';
 import block from './BlockNode';
 import CustomEdge from './CustomEdge';
 import './index.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import menuIcon from './img/menu.png';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
@@ -26,6 +26,7 @@ let id = 1;
 const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
+  const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
@@ -35,6 +36,7 @@ const AddNodeOnEdgeDrop = () => {
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
+const [emojiAnimate, setEmojiAnimate] = useState(false);
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
@@ -63,6 +65,11 @@ const animatedMenu = useSpring({
   from: {opacity: 0, transform: "translateY(40rem)"},
   to: {opacity: 1, transform: "translateY(0rem)"},
   reverse: !coverAnimate
+});
+const animatedEmoji = useSpring({
+  from: {opacity: 0, transform: "translateY(40rem)"},
+  to: {opacity: 1, transform: "translateY(0rem)"},
+  reverse: !emojiAnimate
 });
 
 useEffect(() => {
@@ -137,6 +144,12 @@ const fitViewOptions = {
     "😉", "😌", "😍", "😘", "😗", "😙", "😚", "😋", "😛", "😝",
     "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🤩", "🥳", "😏", "😒",
   ];
+  const emojiWindow = () => {
+    setEmojiAnimate(true)
+            setTimeout(()=>{
+              dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})
+  }, 100)
+  }
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       { cover &&
@@ -207,19 +220,23 @@ const fitViewOptions = {
     </ReactFlow>}
     {
       emojiWindowIsOpen && 
-      <div className='max-w-screen-lg'>
+      <animated.div style={animatedEmoji} className='max-w-screen-lg'>
+        <div className='justify-self-end'>
+        <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" 
+        onClick={()=>emojiWindow()}>
+–</button>
+      </div>
         <div className='grid grid-cols-12 gap-x-10 gap-y-2'>
               {emojis.map((emoji, index) => (
                 <div
                   key={index}
                   className="text-3xl hover:bg-gray-100"
-                  onClick
                 >
                   {emoji}
                 </div>
               ))}
             </div>
-      </div>
+      </animated.div>
     }
     </div>
   );
