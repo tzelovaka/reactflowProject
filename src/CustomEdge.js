@@ -51,7 +51,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
         <button
           //onClick={handleToggleDropdown}
           onClick={()=>emojiWindow()}
-          className="px-4 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
+          className="px-8 py-4 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
         >
           {emj ? emj : ":)"}
         </button>
