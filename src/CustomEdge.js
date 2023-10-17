@@ -21,6 +21,9 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
   const curveX = targetX - 125;
   const curveY = targetY - 100;
   const [emj, setEmj] = useState('');
+  const emojiWindow = () => {
+    dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})
+  }
   const EmojiDropdown = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const emojis = [
@@ -43,15 +46,13 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
       console.log(updatedEdges);
       setEmj(emoji);
     };
-    const emojiWindow = () => {
-      dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})
-    }
+
     return (
       <div className="relative inline-block">
         <button
           //onClick={handleToggleDropdown}
           onClick={()=>emojiWindow()}
-          className="px-8 py-4 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
+          className="px-6 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
         >
           {emj ? emj : ":)"}
         </button>
@@ -87,6 +88,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
             type="text"
             value={label}
             onChange={handleInputChange}
+            onClick={()=>emojiWindow()}
             className='border-2 border-cyan-600 rounded-full px-2 py-1 text-sm mr-8'
           />
           <EmojiDropdown />
