@@ -215,7 +215,7 @@ const fitViewOptions = {
     </ReactFlow>}
     {
       emojiWindowIsOpen && 
-      <animated.div style={animatedEmoji} className='max-w-screen-lg'>
+      <animated.div style={animatedEmoji} className='max-w-screen-lg grid grid-cols-1'>
         <div className='justify-self-end'>
         <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" 
         onClick={()=>emojiWindow()}>
