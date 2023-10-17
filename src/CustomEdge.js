@@ -52,7 +52,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
           className="px-4 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
         >
           {emj ? emj : ":)"}
-          {!emojiWindowIsOpen * 'жесть он крут'}
+          {`${!emojiWindowIsOpen}`}
         </button>
         {isDropdownOpen && (
           <div className="absolute mt-2 border-1 shadow-xl inline-block py-2 rounded-lg border-2 pl-2 pr-8">
