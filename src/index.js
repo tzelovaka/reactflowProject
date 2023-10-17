@@ -12,10 +12,6 @@ const defaultState = {
   emojiWindowIsOpen: false
 }
 
-const action ={
-  type: "",
-  payload: "?"
-}
 
 const reducer = (state=defaultState, action) => {
   switch (action.payload){

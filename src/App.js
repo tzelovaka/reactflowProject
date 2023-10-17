@@ -29,7 +29,6 @@ const getId = () => `${id++}`;
 const AddNodeOnEdgeDrop = () => {
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
-  const [emojiWindowIsOpenClone, setEmojiWindowIsOpenClone] = useState (false)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -38,7 +37,7 @@ const AddNodeOnEdgeDrop = () => {
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
-const [emojiAnimate, setEmojiAnimate] = useState(true);
+const [emojiAnimate, setEmojiAnimate] = useState(emojiWindowIsOpen);
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
