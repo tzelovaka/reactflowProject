@@ -39,7 +39,7 @@ const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
 const [emojiAnimate, setEmojiAnimate] = useState(true);
 useEffect(() => {
-  setEmojiAnimate(true)
+  setEmojiAnimate(emojiWindowIsOpen)
 }, [emojiWindowIsOpen])
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
