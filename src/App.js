@@ -226,7 +226,7 @@ const fitViewOptions = {
               {emojis.map((emoji, index) => (
                 <div
                   key={index}
-                  className="text-3xl"
+                  className="text-2xl"
                 >
                   {emoji}
                 </div>
