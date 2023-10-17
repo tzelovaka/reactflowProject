@@ -1,5 +1,4 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
-import { Fade, Slide, Bounce } from "react-awesome-reveal";
 import { useSpring, animated, config } from "react-spring";
 import ReactFlow, {
   Panel,
@@ -20,9 +19,6 @@ const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.22*window.screen.height;
 const proOptions = { hideAttribution: true };
-const minimapStyle = {
-  height: 120,
-};
 
 let id = 1;
 const getId = () => `${id++}`;
@@ -196,7 +192,6 @@ const fitViewOptions = {
         fitView
         fitViewOptions={fitViewOptions}
         proOptions={proOptions}
-        changeOn={testFunc}
       >
         <Controls {...controlsConfig} />
         <Panel position="top-left"><img className='w-6 h-6' src={menuIcon} alt="menu" onClick={

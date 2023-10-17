@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Handle, Position, useReactFlow, useEdges } from 'reactflow';
-
+import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
   const [label, setLabel] = useState('');
   const edges = useEdges();
+  const dispatch = useDispatch()
+  const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
+  console.log(emojiWindowIsOpen);
   const handleInputChange = (event) => {
     setLabel(event.target.value);
     const updatedEdges = edges.map((edge) => {
@@ -45,7 +48,8 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
     return (
       <div className="relative inline-block">
         <button
-          onClick={handleToggleDropdown}
+          //onClick={handleToggleDropdown}
+          onClick={()=>props.changeOn()}
           className="px-4 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
         >
           {emj ? emj : ":)"}
@@ -57,8 +61,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
                 <div
                   key={index}
                   className="text-3xl hover:bg-gray-100"
-                  //onClick={() => emojiSelect(emoji)}
-                  onClick={()=>props.changeOn()}
+                  onClick={() => emojiSelect(emoji)}
                 >
                   {emoji}
                 </div>
