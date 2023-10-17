@@ -142,12 +142,8 @@ const fitViewOptions = {
           console.error('Error:', error);
         });
   }, [title, imgUrl, desc]);
-  const emojiWindow = () => {
-    setEmojiAnimate(true)
-            setTimeout(()=>{
-              dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})
-  }, 100)
-  }
+
+
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       { cover &&
@@ -228,7 +224,7 @@ const fitViewOptions = {
             setEmojiAnimate(false)
             setTimeout(()=>{
               dispatch({type: "CHANGE_STATE", payload: false})
-  }, 100)}}>
+  }, 200)}}>
       –
     </button>
   </div>
