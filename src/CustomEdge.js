@@ -21,9 +21,6 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
   const curveX = targetX - 125;
   const curveY = targetY - 100;
   const [emj, setEmj] = useState('');
-  const emojiWindow = () => {
-    dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})
-  }
   const EmojiDropdown = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const emojis = [
@@ -46,7 +43,9 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
       console.log(updatedEdges);
       setEmj(emoji);
     };
-
+    const emojiWindow = () => {
+      dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})
+    }
     return (
       <div className="relative inline-block">
         <button
@@ -82,16 +81,16 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
         d={`M${sourceX},${sourceY} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
         className="CustomEdge"
       />
-      <foreignObject x={curveX + 50} y={curveY + 50} width="1280" height="2400">
+      <foreignObject x={curveX} y={curveY + 50} width="1280" height="2400">
         <div className="flex items-center">
         <EmojiDropdown />
           <input
             type="text"
             value={label}
             onChange={handleInputChange}
-            onClick={()=>emojiWindow()}
             className='border-2 border-cyan-600 rounded-full px-2 py-1 text-sm mr-8'
           />
+          
         </div>
       </foreignObject>
     </>
