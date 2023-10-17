@@ -36,7 +36,7 @@ const AddNodeOnEdgeDrop = () => {
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
-const [emojiAnimate, setEmojiAnimate] = useState(false);
+const [emojiAnimate, setEmojiAnimate] = useState(true);
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
@@ -61,7 +61,6 @@ const controlsConfig = {
 });
 };*/
 const animatedMenu = useSpring({
-
   from: {opacity: 0, transform: "translateY(40rem)"},
   to: {opacity: 1, transform: "translateY(0rem)"},
   reverse: !coverAnimate
