@@ -222,7 +222,7 @@ const fitViewOptions = {
           –
         </button>
       </div>
-        <div className='flex flex-wrap w-100 p-2 justify-items-center text-center'>
+        <div className='flex flex-wrap w-100 p-2 text-center'>
               {emojis.map((emoji, index) => (
                 <div
                   key={index}
