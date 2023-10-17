@@ -81,28 +81,15 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
         d={`M${sourceX},${sourceY} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
         className="CustomEdge"
       />
-      <foreignObject x={curveX+50} y={curveY+50} width="250" height="500">
-        <div className="grid grid-cols-1 justify-items-center gap-y-2">
-        <div className='flex'>
-          <div className='w-6'>
-          </div>
-          <EmojiDropdown />
-          <div className='w-6'>
-          </div>
-        </div>
-        <div className='flex'>
-          <div className='w-6'>
-          </div>
+      <foreignObject x={curveX+50} y={curveY + 50} width="1280" height="2400">
+        <div className="flex flex-col">
+        <EmojiDropdown />
           <input
             type="text"
             value={label}
             onChange={handleInputChange}
             className='border-2 border-cyan-600 rounded-full px-2 py-1 text-sm mr-8'
           />
-          <div className='w-6'>
-          </div>
-        </div>
-          
           
         </div>
       </foreignObject>
