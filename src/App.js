@@ -37,7 +37,10 @@ const AddNodeOnEdgeDrop = () => {
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
-const [emojiAnimate, setEmojiAnimate] = useState(emojiWindowIsOpen);
+const [emojiAnimate, setEmojiAnimate] = useState(true);
+useEffect(() => {
+  setEmojiAnimate(true)
+}, [emojiWindowIsOpen])
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
