@@ -3,7 +3,7 @@ import { Handle, Position, useReactFlow, useEdges } from 'reactflow';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 
-function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
+function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
   const [label, setLabel] = useState('');
   const edges = useEdges();
   const dispatch = useDispatch()
@@ -96,12 +96,9 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
             <div className='grow h-14'>
             </div>
             <div className='grow-0 px-6'>
-              <input
-            type="text"
-            value={label}
-            onChange={handleInputChange}
-            className='border-2 border-sea rounded-full px-2 py-1 text-lg mr-8'
-          />
+              <textarea rows="1" cols="30" onChange={handleInputChange}
+            className='border-2 border-sea rounded-full px-2 py-1 text-lg mr-8'></textarea>
+              
             </div>
           <div className='grow h-14'>
           </div>
