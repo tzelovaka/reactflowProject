@@ -81,7 +81,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, props }) {
         d={`M${sourceX},${sourceY} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
         className="CustomEdge"
       />
-      <foreignObject x={curveX+50} y={curveY+50} width="250" height="250">
+      <foreignObject x={curveX+50} y={curveY+100} width="1000" height="250">
         <div className="grid grid-cols-1 justify-items-center gap-y-2">
         <div className='flex'>
           <div className='w-6'>
