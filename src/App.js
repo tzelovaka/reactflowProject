@@ -222,11 +222,11 @@ const fitViewOptions = {
           –
         </button>
       </div>
-        <div className='grid grid-cols-8 gap-x-8 gap-y-2 w-screen p-2'>
+        <div className='grid grid-cols-8 gap-x-8 gap-y-2 w-screen p-2 justify-items-center text-center'>
               {emojis.map((emoji, index) => (
                 <div
                   key={index}
-                  className="text-3xl hover:bg-gray-100"
+                  className="text-3xl"
                 >
                   {emoji}
                 </div>
