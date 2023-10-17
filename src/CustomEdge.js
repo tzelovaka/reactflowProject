@@ -78,10 +78,10 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
     <>
       <path
         id={id}
-        d={`M${sourceX},${sourceY} C${sourceX},${targetY} ${targetX},${curveY} ${targetX},${targetY}`}
+        d={`M${sourceX},${sourceY} C${sourceX},${curveX} ${targetX},${curveY} ${targetX},${targetY}`}
         className="CustomEdge"
       />
-      <foreignObject x={curveX} y={curveY} width="500" height="250">
+      <foreignObject x={targetX-150-curveX} y={targetY - curveY} width="500" height="250">
         <div className="flex flex-col w-full">
           <div className='flex'>
             <div className='grow h-14 '>
