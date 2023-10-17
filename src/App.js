@@ -222,7 +222,7 @@ const fitViewOptions = {
           –
         </button>
       </div>
-        <div className='grid grid-cols-8 gap-x-7 gap-y-2 w-96 mx-2 p-2 justify-items-center text-center'>
+        <div className='grid grid-cols-7 gap-x-7 gap-y-2 w-96 mx-2 p-2 justify-items-center text-center'>
               {emojis.map((emoji, index) => (
                 <div
                   key={index}
