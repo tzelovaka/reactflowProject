@@ -244,12 +244,10 @@ const fitViewOptions = {
     {emojis.map((emoji, index) => (
       <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
             setEmojiAnimate(false)
-            let updatedEdges = edges
             edges.map((edge)=>{
               if (edge.id==edgeId) edge.data.smile = emoji; 
               return edge
             })
-
             console.log(edges);
             setEdges(edges)
             setTimeout(()=>{
