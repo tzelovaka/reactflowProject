@@ -7,9 +7,11 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
   //const setEmoji = useSelector(state => state.data.emoji)
   const [label, setLabel] = useState('');
   const [emj, setEmj] = useState('')
+  const [getEdge] = useReactFlow();
   const edges = useEdges();
   useEffect(()=>{
-    setEmj(edges.find(item => item.id == id))
+    let eg = getEdge(id)
+    setEmj(eg)
   }, [edges])
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
