@@ -249,7 +249,7 @@ const fitViewOptions = {
             })
             setEdges(edges)
             setTimeout(()=>{
-              dispatch({type: "CHANGE_STATE", payload: {openingEmoji: false, edgeId: edgeId}})
+              dispatch({type: "EMOJI_STATE", payload: {openingEmoji: false, edgeId: edgeId}})
               
   }, 200)
         }}>
