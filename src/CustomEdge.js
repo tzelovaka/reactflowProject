@@ -6,7 +6,11 @@ import './index.css';
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
   //const setEmoji = useSelector(state => state.data.emoji)
   const [label, setLabel] = useState('');
+  const [emj, setEmj] = useState('')
   const edges = useEdges();
+  useEffect(()=>{
+    setEmj(edges.find(item => item.id == id))
+  }, [edges])
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const handleInputChange = (event) => {
@@ -31,7 +35,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
           onClick={()=>emojiWindow()}
           className="px-6 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
         >
-          { edges.find(item => item.id == id).smile}
+          { emj.data.smile}
         </button>
       </div>
     );
