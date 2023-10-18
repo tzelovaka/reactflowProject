@@ -29,6 +29,7 @@ const getId = () => `${id++}`;
 const AddNodeOnEdgeDrop = () => {
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
+  const textWindowIsOpen = useSelector(state => state.textWindowIsOpen)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -38,9 +39,13 @@ const AddNodeOnEdgeDrop = () => {
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
 const [emojiAnimate, setEmojiAnimate] = useState(true);
+const [textAnimate, setTextAnimate] = useState(true);
 useEffect(() => {
   setEmojiAnimate(emojiWindowIsOpen)
 }, [emojiWindowIsOpen])
+useEffect(() => {
+  setTextAnimate(textWindowIsOpen)
+}, [textWindowIsOpen])
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
@@ -73,6 +78,11 @@ const animatedEmoji = useSpring({
   from: {opacity: 0, transform: "translateY(40rem)"},
   to: {opacity: 1, transform: "translateY(0rem)"},
   reverse: !emojiAnimate
+});
+const animatedText = useSpring({
+  from: {opacity: 0, transform: "translateY(40rem)"},
+  to: {opacity: 1, transform: "translateY(0rem)"},
+  reverse: !textAnimate
 });
 
 useEffect(() => {
@@ -187,7 +197,7 @@ const fitViewOptions = {
 </div>
     </animated.div>
 }
-      {!cover && !emojiWindowIsOpen && 
+      {!cover && !emojiWindowIsOpen && !textWindowIsOpen &&
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -217,7 +227,7 @@ const fitViewOptions = {
 
 
     {
-      emojiWindowIsOpen && 
+      emojiWindowIsOpen &&
       <animated.div style={animatedEmoji} className='w-screen grid grid-cols-1 jus'>
   <div className='justify-self-end'>
     <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
@@ -236,6 +246,20 @@ const fitViewOptions = {
     ))}
   </div>
 </animated.div>
+    }
+    {
+      textWindowIsOpen &&
+      <animated.div style={animatedText}>
+        <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
+            setTextAnimate(false)
+            setTimeout(()=>{
+              dispatch({type: "CHANGE_STATE", payload: false})
+  }, 200)}}>
+      –
+    </button>
+        <h1>ПРЫВЕТ</h1>
+      </animated.div>
+      
     }
     </div>
   );

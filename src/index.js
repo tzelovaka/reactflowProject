@@ -9,19 +9,33 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 const defaultState = {
-  emojiWindowIsOpen: false
+  emojiWindowIsOpen: false,
+  textWindowIsOpen: false
 }
 
 
 const reducer = (state=defaultState, action) => {
-  switch (action.payload){
+  if (action.type === "EMOJI_STATE"){
+    switch (action.payload){
     case true:
-      return {...state, emojiWindowIsOpen: true}
+      return {...state, emojiWindowIsOpen: true, textWindowIsOpen: false}
     case false:
-      return {...state, emojiWindowIsOpen: false}
+      return {...state, emojiWindowIsOpen: false, textWindowIsOpen: false}
     default:
       return state
   }
+  } else{
+    switch (action.payload){
+      case true:
+        return {...state, emojiWindowIsOpen: false, textWindowIsOpen: true}
+      case false:
+        return {...state, emojiWindowIsOpen: false, textWindowIsOpen: true}
+      default:
+        return state
+    }
+  }
+    
+  
 }
 
 const store = createStore(reducer)

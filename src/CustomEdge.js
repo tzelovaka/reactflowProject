@@ -18,33 +18,10 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
     });
     console.log(updatedEdges);
   };
-  const curveX = targetX - 125;
   const curveY = targetY - 100;
-  const [emj, setEmj] = useState('');
   const EmojiDropdown = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const emojis = [
-      "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇",
-      "😉", "😌", "😍", "😘", "😗", "😙", "😚", "😋", "😛", "😝",
-      "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🤩", "🥳", "😏", "😒",
-    ];
-
-    const handleToggleDropdown = () => {
-      setIsDropdownOpen(!isDropdownOpen);
-    };
-
-    const emojiSelect = (emoji) => {
-      const updatedEdges = edges.map((edge) => {
-        if (edge.id === id) {
-          return { ...edge, data: { ...edge.data, smile: emoji } };
-        }
-        return edge;
-      });
-      console.log(updatedEdges);
-      setEmj(emoji);
-    };
     const emojiWindow = () => {
-      dispatch({type: "CHANGE_STATE", payload: !emojiWindowIsOpen})
+      dispatch({type: "EMOJI_STATE", payload: !emojiWindowIsOpen})
     }
     return (
       <div className="relative inline-block">
@@ -53,29 +30,14 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
           onClick={()=>emojiWindow()}
           className="px-6 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
         >
-          {emj ? emj : ":)"}
+          {":)"}
         </button>
-        {isDropdownOpen && (
-          <div className="absolute mt-2 border-1 shadow-xl inline-block py-2 rounded-lg border-2 pl-2 pr-8">
-            <div className='grid grid-cols-12 gap-x-10 gap-y-2'>
-              {emojis.map((emoji, index) => (
-                <div
-                  key={index}
-                  className="text-3xl hover:bg-gray-100"
-                  onClick={() => emojiSelect(emoji)}
-                >
-                  {emoji}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     );
   };
   const rightX = targetX-50;
   const leftX = targetX-350;
-  const offsetX = ((sourceX * 0.25 + targetX) / 1.25) - 220;
+  const offsetX = ((sourceX * 0.3 + targetX) / 1.3) - 220;
   const limitedX = Math.max(leftX, Math.min(rightX, offsetX));
   return (
     <>
