@@ -11,11 +11,11 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
   const {setEdges} = useReactFlow();
   useEffect (()=>{
     let updatedEdges = edges.forEach(edge =>{ 
-      if (edge.id == id) edge.smile = smile
+      if (edge.id === id) edge.smile = smile
     })
     setEmoji(smile)
     setEdges(updatedEdges)
-  }, [smile])
+  }, [smile, id, edges, setEdges])
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const handleInputChange = (event) => {
