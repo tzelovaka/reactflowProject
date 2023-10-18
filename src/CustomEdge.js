@@ -73,8 +73,10 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
       </div>
     );
   };
-  const maxX = 100; // Максимальное значение x
+  const rightX = targetX-50; // Минимальное значение z
+  const leftX = targetX+50;
   const offsetX = ((sourceX * 0.25 + targetX) / 1.25) - 220;
+  const limitedX = Math.max(leftX, Math.min(rightX, offsetX));
   return (
     <>
       <path
@@ -82,7 +84,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
         d={`M${sourceX},${sourceY} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
         className="CustomEdge"
       />
-      <foreignObject x={Math.min(offsetX, maxX)} y={targetY-150} width="500" height="250">
+      <foreignObject x={limitedX} y={targetY-125} width="500" height="250">
         <div className="flex flex-col w-full">
           <div className='flex'>
             <div className='grow h-14 '>
