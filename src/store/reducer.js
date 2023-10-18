@@ -2,7 +2,7 @@ const defaultState = {
     emojiWindowIsOpen: false,
     textWindowIsOpen: false
   }
-export const reducer = (state=defaultState, action) => {
+const reducer = (state=defaultState, action) => {
     if (action.type === "EMOJI_STATE"){
       switch (action.payload){
       case true:
@@ -23,3 +23,4 @@ export const reducer = (state=defaultState, action) => {
       }
     }
 }
+export default reducer

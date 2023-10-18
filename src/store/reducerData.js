@@ -6,7 +6,7 @@ const defaultData = {
     textNode: ''
   }
 
-export const reducerData = (state=defaultData, action)=>{
+const reducerData = (state=defaultData, action)=>{
     switch (action.type){
     case "EMOJI":
       return {...state, textEdge: action.payload.emoji}
@@ -20,3 +20,4 @@ export const reducerData = (state=defaultData, action)=>{
         return state
     }
 }
+export default reducerData

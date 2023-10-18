@@ -5,4 +5,5 @@ const rootReducer = combineReducers({
     window: reducer,
     data: reducerData
 })
-export const store = createStore(rootReducer)
+const store = createStore(rootReducer)
+export default store
