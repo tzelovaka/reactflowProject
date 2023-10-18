@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Handle, Position, useReactFlow, useEdges } from 'reactflow';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
@@ -73,8 +73,8 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
       </div>
     );
   };
-  const rightX = targetX-500; // Минимальное значение z
-  const leftX = targetX+500;
+  const rightX = targetX+500;
+  const leftX = targetX-500;
   const offsetX = ((sourceX * 0.25 + targetX) / 1.25) - 220;
   const limitedX = Math.max(leftX, Math.min(rightX, offsetX));
   return (
