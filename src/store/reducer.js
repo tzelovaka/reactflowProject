@@ -9,7 +9,7 @@ const reducer = (state=defaultState, action) => {
       case true:
         return {...state, emojiWindowIsOpen: true, textWindowIsOpen: false, edgeId: action.payload.edgeId}
       case false:
-        return {...state, emojiWindowIsOpen: false, textWindowIsOpen: false, id: action.payload.edgeId}
+        return {...state, emojiWindowIsOpen: false, textWindowIsOpen: false, edgeid: action.payload.edgeId}
       default:
         return state
     }
