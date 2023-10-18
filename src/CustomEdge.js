@@ -65,7 +65,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
             type="text"
             value={label}
             onChange={handleInputChange}
-            className='border-2 border-sea rounded-full px-2 py-1 text-lg mr-8'
+            className='focus:outline-none border-2 border-sea rounded-full px-2 py-1 text-lg mr-8'
           />
             </div>
           <div className='grow h-14'>

@@ -175,19 +175,19 @@ const fitViewOptions = {
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input1">
         Название
       </label>
-      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setTitle(e.target.value)} id="input1" type="text" placeholder="Название"/>
+      <input className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setTitle(e.target.value)} id="input1" type="text" placeholder="Название"/>
     </div>
     <div class="mb-4">
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input2">
         URL картинки
       </label>
-      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
+      <input className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
     </div>
     <div class="mb-4">
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="textarea1">
         Описание
       </label>
-      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Описание"></textarea>
+      <textarea className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Описание"></textarea>
     </div>
   </form>
       <div className='mt-4 grid grid-cols-2 justify-items-center'>
@@ -266,19 +266,15 @@ const fitViewOptions = {
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input2">
         URL картинки
       </label>
-      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
+      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
     </div>
     <div class="mb-4">
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="textarea1">
         Текст
       </label>
-      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Описание"></textarea>
+      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Текст"></textarea>
     </div>
   </form>
-      <div className='mt-4 grid grid-cols-2 justify-items-center'>
-        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Сохранить</button>
-        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Опубликовать</button>
-      </div>
 </div>
         </div>
       </animated.div>
