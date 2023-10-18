@@ -128,7 +128,7 @@ const fitViewOptions = {
         };
         setNodes((nds) => nds.concat(newNode));
         console.log(nodes);
-        setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id }));
+        setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: {smile: '', label: ''} }));
       }
     },
     [project]
