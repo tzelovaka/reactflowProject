@@ -228,7 +228,7 @@ const fitViewOptions = {
 
     {
       emojiWindowIsOpen &&
-      <animated.div style={animatedEmoji} className='w-screen grid grid-cols-1 jus'>
+      <animated.div style={animatedEmoji} className='w-screen grid grid-cols-1'>
   <div className='justify-self-end'>
     <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
             setEmojiAnimate(false)
@@ -248,18 +248,39 @@ const fitViewOptions = {
 </animated.div>
     }
 
-    
+
     {
       textWindowIsOpen &&
-      <animated.div style={animatedText}>
-        <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
+      <animated.div style={animatedText} className='w-screen grid grid-cols-1'>
+        <div className='justify-self-end'><button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
             setTextAnimate(false)
             setTimeout(()=>{
               dispatch({type: "CHANGE_STATE", payload: false})
   }, 200)}}>
       –
-    </button>
-        <h1>ПРЫВЕТ</h1>
+    </button></div>
+        <div>
+        <div class="container mx-auto px-4">
+  <form class="max-w-screen-lg">
+    <div class="mb-4">
+      <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input2">
+        URL картинки
+      </label>
+      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
+    </div>
+    <div class="mb-4">
+      <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="textarea1">
+        Текст
+      </label>
+      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Описание"></textarea>
+    </div>
+  </form>
+      <div className='mt-4 grid grid-cols-2 justify-items-center'>
+        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Сохранить</button>
+        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Опубликовать</button>
+      </div>
+</div>
+        </div>
       </animated.div>
       
     }
