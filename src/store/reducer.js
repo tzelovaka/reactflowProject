@@ -1,7 +1,10 @@
 const defaultState = {
-    id: null,
-    emojiWindowIsOpen: false,
-    textWindowIsOpen: false,
+    type: "EMOJI_STATE",
+    payload:{
+      id: null,
+      emojiWindowIsOpen: false,
+      textWindowIsOpen: false,
+    }
   }
 const reducer = (state=defaultState, action) => {
     if (action.type === "EMOJI_STATE"){

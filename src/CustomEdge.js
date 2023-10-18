@@ -4,15 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
-  //const setEmoji = useSelector(state => state.data.emoji)
-  const [label, setLabel] = useState('');
-  const [emj, setEmj] = useState('')
-  const [getEdge] = useReactFlow();
   const edges = useEdges();
-  useEffect(()=>{
-    let eg = getEdge(id)
-    setEmj(eg)
-  }, [edges])
+  const setEmoji = useSelector(state => state.data.emoji)
+  const [label, setLabel] = useState('');
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const handleInputChange = (event) => {
@@ -37,7 +31,9 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
           onClick={()=>emojiWindow()}
           className="px-6 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
         >
-          { emj.data.smile}
+          {
+            edges.find(item => item.id == id).data.smile
+          }
         </button>
       </div>
     );
