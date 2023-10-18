@@ -73,8 +73,8 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
       </div>
     );
   };
-  const rightX = targetX+250;
-  const leftX = targetX-250;
+  const rightX = targetX+50;
+  const leftX = targetX-350;
   const offsetX = ((sourceX * 0.25 + targetX) / 1.25) - 220;
   const limitedX = Math.max(leftX, Math.min(rightX, offsetX));
   return (
