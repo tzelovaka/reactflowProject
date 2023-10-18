@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
+  const {getEdge} = useReactFlow()
   const edges = useEdges();
+  var dg;
+  useEffect(() => {
+    dg = getEdge(id)
+  }, [edges]);
   const setEmoji = useSelector(state => state.data.emoji)
   const [label, setLabel] = useState('');
   const dispatch = useDispatch()
@@ -32,7 +37,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
           className="px-6 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
         >
           {
-            edges.find(item => item.id == id).data.smile
+            dg ? `${dg.data.smile}` : ':)'
           }
         </button>
       </div>
