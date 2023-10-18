@@ -30,7 +30,7 @@ const AddNodeOnEdgeDrop = () => {
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const textWindowIsOpen = useSelector(state => state.window.textWindowIsOpen)
-  const emoji = useSelector(state => state.data.textWindowIsOpen)
+  const emoji = useSelector(state => state.data.emoji)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
