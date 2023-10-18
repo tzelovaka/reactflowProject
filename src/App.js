@@ -29,8 +29,9 @@ const getId = () => `${id++}`;
 const AddNodeOnEdgeDrop = () => {
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
+  const edgeId = useSelector(state => state.window.edgeId)
   const textWindowIsOpen = useSelector(state => state.window.textWindowIsOpen)
-  const emoji = useSelector(state => state.data.emoji)
+  //const emoji = useSelector(state => state.data.emoji)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -242,10 +243,14 @@ const fitViewOptions = {
   <div className='flex flex-wrap p-2 text-center justify-self-center justify-center'>
     {emojis.map((emoji, index) => (
       <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
-        setEmojiAnimate(false)
+            setEmojiAnimate(false)
+            edges.map((edge)=>{
+              if (edge.id==edgeId) edge.data.smile = emoji
+            })
+            setEdges(edges)
             setTimeout(()=>{
-              dispatch({type: "CHANGE_STATE", payload: false})
-              dispatch({type: "EMOJI", payload: emoji})
+              dispatch({type: "CHANGE_STATE", payload: {openingEmoji: false}})
+              
   }, 200)
         }}>
         {emoji}
