@@ -247,6 +247,8 @@ const fitViewOptions = {
   </div>
 </animated.div>
     }
+
+    
     {
       textWindowIsOpen &&
       <animated.div style={animatedText}>
