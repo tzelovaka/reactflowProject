@@ -28,8 +28,8 @@ const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
   const dispatch = useDispatch()
-  const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
-  const textWindowIsOpen = useSelector(state => state.textWindowIsOpen)
+  const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
+  const textWindowIsOpen = useSelector(state => state.window.textWindowIsOpen)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -80,7 +80,7 @@ const animatedEmoji = useSpring({
   reverse: !emojiAnimate
 });
 const animatedText = useSpring({
-  from: {opacity: 0, transform: "translateY(40rem)"},
+  from: {opacity: 0, transform: "translateY(-40rem)"},
   to: {opacity: 1, transform: "translateY(0rem)"},
   reverse: !textAnimate
 });

@@ -6,7 +6,7 @@ import img from './img/img.png';
 
 function Block({ data, isConnectable }) {
   const dispatch = useDispatch()
-  const textWindowIsOpen = useSelector(state => state.textiWindowIsOpen)
+  const textWindowIsOpen = useSelector(state => state.window.textiWindowIsOpen)
   const nodeId = useNodeId();
   const nodes = useNodes();
   const edges = useEdges();
@@ -82,7 +82,7 @@ function Block({ data, isConnectable }) {
             }
             { !isOpen && nodeId != '0' && <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg justify-self-end flex items-center justify-center" onClick={() => setIsOpen(true)}>×</button>}
           </div>
-          <textarea className="border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={onChange} onClick={()=>textWindow()}/>
+          <textarea className="resize-none border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={onChange} onClick={()=>textWindow()}/>
         </div>
         <Handle
           type="source"

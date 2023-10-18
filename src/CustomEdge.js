@@ -7,7 +7,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
   const [label, setLabel] = useState('');
   const edges = useEdges();
   const dispatch = useDispatch()
-  const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
+  const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const handleInputChange = (event) => {
     setLabel(event.target.value);
     const updatedEdges = edges.map((edge) => {
@@ -35,9 +35,9 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
       </div>
     );
   };
-  const rightX = targetX-50;
+  const rightX = targetX-100;
   const leftX = targetX-350;
-  const offsetX = ((sourceX * 0.3 + targetX) / 1.3) - 220;
+  const offsetX = ((sourceX * 0.5 + targetX) / 1.5) - 220;
   const limitedX = Math.max(leftX, Math.min(rightX, offsetX));
   return (
     <>
