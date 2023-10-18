@@ -10,7 +10,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
   const edges = useEdges();
   const {setEdges} = useReactFlow();
   useEffect (()=>{
-    let updatedEdges = edges.map((edge)=>{
+    let updatedEdges = edges.forEach(edge =>{ 
       if (edge.id == id) edge.smile = smile
     })
     setEmoji(smile)
