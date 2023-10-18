@@ -81,7 +81,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
         d={`M${sourceX},${sourceY} C${sourceX},${targetX} ${targetX},${curveY} ${targetX},${targetY}`}
         className="CustomEdge"
       />
-      <foreignObject x={(sourceX+0,25*targetX)/1.25} y={(sourceY+0,25*targetY)/1.25} width="500" height="250">
+      <foreignObject x={(sourceX*0,25+targetX)/1.25} y={(sourceY*0,25+targetY)/1.25} width="500" height="250">
         <div className="flex flex-col w-full">
           <div className='flex'>
             <div className='grow h-14 '>
