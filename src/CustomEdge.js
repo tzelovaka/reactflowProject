@@ -9,6 +9,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
   var dg;
   useEffect(() => {
     dg = getEdge(id)
+    console.log(dg);
   }, [edges]);
   const setEmoji = useSelector(state => state.data.emoji)
   const [label, setLabel] = useState('');
