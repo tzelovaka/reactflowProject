@@ -9,13 +9,13 @@ const defaultData = {
 const reducerData = (state=defaultData, action)=>{
     switch (action.type){
     case "EMOJI":
-      return {...state, emoji: action.payload.emoji}
+      return {...state, emoji: action.payload}
     case "EDGE":
-      return {...state, textEdge: action.payload.textEdge}
+      return {...state, textEdge: action.payload}
     case "IMG":
-      return {...state, img: action.payload.img}
+      return {...state, img: action.payload}
     case "NODE":
-      return {...state, textNode: action.payload.textNode} 
+      return {...state, textNode: action.payload} 
       default:
         return state
     }
