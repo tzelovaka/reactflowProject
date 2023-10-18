@@ -5,7 +5,7 @@ import './index.css';
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
   const smile = useSelector(state => state.data.emoji)
-  const [emoji, setEmoji] = useState();
+  const [emoji, setEmoji] = useState('');
   const [label, setLabel] = useState('');
   const edges = useEdges();
   const {setEdges} = useReactFlow();
