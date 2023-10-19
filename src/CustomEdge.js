@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Handle, Position, useReactFlow, useEdges } from 'reactflow';
+import  useReactFlow, { Handle, Position, useEdges } from 'reactflow';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
   const {getEdge} = useReactFlow()
   const edges = useEdges();
-  useEffect(() => {
-    getEdge(id)
-  }, [edges]);
   const setEmoji = useSelector(state => state.data.emoji)
   const [label, setLabel] = useState('');
   const dispatch = useDispatch()
