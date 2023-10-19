@@ -37,10 +37,6 @@ const AddNodeOnEdgeDrop = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project, getEdge } = useReactFlow();
-  useEffect(()=>{
-   console.log(getEdge(edgeId));
-  }, [edgeId, getEdge])
- 
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
@@ -131,7 +127,6 @@ const fitViewOptions = {
           data: { label: `Node ${id}`, img: '' },
         };
         setNodes((nds) => nds.concat(newNode));
-        console.log(nodes);
         setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: {smile: '', label: ''} }));
       }
     },
@@ -247,6 +242,7 @@ const fitViewOptions = {
   <div className='flex flex-wrap p-2 text-center justify-self-center justify-center'>
     {emojis.map((emoji, index) => (
       <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
+            setEdges((eds) => eds.map((ed, index) => {if (ed.id == edgeId) eds[index].data.smile=emoji;}));
             setEmojiAnimate(false)
             /*const updatedEdges = edges.concat();
             edges.forEach((edge)=>{
