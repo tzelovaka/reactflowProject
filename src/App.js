@@ -30,13 +30,14 @@ const AddNodeOnEdgeDrop = () => {
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const edgeId = useSelector(state => state.window.edgeId)
+  const j = getEdge(edgeId)
   const textWindowIsOpen = useSelector(state => state.window.textWindowIsOpen)
   //const emoji = useSelector(state => state.data.emoji)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const { project } = useReactFlow();
+  const { project, getEdge } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
@@ -243,20 +244,20 @@ const fitViewOptions = {
   <div className='flex flex-wrap p-2 text-center justify-self-center justify-center'>
     {emojis.map((emoji, index) => (
       <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
-            setEmojiAnimate(false)
-            const updatedEdges = edges.concat();
+            //setEmojiAnimate(false)
+            /*const updatedEdges = edges.concat();
             edges.forEach((edge)=>{
               if (edge.id==edgeId) updatedEdges[edges.indexOf(edge)].data.smile = edge.data.smile; 
               return edge
             })
             console.log(updatedEdges);
-            setEdges(updatedEdges)
-            setTimeout(()=>{
-              dispatch({type: "EMOJI_STATE", payload: {openingEmoji: false, edgeId: edgeId}})
+            setEdges(updatedEdges)*/
+            //setTimeout(()=>{
+              //dispatch({type: "EMOJI_STATE", payload: {openingEmoji: false, edgeId: edgeId}})
               
-  }, 200)
+  //}, 200)
         }}>
-        {emoji}
+        {j}
       </div>
     ))}
   </div>
