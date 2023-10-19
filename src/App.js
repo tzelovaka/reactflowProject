@@ -30,7 +30,6 @@ const AddNodeOnEdgeDrop = () => {
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const edgeId = useSelector(state => state.window.edgeId)
-  const j = getEdge(edgeId)
   const textWindowIsOpen = useSelector(state => state.window.textWindowIsOpen)
   //const emoji = useSelector(state => state.data.emoji)
   const reactFlowWrapper = useRef(null);
@@ -38,6 +37,7 @@ const AddNodeOnEdgeDrop = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project, getEdge } = useReactFlow();
+  const j = getEdge(edgeId)
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
