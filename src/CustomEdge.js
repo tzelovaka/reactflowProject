@@ -36,7 +36,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY}) {
           className="px-6 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
         >
           {
-            edges.find(item => item.id === id).data.smile
+            edges[0].data.smile
           }
         </button>
       </div>
