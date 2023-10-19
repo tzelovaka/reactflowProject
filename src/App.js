@@ -37,10 +37,9 @@ const AddNodeOnEdgeDrop = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project, getEdge } = useReactFlow();
-  var j
   useEffect(()=>{
-    j = getEdge(edgeId)
-  }, [edgeId])
+   console.log(getEdge(edgeId));
+  }, [edgeId, getEdge])
  
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
@@ -261,7 +260,7 @@ const fitViewOptions = {
               
   }, 200)
         }}>
-        {j.id}
+        {emoji}
       </div>
     ))}
   </div>
