@@ -243,7 +243,7 @@ const fitViewOptions = {
     {emojis.map((emoji, index) => (
       <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
         setEdges((eds) => eds.map((edge) => {
-          if (edge.id === edgeId) {
+          if (edge.id == edgeId) {
             return { ...edge, smile: emoji };
           }
           return edge;
