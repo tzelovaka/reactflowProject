@@ -67,7 +67,7 @@ nodes.forEach((node)=> {
   }
   setEmojiAnimate(false)
   setTimeout(()=>{
-    dispatch({type: "EMOJI_STATE", payload: {openingEmoji: false, edgeId: edgeId}})
+    dispatch({type: "TEXT_STATE", payload: {openingText: false, nodeId: nodeId}})
     
 }, 200)
 }, [labelBlock, imgBlock])
