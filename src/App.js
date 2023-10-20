@@ -243,9 +243,12 @@ const fitViewOptions = {
     {emojis.map((emoji, index) => (
       <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
             let dg = getEdge(edgeId)
-            dg.data.smile = emoji
+            if (dg !== null && dg !== undefined){
+             dg.data.smile = emoji
             deleteElements({ edges: [{ id: edgeId}] })
-            setEdges((eds) => eds.concat( dg ));
+            setEdges((eds) => eds.concat( dg )); 
+            }
+            
             setEmojiAnimate(false)
             setTimeout(()=>{
               dispatch({type: "EMOJI_STATE", payload: {openingEmoji: false, edgeId: edgeId}})
