@@ -27,7 +27,7 @@ let id = 1;
 const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
-  const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+/*const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 useEffect(() => {
   fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
       method: 'GET',
@@ -41,7 +41,7 @@ if (response.message[2].length>0) setEdges(response.message[2])
 .catch(error => {
 console.error('Error:', error);
 });
-}, [tgid])
+}, [tgid])*/
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const edgeId = useSelector(state => state.window.edgeId)
