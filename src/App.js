@@ -127,7 +127,7 @@ const fitViewOptions = {
           data: { label: `Node ${id}`, img: '' },
         };
         setNodes((nds) => nds.concat(newNode));
-        setEdges((eds) => eds.concat({ id: id, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: {smile: '', label: ''} }));
+        setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: {smile: '', label: ''} }));
       }
     },
     [project]
@@ -242,7 +242,7 @@ const fitViewOptions = {
   <div className='flex flex-wrap p-2 text-center justify-self-center justify-center'>
     {emojis.map((emoji, index) => (
       <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
-            let dg = getEdge(1)
+            let dg = edges[0]
             if (dg !== null && dg !== undefined){
              dg.data.smile = emoji
             deleteElements({ edges: [{ id: id}] })
