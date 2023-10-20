@@ -4,7 +4,6 @@ import emojis from './emojis'
 import ReactFlow, {
   Panel,
   Controls,
-  MiniMap,
   Background,
   useNodesState,
   useEdgesState,
