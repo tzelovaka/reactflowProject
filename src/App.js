@@ -52,7 +52,7 @@ const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
-const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+const tgid = 111111111111111///window.Telegram.WebApp.initDataUnsafe.user.id;
 const controlsConfig = {
   showZoom: false,
   showFitView: false,
@@ -244,7 +244,7 @@ const fitViewOptions = {
       <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
             let dg
             edges.forEach((edge)=> {
-              if (edge.id == edgeId) dg = edge})
+              if (edge.id === edgeId) dg = edge})
             if (dg !== null && dg !== undefined){
              dg.data.smile = emoji
             deleteElements({ edges: [{ id: dg.id}] })
