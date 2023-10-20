@@ -27,21 +27,6 @@ let id = 1;
 const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
-const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
-useEffect(() => {
-  fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
-      method: 'GET',
-  })
-.then(response => response.json())
-.then (response => {
-setScheme(response.message)
-setNodes(response.message[1])
-if (response.message[2].length>0) setEdges(response.message[2])
-  })
-.catch(error => {
-console.error('Error:', error);
-});
-}, [tgid])
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const edgeId = useSelector(state => state.window.edgeId)
@@ -67,7 +52,7 @@ const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
-
+const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 const controlsConfig = {
   showZoom: false,
   showFitView: false,
@@ -101,6 +86,21 @@ const animatedText = useSpring({
   to: {opacity: 1, transform: "translateY(0rem)"},
   reverse: !textAnimate
 });
+
+useEffect(() => {
+      fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
+          method: 'GET',
+      })
+  .then(response => response.json())
+  .then (response => {
+    setScheme(response.message)
+    setNodes(response.message[1])
+    if (response.message[2].length>0) setEdges(response.message[2])
+      })
+.catch(error => {
+  console.error('Error:', error);
+});
+}, [tgid])
 
 const fitViewOptions = {
   padding: 3,
@@ -244,7 +244,7 @@ const fitViewOptions = {
       <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
             let dg
             edges.forEach((edge)=> {
-              if (edge.id === edgeId) dg = edge})
+              if (edge.id == edgeId) dg = edge})
             if (dg !== null && dg !== undefined){
              dg.data.smile = emoji
             deleteElements({ edges: [{ id: dg.id}] })
