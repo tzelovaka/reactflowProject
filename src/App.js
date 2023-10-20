@@ -245,7 +245,7 @@ const fitViewOptions = {
             let dg = edges[0]
             if (dg !== null && dg !== undefined){
              dg.data.smile = emoji
-            deleteElements({ edges: [{ id: id}] })
+            deleteElements({ edges: [{ id: dg.id}] })
             setEdges((eds) => eds.concat( dg )); 
             }
             
