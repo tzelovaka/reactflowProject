@@ -27,12 +27,12 @@ let id = 1;
 const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
-  const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const edgeId = useSelector(state => state.window.edgeId)
   const textWindowIsOpen = useSelector(state => state.window.textWindowIsOpen)
   const nodeId = useSelector(state => state.window.nodeId)
+  //const emoji = useSelector(state => state.data.emoji)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -52,27 +52,10 @@ useEffect(() => {
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
-
 const [labelBlock, setLabelBlock] = useState('');
 const [imgBlock, setImgBlock] = useState('');
-useEffect(()=>{
-  let nd
-nodes.forEach((node)=> {
-    if (node.id === nodeId) nd = node})
-  if (nd !== null && nd !== undefined){
-   nd.data.label = labelBlock;
-   nd.data.img = imgBlock
-  deleteElements({ nodes: [{ id: nd.id}] })
-  setNodes((nds) => nds.concat( nd )); 
-  }
-  setTextAnimate(false)
-  setTimeout(()=>{
-    dispatch({type: "TEXT_STATE", payload: {openingText: false, nodeId: nodeId}})
-    
-}, 200)
-}, [labelBlock, imgBlock])
 const [scheme, setScheme] = useState()
-
+const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 const controlsConfig = {
   showZoom: false,
   showFitView: false,
@@ -290,7 +273,7 @@ const fitViewOptions = {
         <div className='justify-self-end'><button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
             setTextAnimate(false)
             setTimeout(()=>{
-              dispatch({type: "TEXT_STATE", payload: {openingText: !textWindowIsOpen, nodeId: nodeId}})
+              dispatch({type: "CHANGE_STATE", payload: false})
   }, 200)}}>
       –
     </button></div>
