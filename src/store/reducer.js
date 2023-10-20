@@ -3,25 +3,24 @@ const defaultState = {
     payload:{
       id: null,
       emojiWindowIsOpen: false,
-      textWindowIsOpen: false,
     }
   }
 const reducer = (state=defaultState, action) => {
     if (action.type === "EMOJI_STATE"){
       switch (action.payload.openingEmoji){
       case true:
-        return {...state, emojiWindowIsOpen: true, textWindowIsOpen: false, edgeId: action.payload.edgeId}
+        return {...state, emojiWindowIsOpen: true, edgeId: action.payload.edgeId}
       case false:
-        return {...state, emojiWindowIsOpen: false, textWindowIsOpen: false, edgeid: action.payload.edgeId}
+        return {...state, emojiWindowIsOpen: false, edgeId: action.payload.edgeId}
       default:
         return state
     }
     } else{
-      switch (action.payload){
+      switch (action.payload.openingText){
         case true:
-          return {...state, emojiWindowIsOpen: false, textWindowIsOpen: true}
+          return {...state, textWindowIsOpen: true, nodeId: action.payload.nodeId}
         case false:
-          return {...state, emojiWindowIsOpen: false, textWindowIsOpen: false}
+          return {...state, textWindowIsOpen: false, nodeId: action.payload.nodeId}
         default:
           return state
       }

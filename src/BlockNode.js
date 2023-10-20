@@ -4,7 +4,7 @@ import { Handle, Position, useReactFlow, useNodeId, useNodes, useEdges } from 'r
 import img from './img/img.png';
 //import styles from "./App.module.css";
 
-function Block({ data, isConnectable }) {
+function Block({ data, isConnectable, id }) {
   const dispatch = useDispatch()
   const textWindowIsOpen = useSelector(state => state.window.textiWindowIsOpen)
   const nodeId = useNodeId();
@@ -56,7 +56,7 @@ function Block({ data, isConnectable }) {
     return null;
   }
   const textWindow = () => {
-    dispatch({type: "TEXT_STATE", payload: !textWindowIsOpen})
+    dispatch({type: "TEXT_STATE", payload: {openingText: !textWindowIsOpen, nodeId: id}})
   }
   return (
     <React.Fragment>
