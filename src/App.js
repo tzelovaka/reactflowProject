@@ -154,24 +154,7 @@ const fitViewOptions = {
         });
   }, [title, imgUrl, desc]);
 
-  const emojiUpdate = () => {
-    console.log('11111111111111111111');
-    let dg = getEdge(edgeId)
-    dg.data.smile = 5
-    deleteElements({ edges: [{ id: edgeId}] })
-    setEdges((eds) => eds.concat({ dg }));
-    setEmojiAnimate(false)
-            /*const updatedEdges = edges.concat();
-            edges.forEach((edge)=>{
-              if (edge.id==edgeId) updatedEdges[edges.indexOf(edge)].data.smile = edge.data.smile; 
-              return edge
-            })
-            console.log(updatedEdges);
-            setEdges(updatedEdges)*/
-    setTimeout(()=>{
-    dispatch({type: "EMOJI_STATE", payload: {openingEmoji: false, edgeId: edgeId}})        
-  }, 200)
-  }
+  
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       { cover &&
@@ -258,7 +241,25 @@ const fitViewOptions = {
   </div>
   <div className='flex flex-wrap p-2 text-center justify-self-center justify-center'>
     {emojis.map((emoji, index) => (
-      <div key={index} className="text-3xl mx-2 my-3" onClick={e=>emojiUpdate}>
+      <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
+            /*let dg = getEdge(edgeId)
+            dg.data.smile = emoji
+            deleteElements({ edges: [{ id: edgeId}] })
+            setEdges((eds) => eds.concat({ dg }));*/
+            console.log('11111111111111111111111111111111111111111111111111111111111111');
+            setEmojiAnimate(false)
+            /*const updatedEdges = edges.concat();
+            edges.forEach((edge)=>{
+              if (edge.id==edgeId) updatedEdges[edges.indexOf(edge)].data.smile = edge.data.smile; 
+              return edge
+            })
+            console.log(updatedEdges);
+            setEdges(updatedEdges)*/
+            setTimeout(()=>{
+              dispatch({type: "EMOJI_STATE", payload: {openingEmoji: false, edgeId: edgeId}})
+              
+  }, 200)
+        }}>
         {emoji}
       </div>
     ))}
