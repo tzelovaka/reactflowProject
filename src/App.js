@@ -4,6 +4,7 @@ import emojis from './emojis'
 import ReactFlow, {
   Panel,
   Controls,
+  MiniMap,
   Background,
   useNodesState,
   useEdgesState,
@@ -31,7 +32,6 @@ const AddNodeOnEdgeDrop = () => {
   const edgeId = useSelector(state => state.window.edgeId)
   const textWindowIsOpen = useSelector(state => state.window.textWindowIsOpen)
   const nodeId = useSelector(state => state.window.nodeId)
-  //const emoji = useSelector(state => state.data.emoji)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -64,7 +64,7 @@ nodes.forEach((node)=> {
   deleteElements({ nodes: [{ id: nd.id}] })
   setNodes((nds) => nds.concat( nd )); 
   }
-  setEmojiAnimate(false)
+  setTextAnimate(false)
   setTimeout(()=>{
     dispatch({type: "TEXT_STATE", payload: {openingText: false, nodeId: nodeId}})
     
