@@ -124,7 +124,7 @@ const fitViewOptions = {
           id: id,
           type: 'block',
           position: project({ x: left-75, y: top+100 }),
-          data: { label: `Node ${id}`, img: '' },
+          data: { label: '', img: '' },
         };
         setNodes((nds) => nds.concat(newNode));
         setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: {smile: '', label: ''} }));
@@ -244,13 +244,12 @@ const fitViewOptions = {
       <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
             let dg
             edges.forEach((edge)=> {
-              if (edge.id == edgeId) dg = edge})
+              if (edge.id === edgeId) dg = edge})
             if (dg !== null && dg !== undefined){
              dg.data.smile = emoji
             deleteElements({ edges: [{ id: dg.id}] })
             setEdges((eds) => eds.concat( dg )); 
             }
-            
             setEmojiAnimate(false)
             setTimeout(()=>{
               dispatch({type: "EMOJI_STATE", payload: {openingEmoji: false, edgeId: edgeId}})
