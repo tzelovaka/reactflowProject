@@ -247,13 +247,6 @@ const fitViewOptions = {
             deleteElements({ edges: [{ id: edgeId}] })
             setEdges((eds) => eds.concat( dg ));
             setEmojiAnimate(false)
-            /*const updatedEdges = edges.concat();
-            edges.forEach((edge)=>{
-              if (edge.id==edgeId) updatedEdges[edges.indexOf(edge)].data.smile = edge.data.smile; 
-              return edge
-            })
-            console.log(updatedEdges);
-            setEdges(updatedEdges)*/
             setTimeout(()=>{
               dispatch({type: "EMOJI_STATE", payload: {openingEmoji: false, edgeId: edgeId}})
               
