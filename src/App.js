@@ -290,7 +290,7 @@ const fitViewOptions = {
         <div className='justify-self-end'><button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
             setTextAnimate(false)
             setTimeout(()=>{
-              dispatch({type: "CHANGE_STATE", payload: false})
+              dispatch({type: "TEXT_STATE", payload: {openingText: !textWindowIsOpen, nodeId: nodeId}})
   }, 200)}}>
       –
     </button></div>
