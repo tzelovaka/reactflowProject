@@ -242,11 +242,10 @@ const fitViewOptions = {
   <div className='flex flex-wrap p-2 text-center justify-self-center justify-center'>
     {emojis.map((emoji, index) => (
       <div key={index} className="text-3xl mx-2 my-3" onClick={e=>{
-            /*let dg = getEdge(edgeId)
+            let dg = getEdge(edgeId)
             dg.data.smile = emoji
             deleteElements({ edges: [{ id: edgeId}] })
-            setEdges((eds) => eds.concat({ dg }));*/
-            console.log('11111111111111111111111111111111111111111111111111111111111111');
+            setEdges((eds) => eds.concat( dg ));
             setEmojiAnimate(false)
             /*const updatedEdges = edges.concat();
             edges.forEach((edge)=>{
