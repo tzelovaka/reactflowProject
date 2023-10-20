@@ -124,7 +124,7 @@ const fitViewOptions = {
           id: id,
           type: 'block',
           position: project({ x: left-75, y: top+100 }),
-          data: { label: '', img: '' },
+          data: { label: 'Лейба', img: '' },
         };
         setNodes((nds) => nds.concat(newNode));
         setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: {smile: '', label: ''} }));
