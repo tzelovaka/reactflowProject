@@ -31,13 +31,12 @@ const AddNodeOnEdgeDrop = () => {
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const edgeId = useSelector(state => state.window.edgeId)
   const textWindowIsOpen = useSelector(state => state.window.textWindowIsOpen)
-  const nodeId = useSelector(state => state.window.nodeId)
   //const emoji = useSelector(state => state.data.emoji)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const { project, deleteElements } = useReactFlow();
+  const { project, deleteElements, getEdge } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
@@ -52,8 +51,6 @@ useEffect(() => {
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
-const [labelBlock, setLabelBlock] = useState('');
-const [imgBlock, setImgBlock] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 const controlsConfig = {
@@ -284,13 +281,13 @@ const fitViewOptions = {
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input2">
         URL картинки
       </label>
-      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" onChange={e => setImgBlock(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
+      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
     </div>
     <div class="mb-4">
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="textarea1">
         Текст
       </label>
-      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" rows={4} onChange={e => setLabelBlock(e.target.value)} id="textarea1" placeholder="Текст"></textarea>
+      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Текст"></textarea>
     </div>
   </form>
 </div>
