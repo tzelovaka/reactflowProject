@@ -52,7 +52,7 @@ const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 const [scheme, setScheme] = useState()
-const tgid = 111111111111111///window.Telegram.WebApp.initDataUnsafe.user.id;
+const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 const controlsConfig = {
   showZoom: false,
   showFitView: false,
