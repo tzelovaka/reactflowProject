@@ -31,6 +31,7 @@ const AddNodeOnEdgeDrop = () => {
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const edgeId = useSelector(state => state.window.edgeId)
   const textWindowIsOpen = useSelector(state => state.window.textWindowIsOpen)
+  const nodeId = useSelector(state => state.window.nodeId)
   //const emoji = useSelector(state => state.data.emoji)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
@@ -51,6 +52,8 @@ useEffect(() => {
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
+const [nodeImg, setNodeImg] = useState('');
+const [nodeText, setNodeText] = useState('');
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 const controlsConfig = {
@@ -268,6 +271,15 @@ const fitViewOptions = {
       textWindowIsOpen &&
       <animated.div style={animatedText} className='w-screen grid grid-cols-1'>
         <div className='justify-self-end'><button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
+            let nd
+            nodes.forEach((node)=> {
+            if (node.id === nodeId) dg = node})
+            if (dg !== null && dg !== undefined){
+            nd.data.img = nodeImg;
+            nd.data.label  = nodeText
+            deleteElements({ nodes: [{ id: nd.id}] })
+            setNodes((nds) => nds.concat( nd )); 
+            }
             setTextAnimate(false)
             setTimeout(()=>{
               dispatch({type: "CHANGE_STATE", payload: false})
@@ -281,13 +293,13 @@ const fitViewOptions = {
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input2">
         URL картинки
       </label>
-      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
+      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" onChange={e => setNodeImg(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
     </div>
     <div class="mb-4">
       <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="textarea1">
         Текст
       </label>
-      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Текст"></textarea>
+      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" rows={4} onChange={e => setNodeText(e.target.value)} id="textarea1" placeholder="Текст"></textarea>
     </div>
   </form>
 </div>
