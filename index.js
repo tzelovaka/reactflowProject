@@ -7,7 +7,7 @@ const storylin = require('./models/link');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000
 const app = express();
-
+var path = require("path");
 
 app.use(express.json())
 app.use (express.static('build'));
@@ -30,6 +30,10 @@ app.post('/api/story', async (req, res) => {
 
   app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
   
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  });
+
   const initialNodes = [
     {
       id: '0',
