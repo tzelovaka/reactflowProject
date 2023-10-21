@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 try{
     sequelize.sync({force: true})
     sequelize.authenticate()
-    console.log('Successful connect!');
+    console.log('Successful connect!!');
 }catch(e){
     console.log(e)
 }
