@@ -29,10 +29,6 @@ app.post('/api/story', async (req, res) => {
   });
 
   app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
-  
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname+'/src/index.html'));
-  });
 
   const initialNodes = [
     {
