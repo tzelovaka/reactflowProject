@@ -31,7 +31,7 @@ app.post('/api/story', async (req, res) => {
     res.send('Success');
   });
 
-  app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
+
 const staticPath = './src'
 app.get('/', async (request, response)=>{
     response.sendFile(path.join(process.cwd(), staticPath, 'index.html'))
@@ -114,8 +114,8 @@ app.get('/api', async (request, response) => {
     }
         return response.send({ message: [head, nodes, edges]})
     }
-});
-
+})
+app.listen(PORT, () => console.log('Server started on ${PORT} port'))
 
 /*app.post('/api', (req, res) => {
     const message = req.body    
