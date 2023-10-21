@@ -273,8 +273,8 @@ const fitViewOptions = {
         <div className='justify-self-end'><button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
             let nd
             nodes.forEach((node)=> {
-            if (node.id === nodeId) dg = node})
-            if (dg !== null && dg !== undefined){
+            if (node.id === nodeId) nd = node})
+            if (nd !== null && nd !== undefined){
             nd.data.img = nodeImg;
             nd.data.label  = nodeText
             deleteElements({ nodes: [{ id: nd.id}] })
