@@ -26,7 +26,7 @@ const proOptions = { hideAttribution: true };
 let id = 1;
 const getId = () => `${id++}`;
 
-const AddNodeOnEdgeDrop = () => {
+const App= () => {
   const dispatch = useDispatch()
   const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
   const edgeId = useSelector(state => state.window.edgeId)
@@ -314,6 +314,6 @@ const fitViewOptions = {
 
 export default () => (
   <ReactFlowProvider>
-    <AddNodeOnEdgeDrop />
+    <App />
   </ReactFlowProvider>
 );
