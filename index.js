@@ -11,11 +11,11 @@ var path = require("path");
 
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '/build')));
-//app.use (express.static('build'));
+app.use (express.static('build'));
 app.use(bodyParser.json());
-app.get('*', (req, res) => {
+/*app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/build', 'index.html'));
-});
+});*/
 try{
     sequelize.sync({force: true})
     sequelize.authenticate()

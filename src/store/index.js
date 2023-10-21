@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers } from 'redux/dist/redux';
 import reducer from './reducer'
 import reducerData from './reducerData'
 const rootReducer = combineReducers({
