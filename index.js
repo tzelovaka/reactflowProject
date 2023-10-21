@@ -7,7 +7,7 @@ const storylin = require('./models/link');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000
 const app = express();
-
+var path = require("path");
 
 app.use(express.json())
 app.use (express.static('build'));
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 try{
     sequelize.sync({force: true})
     sequelize.authenticate()
-    console.log('Successful connect!');
+    console.log('Successful connect!!');
 }catch(e){
     console.log(e)
 }
@@ -29,7 +29,7 @@ app.post('/api/story', async (req, res) => {
   });
 
   app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
-  
+
   const initialNodes = [
     {
       id: '0',

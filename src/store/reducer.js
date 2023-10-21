@@ -15,7 +15,8 @@ const reducer = (state=defaultState, action) => {
       default:
         return state
     }
-    } else{
+    } 
+    if (action.type === "TEXT_STATE"){
       switch (action.payload.openingText){
         case true:
           return {...state, textWindowIsOpen: true, nodeId: action.payload.nodeId}
