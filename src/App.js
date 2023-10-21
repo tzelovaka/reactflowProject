@@ -282,7 +282,7 @@ const fitViewOptions = {
             }
             setTextAnimate(false)
             setTimeout(()=>{
-              dispatch({type: "CHANGE_STATE", payload: false})
+              dispatch({type: "TEXT_STATE", payload: false})
   }, 200)}}>
       –
     </button></div>
