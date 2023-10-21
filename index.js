@@ -29,10 +29,10 @@ app.post('/api/story', async (req, res) => {
   });
 
   app.listen(PORT, () => console.log(`Server started on ${PORT}s port`))
-/*const staticPath = './src'
+const staticPath = './src'
 app.get('/', async (request, response)=>{
     response.sendFile(path.join(process.cwd(), staticPath, 'index.html'))
-})*/
+})
   const initialNodes = [
     {
       id: '0',
