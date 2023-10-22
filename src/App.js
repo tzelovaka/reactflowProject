@@ -15,29 +15,39 @@ import 'reactflow/dist/style.css';
 import block from './BlockNode';
 import CustomEdge from './CustomEdge';
 import './index.css';
-import { useSelector, useDispatch } from 'react-redux';
 import menuIcon from './img/menu.png';
+import { useEmoji } from './store/storeEmoji';
+import { useText } from './store/storeNode';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.22*window.screen.height;
 const proOptions = { hideAttribution: true };
-
+const initialNodes = [
+  {
+    id: '0',
+    type: 'block',
+    data: { label: 'Node' },
+    position: { x: 0, y: 50 },
+  },
+];
 
 let id = 1;
 const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
-  const dispatch = useDispatch()
-  const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
-  const edgeId = useSelector(state => state.window.edgeId)
-  const textWindowIsOpen = useSelector(state => state.window.textWindowIsOpen)
-  const nodeId = useSelector(state => state.window.nodeId)
-  //const emoji = useSelector(state => state.data.emoji)
+  const emojiWindowIsOpen = useEmoji(state => state.emojiWindowIsOpen)
+  const switchEmoji = useEmoji(state => state.switchEmoji)
+  const edgeId = useEmoji(state => state.edgeId)
+  const textWindowIsOpen = useText(state => state.textWindowIsOpen)
+  const switchText = useText(state => state.switchText)
+  const nodeId = useText(state => state.nodeId)
+  const nodePlaceholderLabel = useText(state => state.placeholderLabel)
+  const nodePlaceholderImg = useText(state => state.placeholderImg)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const { project, deleteElements, getEdge } = useReactFlow();
+  const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
@@ -54,6 +64,12 @@ const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 const [nodeImg, setNodeImg] = useState('');
 const [nodeText, setNodeText] = useState('');
+useEffect(()=>{
+  setNodeImg(nodePlaceholderImg)
+}, [nodePlaceholderImg])
+useEffect(()=>{
+  setNodeText(nodePlaceholderLabel)
+}, [nodePlaceholderLabel])
 const [scheme, setScheme] = useState()
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 const controlsConfig = {
@@ -173,22 +189,22 @@ const fitViewOptions = {
 }}>
 –</button>
       </div>
-      <div class="container mx-auto px-4">
-  <form class="max-w-screen-lg">
-    <div class="mb-4">
-      <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input1">
+      <div className="container mx-auto px-4">
+  <form className="max-w-screen-lg">
+    <div className="mb-4">
+      <label id='label' className='text-lg mx-3 mt-4 font-philosopher'>
         Название
       </label>
       <input className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setTitle(e.target.value)} id="input1" type="text" placeholder="Название"/>
     </div>
-    <div class="mb-4">
-      <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input2">
+    <div className="mb-4">
+      <label id='label' className='text-lg mx-3 mt-4 font-philosopher'>
         URL картинки
       </label>
       <input className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
     </div>
-    <div class="mb-4">
-      <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="textarea1">
+    <div className="mb-4">
+      <label id='label' className='text-lg mx-3 mt-4 font-philosopher'>
         Описание
       </label>
       <textarea className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Описание"></textarea>
@@ -237,7 +253,10 @@ const fitViewOptions = {
     <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
             setEmojiAnimate(false)
             setTimeout(()=>{
-              dispatch({type: "CHANGE_STATE", payload: false})
+              switchEmoji ({
+                emojiWindowIsOpen: false,
+                edgeId: id
+              })  
   }, 200)}}>
       –
     </button>
@@ -255,8 +274,10 @@ const fitViewOptions = {
             }
             setEmojiAnimate(false)
             setTimeout(()=>{
-              dispatch({type: "EMOJI_STATE", payload: {openingEmoji: false, edgeId: edgeId}})
-              
+              switchEmoji ({
+                emojiWindowIsOpen: false,
+                edgeId: id
+              })  
   }, 200)
         }}>
         {emoji}
@@ -274,32 +295,33 @@ const fitViewOptions = {
             let nd
             nodes.forEach((node)=> {
             if (node.id === nodeId) nd = node})
-            if (nd !== null && nd !== undefined){
             nd.data.img = nodeImg;
             nd.data.label  = nodeText
             deleteElements({ nodes: [{ id: nd.id}] })
             setNodes((nds) => nds.concat( nd )); 
-            }
             setTextAnimate(false)
             setTimeout(()=>{
-              dispatch({type: "TEXT_STATE", payload: false})
+              switchText ({
+                textWindowIsOpen: false,
+                nodeId: id
+              })   
   }, 200)}}>
       –
     </button></div>
         <div>
-        <div class="container mx-auto px-4">
-  <form class="max-w-screen-lg">
-    <div class="mb-4">
-      <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="input2">
+        <div className="container mx-auto px-4">
+  <form className="max-w-screen-lg">
+    <div className="mb-4">
+      <label id='label' className='text-lg mx-3 mt-4 font-philosopher'>
         URL картинки
       </label>
-      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" onChange={e => setNodeImg(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
+      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none"  value={nodeImg} onChange={e => setNodeImg(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
     </div>
-    <div class="mb-4">
-      <label id='label' className='text-lg mx-3 mt-4 font-philosopher' for="textarea1">
+    <div className="mb-4">
+      <label id='label' className='text-lg mx-3 mt-4 font-philosopher'>
         Текст
       </label>
-      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" rows={4} onChange={e => setNodeText(e.target.value)} id="textarea1" placeholder="Текст"></textarea>
+      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" rows={4}  value={nodeText} onChange={e => setNodeText(e.target.value)} id="textarea1" placeholder="Текст"></textarea>
     </div>
   </form>
 </div>

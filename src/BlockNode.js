@@ -1,21 +1,17 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useCallback } from 'react';
 import { Handle, Position, useReactFlow, useNodeId, useNodes, useEdges } from 'reactflow';
 import img from './img/img.png';
 //import styles from "./App.module.css";
+import { useText } from './store/storeNode';
 
 function Block({ data, isConnectable, id }) {
-  const dispatch = useDispatch()
-  const textWindowIsOpen = useSelector(state => state.window.textiWindowIsOpen)
   const nodeId = useNodeId();
   const nodes = useNodes();
   const edges = useEdges();
+  const switchText = useText(state => state.switchText)
   const { deleteElements, getNodes, getEdges} = useReactFlow();
   const [isDeleted, setIsDeleted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  //useEffect(() => {
-    //console.log(edges);
-  //}, [edges]);
 
   const onClick = useCallback(() => {
     let deletedNodes = [nodeId]
@@ -23,7 +19,7 @@ function Block({ data, isConnectable, id }) {
     const dgs = getEdges();
     dgs.slice(f).forEach((dg) => {
       deletedNodes.forEach ((deletedNode) => {
-      if (dg.source == deletedNode) { 
+      if (dg.source === deletedNode) { 
         deletedNodes.push(dg.target);
         f++;
       }
@@ -33,10 +29,12 @@ function Block({ data, isConnectable, id }) {
   }, [nodeId, deleteElements]);
 
   const onChange = useCallback((evt) => {
+
+    /*
     let i;
     nodes.forEach((node) => {if (node.id === nodeId) i=nodes.indexOf(node) });
     nodes[i].data.label=evt.target.value;
-    /*fetch(`https://storinter.herokuapp.com/api`, {
+    fetch(`https://storinter.herokuapp.com/api`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +54,12 @@ function Block({ data, isConnectable, id }) {
     return null;
   }
   const textWindow = () => {
-    dispatch({type: "TEXT_STATE", payload: {openingText: !textWindowIsOpen, nodeId: id}})
+    switchText ({
+      textWindowIsOpen: true,
+      nodeId: id,
+      placeholderLabel: data.label,
+      placeholderImg: data.img
+    })      
   }
   return (
     <React.Fragment>
@@ -80,9 +83,9 @@ function Block({ data, isConnectable, id }) {
                 </div>
                 
             }
-            { !isOpen && nodeId != '0' && <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg justify-self-end flex items-center justify-center" onClick={() => setIsOpen(true)}>×</button>}
+            { !isOpen && nodeId !== '0' && <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg justify-self-end flex items-center justify-center" onClick={() => setIsOpen(true)}>×</button>}
           </div>
-          <textarea className="resize-none border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={onChange} onClick={()=>textWindow()}>{data.label}</textarea>
+          <textarea className="resize-none border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={onChange} onClick={()=>textWindow()} value={data.label}></textarea>
         </div>
         <Handle
           type="source"

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import  useReactFlow, { Handle, Position, useEdges } from 'reactflow';
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
+import { useEmoji } from './store/storeEmoji';
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
   const edges = useEdges();
-  const setEmoji = useSelector(state => state.data.emoji)
   const [label, setLabel] = useState('');
-  const dispatch = useDispatch()
-  const emojiWindowIsOpen = useSelector(state => state.window.emojiWindowIsOpen)
+  //const dispatch = useDispatch()
+  //const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
+  const switchEmoji = useEmoji(state => state.switchEmoji)
   const handleInputChange = (event) => {
     setLabel(event.target.value);
     const updatedEdges = edges.map((edge) => {
@@ -17,12 +18,15 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
       }
       return edge;
     });
-    console.log(updatedEdges);
   };
   const curveY = targetY - 100;
   const EmojiDropdown = () => {
+    
     const emojiWindow = () => {
-      dispatch({type: "EMOJI_STATE", payload: {openingEmoji: !emojiWindowIsOpen, edgeId: id}})
+      switchEmoji ({
+        emojiWindowIsOpen: true,
+        edgeId: id
+      })      
     }
     return (
       <div className="relative inline-block">
