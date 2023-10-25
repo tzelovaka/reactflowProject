@@ -39,7 +39,7 @@ app.post('/api/story', async (req, res) => {
 /*const staticPath = './src'
 app.get('/', async (request, response)=>{
     response.sendFile(path.join(process.cwd(), staticPath, 'index.html'))
-})*/
+}) */
   const initialNodes = [
     {
       id: '0',
