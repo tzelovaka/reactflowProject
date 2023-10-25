@@ -218,15 +218,10 @@ const imgTest = async (img) => {
     [project, setNodes, setEdges]
   );
 
-  const saveStory = useCallback(async (evt) => {
-    /*const data = {
-      title: title,
-      imgUrl: imgUrl,
-      desc: desc
-    };*/
-    let url
-    imgUrl.length > 0 ? url = `https://storinter.herokuapp.com/api/story/?title=${title}&imgUrl=${imgUrl}&desc=${desc}` : 
-    url = `https://storinter.herokuapp.com/api/story/?title=${title}&desc=${desc}`
+  const saveStory = useCallback(async (result) => {
+    console.log(result);
+    if (!result) setImgUrl('')
+    let url = `https://storinter.herokuapp.com/api/story/?title=${title}&imgUrl=${imgUrl}&desc=${desc}`
     await fetch(url, {
         method: 'POST',
         headers: {
@@ -303,7 +298,7 @@ const imgTest = async (img) => {
     if (!result) {
       setImgUrl('');
     }
-    if (title.length>0 && desc.length>0) {saveStory()}else{setDisplayError(true)}
+    if (title.length>0 && desc.length>0) {saveStory(result)}else{setDisplayError(true)}
   }}
 >
   Сохранить
