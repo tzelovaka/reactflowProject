@@ -23,20 +23,34 @@ const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.22*window.screen.height;
 const proOptions = { hideAttribution: true };
-/*const initialNodes = [
+const initialNodes = [
   {
     id: '0',
     type: 'block',
     data: { label: '', img: '' },
     position: { x: 0, y: 50 },
   },
-];*/
+];
 
 let id = 1;
 const getId = () => `${id++}`;
-const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+//const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+
 const AddNodeOnEdgeDrop = () => {
-  
+  /*useEffect(() => {
+    fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
+        method: 'GET',
+    })
+.then(response => response.json())
+.then (response => {
+  setScheme(response.message[0])
+  setNodes(response.message[1])
+  //if (response.message[2].length>0) setEdges(response.message[2])
+    })
+.catch(error => {
+console.error('Error:', error);
+});
+}, [tgid])*/
   function checkImageExists(url) {
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -62,7 +76,7 @@ const AddNodeOnEdgeDrop = () => {
  
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
@@ -122,21 +136,6 @@ const animatedText = useSpring({
   to: {opacity: 1, transform: "translateY(0rem)"},
   reverse: !textAnimate
 });
-
-useEffect(() => {
-      fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
-          method: 'GET',
-      })
-  .then(response => response.json())
-  .then (response => {
-    setScheme(response.message[0])
-    setNodes(response.message[1])
-    //if (response.message[2].length>0) setEdges(response.message[2])
-      })
-.catch(error => {
-  console.error('Error:', error);
-});
-}, [tgid])
 
 const fitViewOptions = {
   padding: 3,
