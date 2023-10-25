@@ -76,7 +76,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
             </div>
             <div className='grow-0 px-6'>
             <div className='text-sm font-philosopher'>
-              {label.length + ' / 280'}
+              <p id='label'>{label.length + ' / 280'}</p>
             </div>
               <input
             id={id + 'edgeInput'}

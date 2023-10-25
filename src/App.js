@@ -252,14 +252,14 @@ const imgTest = async (img) => {
       </div>
       <div className="container mx-auto px-4">
   <form className="max-w-screen-lg">
-  <h2 className='mx-3 text-3xl font-philosopher'>История</h2>
+  <h2 id='label' className='mx-3 text-3xl font-philosopher'>История</h2>
   <hr/>
     <div className="mb-4">
       <label id='label' htmlFor="input1" className='text-lg mx-3 mt-4 font-philosopher'>
         Название
       </label>
       <div className='font-philosopher text-xs mt-2'>
-        {title === undefined || title === null ? '0 / 100' : (title.length + ' / 100')}
+        <p id='label'>{title === undefined || title === null ? '0 / 100' : (title.length + ' / 100')}</p>
       </div>
       <input maxLength="100" className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md" value={title || ''} onChange={e => setTitle(e.target.value)} id="input1" type="text" placeholder="Название"/>
     </div>
@@ -268,7 +268,7 @@ const imgTest = async (img) => {
         URL картинки
       </label>
       <div className='font-philosopher text-xs mt-2'>
-        {imgUrl === undefined || imgUrl === null ? '0 / 2083' : (imgUrl.length + ' / 2083')}
+        <p id='label'>{imgUrl === undefined || imgUrl === null ? '0 / 2083' : (imgUrl.length + ' / 2083')}</p>
       </div>
       <input maxLength="2083" className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md" value={imgUrl || ''} 
       onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
@@ -278,7 +278,7 @@ const imgTest = async (img) => {
         Описание
       </label>
       <div className='font-philosopher text-xs mt-2'>
-        {desc === undefined || desc === null ? '0 / 4000' : (desc.length + ' / 4000')}
+        <p id='label'>{desc === undefined || desc === null ? '0 / 4000' : (desc.length + ' / 4000')}</p>
       </div>
       <textarea maxLength="4000" className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md" value={desc || ''} rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Описание"></textarea>
     </div>
@@ -309,7 +309,7 @@ const imgTest = async (img) => {
 </div>
 <div className='container mx-auto font-philosopher w-100 mt-28 px-4'>
   <div className='max-w-screen-lg'>
-    <h2 className='mx-3 text-3xl'>Симуляция</h2>
+    <h2 id='label' className='mx-3 text-3xl'>Симуляция</h2>
   <hr/>
   <div>
   {
@@ -320,9 +320,11 @@ const imgTest = async (img) => {
   : null
 }
 <div className='mt-4 mx-3 font-philosopher w-100 px-3 py-2 border-2 rounded-full'>
-{
+  <p id='label'>
+    {
   (nodes.find(node => node.id === simulateNodeId) === undefined || nodes.find(node => node.id === simulateNodeId).data.label === null ||  nodes.find(node => node.id === simulateNodeId).data.label.length < 1) ? <div className='w-100 text-center text-red-300'>Уупс... (здесь должен быть текст)</div> : (nodes.find(node => node.id === simulateNodeId).data.label.length > 35 ? (nodes.find(node => node.id === simulateNodeId).data.label.substring(0, 35) + '...') : nodes.find(node => node.id === simulateNodeId).data.label)
   }
+    </p>
 </div>
 <div className='flex flex-wrap mt-2'>
     {
@@ -335,7 +337,10 @@ const imgTest = async (img) => {
         setSimulatedHistory(simulatedHistory.concat(edge.target))
         console.log(simulatedHistory);
         }}>
-    {(edge.data.smile ? edge.data.smile : '👆') +  (edge.data.label > 35 ? ' ' + edge.data.label.substring(0, 8) + '...' : edge.data.label)}
+          <p id='label'>
+            {(edge.data.smile ? edge.data.smile : '👆') +  (edge.data.label > 35 ? ' ' + edge.data.label.substring(0, 8) + '...' : edge.data.label)}
+          </p>
+    
   </div> 
   }
  })
@@ -479,7 +484,7 @@ const imgTest = async (img) => {
         URL картинки
       </label>
     <div className='font-philosopher text-xs mt-2'>
-        {nodeImg === undefined || nodeText === null ? '0 / 2083' : (nodeImg.length + ' / 2083')}
+        <p id='label'>{nodeImg === undefined || nodeText === null ? '0 / 2083' : (nodeImg.length + ' / 2083')}</p>
       </div>
       <input maxLength="2083" className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md focus:outline-none"  value={nodeImg || ''} 
             onChange={
@@ -497,9 +502,9 @@ const imgTest = async (img) => {
         Текст
       </label>
       <div className='font-philosopher text-xs mt-2'>
-      {nodeText === undefined || nodeText === null ? '0 / 4000' : (nodeText.length + ' / 4000')}
+      <p id='label'>{nodeText === undefined || nodeText === null ? '0 / 4000' : (nodeText.length + ' / 4000')}</p>
       </div>
-      <textarea autoFocus maxLength="4000" className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md focus:outline-none" rows={15}  value={nodeText || ''}
+      <textarea maxLength="4000" className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md focus:outline-none" rows={15}  value={nodeText || ''}
       onChange={e => {if (nodeText.length <= 4000) setNodeText(e.target.value)}} id="textarea2" placeholder="Текст"></textarea>
     </div>
   </form>
