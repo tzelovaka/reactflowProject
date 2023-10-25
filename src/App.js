@@ -105,10 +105,10 @@ const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 useEffect(()=>{
   setDisplayError(false)
-}, [])
+}, [title, imgUrl, desc])
 useEffect(()=>{
   setDisplaySaving(false)
-}, [])
+}, [title, imgUrl, desc])
 const [nodeImg, setNodeImg] = useState('');
 const [nodeText, setNodeText] = useState('');
 useEffect(()=>{
@@ -299,7 +299,7 @@ const imgTest = async (img) => {
 </div>
 }
 <button
-  className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md"
+  className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md focus:outline-none"
   onClick={async () => {
     imgTest(imgUrl).then(result => {
     if (!result) setImgUrl('');
