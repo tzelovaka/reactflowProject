@@ -40,7 +40,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
         <button
           //onClick={handleToggleDropdown}
           onClick={()=>emojiWindow()}
-          className="px-6 py-2 text-sm font-medium text-white rounded-full bg-yellow-300 mr-2"
+          className="px-6 py-2 text-sm font-medium font-philosopher text-white rounded-full bg-yellow-300 mr-2"
         >
           {
             data.smile ? data.smile : 'Выберите эмоцию'

@@ -23,21 +23,21 @@ const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.22*window.screen.height;
 const proOptions = { hideAttribution: true };
-const initialNodes = [
+/*const initialNodes = [
   {
     id: '0',
     type: 'block',
     data: { label: '', img: '' },
     position: { x: 0, y: 50 },
   },
-];
+];*/
 
 let id = 1;
 const getId = () => `${id++}`;
-//const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 
 const AddNodeOnEdgeDrop = () => {
-  /*useEffect(() => {
+  useEffect(() => {
     fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
         method: 'GET',
     })
@@ -50,7 +50,7 @@ const AddNodeOnEdgeDrop = () => {
 .catch(error => {
 console.error('Error:', error);
 });
-}, [tgid])*/
+}, [tgid])
   function checkImageExists(url) {
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -76,7 +76,7 @@ console.error('Error:', error);
  
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
