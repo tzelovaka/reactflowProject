@@ -34,9 +34,9 @@ const proOptions = { hideAttribution: true };
 
 let id = 1;
 const getId = () => `${id++}`;
-
+const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 const AddNodeOnEdgeDrop = () => {
-  const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+  
   function checkImageExists(url) {
     return new Promise((resolve, reject) => {
       const img = new Image();
