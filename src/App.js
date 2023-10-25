@@ -1,10 +1,11 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
-import { useSpring, animated, config } from "react-spring";
+import { useSpring, animated } from "react-spring";
 import emojis from './emojis'
+import Facts from './facts'
+import back from './img/back.png';
 import ReactFlow, {
   Panel,
   Controls,
-  MiniMap,
   Background,
   useNodesState,
   useEdgesState,
@@ -22,19 +23,31 @@ const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.22*window.screen.height;
 const proOptions = { hideAttribution: true };
-const initialNodes = [
+/*const initialNodes = [
   {
     id: '0',
     type: 'block',
-    data: { label: 'Node' },
+    data: { label: '', img: '' },
     position: { x: 0, y: 50 },
   },
-];
+];*/
 
 let id = 1;
 const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
+  function checkImageExists(url) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = function() {
+        resolve(true);
+      };
+      img.onerror = function() {
+        resolve(false);
+      };
+      img.src = url;
+    });
+  }
   const emojiWindowIsOpen = useEmoji(state => state.emojiWindowIsOpen)
   const switchEmoji = useEmoji(state => state.switchEmoji)
   const edgeId = useEmoji(state => state.edgeId)
@@ -43,9 +56,28 @@ const AddNodeOnEdgeDrop = () => {
   const nodeId = useText(state => state.nodeId)
   const nodePlaceholderLabel = useText(state => state.placeholderLabel)
   const nodePlaceholderImg = useText(state => state.placeholderImg)
+  const [simulateNodeId, setSimulateNodeId] = useState('0') 
+  const [simulatedHistory, setSimulatedHistory] = useState(['0']);
+  /*useEffect(()=>{
+    let s = false
+    let i;
+    simulatedHistory.forEach(nodeId => {
+    if (nodeId === simulateNodeId) {
+      s = true
+      i = simulatedHistory.indexOf(nodeId)
+    }
+   })
+    if (!s) {
+      setSimulatedHistory(simulatedHistory.concat(simulateNodeId))
+    } else {
+      setSimulatedHistory(simulatedHistory.splice(i))
+    }
+    console.log(simulatedHistory);
+  }, [simulateNodeId])*/
+ 
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
@@ -112,7 +144,7 @@ useEffect(() => {
       })
   .then(response => response.json())
   .then (response => {
-    setScheme(response.message)
+    setScheme(response.message[0])
     setNodes(response.message[1])
     if (response.message[2].length>0) setEdges(response.message[2])
       })
@@ -125,11 +157,23 @@ const fitViewOptions = {
   padding: 3,
 };
 
+const imgTest = async () => {
+  const imageUrl = nodeImg;
+  return checkImageExists(imageUrl)
+  .then(exists => {
+    if (exists) {
+      return true
+    } else {
+      return false
+    }
+  });
+}
+
   const onConnectStart = useCallback((_, { nodeId }) => {
     connectingNodeId.current = nodeId;
   }, []);
 
-  const onConnectEnd = useCallback(
+  /*const onConnectEnd = useCallback(
     (event) => {
       let targetIsPane
       if (event.type === "touchend") {
@@ -143,13 +187,40 @@ const fitViewOptions = {
           id: id,
           type: 'block',
           position: project({ x: left-75, y: top+100 }),
-          data: { label: `Node ${id}`, img: '' },
+          data: { label: '', img: '' },
         };
         setNodes((nds) => nds.concat(newNode));
         setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: {smile: '', label: ''} }));
       }
     },
     [project]
+  );*/
+
+  const onConnectEnd = useCallback(
+    (event) => {
+      let targetIsPane = false;
+      if (event.type === "touchend") {
+        targetIsPane = event.changedTouches[0];
+      } else if (event.type === "mouseup") {
+        targetIsPane = true;
+      }
+      if (targetIsPane) {
+        const id = getId();
+        const left = event.type === "touchend" ? event.changedTouches[0].clientX : event.clientX;
+        const top = event.type === "touchend" ? event.changedTouches[0].clientY : event.clientY;
+        const newNode = {
+          id: id,
+          type: 'block',
+          position: project({ x: left - 75, y: top + 100 }),
+          data: { label: '', img: '' },
+        };
+        setNodes((nds) => nds.concat(newNode));
+        setEdges((eds) =>
+          eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: { smile: '', label: '' } })
+        );
+      }
+    },
+    [project, setNodes, setEdges]
   );
 
   const onChange = useCallback(async (evt) => {
@@ -191,23 +262,34 @@ const fitViewOptions = {
       </div>
       <div className="container mx-auto px-4">
   <form className="max-w-screen-lg">
+  <h2 className='mx-3 text-3xl font-philosopher'>История</h2>
+  <hr/>
     <div className="mb-4">
-      <label id='label' className='text-lg mx-3 mt-4 font-philosopher'>
+      <label id='label' htmlFor="input1" className='text-lg mx-3 mt-4 font-philosopher'>
         Название
       </label>
-      <input className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setTitle(e.target.value)} id="input1" type="text" placeholder="Название"/>
+      <div className='font-philosopher text-xs mt-2'>
+        {title === undefined || title === null ? '0 / 100' : (title.length + ' / 100')}
+      </div>
+      <input maxLength="100" className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md" value={title || ''} onChange={e => setTitle(e.target.value)} id="input1" type="text" placeholder="Название"/>
     </div>
     <div className="mb-4">
-      <label id='label' className='text-lg mx-3 mt-4 font-philosopher'>
+      <label id='label' htmlFor="input2" className='text-lg mx-3 mt-4 font-philosopher'>
         URL картинки
       </label>
-      <input className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
+      <div className='font-philosopher text-xs mt-2'>
+        {imgUrl === undefined || imgUrl === null ? '0 / 2083' : (imgUrl.length + ' / 2083')}
+      </div>
+      <input maxLength="2083" className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md" value={imgUrl || ''} onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
     </div>
     <div className="mb-4">
-      <label id='label' className='text-lg mx-3 mt-4 font-philosopher'>
+      <label id='label' htmlFor="textarea1" className='text-lg mx-3 mt-4 font-philosopher'>
         Описание
       </label>
-      <textarea className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2" rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Описание"></textarea>
+      <div className='font-philosopher text-xs mt-2'>
+        {desc === undefined || desc === null ? '0 / 4000' : (desc.length + ' / 4000')}
+      </div>
+      <textarea maxLength="4000" className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md" value={desc || ''} rows={4} onChange={e => setDesc(e.target.value)} id="textarea1" placeholder="Описание"></textarea>
     </div>
   </form>
       <div className='mt-4 grid grid-cols-2 justify-items-center'>
@@ -215,6 +297,60 @@ const fitViewOptions = {
         <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Опубликовать</button>
       </div>
 </div>
+<div className='container mx-auto font-philosopher w-100 mt-28 px-4'>
+  <div className='max-w-screen-lg'>
+    <h2 className='mx-3 text-3xl'>Симуляция</h2>
+  <hr/>
+  <div>
+  {
+  nodes.find(node => node.id === simulateNodeId).data.img ?
+  <div className='w-100 flex justify-center mt-3'>
+    <img className='w-64 rounded-xl' src={nodes.find(node => node.id === simulateNodeId).data.img} alt="Картинка" />
+  </div>
+  : null
+}
+<div className='mt-4 mx-3 font-philosopher w-100 px-3 py-2 border-2 rounded-full'>
+{
+  (nodes.find(node => node.id === simulateNodeId) === undefined || nodes.find(node => node.id === simulateNodeId).data.label === null ||  nodes.find(node => node.id === simulateNodeId).data.label.length < 1) ? <div className='w-100 text-center text-red-300'>Уупс... (здесь должен быть текст)</div> : (nodes.find(node => node.id === simulateNodeId).data.label.length > 35 ? (nodes.find(node => node.id === simulateNodeId).data.label.substring(0, 35) + '...') : nodes.find(node => node.id === simulateNodeId).data.label)
+  }
+</div>
+<div className='flex flex-wrap mt-2'>
+    {
+ edges.map (edge => {
+  if (edge.source === nodes.find(node => node.id === simulateNodeId).id){
+     return <div className='mx-3 border rounded-full px-4 py-1' key={edge.id} 
+     onClick={
+      e => {
+        setSimulateNodeId(edge.target)
+        setSimulatedHistory(simulatedHistory.concat(edge.target))
+        console.log(simulatedHistory);
+        }}>
+    {(edge.data.smile ? edge.data.smile : '👆') +  (edge.data.label > 35 ? ' ' + edge.data.label.substring(0, 8) + '...' : edge.data.label)}
+  </div> 
+  }
+ })
+ }
+</div>
+{
+  simulatedHistory.length >= 2 ? <div className='w-100 flex justify-end'>
+    <button disabled={simulatedHistory.length < 2} onClick={e => {
+      let x = simulatedHistory.length;
+      setSimulateNodeId(simulatedHistory[x - 2])
+      setSimulatedHistory(simulatedHistory.slice(0, -1))
+      console.log(simulatedHistory);
+    }}><img src={back} alt="img" className='w-6'/></button>
+  </div> : null
+}
+
+  </div>  
+  </div>
+  <div className='max-w-screen-lg mt-28 mb-28'>
+    <h2 className='mx-3 text-3xl'>Полезности</h2>
+  <hr/>
+  <Facts/> 
+  </div>
+</div>
+
     </animated.div>
 }
       {!cover && !emojiWindowIsOpen && !textWindowIsOpen &&
@@ -226,6 +362,7 @@ const fitViewOptions = {
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         //onConnect={onConnect}
+        deleteKeyCode = {[]}
         onConnectStart={onConnectStart}
         onConnectEnd={onConnectEnd}
         fitView
@@ -269,8 +406,8 @@ const fitViewOptions = {
               if (edge.id === edgeId) dg = edge})
             if (dg !== null && dg !== undefined){
              dg.data.smile = emoji
-            deleteElements({ edges: [{ id: dg.id}] })
-            setEdges((eds) => eds.concat( dg )); 
+            deleteElements({ edges: [{ id: dg.id }] })
+            //setEdges((eds) => eds.concat( dg )); 
             }
             setEmojiAnimate(false)
             setTimeout(()=>{
@@ -292,13 +429,29 @@ const fitViewOptions = {
       textWindowIsOpen &&
       <animated.div style={animatedText} className='w-screen grid grid-cols-1'>
         <div className='justify-self-end'><button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
-            let nd
-            nodes.forEach((node)=> {
-            if (node.id === nodeId) nd = node})
-            nd.data.img = nodeImg;
-            nd.data.label  = nodeText
-            deleteElements({ nodes: [{ id: nd.id}] })
-            setNodes((nds) => nds.concat( nd )); 
+            imgTest().then(result => {
+              let nd
+              nodes.forEach((node)=> {
+              if (node.id === nodeId) nd = node})
+              if (result) {nd.data.img = nodeImg}else{nd.data.img = ''; setNodeImg('')} 
+              nd.data.label  = nodeText
+              setNodes((nds) =>
+                  nds.map((node) => {
+                    if (node.id === nodeId) {
+                      node.data = {
+                        ...node.data,
+                        label: nd.data.label,
+                        img: nd.data.img
+                      };
+                    }
+            
+                    return node;
+                  })
+                );
+            //deleteElements({ nodes: [{ id: nd.id}] })
+            //console.log(nd);
+            //setNodes((nds) => nds.concat( nd ));
+          })
             setTextAnimate(false)
             setTimeout(()=>{
               switchText ({
@@ -312,20 +465,43 @@ const fitViewOptions = {
         <div className="container mx-auto px-4">
   <form className="max-w-screen-lg">
     <div className="mb-4">
-      <label id='label' className='text-lg mx-3 mt-4 font-philosopher'>
+      <label id='label' htmlFor='input3' className='text-lg mx-3 mt-4 font-philosopher'>
         URL картинки
       </label>
-      <input className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none"  value={nodeImg} onChange={e => setNodeImg(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
+    <div className='font-philosopher text-xs mt-2'>
+        {nodeImg === undefined || nodeText === null ? '0 / 2083' : (nodeImg.length + ' / 2083')}
+      </div>
+      <input maxLength="2083" className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md focus:outline-none"  value={nodeImg || ''} 
+            onChange={
+              e =>{
+                if (nodeImg.length <= 2083) 
+                {
+                  setNodeImg(e.target.value)
+                }
+                } 
+              } 
+              id="input3" type="text" placeholder="Адрес"/>
     </div>
     <div className="mb-4">
-      <label id='label' className='text-lg mx-3 mt-4 font-philosopher'>
+      <label id='label' htmlFor='textarea2' className='text-lg mx-3 mt-4 font-philosopher'>
         Текст
       </label>
-      <textarea className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md mt-2 focus:outline-none" rows={4}  value={nodeText} onChange={e => setNodeText(e.target.value)} id="textarea1" placeholder="Текст"></textarea>
+      <div className='font-philosopher text-xs mt-2'>
+      {nodeText === undefined || nodeText === null ? '0 / 4000' : (nodeText.length + ' / 4000')}
+      </div>
+      <textarea autoFocus maxLength="4000" className="w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md focus:outline-none" rows={15}  value={nodeText || ''}
+      onChange={e => {if (nodeText.length <= 4000) setNodeText(e.target.value)}} id="textarea2" placeholder="Текст"></textarea>
     </div>
   </form>
 </div>
         </div>
+        <div className='container mx-auto font-philosopher w-100 mt-20 px-4 mb-32'>
+  <div className='max-w-screen-lg'>
+    <h2 className='mx-3 text-3xl'>Полезности</h2>
+  <hr/>
+  <Facts/> 
+  </div>
+</div>
       </animated.div>
       
     }

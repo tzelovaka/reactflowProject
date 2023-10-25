@@ -1,15 +1,11 @@
 import React, { useState, useCallback } from 'react';
-import { Handle, Position, useReactFlow, useNodeId, useNodes, useEdges } from 'reactflow';
-import img from './img/img.png';
-//import styles from "./App.module.css";
+import { Handle, Position, useReactFlow, useNodeId } from 'reactflow';
 import { useText } from './store/storeNode';
 
 function Block({ data, isConnectable, id }) {
   const nodeId = useNodeId();
-  const nodes = useNodes();
-  const edges = useEdges();
   const switchText = useText(state => state.switchText)
-  const { deleteElements, getNodes, getEdges} = useReactFlow();
+  const { deleteElements, getEdges} = useReactFlow();
   const [isDeleted, setIsDeleted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -61,17 +57,29 @@ function Block({ data, isConnectable, id }) {
       placeholderImg: data.img
     })      
   }
+  //<button className="rounded my-2 w-8 h-8 bg-white text-sm justify-self-start"><img src={img} alt="img" className='w-full'/></button>
   return (
     <React.Fragment>
       <div className='inline-block'>
         <Handle 
+        style={{
+          borderTopLeftRadius: '20px',
+          borderTopRightRadius: '20px',
+          borderBottomLeftRadius: '50px',
+        borderBottomRightRadius: '50px',  
+      }}
           type="target" 
           position={Position.Top} 
           isConnectable={isConnectable} 
         />
-        <div className="border-2 px-4 pb-4 rounded-xl bg-white">
-          <div className="grid grid-cols-2 my-3">
-            <button className="rounded my-2 w-8 h-8 bg-white text-sm justify-self-start"><img src={img} alt="img" className='w-full'/></button>
+        <div className="border-2 px-4 pb-4 rounded-xl bg-white" 
+        style={{
+          backgroundImage: `linear-gradient(to top, rgba(255,255,255,1) 60%, rgba(255,255,255,0)), url(${data.img})`, 
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',}}>
+          <div className="grid grid-cols-1 my-3">
+            
             
             {isOpen &&
                 <div className='inline-blick text-center text-md h-12'>
@@ -85,9 +93,15 @@ function Block({ data, isConnectable, id }) {
             }
             { !isOpen && nodeId !== '0' && <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg justify-self-end flex items-center justify-center" onClick={() => setIsOpen(true)}>×</button>}
           </div>
-          <textarea className="resize-none border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={onChange} onClick={()=>textWindow()} value={data.label}></textarea>
+          <textarea id={id + 'mirageTextarea'} className="resize-none border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={onChange} onClick={()=>textWindow()} value={data.label}></textarea>
         </div>
         <Handle
+        style = {{
+          borderTopLeftRadius: '50px',
+          borderTopRightRadius: '50px',
+          borderBottomLeftRadius: '20px',
+        borderBottomRightRadius: '20px',  
+        }}
           type="source"
           position={Position.Bottom}
           id="a"

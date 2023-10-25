@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import  useReactFlow, { Handle, Position, useEdges } from 'reactflow';
+import  { useEdges } from 'reactflow';
 //import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 import { useEmoji } from './store/storeEmoji';
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
   const edges = useEdges();
-  const [label, setLabel] = useState('');
+  useEffect(()=>{
+    console.log(edges);
+  }, [edges])
+  const [label, setLabel] = useState(data.label);
   //const dispatch = useDispatch()
   //const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
   const switchEmoji = useEmoji(state => state.switchEmoji)
   const handleInputChange = (event) => {
-    setLabel(event.target.value);
-    const updatedEdges = edges.map((edge) => {
+    if (event.target.value.length <= 280){
+    const newValue = event.target.value
+    setLabel(newValue);
+    data.label = newValue;
+    }
+    /*const updatedEdges = edges.map((edge) => {
       if (edge.id === id) {
         return { ...edge, data: { ...edge.data, label: event.target.value } };
       }
       return edge;
-    });
+    });*/
   };
   const curveY = targetY - 100;
   const EmojiDropdown = () => {
@@ -68,11 +75,15 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
             <div className='grow h-14'>
             </div>
             <div className='grow-0 px-6'>
+            <div className='text-sm font-philosopher'>
+              {label.length + ' / 280'}
+            </div>
               <input
+            id={id + 'edgeInput'}
             type="text"
-            value={label}
+            value={label || ''}
             onChange={handleInputChange}
-            className='focus:outline-none border-2 border-sea rounded-full px-2 py-1 text-lg mr-8'
+            className='focus:outline-none border-2 border-sea rounded-full px-3 py-1 text-lg mr-8 text-center'
           />
             </div>
           <div className='grow h-14'>
