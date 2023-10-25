@@ -290,14 +290,18 @@ const imgTest = async (img) => {
           Некорректные значения
         </div>
 }
-      <button
-  className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md focus:outline-none"
+<button
+  className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md"
   onClick={async () => {
     const result = await imgTest(imgUrl);
-    if (result) {
-      await setImgUrl('');
+    if (!result) {
+      setImgUrl('');
     }
-    if (title.length>0 && desc.length>0) {await saveStory()}else{setDisplayError(true)}
+    if (title.length > 0 && desc.length > 0) {
+      saveStory();
+    } else {
+      setDisplayError(true);
+    }
   }}
 >
   Сохранить
