@@ -144,7 +144,7 @@ const animatedEmoji = useSpring({
   reverse: !emojiAnimate
 });
 const animatedText = useSpring({
-  from: {opacity: 0, transform: "translateY(-40rem)"},
+  from: {opacity: 0, transform: "translateY(40rem)"},
   to: {opacity: 1, transform: "translateY(0rem)"},
   reverse: !textAnimate
 });
@@ -291,18 +291,18 @@ const imgTest = async (img) => {
         </div>
 }
       <button
-  className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md"
+  className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md focus:outline-none"
   onClick={async () => {
     const result = await imgTest(imgUrl);
-    if (!result) {
-      setImgUrl('');
+    if (result) {
+      await setImgUrl('');
     }
-    if (title.length>0 && desc.length>0) {saveStory(result)}else{setDisplayError(true)}
+    if (title.length>0 && desc.length>0) {await saveStory()}else{setDisplayError(true)}
   }}
 >
   Сохранить
 </button>
-        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={console.log('Ok')}>Опубликовать</button>
+        <button className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={console.log('Ok')}>Опубликовать</button>
       </div>
 </div>
 <div className='container mx-auto font-philosopher w-100 mt-28 px-4'>
