@@ -7,7 +7,6 @@ const storylin = require('./models/link');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000
 const app = express();
-var path = require("path");
 
 app.use(express.json())
 //app.use(express.static(path.join(__dirname, '/build')));
@@ -49,6 +48,8 @@ app.get('/', async (request, response)=>{
       position: { x: 0, y: 50 },
     },
   ];
+
+app.listen(PORT, () => console.log(`Server started on ${PORT} port`))
 app.get('/api', async (request, response) => {
     const id = request.query.data;
     const st = await story.findOne({where:{
@@ -120,7 +121,7 @@ app.get('/api', async (request, response) => {
         return response.send({ message: [head, nodes, edges]})
     }
 })
-app.listen(PORT, () => console.log('Server started on ${PORT} port'))
+
 
 /*app.post('/api', (req, res) => {
     const message = req.body    

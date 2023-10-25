@@ -36,6 +36,7 @@ let id = 1;
 const getId = () => `${id++}`;
 
 const AddNodeOnEdgeDrop = () => {
+  const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
   function checkImageExists(url) {
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -58,22 +59,6 @@ const AddNodeOnEdgeDrop = () => {
   const nodePlaceholderImg = useText(state => state.placeholderImg)
   const [simulateNodeId, setSimulateNodeId] = useState('0') 
   const [simulatedHistory, setSimulatedHistory] = useState(['0']);
-  /*useEffect(()=>{
-    let s = false
-    let i;
-    simulatedHistory.forEach(nodeId => {
-    if (nodeId === simulateNodeId) {
-      s = true
-      i = simulatedHistory.indexOf(nodeId)
-    }
-   })
-    if (!s) {
-      setSimulatedHistory(simulatedHistory.concat(simulateNodeId))
-    } else {
-      setSimulatedHistory(simulatedHistory.splice(i))
-    }
-    console.log(simulatedHistory);
-  }, [simulateNodeId])*/
  
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
@@ -103,7 +88,7 @@ useEffect(()=>{
   setNodeText(nodePlaceholderLabel)
 }, [nodePlaceholderLabel])
 const [scheme, setScheme] = useState()
-const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+
 const controlsConfig = {
   showZoom: false,
   showFitView: false,
