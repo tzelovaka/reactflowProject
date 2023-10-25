@@ -131,7 +131,7 @@ useEffect(() => {
   .then (response => {
     setScheme(response.message[0])
     setNodes(response.message[1])
-    if (response.message[2].length>0) setEdges(response.message[2])
+    //if (response.message[2].length>0) setEdges(response.message[2])
       })
 .catch(error => {
   console.error('Error:', error);
