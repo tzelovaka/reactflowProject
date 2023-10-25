@@ -218,8 +218,7 @@ const imgTest = async (img) => {
     [project, setNodes, setEdges]
   );
 
-  const saveStory = useCallback(async (result) => {
-    console.log(imgUrl);
+  const saveStory = useCallback(async (evt) => {
     let url = `https://storinter.herokuapp.com/api/story/?title=${title}&imgUrl=${imgUrl}&desc=${desc}`
     await fetch(url, {
         method: 'POST',
@@ -292,13 +291,11 @@ const imgTest = async (img) => {
 }
 <button
   className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md"
-  onClick={async () => {
-    const result = await imgTest(imgUrl);
-    if (!result) {
-      setImgUrl('');
-    }
+  onClick={() => {
+    const result = imgTest(imgUrl);
+    if (!result) setImgUrl('');
     if (title.length > 0 && desc.length > 0) {
-      saveStory();
+      saveStory(imgUrl);
     } else {
       setDisplayError(true);
     }
