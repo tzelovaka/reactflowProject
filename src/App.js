@@ -294,7 +294,7 @@ const imgTest = async (img) => {
   onClick={async () => {
     imgTest(imgUrl).then(result => {
     if (!result) setImgUrl('');
-    if (title.length > 0 && desc.length > 0) {
+    if (title.length > 0 && desc.length > 0 && (imgUrl.length === 0 || (imgUrl.length>0 && result))) {
       saveStory();
     } else {
       setDisplayError(true);
