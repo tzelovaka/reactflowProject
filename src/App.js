@@ -512,7 +512,7 @@ const imgTest = async (img) => {
         </div>
         <div className='container mx-auto font-philosopher w-100 mt-20 px-4 mb-32'>
   <div className='max-w-screen-lg'>
-    <h2 className='mx-3 text-3xl'>Полезности</h2>
+    <h2 id='label' className='mx-3 text-3xl'>Полезности</h2>
   <hr/>
   <Facts/> 
   </div>

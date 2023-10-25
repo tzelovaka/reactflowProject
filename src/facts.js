@@ -22,7 +22,7 @@ function shuffle(array) {
   }
 return(
     <div className='w-100 mx-3'>
-    {facts[factIndex]}
+    <p id='label'>{facts[factIndex]}</p>
     <div className='w-100 flex justify-end'>
         {   
   shuffle(facts)
