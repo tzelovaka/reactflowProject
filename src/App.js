@@ -293,7 +293,9 @@ const imgTest = async (img) => {
   className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md"
   onClick={async () => {
     const result = await imgTest(imgUrl);
-    if (!result) setImgUrl('');
+    if (!result) {
+      await new Promise(resolve => setImgUrl('', resolve));
+    }
     if (title.length > 0 && desc.length > 0) {
       await saveStory(imgUrl);
     } else {
