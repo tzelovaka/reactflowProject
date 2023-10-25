@@ -291,11 +291,11 @@ const imgTest = async (img) => {
 }
 <button
   className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md"
-  onClick={() => {
-    const result = imgTest(imgUrl);
+  onClick={async () => {
+    const result = await imgTest(imgUrl);
     if (!result) setImgUrl('');
     if (title.length > 0 && desc.length > 0) {
-      saveStory(imgUrl);
+      await saveStory(imgUrl);
     } else {
       setDisplayError(true);
     }
