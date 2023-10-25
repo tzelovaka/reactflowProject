@@ -219,8 +219,7 @@ const imgTest = async (img) => {
   );
 
   const saveStory = useCallback(async (result) => {
-    console.log(result);
-    if (!result) setImgUrl('')
+    console.log(imgUrl);
     let url = `https://storinter.herokuapp.com/api/story/?title=${title}&imgUrl=${imgUrl}&desc=${desc}`
     await fetch(url, {
         method: 'POST',
@@ -235,7 +234,7 @@ const imgTest = async (img) => {
         .catch(error => {
           console.error('Error:', error);
         });
-  }, [title, desc]);
+  }, [title, imgUrl, desc]);
 
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
