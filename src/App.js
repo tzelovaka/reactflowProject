@@ -235,7 +235,7 @@ const imgTest = async (img) => {
         .catch(error => {
           console.error('Error:', error);
         });
-  }, [title, imgUrl, desc]);
+  }, [title, desc]);
 
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
