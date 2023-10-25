@@ -105,10 +105,10 @@ const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 useEffect(()=>{
   setDisplayError(false)
-}, [title, imgUrl, desc])
+}, [title, imgUrl, desc, nodes])
 useEffect(()=>{
   setDisplaySaving(false)
-}, [title, imgUrl, desc])
+}, [title, imgUrl, desc, nodes])
 const [nodeImg, setNodeImg] = useState('');
 const [nodeText, setNodeText] = useState('');
 useEffect(()=>{
@@ -223,8 +223,31 @@ const imgTest = async (img) => {
   );
 
   const saveStory = useCallback(async (evt) => {
-    let url = `https://storinter.herokuapp.com/api/story/?title=${title}&imgUrl=${imgUrl}&desc=${desc}`
-    await fetch(url, {
+    let head = {
+      title: title,
+      imgUrl: imgUrl,
+      desc: desc,
+      authId: tgid
+    }
+    let data = [head, nodes, edges]
+    let url = 'https://storinter.herokuapp.com/api/story' //?title=${title}&imgUrl=${imgUrl}&desc=${desc}
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response from the server
+        console.log(data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error('Error:', error);
+      });
+    /*await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -236,7 +259,7 @@ const imgTest = async (img) => {
         })
         .catch(error => {
           console.error('Error:', error);
-        });
+        });*/
   }, [title, imgUrl, desc]);
 
   return (

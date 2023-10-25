@@ -28,10 +28,12 @@ try{
     console.log(e)
 }
 app.post('/api/story', async (req, res) => {
-    const title = req.query.title;
+    /*const title = req.query.title;
     const img = req.query.imgUrl;
-    const desc = req.query.desc;
-    await story.create({ img: `${img}`, title: `${title}`, desc: `${desc}`, authId: 123114565}); 
+    const desc = req.query.desc;*/
+    const data = req.body;
+    console.log(data);
+    //await story.create({ img: `${img}`, title: `${title}`, desc: `${desc}`, authId: 123114565}); 
     res.send('Success');
   });
 
