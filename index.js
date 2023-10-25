@@ -31,9 +31,8 @@ app.post('/api/story', async (req, res) => {
     /*const title = req.query.title;
     const img = req.query.imgUrl;
     const desc = req.query.desc;*/
-    const data = req.body;
-    console.log(data);
-    //await story.create({ img: `${img}`, title: `${title}`, desc: `${desc}`, authId: 123114565}); 
+    const head = req.body.head;
+    await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`}); 
     res.send('Success');
   });
 
