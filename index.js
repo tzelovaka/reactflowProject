@@ -57,13 +57,7 @@ app.get('/api', async (request, response) => {
         release: false
     }});
     if (st===null){
-        const s = await story.create({title: null, desc: null, authId: `${id}`});
-        let head = {
-            title: s.title,
-            img: s.img,
-            desc: s.desc,
-        }
-        return response.send({ message: [head, initialNodes]})
+        return response.send({ message: [{title: '', imgUrl: '', desc: ''}, initialNodes, []]})
     }else{
         let head = {
             title: st.title,

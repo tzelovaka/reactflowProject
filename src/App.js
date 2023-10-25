@@ -43,9 +43,11 @@ const AddNodeOnEdgeDrop = () => {
     })
 .then(response => response.json())
 .then (response => {
-  setScheme(response.message[0])
+  if (response.length){
+  setHead(response.message[0])
   setNodes(response.message[1])
-  //if (response.message[2].length>0) setEdges(response.message[2])
+  setEdges(response.message[2])
+  }
     })
 .catch(error => {
 console.error('Error:', error);
@@ -76,10 +78,17 @@ console.error('Error:', error);
  
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
+  const [head, setHead] = useState({})
+  useEffect (()=>{
+    setTitle(head.title);
+    setImgUrl(head.imgUrl);
+    setDesc(head.desc);
+  }, [head])
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
+const [displayError, setDisplayError] = useState(false)
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
 const [emojiAnimate, setEmojiAnimate] = useState(true);
@@ -93,6 +102,9 @@ useEffect(() => {
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
+useEffect(()=>{
+  setDisplayError(false)
+}, [desc, title])
 const [nodeImg, setNodeImg] = useState('');
 const [nodeText, setNodeText] = useState('');
 useEffect(()=>{
@@ -101,7 +113,7 @@ useEffect(()=>{
 useEffect(()=>{
   setNodeText(nodePlaceholderLabel)
 }, [nodePlaceholderLabel])
-const [scheme, setScheme] = useState()
+
 
 const controlsConfig = {
   showZoom: false,
@@ -207,13 +219,16 @@ const imgTest = async () => {
     [project, setNodes, setEdges]
   );
 
-  const onChange = useCallback(async (evt) => {
+  const saveStory = useCallback(async (evt) => {
     /*const data = {
       title: title,
       imgUrl: imgUrl,
       desc: desc
     };*/
-    await fetch(`https://storinter.herokuapp.com/api/story/?title=${title}&imgUrl=${imgUrl}&desc=${desc}`, {
+    let url
+    imgUrl.length > 0 ? url = `https://storinter.herokuapp.com/api/story/?title=${title}&imgUrl=${imgUrl}&desc=${desc}` : 
+    url = `https://storinter.herokuapp.com/api/story/?title=${title}&desc=${desc}`
+    await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -228,7 +243,6 @@ const imgTest = async () => {
         });
   }, [title, imgUrl, desc]);
 
-  
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       { cover &&
@@ -264,7 +278,8 @@ const imgTest = async () => {
       <div className='font-philosopher text-xs mt-2'>
         {imgUrl === undefined || imgUrl === null ? '0 / 2083' : (imgUrl.length + ' / 2083')}
       </div>
-      <input maxLength="2083" className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md" value={imgUrl || ''} onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
+      <input maxLength="2083" className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md" value={imgUrl || ''} 
+      onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
     </div>
     <div className="mb-4">
       <label id='label' htmlFor="textarea1" className='text-lg mx-3 mt-4 font-philosopher'>
@@ -277,8 +292,24 @@ const imgTest = async () => {
     </div>
   </form>
       <div className='mt-4 grid grid-cols-2 justify-items-center'>
-        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Сохранить</button>
-        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={onChange}>Опубликовать</button>
+        {displayError &&
+          <div className='col-span-2 font-philosopher text-retro text-lg'>
+          Некорректные значения
+        </div>
+}
+      <button
+  className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md"
+  onClick={async () => {
+    const result = await imgTest();
+    if (!result) {
+      setImgUrl('');
+    }
+    if (title.length>0 && desc.length>0) {saveStory()}else{setDisplayError(true)}
+  }}
+>
+  Сохранить
+</button>
+        <button className='bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={console.log('Ok')}>Опубликовать</button>
       </div>
 </div>
 <div className='container mx-auto font-philosopher w-100 mt-28 px-4'>
