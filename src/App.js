@@ -89,6 +89,7 @@ console.error('Error:', error);
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [displayError, setDisplayError] = useState(false)
+const [displaySaving, setDisplaySaving] = useState(false)
 const [cover, setCover] = useState(true);
 const [coverAnimate, setCoverAnimate] = useState(true);
 const [emojiAnimate, setEmojiAnimate] = useState(true);
@@ -104,7 +105,10 @@ const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 useEffect(()=>{
   setDisplayError(false)
-}, [desc, title])
+}, [])
+useEffect(()=>{
+  setDisplaySaving(false)
+}, [])
 const [nodeImg, setNodeImg] = useState('');
 const [nodeText, setNodeText] = useState('');
 useEffect(()=>{
@@ -284,20 +288,28 @@ const imgTest = async (img) => {
     </div>
   </form>
       <div className='mt-4 grid grid-cols-2 justify-items-center'>
-        {displayError &&
+        {!displaySaving && displayError &&
           <div className='col-span-2 font-philosopher text-retro text-lg'>
           Некорректные значения
         </div>
+}
+{displaySaving && !displayError &&
+  <div className='col-span-2 font-philosopher text-sea text-lg'>
+  История на сохранении...
+</div>
 }
 <button
   className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md"
   onClick={async () => {
     imgTest(imgUrl).then(result => {
     if (!result) setImgUrl('');
-    if (title.length > 0 && desc.length > 0 && (imgUrl.length === 0 || (imgUrl.length>0 && result))) {
-      saveStory();
-    } else {
+    if(title.length === 0 || desc.length === 0 || (imgUrl.length>0 && !result)){
       setDisplayError(true);
+    }else{
+      if (title.length > 0 && desc.length > 0 && (imgUrl.length === 0 || (imgUrl.length>0 && result))) {
+        setDisplaySaving(true);
+        saveStory();
+      } 
     }
   })
   }}
