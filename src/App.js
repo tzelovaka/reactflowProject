@@ -360,7 +360,7 @@ const imgTest = async (img) => {
   </div>  
   </div>
   <div className='max-w-screen-lg mt-28 mb-28'>
-    <h2 className='mx-3 text-3xl'>Полезности</h2>
+    <h2 id='label' className='mx-3 text-3xl'>Полезности</h2>
   <hr/>
   <Facts/> 
   </div>
