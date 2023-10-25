@@ -153,9 +153,8 @@ const fitViewOptions = {
   padding: 3,
 };
 
-const imgTest = async () => {
-  const imageUrl = nodeImg;
-  return checkImageExists(imageUrl)
+const imgTest = async (img) => {
+  return checkImageExists(img)
   .then(exists => {
     if (exists) {
       return true
@@ -300,7 +299,7 @@ const imgTest = async () => {
       <button
   className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md"
   onClick={async () => {
-    const result = await imgTest();
+    const result = await imgTest(imgUrl);
     if (!result) {
       setImgUrl('');
     }
@@ -444,7 +443,7 @@ const imgTest = async () => {
       textWindowIsOpen &&
       <animated.div style={animatedText} className='w-screen grid grid-cols-1'>
         <div className='justify-self-end'><button className="rounded-xl px-4 h-8 my-2 bg-retro text-white mr-2 text-xl" onClick={e => {
-            imgTest().then(result => {
+            imgTest(nodeImg).then(result => {
               let nd
               nodes.forEach((node)=> {
               if (node.id === nodeId) nd = node})
