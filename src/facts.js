@@ -27,7 +27,7 @@ return(
         {   
   shuffle(facts)
         }
-      <button onClick={e => {
+      <button className="focus:outline-none" onClick={e => {
         if (facts.indexOf(facts[factIndex]) === (facts.length - 1)){
             setFactIndex(0)
         }else {

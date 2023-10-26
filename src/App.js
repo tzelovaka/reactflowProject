@@ -102,6 +102,7 @@ useEffect(() => {
 }, [textWindowIsOpen])
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
+const [verificatedImgUrl, setVerificatedImgUrl] = useState('')
 const [desc, setDesc] = useState('');
 useEffect(()=>{
   setDisplayError(false)
@@ -225,7 +226,7 @@ const imgTest = async (img) => {
   const saveStory = useCallback(async (evt) => {
     let head = {
       title: title,
-      imgUrl: imgUrl,
+      imgUrl: verificatedImgUrl,
       desc: desc,
       authId: tgid
     }
@@ -298,7 +299,12 @@ const imgTest = async (img) => {
         <p id='label'>{imgUrl === undefined || imgUrl === null ? '0 / 2083' : (imgUrl.length + ' / 2083')}</p>
       </div>
       <input maxLength="2083" className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md" value={imgUrl || ''} 
-      onChange={e => setImgUrl(e.target.value)} id="input2" type="text" placeholder="Адрес"/>
+      onChange={
+        e => {
+          setImgUrl(e.target.value)
+          imgTest(imgUrl).then(result => {if (result) {setVerificatedImgUrl(imgUrl)}else{setVerificatedImgUrl('')}})
+          }
+          } id="input2" type="text" placeholder="Адрес"/>
     </div>
     <div className="mb-4">
       <label id='label' htmlFor="textarea1" className='text-lg mx-3 mt-4 font-philosopher'>
@@ -323,19 +329,17 @@ const imgTest = async (img) => {
 }
 <button
   className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md focus:outline-none"
-  onClick={async () => {
-    imgTest(imgUrl).then(result => {
-    if (!result) setImgUrl('');
-    if(title.length === 0 || desc.length === 0 || (imgUrl.length>0 && !result)){
+  onClick={e => {
+    if(title.length <1 || desc.length <1){
       setDisplayError(true);
     }else{
-      if (title.length > 0 && desc.length > 0 && (imgUrl.length === 0 || (imgUrl.length>0 && result))) {
+      if (title.length > 0 && desc.length > 0 && (imgUrl.length === 0)) {
         setDisplaySaving(true);
         saveStory();
       } 
     }
-  })
-  }}
+    }
+    }
 >
   Сохранить
 </button>
