@@ -228,7 +228,7 @@ const imgTest = async (img) => {
       title: title,
       imgUrl: verificatedImgUrl,
       desc: desc,
-      //authId: tgid
+      authId: tgid
     }
     let data = [head, nodes, edges]
     let url = 'https://storinter.herokuapp.com/api/story' //?title=${title}&imgUrl=${imgUrl}&desc=${desc}
@@ -340,7 +340,7 @@ const imgTest = async (img) => {
           setImgUrl('')
         }
         setDisplaySaving(true);
-        //saveStory();
+        saveStory();
     }
     }
     }
