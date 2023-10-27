@@ -330,7 +330,7 @@ const imgTest = async (img) => {
 <button
   className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md focus:outline-none"
   onClick={e => {
-    if(title.length <1 || desc.length <1){
+    if(title.length < 1 || desc.length <1 || title === undefined || title === null || desc === undefined || desc === null){
       setDisplayError(true);
     }else{
       if (title.length > 0 && desc.length > 0 && (imgUrl.length === 0)) {
