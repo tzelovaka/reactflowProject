@@ -237,7 +237,11 @@ const imgTest = async (img) => {
         setImgUrl('')
       }
  
-    let data = [head, nodes, edges]
+    let data = {
+      head: head, 
+      nodes: nodes, 
+      edges: edges
+    }
     let url = 'https://storinter.herokuapp.com/api/story' //?title=${title}&imgUrl=${imgUrl}&desc=${desc}
     fetch(url, {
       method: 'POST',
