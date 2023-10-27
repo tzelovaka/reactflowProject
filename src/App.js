@@ -235,8 +235,7 @@ const imgTest = async (img) => {
       if (result) {
         head.imgUrl = imgUrl
       }
-    console.log(head);
-  })
+ 
     let data = [head, nodes, edges]
     let url = 'https://storinter.herokuapp.com/api/story' //?title=${title}&imgUrl=${imgUrl}&desc=${desc}
     fetch(url, {
@@ -255,6 +254,7 @@ const imgTest = async (img) => {
         // Handle any errors that occur during the request
         console.error('Error:', error);
       });
+    })
     /*await fetch(url, {
         method: 'POST',
         headers: {
