@@ -317,12 +317,15 @@ const imgTest = async (img) => {
           setImgUrl(e.target.value)
           }
           }
-          onBlur={
+          onBlur={e => {
+            e.stopPropagation();
             imgTest(imgUrl).then(result => {
               if (!result) {
                 setImgUrl('')
               }
             })
+          }
+            
           } id="input2" type="text" placeholder="Адрес"/>
       </div>
     </div>
