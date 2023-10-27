@@ -30,31 +30,19 @@ try{
 app.post('/api/story', async (req, res) => {
     const s = await story.create({ img: `${req.body.head.imgUrl}`, title: `${req.body.head.title}`, desc: `${req.body.head.desc}`, authId: `${req.body.head.authId}`});
     for (const node of req.body.nodes) {
-        const row = await storybl.findOne({
+        storybl.upsert({
+            img: node.data.img,
+            text: node.data.text,
+            positionX: node.position.x,
+            positionY: node.position.y,
+          }, {
             where: {
                 fId: node.id,
                 storyId: s.id,
-                authId: req.body.head.authId
-            }
-        });
-        if (row === null) {
-            await storybl.create({
-                fId: node.id,
-                img: node.data.img,
-                text: node.data.label,
-                positionX: node.position.x,
-                positionY: node.position.y,
-                storyId: s.id,
-                authId: req.body.head.authId
-            });
-        } else {
-            await row.update({
-                img: node.data.img,
-                text: node.data.label,
-                positionX: node.position.x,
-                positionY: node.position.y
-            });
-        }
+                authId: req.body.head.authId,
+            },
+            upsert: true
+          });
     }
     await req.body.edges.forEach((edge) => {
         storylin.create({
