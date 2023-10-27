@@ -32,36 +32,32 @@ app.post('/api/story', async (req, res) => {
     const nodes = req.body.nodes;
     const edges = req.body.edges;
     const s = await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
-    await Promise.all(nodes.map(async (node) => {
-        const row = await storybl.findOne({
-          where: {
+    await nodes.forEach((node) => {
+        const row = storybl.findOne({where :{
             fId: node.id,
             storyId: s.id,
             authId: head.authId
-          }
-        });
-      
-        console.log(row);
-      
-        if (!row) {
-          await storybl.create({
-            fId: node.id,
-            img: node.data.img,
-            text: node.data.label,
-            positionX: node.position.x,
-            positionY: node.position.y,
-            storyId: s.id,
-            authId: head.authId
-          });
-        } else {
-          await row.update({
-            img: node.data.img,
-            text: node.data.label,
-            positionX: node.position.x,
-            positionY: node.position.y,
-          });
         }
-      }));
+        })
+        if (row) {
+                row.img=node.data.img;
+                row.text=node.data.label;
+                row.positionX=node.position.x;
+                row.positionY=node.position.y
+                row.save()
+        }else{
+            storybl.create({
+            fId: node.id,
+            img: node.data.img,
+            text: node.data.label,
+            positionX: node.position.x,
+            positionY: node.position.y,
+            storyId: s.id,
+            authId: head.authId
+        })     
+        }
+        
+    })
     await edges.forEach((edge) => {
         storylin.create({
             fId: edge.id,
