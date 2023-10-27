@@ -30,7 +30,6 @@ try{
 app.post('/api/story', async (req, res) => {
     const head = req.body.head;
     const nodes = req.body.nodes;
-    console.log(req.body);
     const edges = req.body.edges;
     const s = await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
     await nodes.forEach((node) => {
@@ -40,6 +39,17 @@ app.post('/api/story', async (req, res) => {
             text: node.data.label,
             positionX: node.position.x,
             positionY: node.position.y,
+            storyId: s.id,
+            authId: head.authId
+        })
+    })
+    await edges.forEach((edge) => {
+        storylin.create({
+            fId: edge.id,
+            smile: edge.data.smile,
+            text: edge.data.label,
+            source: edge.source,
+            target: edge.target,
             storyId: s.id,
             authId: head.authId
         })
