@@ -31,7 +31,6 @@ app.post('/api/story', async (req, res) => {
     const head = req.body.head;
     const nodes = req.body.nodes;
     const edges = req.body.edges;
-
     const s = await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
     for (const node of nodes) {
         const row = await storybl.findOne({
@@ -42,22 +41,16 @@ app.post('/api/story', async (req, res) => {
             }
         });
 
-        if (row !== null) {
-            await storybl.update({
+        if (row != null) {
+                await row.update({
                 img: node.data.img,
                 text: node.data.label,
                 positionX: node.position.x,
                 positionY: node.position.y
-            }, {
-                where: {
-                    fId: node.id,
-                    storyId: s.id,
-                    authId: head.authId
-                }
             });
 
         } else {
-            await storybl.create({
+                await storybl.create({
                 fId: node.id,
                 img: node.data.img,
                 text: node.data.label,
