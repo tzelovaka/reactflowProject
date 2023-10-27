@@ -32,7 +32,7 @@ app.post('/api/story', async (req, res) => {
     const nodes = req.body.nodes;
     const edges = req.body.edges;
     const s = await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
-    await Promise.all(nodes.map(async (node) => {
+    for (const node of nodes) {
         const row = await storybl.findOne({
             where: {
                 fId: node.id,
@@ -65,7 +65,7 @@ app.post('/api/story', async (req, res) => {
                 authId: head.authId
             });
         }
-    }));
+    }
     await edges.forEach((edge) => {
         storylin.create({
             fId: edge.id,
