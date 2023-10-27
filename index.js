@@ -28,11 +28,21 @@ try{
     console.log(e)
 }
 app.post('/api/story', async (req, res) => {
-    /*const title = req.query.title;
-    const img = req.query.imgUrl;
-    const desc = req.query.desc;*/
     const head = req.body[0];
-    await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`}); 
+    const nodes = req.body[1]
+    const edges = req.body[2];
+    const story = await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
+    await nodes.forEach(node => {
+        storybl.create({
+            fId: node.id,
+            img: node.data.img,
+            text: node.data.label,
+            positionX: node.position.x,
+            positionY: node.position.y,
+            storyId: story.id,
+            authId: head.authId
+        })
+    })
     res.send('Success');
   });
 
