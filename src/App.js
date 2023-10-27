@@ -233,6 +233,8 @@ const imgTest = async (img) => {
       console.log(result);
       if (result) {
         head.imgUrl = imgUrl
+      }else{
+        setImgUrl('')
       }
  
     let data = [head, nodes, edges]
