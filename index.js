@@ -37,17 +37,8 @@ app.post('/api/story', async (req, res) => {
                 authId: req.body.head.authId
             }
         });
-
-        if (row != null) {
-                await row.update({
-                img: node.data.img,
-                text: node.data.label,
-                positionX: node.position.x,
-                positionY: node.position.y
-            });
-
-        } else {
-                await storybl.create({
+        if (row === null) {
+            await storybl.create({
                 fId: node.id,
                 img: node.data.img,
                 text: node.data.label,
@@ -55,6 +46,13 @@ app.post('/api/story', async (req, res) => {
                 positionY: node.position.y,
                 storyId: s.id,
                 authId: req.body.head.authId
+            });
+        } else {
+            await row.update({
+                img: node.data.img,
+                text: node.data.label,
+                positionX: node.position.x,
+                positionY: node.position.y
             });
         }
     }
