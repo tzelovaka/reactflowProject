@@ -50,15 +50,15 @@ app.post('/api/story', async (req, res) => {
             authId: head.authId
         })
         }else{
-            row.set(
+            row.update(
                 {
                     img: node.data.img,
                     text: node.data.label,
                     positionX: node.position.x,
                     positionY: node.position.y,
                 },
-            row.save
                 );
+                
         }
         
     })
