@@ -28,16 +28,13 @@ try{
     console.log(e)
 }
 app.post('/api/story', async (req, res) => {
-    const head = req.body.head;
-    const nodes = req.body.nodes;
-    const edges = req.body.edges;
-    const s = await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
-    for (const node of nodes) {
+    const s = await story.create({ img: `${req.body.head.imgUrl}`, title: `${req.body.head.title}`, desc: `${req.body.head.desc}`, authId: `${req.body.head.authId}`});
+    for (const node of req.body.nodes) {
         const row = await storybl.findOne({
             where: {
                 fId: node.id,
                 storyId: s.id,
-                authId: head.authId
+                authId: req.body.head.authId
             }
         });
 
@@ -57,11 +54,11 @@ app.post('/api/story', async (req, res) => {
                 positionX: node.position.x,
                 positionY: node.position.y,
                 storyId: s.id,
-                authId: head.authId
+                authId: req.body.head.authId
             });
         }
     }
-    await edges.forEach((edge) => {
+    await req.body.edges.forEach((edge) => {
         storylin.create({
             fId: edge.id,
             smile: edge.data.smile,
@@ -69,7 +66,7 @@ app.post('/api/story', async (req, res) => {
             source: edge.source,
             target: edge.target,
             storyId: s.id,
-            authId: head.authId
+            authId: req.body.head.authId
         })
     })
     res.send('Success');
