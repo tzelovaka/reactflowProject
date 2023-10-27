@@ -224,12 +224,19 @@ const imgTest = async (img) => {
   );
 
   const saveStory = useCallback(async (evt) => {
-    let head = {
-      title: title,
-      imgUrl: verificatedImgUrl,
-      desc: desc,
-      authId: tgid
-    }
+    imgTest(imgUrl).then(result => {
+        let head = {
+          title: title,
+          imgUrl: '',
+          desc: desc,
+          authId: tgid
+        }
+      console.log(result);
+      if (result) {
+        head.imgUrl = imgUrl
+      }
+    console.log(head);
+  })
     let data = [head, nodes, edges]
     let url = 'https://storinter.herokuapp.com/api/story' //?title=${title}&imgUrl=${imgUrl}&desc=${desc}
     fetch(url, {
@@ -291,20 +298,18 @@ const imgTest = async (img) => {
       </div>
       <input maxLength="100" className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md" value={title || ''} onChange={e => setTitle(e.target.value)} id="input1" type="text" placeholder="Название"/>
     </div>
-    <div className="mb-4 backdrop-blur-sm rounded-xl" style={verificatedImgUrl ? {backgroundImage: `url(${verificatedImgUrl})`} : null}>
-      <div className='rounded-xl' style={verificatedImgUrl ? {backgroundColor: 'rgba(0, 0, 0, 0.3)'} : null}>
-        <label id="label" htmlFor="input2" className='text-lg mx-3 mt-4 font-philosopher' style={verificatedImgUrl ? {color: 'white'} : null}>
+    <div className="mb-4 backdrop-blur-sm rounded-xl" style={imgUrl ? {backgroundImage: `url(${imgUrl})`} : null}>
+      <div className='rounded-xl' style={imgUrl ? {backgroundColor: 'rgba(0, 0, 0, 0.3)'} : null}>
+        <label id="label" htmlFor="input2" className='text-lg mx-3 mt-4 font-philosopher' style={imgUrl ? {color: 'white'} : null}>
         URL картинки
       </label>
       <div className='font-philosopher text-xs mt-2'>
-        <div id='label' className='mx-2' style={verificatedImgUrl ? {color: 'white'} : null}>{imgUrl === undefined || imgUrl === null ? '0 / 2083' : (imgUrl.length + ' / 2083')}</div>
+        <div id='label' className='mx-2' style={imgUrl ? {color: 'white'} : null}>{imgUrl === undefined || imgUrl === null ? '0 / 2083' : (imgUrl.length + ' / 2083')}</div>
       </div>
       <input maxLength="2083" className="focus:outline-none w-full font-philosopher border-2 rounded-xl bg-slate-300 px-2 py-1 text-md" value={imgUrl || ''} 
       onChange={
         e => {
-          console.log(e.target.value.length);
           setImgUrl(e.target.value)
-          imgTest(e.target.value).then(result => {if (result) {setVerificatedImgUrl(e.target.value)}else{setVerificatedImgUrl('')}})
           }
           } id="input2" type="text" placeholder="Адрес"/>
       </div>
