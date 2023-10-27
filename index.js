@@ -31,20 +31,29 @@ app.post('/api/story', async (req, res) => {
     const head = req.body.head;
     const nodes = req.body.nodes;
     const edges = req.body.edges;
-    const s = await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
+    const st = await story.findOne({where:{authId: `${head.authId}`, release: false}})
+    if (st){
+        st.img = `${head.imgUrl}`;
+        st.title= `${head.title}`;
+        st.desc= `${head.desc}`;
+        st.save()
+    }else{
+        await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
+    }
+    const s = await story.findOne({where:{authId: `${head.authId}`, release: false}})
     nodes.forEach(async (node) => {
-        const row = await storybl.findOne({where :{
-            fId: node.id,
-            storyId: s.id,
-            authId: head.authId
+        const imakillyou = await storybl.findOne({where :{
+            fId: `${node.id}`,
+            storyId: `${s.id}`,
+            authId: `${head.authId}`
         }
         })
-        if (row) {
-                row.img=node.data.img;
-                row.text=node.data.label;
-                row.positionX=node.position.x;
-                row.positionY=node.position.y
-                await row.save()
+        if (imakillyou) {
+            imakillyou.img=node.data.img;
+            imakillyou.text=node.data.label;
+            imakillyou.positionX=node.position.x;
+            imakillyou.positionY=node.position.y
+                await imakillyou.save()
         }else{
             await storybl.create({
             fId: node.id,
