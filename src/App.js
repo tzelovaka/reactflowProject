@@ -102,14 +102,13 @@ useEffect(() => {
 }, [textWindowIsOpen])
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
-const [verificatedImgUrl, setVerificatedImgUrl] = useState('')
 const [desc, setDesc] = useState('');
 useEffect(()=>{
   setDisplayError(false)
-}, [title, verificatedImgUrl, desc, nodes])
+}, [title, imgUrl, desc, nodes])
 useEffect(()=>{
   setDisplaySaving(false)
-}, [title, verificatedImgUrl, desc, nodes])
+}, [title, imgUrl, desc, nodes])
 const [nodeImg, setNodeImg] = useState('');
 const [nodeText, setNodeText] = useState('');
 useEffect(()=>{
@@ -341,7 +340,7 @@ const imgTest = async (img) => {
     if(title === undefined  || desc === undefined || title === null || desc === null || title.length < 1 || desc.length <1 ){
       setDisplayError(true);
     }else{
-        if (verificatedImgUrl === undefined || verificatedImgUrl === null || verificatedImgUrl.length<1) {
+        if (imgUrl === undefined ||imgUrl === null || imgUrl.length<1) {
           setImgUrl('')
         }
         setDisplaySaving(true);
