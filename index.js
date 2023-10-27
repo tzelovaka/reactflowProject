@@ -31,7 +31,7 @@ app.post('/api/story', async (req, res) => {
     const head = req.body[0];
     const nodes = req.body[1]
     const edges = req.body[2];
-    const story = await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
+    const s = await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
     await nodes.forEach(node => {
         storybl.create({
             fId: node.id,
@@ -39,7 +39,7 @@ app.post('/api/story', async (req, res) => {
             text: node.data.label,
             positionX: node.position.x,
             positionY: node.position.y,
-            storyId: story.id,
+            storyId: s.id,
             authId: head.authId
         })
     })
