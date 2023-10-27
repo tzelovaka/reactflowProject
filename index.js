@@ -40,11 +40,17 @@ app.post('/api/story', async (req, res) => {
         }
         })
         if (row) {
-                row.img=node.data.img;
-                row.text=node.data.label;
-                row.positionX=node.position.x;
-                row.positionY=node.position.y
-                row.save()
+            storybl.update({
+                img: node.data.img,
+                text: node.data.label,
+                positionX: node.position.x,
+                positionY: node.position.y
+            }, {where:{
+                fId: node.id,
+                storyId: s.id,
+                authId: head.authId
+            }})
+                
         }else{
             storybl.create({
             fId: node.id,
