@@ -30,7 +30,7 @@ try{
 app.post('/api/story', async (req, res) => {
     const head = req.body.head;
     const nodes = req.body.nodes;
-    console.log(req.body.nodes);
+    console.log(req.body);
     const edges = req.body.edges;
     const s = await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
     await nodes.forEach((node) => {

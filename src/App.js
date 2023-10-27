@@ -223,24 +223,25 @@ const imgTest = async (img) => {
   );
 
   const saveStory = useCallback(async (evt) => {
-    imgTest(imgUrl).then(result => {
-        let head = {
-          title: title,
-          imgUrl: '',
-          desc: desc,
-          authId: tgid
-        }
-      console.log(result);
+    let head = {
+      title: title,
+      imgUrl: imgUrl,
+      desc: desc,
+      authId: tgid
+    }
+    let data = {
+      head: head, 
+      nodes: nodes, 
+      edges: edges
+    }
+    /*imgTest(imgUrl).then(result => {
+
       if (result) {
         head.imgUrl = imgUrl
       }else{
         setImgUrl('')
       }
-    let data = {
-      head: head, 
-      nodes: getNodes(), 
-      edges: getEdges()
-    }
+    })*/
     let url = 'https://storinter.herokuapp.com/api/story' //?title=${title}&imgUrl=${imgUrl}&desc=${desc}
     fetch(url, {
       method: 'POST',
@@ -258,7 +259,7 @@ const imgTest = async (img) => {
         // Handle any errors that occur during the request
         console.error('Error:', error);
       });
-    })
+  
     /*await fetch(url, {
         method: 'POST',
         headers: {
@@ -315,6 +316,13 @@ const imgTest = async (img) => {
         e => {
           setImgUrl(e.target.value)
           }
+          }
+          onBlur={
+            imgTest(imgUrl).then(result => {
+              if (!result) {
+                setImgUrl('')
+              }
+            })
           } id="input2" type="text" placeholder="Адрес"/>
       </div>
     </div>
