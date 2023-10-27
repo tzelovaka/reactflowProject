@@ -86,7 +86,7 @@ console.error('Error:', error);
   }, [head])
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const { project, deleteElements } = useReactFlow();
+  const { project, deleteElements, getEdges,getNodes } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [displayError, setDisplayError] = useState(false)
 const [displaySaving, setDisplaySaving] = useState(false)
@@ -236,11 +236,10 @@ const imgTest = async (img) => {
       }else{
         setImgUrl('')
       }
- 
     let data = {
       head: head, 
-      nodes: nodes, 
-      edges: edges
+      nodes: getNodes(), 
+      edges: getEdges()
     }
     let url = 'https://storinter.herokuapp.com/api/story' //?title=${title}&imgUrl=${imgUrl}&desc=${desc}
     fetch(url, {
