@@ -57,6 +57,7 @@ app.post('/api/story', async (req, res) => {
                     positionX: node.position.x,
                     positionY: node.position.y,
                 },
+            row.save
                 );
         }
         
