@@ -41,6 +41,7 @@ app.post('/api/story', async (req, res) => {
         await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
     }
     const s = await story.findOne({where:{authId: `${head.authId}`, release: false}})
+    console.log(nodes);
     nodes.forEach(async (node) => {
         const imakillyou = await storybl.findOne({where :{
             fId: `${node.id}`,
