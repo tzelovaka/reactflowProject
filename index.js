@@ -116,7 +116,7 @@ app.get('/api', async (request, response) => {
         release: false
     }});
     if (st===null){
-        return response.send({ message: [{title: '', imgUrl: '', desc: ''}, initialNodes, []]})
+        return response.send({ message: {head: {title: '', imgUrl: '', desc: ''}, nodes: initialNodes, edges: []}})
     }else{
         let head = {
             title: st.title,
@@ -129,7 +129,7 @@ app.get('/api', async (request, response) => {
             storyId: st.id
         }})
         let nodes = []
-        if (blocks.length > 0){
+        if (blocks){
         let node
         blocks.forEach((block) => {
             node = {
@@ -155,7 +155,7 @@ app.get('/api', async (request, response) => {
             storyId: st.id
         }})
         let edges = []
-        if (links.length > 0){
+        if (links){
         let edge
         links.forEach((link) => {
             edge = {
@@ -171,7 +171,12 @@ app.get('/api', async (request, response) => {
             edges.push(edge)
         })
     }
-        return response.send({ message: [head, nodes, edges]})
+        return response.send({ message: {
+            head: head, 
+            nodes: nodes, 
+            edges: edges
+        }
+    })
     }
 })
 

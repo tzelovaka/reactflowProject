@@ -44,9 +44,11 @@ const AddNodeOnEdgeDrop = () => {
 .then(response => response.json())
 .then (response => {
   if (response.length){
-  //setHead(response.message[0])
-  setNodes(response.message[1])
-  setEdges(response.message[2])
+  setTitle(response.message.head.title)
+  setImgUrl(response.message.head.img)
+  setDesc(response.message.head.desc)
+  setNodes(response.message.nodes)
+  setEdges(response.message.edges)
   }
     })
 .catch(error => {
