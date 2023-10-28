@@ -44,7 +44,8 @@ const initialEdges = [
       source: '0', 
       type: 'CustomEdge', 
       target: '1', 
-      data: { smile: '', label: 'Введи' } 
+      data: { smile: '', label: 'Введи' },
+      zIndex: 0
   }
 ]
 
