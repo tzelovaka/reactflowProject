@@ -51,8 +51,8 @@ app.post('/api/story', async (req, res) => {
         if (bl) {
             bl.img=node.data.img;
             bl.text=node.data.label;
-            bl.positionX=node.position.x;
-            bl.positionY=node.position.y
+            bl.positionX=Math.round(node.position.x);
+            bl.positionY=Math.round(node.position.y)
             await bl.save()
         }else{
             await storybl.create({

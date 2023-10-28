@@ -244,7 +244,7 @@ const imgTest = async (img) => {
         const newNode = {
           id: id,
           type: 'block',
-          position: project({ x: left - 75, y: top + 100 }),
+          position: project({ x: Math.round(left - 75), y: Math.round(top + 100) }),
           data: { label: '', img: '' },
         };
         setNodes((nds) => nds.concat(newNode));
