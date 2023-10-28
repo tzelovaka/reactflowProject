@@ -119,7 +119,7 @@ const initialEdges = [
         source: '0', 
         type: 'CustomEdge', 
         target: '1', 
-        data: { smile: '', label: 'Введи' } 
+        data: { label: 'Введи', smile: '' } 
     }
 ]
 app.listen(PORT, () => console.log(`Server started on ${PORT} port`))

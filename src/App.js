@@ -47,7 +47,7 @@ const initialEdges = [
   }
 ]
 
-let id = 1;
+let id = 2;
 const getId = () => `${id++}`;
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 
@@ -62,8 +62,8 @@ const AddNodeOnEdgeDrop = () => {
   setTitle(response.message.head.title)
   setImgUrl(response.message.head.img)
   setDesc(response.message.head.desc)
-  setEdges(response.message.edges)
   setNodes(response.message.nodes)
+  setEdges(response.message.edges)
   }
     })
 .catch(error => {
