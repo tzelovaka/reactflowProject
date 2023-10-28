@@ -110,7 +110,7 @@ app.get('/', async (request, response)=>{
         id: '1',
         type: 'block',
         data: { label: 'Поменяй', img: '' },
-        position: { x: 0, y: -150 },
+        position: { x: 100, y: 150 },
     },
   ];
 const initialEdges = [
@@ -177,7 +177,7 @@ app.get('/api', async (request, response) => {
                     label: link.text,
                     smile: link.smile
                     },
-                sorce: link.source,
+                source: link.source,
                 target: link.target
             }
             edges.push(edge)
