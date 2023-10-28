@@ -60,8 +60,9 @@ const AddNodeOnEdgeDrop = () => {
 .then(response => response.json())
 .then (response => {
   if (response){
-  setNodes(() => response.message.nodes)
-  setEdges(() => response.message.edges)
+  setNodes(response.message.nodes).then(
+  setEdges(response.message.edges)
+  )
   setTitle(response.message.head.title)
   setImgUrl(response.message.head.img)
   setDesc(response.message.head.desc)
@@ -184,8 +185,8 @@ const animatedText = useSpring({
 
 const fitViewOptions = {
   padding: 3,
-  minZoom: 0.1,
-  maxZoom: 10
+  minZoom: 3,
+  maxZoom: 5
 };
 
 const imgTest = async (img) => {
@@ -253,7 +254,7 @@ const imgTest = async (img) => {
     [project, setNodes, setEdges]
   );
 
-  const saveStory = (async (evt) => {
+  const saveStory = useCallback(async (evt) => {
     /*imgTest(imgUrl).then(result => {
 
       if (result) {
@@ -293,7 +294,7 @@ const imgTest = async (img) => {
         .catch(error => {
           console.error('Error:', error);
         });*/
-  });
+  }, [data]);
 
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
