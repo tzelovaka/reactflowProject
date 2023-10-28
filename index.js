@@ -59,8 +59,8 @@ app.post('/api/story', async (req, res) => {
             fId: node.id,
             img: node.data.img,
             text: node.data.label,
-            positionX: node.position.x,
-            positionY: node.position.y,
+            positionX: Math.round(node.position.x),
+            positionY: Math.round(node.position.y),
             storyId: s.id,
             authId: head.authId
         })     
@@ -138,8 +138,8 @@ app.get('/api', async (request, response) => {
                     img: block.img
                     },
                 position: {
-                    x: block.postionX,
-                    y: block.postionY,
+                    x: Math.round(block.postionX),
+                    y: Math.round(block.postionY),
                 }
             }
             nodes.push(node)
