@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useEffect, useState } from 'react';
+import React, { useCallback, useRef, useEffect, useState, useMemo } from 'react';
 import { useSpring, animated } from "react-spring";
 import emojis from './emojis'
 import Facts from './facts'
@@ -61,7 +61,7 @@ const AddNodeOnEdgeDrop = () => {
 .then (response => {
   if (response){
   setNodes(() => response.message.nodes)
-  setFakeEdges(() => response.message.edges)
+  setEdges(() => response.message.edges)
   setTitle(response.message.head.title)
   setImgUrl(response.message.head.img)
   setDesc(response.message.head.desc)
@@ -98,10 +98,6 @@ console.error('Error:', error);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [fakeEdges, setFakeEdges] = useState([])
-  useEffect(()=>{
-    setEdges(()=>fakeEdges)
-  }, [nodes, fakeEdges])
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [displayError, setDisplayError] = useState(false)
@@ -257,7 +253,7 @@ const imgTest = async (img) => {
     [project, setNodes, setEdges]
   );
 
-  const saveStory = useCallback(async (evt) => {
+  const saveStory = useMemo(async (evt) => {
     /*imgTest(imgUrl).then(result => {
 
       if (result) {
