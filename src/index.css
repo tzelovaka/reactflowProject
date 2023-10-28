@@ -12,7 +12,7 @@
   background-color: #20b2aa;
 }
 .react-flow__node{
-  background-color: #ff0000;
+  padding-left: 50px;
 }
 .react-flow .react-flow__edge path,
 .react-flow__connectionline path {
