@@ -6,9 +6,6 @@ import { useEmoji } from './store/storeEmoji';
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
   const edges = useEdges();
-  useEffect(()=>{
-    console.log(edges);
-  }, [edges])
   const [label, setLabel] = useState(data.label);
   //const dispatch = useDispatch()
   //const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
@@ -49,6 +46,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
       </div>
     );
   };
+  console.log(sourceX, sourceY, targetX, targetY);
   const rightX = targetX-100;
   const leftX = targetX-350;
   const offsetX = ((sourceX * 0.5 + targetX) / 1.5) - 220;
