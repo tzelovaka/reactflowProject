@@ -70,7 +70,7 @@ app.post('/api/story', async (req, res) => {
             li.text=edge.data.label;
             await li.save()
         }else{
-          storylin.create({
+          await storylin.create({
             fId: edge.id,
             smile: edge.data.smile,
             text: edge.data.label,
