@@ -1,9 +1,10 @@
-import React, { useCallback, useRef, useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useRef, useEffect, useState } from 'react';
 import { useSpring, animated } from "react-spring";
 import emojis from './emojis'
 import Facts from './facts'
 import back from './img/back.png';
 import ReactFlow, {
+  applyEdgesChanges,
   Panel,
   Controls,
   Background,
@@ -22,7 +23,7 @@ import { useText } from './store/storeNode';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.22*window.screen.height;
-const proOptions = { hideAttribution: true };
+const proOptions = { hideAttribution: true, maxZoom: 10, minZoom: 0.1, edgesUpdatable: true};
 const initialNodes = [
   {
     id: '0',
@@ -64,6 +65,7 @@ const AddNodeOnEdgeDrop = () => {
   setDesc(response.message.head.desc)
   setNodes(response.message.nodes)
   setEdges(response.message.edges)
+  applyEdgesChanges();
   }
     })
 .catch(error => {
