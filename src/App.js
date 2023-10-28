@@ -253,7 +253,7 @@ const imgTest = async (img) => {
     [project, setNodes, setEdges]
   );
 
-  const saveStory = useCallback(async (evt) => {
+  const saveStory = (async (evt) => {
     /*imgTest(imgUrl).then(result => {
 
       if (result) {
@@ -293,7 +293,7 @@ const imgTest = async (img) => {
         .catch(error => {
           console.error('Error:', error);
         });*/
-  }, [data]);
+  });
 
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
