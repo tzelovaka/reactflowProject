@@ -4,7 +4,6 @@ import emojis from './emojis'
 import Facts from './facts'
 import back from './img/back.png';
 import ReactFlow, {
-  applyEdgeChanges,
   Panel,
   Controls,
   Background,
@@ -23,7 +22,11 @@ import { useText } from './store/storeNode';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.22*window.screen.height;
-const proOptions = { hideAttribution: true, maxZoom: 10, minZoom: 0.1, edgesUpdatable: true};
+const proOptions = { hideAttribution: true};
+const layoutConfig = {
+  type: 'ELK',
+  options: {},
+};
 const initialNodes = [
   {
     id: '0',
@@ -60,12 +63,11 @@ const AddNodeOnEdgeDrop = () => {
 .then(response => response.json())
 .then (response => {
   if (response){
+  setNodes(response.message.nodes)
+  setEdges(response.message.edges)
   setTitle(response.message.head.title)
   setImgUrl(response.message.head.img)
   setDesc(response.message.head.desc)
-  setNodes(response.message.nodes)
-  setEdges(response.message.edges)
-  applyEdgeChanges();
   }
     })
 .catch(error => {
@@ -97,12 +99,6 @@ console.error('Error:', error);
  
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-  /*const [head, setHead] = useState({})
-  useEffect (()=>{
-    setTitle(head.title);
-    setImgUrl(head.imgUrl);
-    setDesc(head.desc);
-  }, [head])*/
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const { project, deleteElements } = useReactFlow();
@@ -458,6 +454,7 @@ const imgTest = async (img) => {
 }
       {!cover && !emojiWindowIsOpen && !textWindowIsOpen &&
       <ReactFlow
+        layout={layoutConfig}
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
