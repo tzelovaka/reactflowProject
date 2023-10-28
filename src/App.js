@@ -4,7 +4,7 @@ import emojis from './emojis'
 import Facts from './facts'
 import back from './img/back.png';
 import ReactFlow, {
-  applyEdgesChanges,
+  applyEdgeChanges,
   Panel,
   Controls,
   Background,
@@ -65,7 +65,7 @@ const AddNodeOnEdgeDrop = () => {
   setDesc(response.message.head.desc)
   setNodes(response.message.nodes)
   setEdges(response.message.edges)
-  applyEdgesChanges();
+  applyEdgeChanges();
   }
     })
 .catch(error => {
