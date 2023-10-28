@@ -9,17 +9,8 @@ const PORT = process.env.PORT || 5000
 const app = express();
 
 app.use(express.json())
-//app.use(express.static(path.join(__dirname, '/build')));
-//app.use(express.static(path.join(__dirname, 'build')));
-
-//app.get('/', function (req, res) {
- // res.sendFile(path.join(__dirname, 'build', 'index.html'));
-//});
 app.use (express.static('build'));
 app.use(bodyParser.json());
-/*app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/build', 'index.html'));
-});*/
 try{
     sequelize.sync({force: true})
     sequelize.authenticate()
@@ -94,11 +85,6 @@ app.post('/api/story', async (req, res) => {
     res.send('Success');
   });
 
-
-/*const staticPath = './src'
-app.get('/', async (request, response)=>{
-    response.sendFile(path.join(process.cwd(), staticPath, 'index.html'))
-}) */
   const initialNodes = [
     {
       id: '0',
@@ -194,13 +180,3 @@ app.get('/api', async (request, response) => {
         return response.send({ message: {head: {title: '', imgUrl: '', desc: ''}, nodes: initialNodes, edges: initialEdges}})
     }
 })
-
-
-/*app.post('/api', (req, res) => {
-    const message = req.body    
-    /*const st = await story.findOne({where:{
-        id: 6
-    }});
-    res.json(message)
-})*/
-
