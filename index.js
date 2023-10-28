@@ -139,8 +139,8 @@ app.get('/api', async (request, response) => {
                     img: block.img
                     },
                 position: {
-                    x: block.postionX,
-                    y: block.postionY,
+                    x: block.positionX,
+                    y: block.positionY,
                 }
             }
             nodes.push(node)
