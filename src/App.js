@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useEffect, useState } from 'react';
+import React, { useCallback, useRef, useEffect, useState, useMemo } from 'react';
 import { useSpring, animated } from "react-spring";
 import emojis from './emojis'
 import Facts from './facts'
@@ -44,7 +44,7 @@ const AddNodeOnEdgeDrop = () => {
 .then(response => response.json())
 .then (response => {
   if (response.length){
-  setHead(response.message[0])
+  //setHead(response.message[0])
   setNodes(response.message[1])
   setEdges(response.message[2])
   }
@@ -78,15 +78,15 @@ console.error('Error:', error);
  
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-  const [head, setHead] = useState({})
+  /*const [head, setHead] = useState({})
   useEffect (()=>{
     setTitle(head.title);
     setImgUrl(head.imgUrl);
     setDesc(head.desc);
-  }, [head])
+  }, [head])*/
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const { project, deleteElements, getEdges,getNodes } = useReactFlow();
+  const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [displayError, setDisplayError] = useState(false)
 const [displaySaving, setDisplaySaving] = useState(false)
@@ -103,6 +103,23 @@ useEffect(() => {
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
+const data = {
+  head: {
+  title: title,
+  imgUrl: imgUrl,
+  desc: desc,
+  //authId: tgid
+  },
+  nodes: nodes,
+  edges: edges
+}
+useEffect(()=>{
+  data.head.title = title
+  data.head.imgUrl = imgUrl
+  data.head.desc = desc
+  data.nodes = nodes
+  data.edges = edges
+}, [data])
 useEffect(()=>{
   setDisplayError(false)
 }, [title, imgUrl, desc, nodes])
@@ -222,18 +239,7 @@ const imgTest = async (img) => {
     [project, setNodes, setEdges]
   );
 
-  const saveStory = useCallback(async (evt) => {
-    let head = {
-      title: title,
-      imgUrl: imgUrl,
-      desc: desc,
-      authId: tgid
-    }
-    let data = {
-      head: head, 
-      nodes: nodes, 
-      edges: edges
-    }
+  const saveStory = useMemo(async (evt) => {
     /*imgTest(imgUrl).then(result => {
 
       if (result) {
@@ -273,7 +279,7 @@ const imgTest = async (img) => {
         .catch(error => {
           console.error('Error:', error);
         });*/
-  }, [title, imgUrl, desc]);
+  }, [data]);
 
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
