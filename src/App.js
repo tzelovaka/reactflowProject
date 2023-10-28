@@ -23,10 +23,7 @@ const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.22*window.screen.height;
 const proOptions = { hideAttribution: true};
-const layoutConfig = {
-  type: 'ELK',
-  options: {},
-};
+
 const initialNodes = [
   {
     id: '0',
@@ -63,8 +60,8 @@ const AddNodeOnEdgeDrop = () => {
 .then(response => response.json())
 .then (response => {
   if (response){
-  setNodes(nds => nds=response.message.nodes)
-  setEdges(eds => eds=response.message.edges)
+  setNodes(() => response.message.nodes)
+  setEdges(() => response.message.edges)
   setTitle(response.message.head.title)
   setImgUrl(response.message.head.img)
   setDesc(response.message.head.desc)
@@ -187,7 +184,7 @@ const animatedText = useSpring({
 
 const fitViewOptions = {
   padding: 3,
-  minZoom: 2,
+  minZoom: 0.1,
   maxZoom: 15
 };
 
@@ -456,7 +453,6 @@ const imgTest = async (img) => {
 }
       {!cover && !emojiWindowIsOpen && !textWindowIsOpen &&
       <ReactFlow
-        layout={layoutConfig}
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
