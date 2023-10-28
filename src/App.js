@@ -43,7 +43,7 @@ const AddNodeOnEdgeDrop = () => {
     })
 .then(response => response.json())
 .then (response => {
-  if (response.length){
+  if (response){
   setTitle(response.message.head.title)
   setImgUrl(response.message.head.img)
   setDesc(response.message.head.desc)
