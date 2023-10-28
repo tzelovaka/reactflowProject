@@ -187,8 +187,8 @@ const animatedText = useSpring({
 
 const fitViewOptions = {
   padding: 3,
-  minZoom: 0.1,
-  maxZoom: 20
+  minZoom: 1,
+  maxZoom: 10
 };
 
 const imgTest = async (img) => {

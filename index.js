@@ -84,12 +84,12 @@ app.post('/api/story', async (req, res) => {
     })
     res.send('Success');
   });
-  const head = {
+  var head = {
     title: '',
     imgUrl: '',
     desc: ''
   }
-  const initialNodes = [
+  var initialNodes = [
     {
       id: '0',
       type: 'block',
@@ -103,7 +103,7 @@ app.post('/api/story', async (req, res) => {
         position: { x: 150, y: 500 },
     },
   ];
-const initialEdges = [
+var initialEdges = [
     {
         id: '0', 
         source: '0', 
