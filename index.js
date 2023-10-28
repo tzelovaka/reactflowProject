@@ -130,6 +130,7 @@ app.get('/api', async (request, response) => {
         if (blocks){
         let node
         blocks.forEach((block) => {
+            console.log(block);
             node = {
                 id: block.fId,
                 type: 'block',
@@ -138,8 +139,8 @@ app.get('/api', async (request, response) => {
                     img: block.img
                     },
                 position: {
-                    x: parseInt(block.postionX),
-                    y: parseInt(block.postionY),
+                    x: block.postionX,
+                    y: block.postionY,
                 }
             }
             nodes.push(node)
@@ -169,8 +170,6 @@ app.get('/api', async (request, response) => {
             edges.push(edge)
         })
     }
-    console.log(nodes);
-    console.log(edges);
         return response.send({ message: {
             head: head, 
             nodes: nodes, 
