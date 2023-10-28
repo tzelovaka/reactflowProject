@@ -108,7 +108,7 @@ const data = {
   title: title,
   imgUrl: imgUrl,
   desc: desc,
-  //authId: tgid
+  authId: tgid
   },
   nodes: nodes,
   edges: edges
