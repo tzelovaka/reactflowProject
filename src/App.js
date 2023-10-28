@@ -294,7 +294,11 @@ const imgTest = async (img) => {
           console.error('Error:', error);
         });*/
   }, [data]);
-
+  function drugs(flow) {
+    setNodes((nds)=>nds.map((nd)=>{
+      nd.position.x = nd.position.x + 5
+    }))
+  }
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       { cover &&
@@ -453,6 +457,7 @@ const imgTest = async (img) => {
 }
       {!cover && !emojiWindowIsOpen && !textWindowIsOpen &&
       <ReactFlow
+        onInit={drugs}
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}

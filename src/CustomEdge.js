@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import    { useReactFlow,useEdges } from 'reactflow';
+import React, { useEffect, useState, useReactFlow } from 'react';
+import  { useEdges } from 'reactflow';
 //import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 import { useEmoji } from './store/storeEmoji';
 
-function CustomEdge({ id, source, target, data}) { //sourceX, sourceY, targetX, targetY,
+function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
   const edges = useEdges();
-  console.log(source, target);
   const { getNodes } = useReactFlow();
   const nodes = getNodes()
-  const sourceNode = nodes.find(node => node.id === source);
-  const targetNode = nodes.find(node => node.id === target);
-  const sourceX = sourceNode.position.x;
-  const sourceY = sourceNode.position.y;
-  const targetX = targetNode.position.x;
-  const targetY = targetNode.position.y;
+  
   const [label, setLabel] = useState(data.label);
   //const dispatch = useDispatch()
   //const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
@@ -64,7 +58,7 @@ function CustomEdge({ id, source, target, data}) { //sourceX, sourceY, targetX, 
     <>
       <path
         id={id}
-        d={`M${sourceX+150},${sourceY+150} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
+        d={`M${sourceX},${sourceY} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
         className="CustomEdge"
       />
       <foreignObject x={limitedX} y={targetY-125} width="500" height="250">
