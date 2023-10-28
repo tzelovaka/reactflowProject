@@ -60,9 +60,8 @@ const AddNodeOnEdgeDrop = () => {
 .then(response => response.json())
 .then (response => {
   if (response){
-  setNodes(response.message.nodes).then(
+  setNodes(response.message.nodes)
   setEdges(response.message.edges)
-  )
   setTitle(response.message.head.title)
   setImgUrl(response.message.head.img)
   setDesc(response.message.head.desc)
@@ -185,7 +184,7 @@ const animatedText = useSpring({
 
 const fitViewOptions = {
   padding: 3,
-  minZoom: 3,
+  minZoom: 0.1,
   maxZoom: 5
 };
 
