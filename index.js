@@ -110,7 +110,7 @@ app.get('/', async (request, response)=>{
         id: '1',
         type: 'block',
         data: { label: 'Поменяй', img: '' },
-        position: { x: 100, y: 150 },
+        position: { x: 150, y: 500 },
     },
   ];
 const initialEdges = [
@@ -172,13 +172,13 @@ app.get('/api', async (request, response) => {
         links.forEach((link) => {
             edge = {
                 id: link.fId,
+                source: link.source.toString(),
                 type: 'CustomEdge',
+                target: link.target.toString(),
                 data: { 
                     label: link.text,
                     smile: link.smile
-                    },
-                source: link.source,
-                target: link.target
+                    }
             }
             edges.push(edge)
         })

@@ -34,7 +34,7 @@ const initialNodes = [
       id: '1',
       type: 'block',
       data: { label: 'Поменяй', img: '' },
-      position: { x: 150, y: 150 },
+      position: { x: 150, y: 500 },
   },
 ];
 const initialEdges = [
