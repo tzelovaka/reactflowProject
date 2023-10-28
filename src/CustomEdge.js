@@ -5,9 +5,6 @@ import './index.css';
 import { useEmoji } from './store/storeEmoji';
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
-  const edges = useEdges();
-  const { getNodes } = useReactFlow();
-  const nodes = getNodes()
   
   const [label, setLabel] = useState(data.label);
   //const dispatch = useDispatch()
