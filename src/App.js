@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useRef, useEffect, useState } from 'react';
 import { useSpring, animated } from "react-spring";
 import emojis from './emojis'
 import Facts from './facts'
@@ -253,7 +253,7 @@ const imgTest = async (img) => {
     [project, setNodes, setEdges]
   );
 
-  const saveStory = useMemo(async (evt) => {
+  const saveStory = useCallback(async (evt) => {
     /*imgTest(imgUrl).then(result => {
 
       if (result) {
