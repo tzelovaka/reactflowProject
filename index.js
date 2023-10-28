@@ -67,20 +67,8 @@ app.post('/api/story', async (req, res) => {
         }
         
     })
-    await edges.forEach( async (edge) => {
-        const dontkillme = await storybl.findOne({where :{
-            fId: `${edge.id}`,
-            storyId: `${s.id}`,
-            authId: `${head.authId}`
-        }
-        })
-        if (dontkillme) {
-            dontkillme.smile = edge.data.smile;
-            dontkillme.text = edge.data.label;
-
-            await dontkillme.save()
-        }else{
-            await storylin.create({
+    await edges.forEach((edge) => {
+        storylin.create({
             fId: edge.id,
             smile: edge.data.smile,
             text: edge.data.label,
@@ -88,9 +76,8 @@ app.post('/api/story', async (req, res) => {
             target: edge.target,
             storyId: s.id,
             authId: head.authId
-        })     
-        }
         })
+    })
     res.send('Success');
   });
 
