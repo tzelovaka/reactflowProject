@@ -4,6 +4,7 @@ import emojis from './emojis'
 import Facts from './facts'
 import back from './img/back.png';
 import ReactFlow, {
+  fitView,
   Panel,
   Controls,
   Background,
@@ -295,7 +296,9 @@ const imgTest = async (img) => {
           console.error('Error:', error);
         });*/
   }, [data]);
-
+useEffect(()=>{
+  fitView();
+}, [edges, nodes])
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       { cover &&

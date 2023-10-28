@@ -164,7 +164,8 @@ app.get('/api', async (request, response) => {
                 data: { 
                     label: link.text,
                     smile: link.smile
-                    }
+                    },
+                hidden: false
             }
             edges.push(edge)
         })
