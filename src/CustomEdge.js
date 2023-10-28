@@ -1,11 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReactFlow } from 'react';
 import  { useEdges } from 'reactflow';
 //import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 import { useEmoji } from './store/storeEmoji';
 
-function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
+function CustomEdge({ id, source, target, data}) { //sourceX, sourceY, targetX, targetY,
   const edges = useEdges();
+  console.log(source, target);
+  const { getNodes } = useReactFlow();
+  const nodes = getNodes()
+  const sourceNode = nodes.find(node => node.id === source);
+  const targetNode = nodes.find(node => node.id === target);
+  const sourceX = sourceNode.position.x;
+  const sourceY = sourceNode.position.y;
+  const targetX = targetNode.position.x;
+  const targetY = targetNode.position.y;
   const [label, setLabel] = useState(data.label);
   //const dispatch = useDispatch()
   //const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
