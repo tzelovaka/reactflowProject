@@ -223,7 +223,6 @@ const imgTest = async (img) => {
   );
 
   const saveStory = useCallback(async (evt) => {
-    const currentNodes = getNodes();
     let head = {
       title: title,
       imgUrl: imgUrl,
@@ -232,7 +231,7 @@ const imgTest = async (img) => {
     }
     let data = {
       head: head, 
-      nodes: currentNodes, 
+      nodes: getNodes(), 
       edges: edges
     }
     /*imgTest(imgUrl).then(result => {
