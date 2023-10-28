@@ -50,7 +50,7 @@ const initialEdges = [
 
 let id = 2;
 const getId = () => `${id++}`;
-const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+const tgid = 543050615;
 
 const AddNodeOnEdgeDrop = () => {
   useEffect(() => {

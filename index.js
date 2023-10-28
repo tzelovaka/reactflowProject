@@ -174,7 +174,6 @@ app.get('/api', async (request, response) => {
             edges.push(edge)
         })
     }
-    console.log(edges);
         /*return response.send({ message: {
             head: head, 
             nodes: nodes, 
