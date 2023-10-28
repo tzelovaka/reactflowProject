@@ -103,11 +103,25 @@ app.get('/', async (request, response)=>{
     {
       id: '0',
       type: 'block',
-      data: { label: 'Node' },
+      data: { label: 'Нажми', img: '' },
       position: { x: 0, y: 50 },
     },
+    {
+        id: '1',
+        type: 'block',
+        data: { label: 'Поменяй', img: '' },
+        position: { x: 0, y: -150 },
+    },
   ];
-
+const initialEdges = [
+    {
+        id: '0', 
+        source: '0', 
+        type: 'CustomEdge', 
+        target: '1', 
+        data: { smile: '', label: 'Введи' } 
+    }
+]
 app.listen(PORT, () => console.log(`Server started on ${PORT} port`))
 app.get('/api', async (request, response) => {
     const id = request.query.data;
@@ -130,7 +144,6 @@ app.get('/api', async (request, response) => {
         if (blocks){
         let node
         blocks.forEach((block) => {
-            console.log(block);
             node = {
                 id: block.fId,
                 type: 'block',
@@ -170,6 +183,7 @@ app.get('/api', async (request, response) => {
             edges.push(edge)
         })
     }
+    console.log(edges);
         return response.send({ message: {
             head: head, 
             nodes: nodes, 
@@ -177,7 +191,7 @@ app.get('/api', async (request, response) => {
         }
     })
     }else{
-        return response.send({ message: {head: {title: '', imgUrl: '', desc: ''}, nodes: initialNodes, edges: []}})
+        return response.send({ message: {head: {title: '', imgUrl: '', desc: ''}, nodes: initialNodes, edges: initialEdges}})
     }
 })
 

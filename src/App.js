@@ -27,10 +27,25 @@ const initialNodes = [
   {
     id: '0',
     type: 'block',
-    data: { label: '', img: '' },
+    data: { label: 'Нажми', img: '' },
     position: { x: 0, y: 50 },
   },
+  {
+      id: '1',
+      type: 'block',
+      data: { label: 'Поменяй', img: '' },
+      position: { x: 0, y: -150 },
+  },
 ];
+const initialEdges = [
+  {
+      id: '0', 
+      source: '0', 
+      type: 'CustomEdge', 
+      target: '1', 
+      data: { smile: '', label: 'Введи' } 
+  }
+]
 
 let id = 1;
 const getId = () => `${id++}`;
@@ -47,8 +62,8 @@ const AddNodeOnEdgeDrop = () => {
   setTitle(response.message.head.title)
   setImgUrl(response.message.head.img)
   setDesc(response.message.head.desc)
-  setNodes(response.message.nodes)
   setEdges(response.message.edges)
+  setNodes(response.message.nodes)
   }
     })
 .catch(error => {
@@ -87,7 +102,7 @@ console.error('Error:', error);
     setDesc(head.desc);
   }, [head])*/
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [displayError, setDisplayError] = useState(false)
