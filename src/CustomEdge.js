@@ -11,7 +11,7 @@ function CustomEdge({ id, source, target, data}) { //sourceX, sourceY, targetX, 
   const sourceNode = nodes.find(node => node.id === source);
   const targetNode = nodes.find(node => node.id === target);
   const sourceX = sourceNode.position.x+150;
-  const sourceY = sourceNode.position.y-150;
+  const sourceY = sourceNode.position.y+150;
   const targetX = targetNode.position.x+150;
   const targetY = targetNode.position.y;
   const [label, setLabel] = useState(data.label);
