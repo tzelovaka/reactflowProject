@@ -53,7 +53,7 @@ app.post('/api/story', async (req, res) => {
             bl.text=node.data.label;
             bl.positionX=node.position.x;
             bl.positionY=node.position.y
-                await bl.save()
+            await bl.save()
         }else{
             await storybl.create({
             fId: node.id,
@@ -67,8 +67,20 @@ app.post('/api/story', async (req, res) => {
         }
         
     })
-    await edges.forEach((edge) => {
-        storylin.create({
+    await edges.forEach( async (edge) => {
+        const ln = await storybl.findOne({where :{
+            fId: `${edge.id}`,
+            storyId: `${s.id}`,
+            authId: `${head.authId}`
+        }
+        })
+        if (ln) {
+            ln.smile = edge.data.smile;
+            ln.text = edge.data.label;
+
+            await ln.save()
+        }else{
+            await storylin.create({
             fId: edge.id,
             smile: edge.data.smile,
             text: edge.data.label,
@@ -76,8 +88,9 @@ app.post('/api/story', async (req, res) => {
             target: edge.target,
             storyId: s.id,
             authId: head.authId
+        })     
+        }
         })
-    })
     res.send('Success');
   });
 
