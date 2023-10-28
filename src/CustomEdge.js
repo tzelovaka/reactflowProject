@@ -64,7 +64,7 @@ function CustomEdge({ id, source, target, data}) { //sourceX, sourceY, targetX, 
     <>
       <path
         id={id}
-        d={`M${sourceX},${sourceY} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
+        d={`M${sourceX+150},${sourceY+150} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
         className="CustomEdge"
       />
       <foreignObject x={limitedX} y={targetY-125} width="500" height="250">
