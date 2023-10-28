@@ -61,7 +61,7 @@ const AddNodeOnEdgeDrop = () => {
 .then (response => {
   if (response){
   setNodes(() => response.message.nodes)
-  setEdges(() => response.message.edges)
+  setFakeEdges(() => response.message.edges)
   setTitle(response.message.head.title)
   setImgUrl(response.message.head.img)
   setDesc(response.message.head.desc)
@@ -98,6 +98,10 @@ console.error('Error:', error);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [fakeEdges, setFakeEdges] = useState([])
+  useEffect(()=>{
+    setEdges(()=>fakeEdges)
+  }, [nodes, fakeEdges])
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [displayError, setDisplayError] = useState(false)
@@ -185,7 +189,7 @@ const animatedText = useSpring({
 const fitViewOptions = {
   padding: 3,
   minZoom: 0.1,
-  maxZoom: 15
+  maxZoom: 10
 };
 
 const imgTest = async (img) => {
