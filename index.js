@@ -138,8 +138,8 @@ app.get('/api', async (request, response) => {
                     img: block.img
                     },
                 position: {
-                    x: Math.round(parseInt(block.postionX)),
-                    y: Math.round(parseInt(block.postionY)),
+                    x: parseInt(block.postionX),
+                    y: parseInt(block.postionY),
                 }
             }
             nodes.push(node)
@@ -170,6 +170,7 @@ app.get('/api', async (request, response) => {
         })
     }
     console.log(nodes);
+    console.log(edges);
         return response.send({ message: {
             head: head, 
             nodes: nodes, 
