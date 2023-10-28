@@ -50,7 +50,7 @@ const initialEdges = [
 
 let id = 2;
 const getId = () => `${id++}`;
-const tgid = 9999//window.Telegram.WebApp.initDataUnsafe.user.id;
+const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 
 const AddNodeOnEdgeDrop = () => {
   useEffect(() => {
@@ -294,12 +294,7 @@ const imgTest = async (img) => {
           console.error('Error:', error);
         });*/
   }, [data]);
-  useEffect(()=>{
-    setNodes((nds)=>nds.map((nd)=>{
-      nd.position.x = nd.position.x + 5
-    }))
-  }, [edges])
-    
+
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       { cover &&
