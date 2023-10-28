@@ -109,8 +109,7 @@ var initialEdges = [
         source: '0', 
         type: 'CustomEdge', 
         target: '1', 
-        data: { label: 'Введи', smile: '' },
-        zIndex: 0
+        data: { label: 'Введи', smile: '' } 
     }
 ]
 app.listen(PORT, () => console.log(`Server started on ${PORT} port`))
@@ -170,7 +169,7 @@ app.get('/api', async (request, response) => {
                     label: link.text,
                     smile: link.smile
                     },
-                    zIndex: 0
+                hidden: false
             }
             edges.push(edge)
         })

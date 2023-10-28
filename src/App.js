@@ -44,8 +44,7 @@ const initialEdges = [
       source: '0', 
       type: 'CustomEdge', 
       target: '1', 
-      data: { smile: '', label: 'Введи' },
-      zIndex: 0
+      data: { smile: '', label: 'Введи' } 
   }
 ]
 
@@ -295,11 +294,12 @@ const imgTest = async (img) => {
           console.error('Error:', error);
         });*/
   }, [data]);
-  function drugs(flow) {
+  useEffect(()=>{
     setNodes((nds)=>nds.map((nd)=>{
       nd.position.x = nd.position.x + 5
     }))
-  }
+  }, [edges])
+    
   return (
     <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       { cover &&
@@ -458,7 +458,6 @@ const imgTest = async (img) => {
 }
       {!cover && !emojiWindowIsOpen && !textWindowIsOpen &&
       <ReactFlow
-        onInit={drugs}
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
