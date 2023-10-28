@@ -42,18 +42,18 @@ app.post('/api/story', async (req, res) => {
     }
     const s = await story.findOne({where:{authId: `${head.authId}`, release: false}})
     nodes.forEach(async (node) => {
-        const bl = await storybl.findOne({where :{
+        const imakillyou = await storybl.findOne({where :{
             fId: `${node.id}`,
             storyId: `${s.id}`,
             authId: `${head.authId}`
         }
         })
-        if (bl) {
-            bl.img=node.data.img;
-            bl.text=node.data.label;
-            bl.positionX=node.position.x;
-            bl.positionY=node.position.y
-            await bl.save()
+        if (imakillyou) {
+            imakillyou.img=node.data.img;
+            imakillyou.text=node.data.label;
+            imakillyou.positionX=node.position.x;
+            imakillyou.positionY=node.position.y
+                await imakillyou.save()
         }else{
             await storybl.create({
             fId: node.id,
@@ -68,17 +68,17 @@ app.post('/api/story', async (req, res) => {
         
     })
     await edges.forEach( async (edge) => {
-        const ln = await storybl.findOne({where :{
+        const dontkillme = await storybl.findOne({where :{
             fId: `${edge.id}`,
             storyId: `${s.id}`,
             authId: `${head.authId}`
         }
         })
-        if (ln) {
-            ln.smile = edge.data.smile;
-            ln.text = edge.data.label;
+        if (dontkillme) {
+            dontkillme.smile = edge.data.smile;
+            dontkillme.text = edge.data.label;
 
-            await ln.save()
+            await dontkillme.save()
         }else{
             await storylin.create({
             fId: edge.id,
