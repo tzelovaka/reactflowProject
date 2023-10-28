@@ -239,7 +239,7 @@ const imgTest = async (img) => {
     [project, setNodes, setEdges]
   );
 
-  const saveStory = useMemo(async (evt) => {
+  const saveStory = useCallback(async (evt) => {
     /*imgTest(imgUrl).then(result => {
 
       if (result) {

@@ -41,20 +41,19 @@ app.post('/api/story', async (req, res) => {
         await story.create({ img: `${head.imgUrl}`, title: `${head.title}`, desc: `${head.desc}`, authId: `${head.authId}`});
     }
     const s = await story.findOne({where:{authId: `${head.authId}`, release: false}})
-    console.log(req.body.nodes);
     nodes.forEach(async (node) => {
-        const imakillyou = await storybl.findOne({where :{
+        const bl = await storybl.findOne({where :{
             fId: `${node.id}`,
             storyId: `${s.id}`,
             authId: `${head.authId}`
         }
         })
-        if (imakillyou) {
-            imakillyou.img=node.data.img;
-            imakillyou.text=node.data.label;
-            imakillyou.positionX=node.position.x;
-            imakillyou.positionY=node.position.y
-                await imakillyou.save()
+        if (bl) {
+            bl.img=node.data.img;
+            bl.text=node.data.label;
+            bl.positionX=node.position.x;
+            bl.positionY=node.position.y
+            await bl.save()
         }else{
             await storybl.create({
             fId: node.id,
@@ -68,8 +67,19 @@ app.post('/api/story', async (req, res) => {
         }
         
     })
-    await edges.forEach((edge) => {
-        storylin.create({
+    await edges.forEach(async (edge) => {
+        const li = await storylin.findOne({where :{
+            fId: `${edge.id}`,
+            storyId: `${s.id}`,
+            authId: `${head.authId}`
+        }
+        })
+        if(li){
+            li.smile=edge.data.smile;
+            li.text=edge.data.label;
+            await li.save()
+        }else{
+          storylin.create({
             fId: edge.id,
             smile: edge.data.smile,
             text: edge.data.label,
@@ -77,7 +87,9 @@ app.post('/api/story', async (req, res) => {
             target: edge.target,
             storyId: s.id,
             authId: head.authId
-        })
+        })  
+        }
+        
     })
     res.send('Success');
   });
