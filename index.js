@@ -145,7 +145,7 @@ app.get('/api', async (request, response) => {
         let node
         blocks.forEach((block) => {
             node = {
-                id: block.fId,
+                id: block.fId.toString(),
                 type: 'block',
                 data: { 
                     label: block.text,
@@ -171,7 +171,7 @@ app.get('/api', async (request, response) => {
         let edge
         links.forEach((link) => {
             edge = {
-                id: link.fId,
+                id: link.fId.toString(),
                 source: link.source.toString(),
                 type: 'CustomEdge',
                 target: link.target.toString(),
