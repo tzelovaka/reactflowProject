@@ -115,9 +115,7 @@ app.get('/api', async (request, response) => {
         authId: `${id}`,
         release: false
     }});
-    if (st===null){
-        return response.send({ message: {head: {title: '', imgUrl: '', desc: ''}, nodes: initialNodes, edges: []}})
-    }else{
+    if (st){
         let head = {
             title: st.title,
             img: st.img,
@@ -171,12 +169,15 @@ app.get('/api', async (request, response) => {
             edges.push(edge)
         })
     }
+    console.log(nodes);
         return response.send({ message: {
             head: head, 
             nodes: nodes, 
             edges: edges
         }
     })
+    }else{
+        return response.send({ message: {head: {title: '', imgUrl: '', desc: ''}, nodes: initialNodes, edges: []}})
     }
 })
 
