@@ -231,7 +231,7 @@ const imgTest = async (img) => {
     }
     let data = {
       head: head, 
-      nodes: getNodes(), 
+      nodes: nodes, 
       edges: edges
     }
     /*imgTest(imgUrl).then(result => {
