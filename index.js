@@ -100,7 +100,25 @@ app.post('/api/story', async (req, res) => {
         }
         
     })
-    res.send('success');
+    const lis = await storybl.findAll({where: {
+        storyId: `${s.id}`,
+        authId: `${head.authId}`,
+        release: false
+    }})
+    lis.forEach(async (li)=>{
+        if (nodes.find(node=>node.id==li.fId)===undefined || nodes.find(node=>node.id==li.fId)===null) {
+            await storylin.destroy({
+                where: {
+                    id: `${li.id}`,
+                    fId: `${li.fId}`,
+                    storyId: `${s.id}`,
+                    authId: `${head.authId}`,
+                    release: false
+                },
+              });
+        }
+        })
+        res.send('success');
   });
   var head = {
     title: '',
