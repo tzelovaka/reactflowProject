@@ -105,9 +105,6 @@ console.error('Error:', error);
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  useEffect(()=>{
-    console.log(nodes);
-  }, [nodes])
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
