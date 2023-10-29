@@ -5,17 +5,13 @@ import './index.css';
 import { useEmoji } from './store/storeEmoji';
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, data}) {
-  const [render, setRender] = useState(false)
-  useEffect(()=>{
-    data.label = data.label+ '1'
-  }, [nds])
   const { getNodes } = useReactFlow();
   const nds = useNodes()
 
-  const sX = nds.find(nd=>nd.id === source).position.x//sourceX
-  const sY = nds.find(nd=>nd.id === source).position.y//sourceY
-  const tX = nds.find(nd=>nd.id === target).position.x//targetX
-  const tY = nds.find(nd=>nd.id === target).position.y//targetY
+  const sX = sourceX//nds.find(nd=>nd.id === source).position.x//
+  const sY = sourceY//nds.find(nd=>nd.id === source).position.y//
+  const tX = targetX//nds.find(nd=>nd.id === target).position.x//
+  const tY = targetY//nds.find(nd=>nd.id === target).position.y//
   console.log(sX, sY, tX, tY);
   const [label, setLabel] = useState(data.label);
   //const dispatch = useDispatch()
@@ -65,7 +61,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, da
     <>
       <path
         id={id}
-        d={`M${sX+100},${sY-100} C${sX},${curveY} ${tX},${curveY} ${tX+100},${tY}`}
+        d={`M${sX},${sY} C${sX},${curveY} ${tX},${curveY} ${tX},${tY}`}
         className="CustomEdge"
       />
       <foreignObject x={limitedX} y={tY-125} width="500" height="250">

@@ -7,8 +7,8 @@ const storybl = sequelize.define ('storybl', {
     fId: {type: DataTypes.BIGINT},
     img: {type: DataTypes.TEXT, allowNull: true, defaultValue: null},
     text: {type: DataTypes.TEXT},
-    positionX: {type: DataTypes.BIGINT},
-    positionY: {type: DataTypes.BIGINT},
+    positionX: {type: DataTypes.NUMBER},
+    positionY: {type: DataTypes.NUMBER},
     storyId: {type: DataTypes.BIGINT, unique: false},
     authId: {type: DataTypes.BIGINT, unique: false},
     release: {type: DataTypes.BOOLEAN, defaultValue: false}

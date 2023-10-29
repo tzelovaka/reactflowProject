@@ -95,9 +95,7 @@ app.post('/api/story', async (req, res) => {
       type: 'block',
       data: { 
         label: 'Нажми', 
-        img: '', 
-        customX: 150,
-        customY: 200 },
+        img: ''},
       position: { x: 0, y: 50 },
     },
     {
@@ -105,9 +103,7 @@ app.post('/api/story', async (req, res) => {
         type: 'block',
         data: { 
             label: 'Поменяй', 
-            img: '', 
-            customX: 300,
-            customY: 650 },
+            img: '' },
         position: { x: 150, y: 500 },
     },
   ];

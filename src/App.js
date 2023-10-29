@@ -30,9 +30,7 @@ const initialNodes = [
     type: 'block',
     data: { 
       label: 'Нажми', 
-      img: '', 
-      customX: 150,
-      customY: 200 },
+      img: ''},
     position: { x: 0, y: 50 },
   },
   {
@@ -40,9 +38,7 @@ const initialNodes = [
       type: 'block',
       data: { 
           label: 'Поменяй', 
-          img: '', 
-          customX: 300,
-          customY: 650 },
+          img: ''},
       position: { x: 150, y: 500 },
   },
 ];
