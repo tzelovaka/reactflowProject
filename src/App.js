@@ -400,12 +400,12 @@ const imgTest = async (img) => {
     <h2 id='label' className='mx-3 text-3xl'>Симуляция</h2>
   <hr/>
   <div>
-  {
+  {/*
   nodes.find(node => node.id === simulateNodeId).data.img ?
   <div className='w-100 flex justify-center mt-3'>
     <img className='w-64 rounded-xl' src={nodes.find(node => node.id === simulateNodeId).data.img} alt="Картинка" />
   </div>
-  : null
+  : null*/
 }
 <div className='mt-4 mx-3 font-philosopher w-100 px-3 py-2 border-2 rounded-full'>
   <div id='label'>
