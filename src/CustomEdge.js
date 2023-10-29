@@ -8,7 +8,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, da
   const [render, setRender] = useState(false)
   useEffect(()=>{
     console.log(render);
-  }, [render])
+  }, [nds])
   const { getNodes } = useReactFlow();
   const nds = useNodes()
   const sX = sourceX
