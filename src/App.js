@@ -54,8 +54,7 @@ const initialEdges = [
   }
 ]
 
-let id = 2;
-const getId = () => `${id++}`;
+
 const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 
 const AddNodeOnEdgeDrop = () => {
@@ -104,6 +103,13 @@ console.error('Error:', error);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const getId = () => {
+    let max=Number(nodes[0].id)
+    nodes.forEach(node=>{
+      if (Number(node.id)>max) max=node
+    })
+   return max++
+  };
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [displayError, setDisplayError] = useState(false)
@@ -445,7 +451,7 @@ const imgTest = async (img) => {
             setTimeout(()=>{
               switchEmoji ({
                 emojiWindowIsOpen: false,
-                edgeId: id
+                edgeId: null
               })  
   }, 200)}}>
       –
@@ -466,7 +472,7 @@ const imgTest = async (img) => {
             setTimeout(()=>{
               switchEmoji ({
                 emojiWindowIsOpen: false,
-                edgeId: id
+                edgeId: null
               })  
   }, 200)
         }}>
@@ -509,7 +515,7 @@ const imgTest = async (img) => {
             setTimeout(()=>{
               switchText ({
                 textWindowIsOpen: false,
-                nodeId: id
+                nodeId: null
               })   
   }, 200)}}>
       –
