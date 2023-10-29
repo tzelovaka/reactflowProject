@@ -82,7 +82,7 @@ app.post('/api/story', async (req, res) => {
         }
         
     })
-    res.send('Success');
+    res.send('success');
   });
   var head = {
     title: '',
