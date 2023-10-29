@@ -11,10 +11,11 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, da
   }, [nds])
   const { getNodes } = useReactFlow();
   const nds = useNodes()
-  const sX = sourceX
-  const sY = sourceY
-  const tX = targetX
-  const tY = targetY
+
+  const sX = nds.find(nd=>nd.id === source).position.x//sourceX
+  const sY = nds.find(nd=>nd.id === source).position.y//sourceY
+  const tX = nds.find(nd=>nd.id === target).position.x//targetX
+  const tY = nds.find(nd=>nd.id === target).position.y//targetY
   console.log(sX, sY, tX, tY);
   const [label, setLabel] = useState(data.label);
   //const dispatch = useDispatch()
@@ -64,7 +65,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, da
     <>
       <path
         id={id}
-        d={`M${sX},${sY} C${sX},${curveY} ${tX},${curveY} ${tX},${tY}`}
+        d={`M${sX},${sY} C${sX},${curveY} ${limitedX},${curveY} ${limitedX},${tY + 100} ${tX},${tY}`}
         className="CustomEdge"
       />
       <foreignObject x={limitedX} y={tY-125} width="500" height="250">
