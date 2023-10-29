@@ -93,25 +93,33 @@ app.post('/api/story', async (req, res) => {
     {
       id: '0',
       type: 'block',
-      data: { label: 'Нажми', img: '' },
+      data: { 
+        label: 'Нажми', 
+        img: '', 
+        customX: 150,
+        customY: 200 },
       position: { x: 0, y: 50 },
     },
     {
         id: '1',
         type: 'block',
-        data: { label: 'Поменяй', img: '' },
+        data: { 
+            label: 'Поменяй', 
+            img: '', 
+            customX: 300,
+            customY: 650 },
         position: { x: 150, y: 500 },
     },
   ];
-    var initialEdges = [
+var initialEdges = [
     {
         id: '0', 
         source: '0', 
         type: 'CustomEdge', 
         target: '1', 
-        data: { smile: '', label: 'Введи' } 
+        data: { label: 'Введи', smile: '' } 
     }
-  ]
+]
 app.listen(PORT, () => console.log(`Server started on ${PORT} port`))
 app.get('/api', async (request, response) => {
     const id = request.query.data;
@@ -169,7 +177,7 @@ app.get('/api', async (request, response) => {
                 target: link.target.toString(),
                 data: { 
                     label: link.text,
-                    smile: link.smile
+                    smile: link.smile,
                     },
                 hidden: false
             }

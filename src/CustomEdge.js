@@ -1,11 +1,16 @@
-import React, { useEffect, useState, useReactFlow } from 'react';
-import  { useEdges } from 'reactflow';
+import React, { useEffect, useState} from 'react';
+import  {useReactFlow, getNodes, useEdges } from 'reactflow';
 //import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 import { useEmoji } from './store/storeEmoji';
 
-function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
-  
+function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, data}) {
+  const { getNodes} = useReactFlow();
+  const nds = getNodes()
+  const sX = sourceX || nds.find(nd=>nd.id === source).data.customX
+  const sY = sourceY || nds.find(nd=>nd.id === source).data.customY
+  const tX = targetX || nds.find(nd=>nd.id === target).data.customX
+  const tY = targetY || nds.find(nd=>nd.id === target).data.customY
   const [label, setLabel] = useState(data.label);
   //const dispatch = useDispatch()
   //const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
@@ -23,7 +28,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
       return edge;
     });*/
   };
-  const curveY = targetY - 100;
+  const curveY = tY - 100;
   const EmojiDropdown = () => {
     
     const emojiWindow = () => {
@@ -47,15 +52,15 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
     );
   };
   console.log(sourceX, sourceY, targetX, targetY);
-  const rightX = targetX-100;
-  const leftX = targetX-350;
-  const offsetX = ((sourceX * 0.5 + targetX) / 1.5) - 220;
+  const rightX = tX-100;
+  const leftX = tX-350;
+  const offsetX = ((sX * 0.5 + tX) / 1.5) - 220;
   const limitedX = Math.max(leftX, Math.min(rightX, offsetX));
   return (
     <>
       <path
         id={id}
-        d={`M${sourceX},${sourceY} C${sourceX},${curveY} ${targetX},${curveY} ${targetX},${targetY}`}
+        d={`M${sX},${sY} C${sX},${curveY} ${tX},${curveY} ${tX},${tY}`}
         className="CustomEdge"
       />
       <foreignObject x={limitedX} y={targetY-125} width="500" height="250">
