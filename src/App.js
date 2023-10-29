@@ -347,22 +347,22 @@ const imgTest = async (img) => {
     <h2 id='label' className='mx-3 text-3xl'>Симуляция</h2>
   <hr/>
   <div>
-  {/*
+  {
   nodes.find(node => node.id === simulateNodeId).data.img ?
   <div className='w-100 flex justify-center mt-3'>
     <img className='w-64 rounded-xl' src={nodes.find(node => node.id === simulateNodeId).data.img} alt="Картинка" />
   </div>
-  : null*/
+  : null
 }
 <div className='mt-4 mx-3 font-philosopher w-100 px-3 py-2 border-2 rounded-full'>
   <div id='label'>
-    {/*
+    {
   (nodes.find(node => node.id === simulateNodeId) === undefined || nodes.find(node => node.id === simulateNodeId).data.label === null ||  nodes.find(node => node.id === simulateNodeId).data.label.length < 1) ? <div className='w-100 text-center text-red-300'>Уупс... (здесь должен быть текст)</div> : (nodes.find(node => node.id === simulateNodeId).data.label.length > 35 ? (nodes.find(node => node.id === simulateNodeId).data.label.substring(0, 35) + '...') : nodes.find(node => node.id === simulateNodeId).data.label)
-*/}
+}
     </div>
 </div>
 <div className='flex flex-wrap mt-2'>
-    {/*
+    {
  edges.map (edge => {
   if (edge.source === nodes.find(node => node.id === simulateNodeId).id){
      return <div className='mx-3 border rounded-full px-4 py-1' key={edge.id} 
@@ -379,7 +379,7 @@ const imgTest = async (img) => {
   </div> 
       }
  })
-*/}
+}
 </div>
 {
   simulatedHistory.length >= 2 ? <div className='w-100 flex justify-end'>
