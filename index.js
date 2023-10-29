@@ -144,12 +144,10 @@ app.get('/api', async (request, response) => {
                 data: { 
                     label: block.text,
                     img: block.img,
-                    customX: block.positionX+150,
-                    customY: block.positionY+150
                     },
                 position: {
-                    x: block.positionX,
-                    y: block.positionY,
+                    x: Number(block.positionX),
+                    y: Number(block.positionY),
                 }
             }
             nodes.push(node)
