@@ -71,7 +71,7 @@ const AddNodeOnEdgeDrop = () => {
   setNodes(response.message.nodes)
   setEdges(response.message.edges)
   setTitle(response.message.head.title)
-  setImgUrl(response.message.head.img)
+  response.message.head.img === undefined || response.message.head.img === null ? setImgUrl('') : setImgUrl(response.message.head.img)
   setDesc(response.message.head.desc)
   }
     })
