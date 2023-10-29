@@ -6,6 +6,9 @@ import { useEmoji } from './store/storeEmoji';
 
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, data}) {
   const [render, setRender] = useState(false)
+  useEffect(()=>{
+    console.log(render);
+  }, [render])
   const { getNodes } = useReactFlow();
   const nds = useNodes()
   const sX = sourceX
