@@ -28,13 +28,23 @@ const initialNodes = [
   {
     id: '0',
     type: 'block',
-    data: { label: 'Нажми', img: '' },
+    data: { label: 
+      'Нажми', 
+      img: '' ,
+      customX: 150,
+      customY: 200
+    },
     position: { x: 0, y: 50 },
   },
   {
       id: '1',
       type: 'block',
-      data: { label: 'Поменяй', img: '' },
+      data: { 
+        label: 'Поменяй', 
+        img: '',
+        customX: 300,
+        customY: 650
+      },
       position: { x: 150, y: 500 },
   },
 ];
@@ -98,11 +108,11 @@ console.error('Error:', error);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  function onInit(flow){
+  useEffect(()=>{
     setNodes((nds)=>{
       nds.map(nd=>nd.position.x = nd.position.x+5)
     })
-  }
+  }, [edges])
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [displayError, setDisplayError] = useState(false)
@@ -458,7 +468,6 @@ const imgTest = async (img) => {
 }
       {!cover && !emojiWindowIsOpen && !textWindowIsOpen &&
       <ReactFlow
-        onInit={onInit}
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
