@@ -30,7 +30,8 @@ const initialNodes = [
     type: 'block',
     data: { 
       label: 'Нажми', 
-      img: ''},
+      img: ''
+    },
     position: { x: 0, y: 50 },
   },
   {
@@ -38,7 +39,8 @@ const initialNodes = [
       type: 'block',
       data: { 
           label: 'Поменяй', 
-          img: ''},
+          img: ''
+        },
       position: { x: 150, y: 500 },
   },
 ];
@@ -215,7 +217,7 @@ const imgTest = async (img) => {
         };
         setNodes((nds) => nds.concat(newNode));
         setEdges((eds) =>
-          eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: { smile: '', label: '' } })
+          eds.concat({ id: `e${connectingNodeId.current}-${id}`, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: { smile: '', label: '' } })
         );
       }
     },

@@ -58,6 +58,24 @@ app.post('/api/story', async (req, res) => {
         }
         
     })
+    const bls = await storybl.findAll({where: {
+        storyId: `${s.id}`,
+        authId: `${head.authId}`,
+        release: false
+    }})
+    bls.forEach(async (bl)=>{
+        if (nodes.find(node=>node.id==bl.fId)===undefined || nodes.find(node=>node.id==bl.fId)===null) {
+            await storybl.destroy({
+                where: {
+                    id: `${bl.id}`,
+                    fId: `${bl.fId}`,
+                    storyId: `${s.id}`,
+                    authId: `${head.authId}`,
+                    release: false
+                },
+              });
+        }
+        })
     await edges.forEach(async (edge) => {
         const li = await storylin.findOne({where :{
             fId: `${edge.id}`,
