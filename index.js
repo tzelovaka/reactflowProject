@@ -113,7 +113,7 @@ app.post('/api/story', async (req, res) => {
   ];
 var initialEdges = [
     {
-        id: '0', 
+        id: 'e0-1', 
         source: '0', 
         type: 'CustomEdge', 
         target: '1', 
