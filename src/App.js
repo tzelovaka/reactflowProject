@@ -28,23 +28,13 @@ const initialNodes = [
   {
     id: '0',
     type: 'block',
-    data: { label: 
-      'Нажми', 
-      img: '' ,
-      customX: 150,
-      customY: 200
-    },
+    data: { label: 'Нажми', img: '' },
     position: { x: 0, y: 50 },
   },
   {
       id: '1',
       type: 'block',
-      data: { 
-        label: 'Поменяй', 
-        img: '',
-        customX: 300,
-        customY: 650
-      },
+      data: { label: 'Поменяй', img: '' },
       position: { x: 150, y: 500 },
   },
 ];
@@ -60,7 +50,7 @@ const initialEdges = [
 
 let id = 2;
 const getId = () => `${id++}`;
-const tgid = 9999999999//window.Telegram.WebApp.initDataUnsafe.user.id;
+const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 
 const AddNodeOnEdgeDrop = () => {
   useEffect(() => {
