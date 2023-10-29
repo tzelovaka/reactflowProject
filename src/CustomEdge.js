@@ -51,7 +51,6 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, da
       </div>
     );
   };
-  console.log(sourceX, sourceY, targetX, targetY);
   const rightX = tX-100;
   const leftX = tX-350;
   const offsetX = ((sX * 0.5 + tX) / 1.5) - 220;
@@ -63,7 +62,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, da
         d={`M${sX},${sY} C${sX},${curveY} ${tX},${curveY} ${tX},${tY}`}
         className="CustomEdge"
       />
-      <foreignObject x={limitedX} y={targetY-125} width="500" height="250">
+      <foreignObject x={limitedX} y={tY-125} width="500" height="250">
         <div className="flex flex-col w-full">
           <div className='flex'>
             <div className='grow h-14 '>
