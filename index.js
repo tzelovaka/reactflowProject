@@ -93,13 +93,21 @@ app.post('/api/story', async (req, res) => {
     {
       id: '0',
       type: 'block',
-      data: { label: 'Нажми', img: '' },
+      data: { 
+        label: 'Нажми', 
+        img: '', 
+        customX: 150,
+        customY: 200 },
       position: { x: 0, y: 50 },
     },
     {
         id: '1',
         type: 'block',
-        data: { label: 'Поменяй', img: '' },
+        data: { 
+            label: 'Поменяй', 
+            img: '', 
+            customX: 300,
+            customY: 650 },
         position: { x: 150, y: 500 },
     },
   ];
@@ -139,7 +147,9 @@ app.get('/api', async (request, response) => {
                 type: 'block',
                 data: { 
                     label: block.text,
-                    img: block.img
+                    img: block.img,
+                    customX: block.positionX+150,
+                    customY: block.positionY+150
                     },
                 position: {
                     x: block.positionX,

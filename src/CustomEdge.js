@@ -1,14 +1,18 @@
-import React, { useEffect, useState, useReactFlow } from 'react';
-import  { useEdges } from 'reactflow';
+import React, { useEffect, useState,  } from 'react';
+import   { useReactFlow, useEdges, getNodes } from 'reactflow';
 //import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 import { useEmoji } from './store/storeEmoji';
 
-function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
+function CustomEdge({ id,  target, source, data}) {//sourceX, sourceY, targetX, targetY,
   
   const [label, setLabel] = useState(data.label);
-  //const dispatch = useDispatch()
-  //const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
+  const { getNodes} = useReactFlow();
+  const nds = getNodes();
+  const sourceX = nds.find(nd => nd.id === source).data.customX
+  const sourceY = nds.find(nd => nd.id === source).data.customY
+  const targetX = nds.find(nd => nd.id === target).data.customX
+  const targetY = nds.find(nd => nd.id === target).data.customY
   const switchEmoji = useEmoji(state => state.switchEmoji)
   const handleInputChange = (event) => {
     if (event.target.value.length <= 280){
@@ -16,12 +20,6 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data}) {
     setLabel(newValue);
     data.label = newValue;
     }
-    /*const updatedEdges = edges.map((edge) => {
-      if (edge.id === id) {
-        return { ...edge, data: { ...edge.data, label: event.target.value } };
-      }
-      return edge;
-    });*/
   };
   const curveY = targetY - 100;
   const EmojiDropdown = () => {

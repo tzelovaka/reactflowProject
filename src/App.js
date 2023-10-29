@@ -28,13 +28,21 @@ const initialNodes = [
   {
     id: '0',
     type: 'block',
-    data: { label: 'Нажми', img: '' },
+    data: { 
+      label: 'Нажми', 
+      img: '', 
+      customX: 150,
+      customY: 200 },
     position: { x: 0, y: 50 },
   },
   {
       id: '1',
       type: 'block',
-      data: { label: 'Поменяй', img: '' },
+      data: { 
+          label: 'Поменяй', 
+          img: '', 
+          customX: 300,
+          customY: 650 },
       position: { x: 150, y: 500 },
   },
 ];
@@ -44,16 +52,16 @@ const initialEdges = [
       source: '0', 
       type: 'CustomEdge', 
       target: '1', 
-      data: { smile: '', label: 'Введи' } 
+      data: { label: 'Введи', smile: '' } 
   }
 ]
 
 let id = 2;
 const getId = () => `${id++}`;
-const tgid = 999999999//window.Telegram.WebApp.initDataUnsafe.user.id;
+const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 
 const AddNodeOnEdgeDrop = () => {
-  useEffect(() => {
+ useEffect(() => {
     fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
         method: 'GET',
     })
@@ -97,12 +105,10 @@ console.error('Error:', error);
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   useEffect(()=>{
-    setNodes((nds)=>{
-      nds.map(nd=>nd.position.x = nd.position.x+5)
-    })
-  }, [edges])
+    console.log(nodes);
+  }, [nodes])
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const { project, deleteElements } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [displayError, setDisplayError] = useState(false)
@@ -125,7 +131,7 @@ const data = {
   title: title,
   imgUrl: imgUrl,
   desc: desc,
-  authId: tgid
+  //authId: tgid
   },
   nodes: nodes,
   edges: edges
@@ -158,19 +164,6 @@ const controlsConfig = {
   showFitView: false,
   showInteractive: true,
 };
-/*const getId = () => {
-  fetch(`https://storinter.herokuapp.com/api/?storyId=${scheme[0].id}&authId=${tgid}&sourceId=${connectingNodeId.current}`, {
-          method: 'GET',
-      })
-  .then(response => response.json())
-  .then (response => {
-    setCreatedBlockId(response.message[0])
-    setCreatedEdgeId(response.message[1])
-      })
-.catch(error => {
-  console.error('Error:', error);
-});
-};*/
 const animatedMenu = useSpring({
   from: {opacity: 0, transform: "translateY(40rem)"},
   to: {opacity: 1, transform: "translateY(0rem)"},
@@ -208,28 +201,6 @@ const imgTest = async (img) => {
     connectingNodeId.current = nodeId;
   }, []);
 
-  /*const onConnectEnd = useCallback(
-    (event) => {
-      let targetIsPane
-      if (event.type === "touchend") {
-        targetIsPane = event.changedTouches[0]
-      }
-      if (targetIsPane) {
-        const id = getId()
-        const left = event.changedTouches[0].clientX;
-        const top = event.changedTouches[0].clientY;
-        const newNode = {
-          id: id,
-          type: 'block',
-          position: project({ x: left-75, y: top+100 }),
-          data: { label: '', img: '' },
-        };
-        setNodes((nds) => nds.concat(newNode));
-        setEdges((eds) => eds.concat({ id, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: {smile: '', label: ''} }));
-      }
-    },
-    [project]
-  );*/
 
   const onConnectEnd = useCallback(
     (event) => {
@@ -277,27 +248,11 @@ const imgTest = async (img) => {
     })
       .then(response => response.json())
       .then(data => {
-        // Handle the response from the server
         console.log(data);
       })
       .catch(error => {
-        // Handle any errors that occur during the request
         console.error('Error:', error);
       });
-  
-    /*await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });*/
   }, [data]);
 
   return (
@@ -392,7 +347,7 @@ const imgTest = async (img) => {
 >
   Сохранить
 </button>
-        <button className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={console.log('Ok')}>Опубликовать</button>
+        <button className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={e => console.log('Ok')}>Опубликовать</button>
       </div>
 </div>
 <div className='container mx-auto font-philosopher w-100 mt-28 px-4'>
@@ -409,13 +364,13 @@ const imgTest = async (img) => {
 }
 <div className='mt-4 mx-3 font-philosopher w-100 px-3 py-2 border-2 rounded-full'>
   <div id='label'>
-    {
+    {/*
   (nodes.find(node => node.id === simulateNodeId) === undefined || nodes.find(node => node.id === simulateNodeId).data.label === null ||  nodes.find(node => node.id === simulateNodeId).data.label.length < 1) ? <div className='w-100 text-center text-red-300'>Уупс... (здесь должен быть текст)</div> : (nodes.find(node => node.id === simulateNodeId).data.label.length > 35 ? (nodes.find(node => node.id === simulateNodeId).data.label.substring(0, 35) + '...') : nodes.find(node => node.id === simulateNodeId).data.label)
-  }
+*/}
     </div>
 </div>
 <div className='flex flex-wrap mt-2'>
-    {
+    {/*
  edges.map (edge => {
   if (edge.source === nodes.find(node => node.id === simulateNodeId).id){
      return <div className='mx-3 border rounded-full px-4 py-1' key={edge.id} 
@@ -430,9 +385,9 @@ const imgTest = async (img) => {
           </div>
     
   </div> 
-  }
+      }
  })
- }
+*/}
 </div>
 {
   simulatedHistory.length >= 2 ? <div className='w-100 flex justify-end'>
