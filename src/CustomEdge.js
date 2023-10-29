@@ -7,18 +7,11 @@ import { useEmoji } from './store/storeEmoji';
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, data}) {
   const { getNodes } = useReactFlow();
   const nds = useNodes()
-  var sX, sY, tX, tY
-    var sX = nds.find(nd=>nd.id === source).data.customX
-    var sY = nds.find(nd=>nd.id === source).data.customY
-    var tX = nds.find(nd=>nd.id === target).data.customX
-    var tY = nds.find(nd=>nd.id === target).data.customY
-  useEffect(()=>{
-    sX = sourceX
-    sY = sourceY
-    tX = targetX
-    tY = targetY
-  }, [nds])
-  
+  const sX = sourceX
+  const sY = sourceY
+  const tX = targetX
+  const tY = targetY
+  console.log(sX, sY, tX, tY);
   const [label, setLabel] = useState(data.label);
   //const dispatch = useDispatch()
   //const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
