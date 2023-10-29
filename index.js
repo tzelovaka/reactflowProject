@@ -100,7 +100,7 @@ app.post('/api/story', async (req, res) => {
         }
         
     })
-    const lis = await storybl.findAll({where: {
+    const lis = await storylin.findAll({where: {
         storyId: `${s.id}`,
         authId: `${head.authId}`,
         release: false
