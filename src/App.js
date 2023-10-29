@@ -22,7 +22,6 @@ import { useText } from './store/storeNode';
 const nodeTypes = { block: block };
 const edgeTypes = {CustomEdge: CustomEdge};
 const screenHeight = window.screen.height - 0.22*window.screen.height;
-const screenWidth = window.screen.width - 0.22*window.screen.height;
 const proOptions = { hideAttribution: true};
 
 const initialNodes = [
@@ -257,7 +256,7 @@ const imgTest = async (img) => {
   }, [data]);
 
   return (
-    <div className="wrapper" style={{height: screenHeight, width: screenWidth}} ref={reactFlowWrapper}>
+    <div className="wrapper" style={{height: screenHeight}} ref={reactFlowWrapper}>
       { cover &&
       <animated.div style={animatedMenu} className='w-full grid grid-cols-1'>
       <div className='justify-self-end'>

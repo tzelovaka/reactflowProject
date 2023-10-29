@@ -173,7 +173,7 @@ app.get('/api', async (request, response) => {
             edge = {
                 id: link.fId.toString(),
                 source: link.source.toString(),
-                type: 'CustomEdge',
+                type: 'step',
                 target: link.target.toString(),
                 data: { 
                     label: link.text,
