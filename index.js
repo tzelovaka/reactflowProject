@@ -106,7 +106,7 @@ app.post('/api/story', async (req, res) => {
         release: false
     }})
     lis.forEach(async (li)=>{
-        if (nodes.find(node=>node.id==li.fId)===undefined || nodes.find(node=>node.id==li.fId)===null) {
+        if (edges.find(edge=>edge.id==li.fId)===undefined || edges.find(edge=>edge.id==li.fId)===null) {
             await storylin.destroy({
                 where: {
                     id: `${li.id}`,
