@@ -58,7 +58,7 @@ const initialEdges = [
 
 let id = 2;
 const getId = () => `${id++}`;
-const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+const tgid = 9999999999//window.Telegram.WebApp.initDataUnsafe.user.id;
 
 const AddNodeOnEdgeDrop = () => {
  useEffect(() => {
@@ -183,7 +183,7 @@ const animatedText = useSpring({
 const fitViewOptions = {
   padding: 3,
   minZoom: 0.1,
-  maxZoom: 5
+  maxZoom: 3
 };
 
 const imgTest = async (img) => {
