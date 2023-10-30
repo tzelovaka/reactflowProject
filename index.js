@@ -204,7 +204,7 @@ app.get('/api', async (request, response) => {
     try{
         const id = BigInt(request.query.data);
         const st = await story.findOne({where:{
-        authId: `${id}`,
+        authId: id,
         release: false
     }});
     if (st !== null){
@@ -214,7 +214,7 @@ app.get('/api', async (request, response) => {
             desc: st.desc,
         }
         const blocks = await storybl.findAll ({where: {
-            authId: `${id}`,
+            authId: id,
             release: false,
             storyId: st.id
         }})
@@ -240,7 +240,7 @@ app.get('/api', async (request, response) => {
         nodes = initialNodes
     }
         const links = await storylin.findAll ({where: {
-            authId: `${id}`,
+            authId: id,
             release: false,
             storyId: st.id
         }})
