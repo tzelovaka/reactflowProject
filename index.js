@@ -151,12 +151,12 @@ app.post('/api/story', async (req, res) => {
         
         res.json('success');
   });
-  var head = {
+  const head = {
     title: '',
     imgUrl: '',
     desc: ''
   }
-  var initialNodes = [
+  const initialNodes = [
     {
       id: '0',
       type: 'block',
@@ -183,7 +183,7 @@ app.post('/api/story', async (req, res) => {
         position: { x: -150, y: 650 },
     },
   ];
-var initialEdges = [
+const initialEdges = [
     {
         id: 'e0-1', 
         source: '0', 
@@ -208,7 +208,7 @@ app.get('/api', async (request, response) => {
         release: false
     }});
     if (st !== null){
-        head = {
+        let mind = {
             title: st.title,
             img: st.img,
             desc: st.desc,
@@ -261,18 +261,23 @@ app.get('/api', async (request, response) => {
             }
             edges.push(edge)
         })
-    } 
-    initialNodes=nodes
-    initialEdges=edges
-    }  
-    }catch(e){
-        console.log(e);
+        return response.send({message:{
+            head: mind,
+            nodes: nodes,
+            edges: edges
+        }})
     }
-    return response.send({ 
+    }else{
+      return response.send({ 
         message: {
             head: head, 
             nodes: initialNodes, 
             edges: initialEdges
         }
-    })
+    })  
+    }  
+    
+    }catch(e){
+        console.log(e);
+    }
 })
