@@ -201,12 +201,12 @@ var initialEdges = [
 app.listen(PORT, () => console.log(`Server started on ${PORT} port`))
 app.get('/api', async (request, response) => {
     try{
-      const id = request.query.data;
-    const st = await story.findOne({where:{
+        const id = request.query.data;
+        const st = await story.findOne({where:{
         authId: `${id}`,
         release: false
     }});
-    if (st){
+    if (st !== null){
         head = {
             title: st.title,
             img: st.img,
