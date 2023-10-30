@@ -5,6 +5,7 @@ const story = require('./models/story')
 const storybl = require('./models/block');
 const storylin = require('./models/link');
 const bodyParser = require('body-parser');
+const BigInt = require('big-integer')
 const PORT = process.env.PORT || 5000
 const app = express();
 
@@ -201,7 +202,7 @@ var initialEdges = [
 app.listen(PORT, () => console.log(`Server started on ${PORT} port`))
 app.get('/api', async (request, response) => {
     try{
-        const id = Number(request.query.data);
+        const id = BigInt(request.query.data);
         const st = await story.findOne({where:{
         authId: `${id}`,
         release: false
