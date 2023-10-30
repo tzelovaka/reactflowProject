@@ -143,7 +143,7 @@ app.post('/api/story', async (req, res) => {
             })
         }
         
-        res.send('success');
+        res.json('success');
   });
   var head = {
     title: '',

@@ -258,7 +258,6 @@ const imgTest = async (img) => {
     let testBeforePublish=true
     if (data.head.release === true) {
       data.nodes.forEach(node=> {
-        console.log(node.data.label);
         if(node.data.label.length < 1) 
         {
           setIsReleased(false)
@@ -278,7 +277,6 @@ const imgTest = async (img) => {
     }
     if (testBeforePublish){
       setDisplaySaving(true)
-      console.log('Тест прошёл');
       let url = 'https://storinter.herokuapp.com/api/story' //?title=${title}&imgUrl=${imgUrl}&desc=${desc}
     fetch(url, {
       method: 'POST',
@@ -407,7 +405,7 @@ const imgTest = async (img) => {
             Опубликовать
             </button>
             :
-      <div className='grid grid-cols-2 items-center'>
+      <div className='w-100 grid grid-cols-2 items-center'>
         <button className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' 
         onClick={
           async e=>{
