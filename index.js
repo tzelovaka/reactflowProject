@@ -130,7 +130,7 @@ app.post('/api/story', async (req, res) => {
       id: '0',
       type: 'block',
       data: { 
-        label: 'Нажми', 
+        label: 'Зажмите область цвета светло-зелёного моря и проведите в сторону=>', 
         img: ''},
       position: { x: 0, y: 50 },
     },
@@ -138,9 +138,18 @@ app.post('/api/story', async (req, res) => {
         id: '1',
         type: 'block',
         data: { 
-            label: 'Поменяй', 
+            label: '=>Отпустите и нажмите на серую форму в появившемся блоке=>', 
             img: '' },
         position: { x: 150, y: 500 },
+    },
+    {
+        id: '2',
+        type: 'block',
+        data: { 
+            label: '=>Творите...', 
+            img: ''
+          },
+        position: { x: -150, y: 650 },
     },
   ];
 var initialEdges = [
@@ -149,7 +158,14 @@ var initialEdges = [
         source: '0', 
         type: 'CustomEdge', 
         target: '1', 
-        data: { label: 'Введи', smile: '' } 
+        data: { label: '...иначе не опубликуется', smile: '' } 
+    },
+    {
+        id: 'e0-2', 
+        source: '0', 
+        type: 'CustomEdge', 
+        target: '2', 
+        data: { label: 'Введите текст выбора...', smile: '' } 
     }
 ]
 app.listen(PORT, () => console.log(`Server started on ${PORT} port`))

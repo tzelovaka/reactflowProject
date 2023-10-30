@@ -91,9 +91,9 @@ function Block({ data, isConnectable, id }) {
                 </div>
                 
             }
-            { !isOpen && nodeId !== '0' && <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg justify-self-end flex items-center justify-center" onClick={() => setIsOpen(true)}>×</button>}
+            { !isOpen && nodeId !== '0' && nodeId !== '1' && nodeId !== '2' && <button className="rounded-xl px-4 h-8 my-2 bg-retro text-white text-lg justify-self-end flex items-center justify-center" onClick={() => setIsOpen(true)}>×</button>}
           </div>
-          <textarea id={id + 'mirageTextarea'} className="resize-none border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={onChange} onClick={()=>textWindow()} value={data.label}></textarea>
+          <textarea id={id + 'mirageTextarea'} className="font-philosopher resize-none border-2 rounded-xl bg-slate-300 px-2 py-1 text-lg" rows={3} cols={30} onChange={onChange} onClick={()=>textWindow()} value={data.label}></textarea>
         </div>
         <Handle
         style = {{

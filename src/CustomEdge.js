@@ -7,15 +7,11 @@ import { useEmoji } from './store/storeEmoji';
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, data}) {
   const { getNodes } = useReactFlow();
   const nds = useNodes()
-
-  const sX = sourceX//nds.find(nd=>nd.id === source).position.x//
-  const sY = sourceY//nds.find(nd=>nd.id === source).position.y//
-  const tX = targetX//nds.find(nd=>nd.id === target).position.x//
-  const tY = targetY//nds.find(nd=>nd.id === target).position.y//
-  console.log(sX, sY, tX, tY);
+  const sX = sourceX
+  const sY = sourceY
+  const tX = targetX
+  const tY = targetY
   const [label, setLabel] = useState(data.label);
-  //const dispatch = useDispatch()
-  //const emojiWindowIsOpen = useSelector(state => state.emojiWindowIsOpen)
   const switchEmoji = useEmoji(state => state.switchEmoji)
   const handleInputChange = (event) => {
     if (event.target.value.length <= 280){
@@ -23,12 +19,6 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, da
     setLabel(newValue);
     data.label = newValue;
     }
-    /*const updatedEdges = edges.map((edge) => {
-      if (edge.id === id) {
-        return { ...edge, data: { ...edge.data, label: event.target.value } };
-      }
-      return edge;
-    });*/
   };
   const curveY = tY - 100;
   const EmojiDropdown = () => {
@@ -42,7 +32,6 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, da
     return (
       <div className="relative inline-block">
         <button
-          //onClick={handleToggleDropdown}
           onClick={()=>emojiWindow()}
           className="px-6 py-2 text-sm font-medium font-philosopher text-white rounded-full bg-yellow-300 mr-2"
         >
@@ -87,7 +76,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, source, target, da
             type="text"
             value={label || ''}
             onChange={handleInputChange}
-            className='focus:outline-none border-2 border-sea rounded-full px-3 py-1 text-lg mr-8 text-center'
+            className='font-philosopher focus:outline-none border-2 border-sea rounded-full px-3 py-1 text-lg mr-8 text-center'
           />
             </div>
           <div className='grow h-14'>

@@ -29,7 +29,7 @@ const initialNodes = [
     id: '0',
     type: 'block',
     data: { 
-      label: 'Нажми', 
+      label: 'Зажмите область цвета светло-зелёного моря и проведите в сторону=>', 
       img: ''
     },
     position: { x: 0, y: 50 },
@@ -38,11 +38,20 @@ const initialNodes = [
       id: '1',
       type: 'block',
       data: { 
-          label: 'Поменяй', 
+          label: '=>Отпустите и нажмите на серую форму в появившемся блоке=>', 
           img: ''
         },
-      position: { x: 150, y: 500 },
+      position: { x: 150, y: 400 },
   },
+  {
+    id: '2',
+    type: 'block',
+    data: { 
+        label: '=>Творите...', 
+        img: ''
+      },
+    position: { x: -150, y: 700 },
+},
 ];
 const initialEdges = [
   {
@@ -50,8 +59,15 @@ const initialEdges = [
       source: '0', 
       type: 'CustomEdge', 
       target: '1', 
-      data: { label: 'Введи', smile: '' } 
-  }
+      data: { label: 'Введите текст выбора...', smile: '' } 
+  },
+  {
+    id: 'e0-2', 
+    source: '0', 
+    type: 'CustomEdge', 
+    target: '2', 
+    data: { label: '...иначе не опубликуется', smile: '' } 
+}
 ]
 
 
@@ -98,19 +114,18 @@ console.error('Error:', error);
   const nodePlaceholderImg = useText(state => state.placeholderImg)
   const [simulateNodeId, setSimulateNodeId] = useState('0') 
   const [simulatedHistory, setSimulatedHistory] = useState(['0']);
- 
+ const [verificationOfPublish, setVerificationOfPublish] = useState(false)
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
+  const [id, setId]=useState('0')
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  useEffect(()=>{
+    nodes.forEach(node => {
+      if (Number(node.id)>=Number(id)) setId(String(Number(node.id)+1))
+    });
+  },[nodes])
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const getId = () => {
-    let max=Number(nodes[0].id)
-    nodes.forEach(node=>{
-      if (Number(node.id)>max) max=node
-    })
-   return max++
-  };
-  const { project, deleteElements } = useReactFlow();
+  const { project, deleteElements, getNodes } = useReactFlow();
   //const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 const [displayError, setDisplayError] = useState(false)
 const [displaySaving, setDisplaySaving] = useState(false)
@@ -127,12 +142,20 @@ useEffect(() => {
 const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
+const [isReleased, setIsReleased] = useState(false)
+useEffect(()=>{
+  if (isReleased){
+    console.log('isReleased = ' + isReleased);
+    saveStory()
+  }
+}, [isReleased])
 const data = {
   head: {
   title: title,
   imgUrl: imgUrl,
   desc: desc,
-  authId: tgid
+  authId: tgid,
+  release: isReleased
   },
   nodes: nodes,
   edges: edges
@@ -141,14 +164,14 @@ useEffect(()=>{
   data.head.title = title
   data.head.imgUrl = imgUrl
   data.head.desc = desc
+  data.head.release = isReleased
   data.nodes = nodes
   data.edges = edges
 }, [data])
 useEffect(()=>{
-  setDisplayError(false)
-}, [title, imgUrl, desc, nodes])
-useEffect(()=>{
+  setVerificationOfPublish(false)
   setDisplaySaving(false)
+  setDisplayError(false)
 }, [title, imgUrl, desc, nodes])
 const [nodeImg, setNodeImg] = useState('');
 const [nodeText, setNodeText] = useState('');
@@ -212,7 +235,14 @@ const imgTest = async (img) => {
         targetIsPane = true;
       }
       if (targetIsPane) {
-        const id = getId();
+        /*let i=0;
+        let n = nodes
+        console.log(n);
+        n.forEach(node=>{
+          console.log(node.id);
+          if (Number(node.id)>Number(id)) setId(node.id)
+        })
+      console.log(id);*/
         const left = event.type === "touchend" ? event.changedTouches[0].clientX : event.clientX;
         const top = event.type === "touchend" ? event.changedTouches[0].clientY : event.clientY;
         const newNode = {
@@ -227,20 +257,36 @@ const imgTest = async (img) => {
         );
       }
     },
-    [project, setNodes, setEdges]
+    [project, setNodes, setEdges, id]
   );
 
   const saveStory = useCallback(async (evt) => {
-    /*imgTest(imgUrl).then(result => {
-
-      if (result) {
-        head.imgUrl = imgUrl
-      }else{
-        setImgUrl('')
-      }
-    })*/
-    let url = 'https://storinter.herokuapp.com/api/story' //?title=${title}&imgUrl=${imgUrl}&desc=${desc}
-    fetch(url, {
+    let testBeforePublish=true
+    if (data.head.release === true) {
+      data.nodes.forEach(node=> {
+        console.log(node.data.label);
+        if(node.data.label.length < 1) 
+        {
+          setIsReleased(false)
+          testBeforePublish=false
+          setDisplayError(true)
+        }
+        
+      })
+      data.edges.forEach(edge=> {
+        if(edge.data.label.length < 1) {
+          setIsReleased(false)
+          testBeforePublish=false
+          setDisplayError(true)
+        }
+        
+      })
+    }
+    if (testBeforePublish){
+      setDisplaySaving(true)
+      console.log('Тест прошёл');
+      let url = 'https://storinter.herokuapp.com/api/story' //?title=${title}&imgUrl=${imgUrl}&desc=${desc}
+    /*fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -249,11 +295,14 @@ const imgTest = async (img) => {
     })
       .then(response => response.json())
       .then(data => {
+        window.location.reload()
         console.log(data);
       })
       .catch(error => {
         console.error('Error:', error);
-      });
+      });*/
+    }
+    
   }, [data]);
 
   return (
@@ -322,13 +371,13 @@ const imgTest = async (img) => {
   </form>
       <div className='mt-4 grid grid-cols-2 justify-items-center'>
         {!displaySaving && displayError &&
-          <div className='col-span-2 font-philosopher text-retro text-lg'>
+          <div className='col-span-2 font-philosopher text-retro text-lg mb-4 rounded-full border-2 px-3 py-1'>
           Некорректные значения
         </div>
 }
 {displaySaving && !displayError &&
-  <div className='col-span-2 font-philosopher text-sea text-lg'>
-  История на сохранении...
+  <div className='col-span-2 font-philosopher text-sea text-lg rounded-full border-2 px-3 py-1 mb-4'>
+  Всё верно...
 </div>
 }
 <button
@@ -348,7 +397,43 @@ const imgTest = async (img) => {
 >
   Сохранить
 </button>
-        <button className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' onClick={e => console.log('Ok')}>Опубликовать</button>
+<div>
+  { !verificationOfPublish ?
+    <button 
+        className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' 
+        onClick={
+          e => setVerificationOfPublish(true)}>
+            Опубликовать
+            </button>
+            :
+      <div className='grid grid-cols-2 items-center'>
+        <button className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' 
+        onClick={
+          async e=>{
+            if(title === undefined  || desc === undefined || title === null || desc === null || title.length < 1 || desc.length <1 ){
+              setDisplayError(true);
+            }else{
+                if (imgUrl === undefined ||imgUrl === null || imgUrl.length<1) {
+                  setImgUrl('')
+                }
+                setIsReleased(true)
+              }
+            
+          }
+          
+  }>
+          Да
+        </button>
+        <button onClick={
+          e => setVerificationOfPublish(false)}
+          className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' >
+          Нет
+        </button>
+      </div>
+  }
+  
+</div>
+        
       </div>
 </div>
 <div className='container mx-auto font-philosopher w-100 mt-28 px-4'>
@@ -379,7 +464,6 @@ const imgTest = async (img) => {
       e => {
         setSimulateNodeId(edge.target)
         setSimulatedHistory(simulatedHistory.concat(edge.target))
-        console.log(simulatedHistory);
         }}>
           <div id='label'>
             {(edge.data.smile ? edge.data.smile : '👆') +  (edge.data.label > 35 ? ' ' + edge.data.label.substring(0, 8) + '...' : edge.data.label)}
@@ -396,7 +480,6 @@ const imgTest = async (img) => {
       let x = simulatedHistory.length;
       setSimulateNodeId(simulatedHistory[x - 2])
       setSimulatedHistory(simulatedHistory.slice(0, -1))
-      console.log(simulatedHistory);
     }}><img src={back} alt="img" className='w-6'/></button>
   </div> : null
 }
