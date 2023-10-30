@@ -202,6 +202,7 @@ app.listen(PORT, () => console.log(`Server started on ${PORT} port`))
 app.get('/api', async (request, response) => {
     try{
         const id = request.query.data;
+        console.log(typeof id);
         const st = await story.findOne({where:{
         authId: `${id}`,
         release: false
@@ -260,20 +261,13 @@ app.get('/api', async (request, response) => {
             }
             edges.push(edge)
         })
-    }
-        /*return response.send({ message: {
-            head: head, 
-            nodes: nodes, 
-            edges: edges
-        }
-    })*/ 
+    } 
     initialNodes=nodes
     initialEdges=edges
     }  
     }catch(e){
         console.log(e);
     }
-    
     return response.send({ 
         message: {
             head: head, 
