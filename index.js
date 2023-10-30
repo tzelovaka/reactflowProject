@@ -201,8 +201,7 @@ var initialEdges = [
 app.listen(PORT, () => console.log(`Server started on ${PORT} port`))
 app.get('/api', async (request, response) => {
     try{
-        const id = request.query.data;
-        console.log(typeof id);
+        const id = Number(request.query.data);
         const st = await story.findOne({where:{
         authId: `${id}`,
         release: false
