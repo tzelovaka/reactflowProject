@@ -143,12 +143,6 @@ const [title, setTitle] = useState('');
 const [imgUrl, setImgUrl] = useState('');
 const [desc, setDesc] = useState('');
 const [isReleased, setIsReleased] = useState(false)
-useEffect(()=>{
-  if (isReleased){
-    console.log('isReleased = ' + isReleased);
-    saveStory()
-  }
-}, [isReleased])
 const data = {
   head: {
   title: title,
@@ -286,7 +280,7 @@ const imgTest = async (img) => {
       setDisplaySaving(true)
       console.log('Тест прошёл');
       let url = 'https://storinter.herokuapp.com/api/story' //?title=${title}&imgUrl=${imgUrl}&desc=${desc}
-    /*fetch(url, {
+    fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -300,7 +294,7 @@ const imgTest = async (img) => {
       })
       .catch(error => {
         console.error('Error:', error);
-      });*/
+      });
     }
     
   }, [data]);
@@ -380,7 +374,8 @@ const imgTest = async (img) => {
   Всё верно...
 </div>
 }
-<button
+{ !verificationOfPublish &&
+  <button
   className="bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md focus:outline-none"
   onClick={e => {
     if(title === undefined  || desc === undefined || title === null || desc === null || title.length < 1 || desc.length <1 ){
@@ -397,12 +392,18 @@ const imgTest = async (img) => {
 >
   Сохранить
 </button>
+}
+
 <div>
   { !verificationOfPublish ?
     <button 
         className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' 
         onClick={
-          e => setVerificationOfPublish(true)}>
+          e => 
+          {
+            setVerificationOfPublish(true)
+            setIsReleased(true)
+        }}>
             Опубликовать
             </button>
             :
@@ -416,7 +417,7 @@ const imgTest = async (img) => {
                 if (imgUrl === undefined ||imgUrl === null || imgUrl.length<1) {
                   setImgUrl('')
                 }
-                setIsReleased(true)
+                saveStory();
               }
             
           }
@@ -425,7 +426,12 @@ const imgTest = async (img) => {
           Да
         </button>
         <button onClick={
-          e => setVerificationOfPublish(false)}
+          e => 
+          {
+            setIsReleased(false)
+            setVerificationOfPublish(false)
+          }
+        }
           className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' >
           Нет
         </button>

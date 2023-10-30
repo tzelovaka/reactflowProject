@@ -118,6 +118,31 @@ app.post('/api/story', async (req, res) => {
               });
         }
         })
+        if (req.body.head.release){
+            const st = await story.findOne({where:{authId: `${head.authId}`, release: false}})
+            st.release = true;
+            st.save()
+            await nodes.forEach(async (node)=>{
+                const bl = await storybl.findOne({where: {
+                    fId: `${node.id}`,
+                    storyId: `${s.id}`,
+                    authId: `${head.authId}`
+            }})
+            bl.release=true;
+            await bl.save()
+            })
+            await edges.forEach(async (edge) => {
+                    const li = await storylin.findOne({where :{
+                    fId: `${edge.id}`,
+                    storyId: `${s.id}`,
+                    authId: `${head.authId}`
+                }
+                })
+                li.release=true;
+                await li.save()
+            })
+        }
+        
         res.send('success');
   });
   var head = {
