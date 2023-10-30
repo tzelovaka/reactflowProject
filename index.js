@@ -19,7 +19,8 @@ try{
     console.log(e)
 }
 app.post('/api/story', async (req, res) => {
-    const head = req.body.head;
+    try{
+      const head = req.body.head;
     const nodes = req.body.nodes;
     const edges = req.body.edges;
     const st = await story.findOne({where:{authId: `${head.authId}`, release: false}})
@@ -141,7 +142,11 @@ app.post('/api/story', async (req, res) => {
                 li.release=true;
                 await li.save()
             })
-        }
+        }  
+    }catch(e){
+        console.log(e);
+    }
+    
         
         res.json('success');
   });
@@ -195,7 +200,8 @@ var initialEdges = [
 ]
 app.listen(PORT, () => console.log(`Server started on ${PORT} port`))
 app.get('/api', async (request, response) => {
-    const id = request.query.data;
+    try{
+      const id = request.query.data;
     const st = await story.findOne({where:{
         authId: `${id}`,
         release: false
@@ -263,7 +269,11 @@ app.get('/api', async (request, response) => {
     })*/ 
     initialNodes=nodes
     initialEdges=edges
+    }  
+    }catch(e){
+        console.log(e);
     }
+    
     return response.send({ 
         message: {
             head: head, 
