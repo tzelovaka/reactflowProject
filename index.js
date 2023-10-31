@@ -86,13 +86,15 @@ app.post('/api/story', async (req, res) => {
         }
         })
         if(li){
-            li.smile=edge.data.smile;
+            edge.data.smile != null ? li.smile=edge.data.smile : li.smile='👆';
             li.text=edge.data.label;
             await li.save()
         }else{
+        let sm='👆';
+        if (edge.data.smile != null) sm=edge.data.smile;
           await storylin.create({
             fId: edge.id,
-            smile: edge.data.smile,
+            smile: sm,
             text: edge.data.label,
             source: edge.source,
             target: edge.target,
