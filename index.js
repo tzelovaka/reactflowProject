@@ -189,14 +189,14 @@ const initialEdges = [
         source: '0', 
         type: 'CustomEdge', 
         target: '1', 
-        data: { label: '...иначе не опубликуется', smile: '' } 
+        data: { label: '...иначе не опубликуется', smile: null } 
     },
     {
         id: 'e0-2', 
         source: '0', 
         type: 'CustomEdge', 
         target: '2', 
-        data: { label: 'Введите текст выбора...', smile: '' } 
+        data: { label: 'Введите текст выбора...', smile: null } 
     }
 ]
 app.listen(PORT, () => console.log(`Server started on ${PORT} port`))
