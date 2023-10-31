@@ -13,7 +13,7 @@ app.use(express.json())
 app.use (express.static('build'));
 app.use(bodyParser.json());
 try{
-    sequelize.sync({force: true})
+    sequelize.sync({})
     sequelize.authenticate()
     console.log('Successful connect!');
 }catch(e){
