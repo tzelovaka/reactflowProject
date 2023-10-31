@@ -463,7 +463,7 @@ const imgTest = async (img) => {
     {
  edges.map (edge => {
   if (edge.source === nodes.find(node => node.id === simulateNodeId).id){
-     return <div className='mx-3 border rounded-full px-4 py-1' key={edge.id} 
+     return <div className='mx-3 border rounded-full px-4 py-1 my-2' key={edge.id} 
      onClick={
       e => {
         setSimulateNodeId(edge.target)
