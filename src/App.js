@@ -59,14 +59,14 @@ const initialEdges = [
       source: '0', 
       type: 'CustomEdge', 
       target: '1', 
-      data: { label: 'Введите текст выбора...', smile: null } 
+      data: { label: 'Введите текст выбора...', smile: '' } 
   },
   {
     id: 'e0-2', 
     source: '0', 
     type: 'CustomEdge', 
     target: '2', 
-    data: { label: '...иначе не опубликуется', smile: null } 
+    data: { label: '...иначе не опубликуется', smile: '' } 
 }
 ]
 
@@ -247,7 +247,7 @@ const imgTest = async (img) => {
         };
         setNodes((nds) => nds.concat(newNode));
         setEdges((eds) =>
-          eds.concat({ id: `e${connectingNodeId.current}-${id}`, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: { smile: null, label: '' } })
+          eds.concat({ id: `e${connectingNodeId.current}-${id}`, source: connectingNodeId.current, type: 'CustomEdge', target: id, data: { smile: '', label: '' } })
         );
       }
     },

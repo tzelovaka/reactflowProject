@@ -86,15 +86,13 @@ app.post('/api/story', async (req, res) => {
         }
         })
         if(li){
-            edge.data.smile != null ? li.smile=edge.data.smile : li.smile='👆';
+            li.smile=edge.data.smile;
             li.text=edge.data.label;
             await li.save()
         }else{
-        let sm='👆';
-        if (edge.data.smile != null) sm=edge.data.smile;
           await storylin.create({
             fId: edge.id,
-            smile: sm,
+            smile: edge.data.smile,
             text: edge.data.label,
             source: edge.source,
             target: edge.target,
@@ -191,14 +189,14 @@ const initialEdges = [
         source: '0', 
         type: 'CustomEdge', 
         target: '1', 
-        data: { label: '...иначе не опубликуется', smile: null } 
+        data: { label: '...иначе не опубликуется', smile: '' } 
     },
     {
         id: 'e0-2', 
         source: '0', 
         type: 'CustomEdge', 
         target: '2', 
-        data: { label: 'Введите текст выбора...', smile: null } 
+        data: { label: 'Введите текст выбора...', smile: '' } 
     }
 ]
 app.listen(PORT, () => console.log(`Server started on ${PORT} port`))
