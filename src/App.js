@@ -393,7 +393,7 @@ const imgTest = async (img) => {
 }
 
 <div>
-  { !verificationOfPublish ?
+  { !verificationOfPublish &&
     <button 
         className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' 
         onClick={
@@ -404,8 +404,11 @@ const imgTest = async (img) => {
         }}>
             Опубликовать
             </button>
-            :
-      <div className='col-span-4 w-100 grid grid-cols-2 items-center'>
+  }
+  
+</div>
+{ verificationOfPublish &&
+  <div className='col-span-2 w-100 grid grid-cols-2 items-center'>
         <button className='focus:outline-none bg-sea font-philosopher text-white font-bold py-2 px-4 rounded-full mx-3 text-md' 
         onClick={
           async e=>{
@@ -434,9 +437,8 @@ const imgTest = async (img) => {
           Нет
         </button>
       </div>
-  }
-  
-</div>
+}
+
         
       </div>
 </div>
