@@ -1,5 +1,4 @@
-const sequelize = require('./db')
-const storylin = require('./modelink')
+const sequelize = require('../db')
 const {DataTypes} = require('sequelize');
 
 const storybl = sequelize.define ('storybl', {
@@ -13,6 +12,5 @@ const storybl = sequelize.define ('storybl', {
     authId: {type: DataTypes.BIGINT, unique: false},
     release: {type: DataTypes.BOOLEAN, defaultValue: false}
 })
-storybl.hasMany(storylin);
 
 module.exports = storybl;
