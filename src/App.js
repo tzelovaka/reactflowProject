@@ -71,10 +71,10 @@ const initialEdges = [
 ]
 
 
-const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+//const tgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 
 const AddNodeOnEdgeDrop = () => {
- useEffect(() => {
+ /*useEffect(() => {
     fetch(`https://storinter.herokuapp.com/api/?data=${tgid}`, {
         method: 'GET',
     })
@@ -91,7 +91,7 @@ const AddNodeOnEdgeDrop = () => {
 .catch(error => {
 console.error('Error:', error);
 });
-}, [tgid])
+}, [tgid])*/
   function checkImageExists(url) {
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -148,7 +148,7 @@ const data = {
   title: title,
   imgUrl: imgUrl,
   desc: desc,
-  authId: tgid,
+  //authId: tgid,
   release: isReleased
   },
   nodes: nodes,

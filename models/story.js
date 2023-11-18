@@ -1,16 +1,14 @@
 const sequelize = require('../db')
-const {DataTypes} = require('sequelize');
+const {DataTypes} = require('sequelize')
 
-const storybl = sequelize.define ('storybl', {
+const story = sequelize.define ('story', {
     id: {type: DataTypes.BIGINT, primaryKey: true, unique: true, autoIncrement: true},
-    fId: {type: DataTypes.BIGINT},
+    views: {type: DataTypes.BIGINT, unique: false, defaultValue: 0},
     img: {type: DataTypes.TEXT, allowNull: true, defaultValue: null},
-    text: {type: DataTypes.TEXT},
-    positionX: {type: DataTypes.BIGINT},
-    positionY: {type: DataTypes.BIGINT},
-    storyId: {type: DataTypes.BIGINT, unique: false},
+    title: {type: DataTypes.STRING},
+    desc: {type: DataTypes.STRING},
     authId: {type: DataTypes.BIGINT, unique: false},
     release: {type: DataTypes.BOOLEAN, defaultValue: false}
 })
 
-module.exports = storybl;
+module.exports = story;
