@@ -1,3 +1,4 @@
 Stack:
 React, NodeJS, Express.js, PostgreSQL
-Reactflow, sequelize
+<br>
+Reactflow, Sequelize, Tailwind
