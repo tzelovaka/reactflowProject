@@ -1,5 +1,4 @@
 const sequelize = require('../db')
-//const storylin = require('./link')
 const {DataTypes} = require('sequelize');
 
 const storybl = sequelize.define ('storybl', {
